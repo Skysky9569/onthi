@@ -27,6 +27,10 @@ body { font-family: var(--font-sans); }
   margin: 1.25rem 0 0.75rem;
   padding-bottom: 6px;
   border-bottom: 0.5px solid var(--color-border-tertiary);
+  display: inline-block;
+  border: 1px solid red;
+  padding: 10px;
+
 }
 .card {
   background: var(--color-background-primary);
@@ -36,8 +40,8 @@ body { font-family: var(--font-sans); }
   margin-bottom: 0.75rem;
 }
 .card-label {
-  font-size: 12px; font-weight: 500;
-  color: var(--color-text-secondary);
+  font-size: 15px; font-weight: bold;
+  color: var(--color-text-secondary);*/
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 6px;
@@ -171,7 +175,7 @@ strong { font-weight: 500; color: var(--color-text-primary); }
   <div class="grid2">
     <div class="card">
       <div class="card-label">Động năng</div>
-      <div class="formula">Wđ = ½ · m · v²</div>
+      <div class="formula"> \(Wđ = \frac{1}{2}mv^2 \) </div>
       <p>Vô hướng, <strong>không âm</strong> (≥ 0). Phụ thuộc vào hệ quy chiếu. Đơn vị: J</p>
     </div>
     <div class="card">
@@ -188,8 +192,8 @@ strong { font-weight: 500; color: var(--color-text-primary); }
   <div class="card">
     <div class="card-label">So sánh động năng khi thay đổi m và v</div>
     <ul>
-      <li>m giảm 4 lần, v tăng 2 lần → Wđ = ½·(m/4)·(2v)² = ½mv² → <strong>không đổi</strong></li>
-      <li>m tăng 4 lần, v giảm 2 lần → Wđ = ½·(4m)·(v/2)² = ½mv² → <strong>không đổi</strong></li>
+      <li>m giảm 4 lần, v tăng 2 lần → \(Wđ = \frac{1}{2} \times \frac{m}{4} \times(2v)^2 \) → <strong>không đổi</strong></li>
+      <li>m tăng 4 lần, v giảm 2 lần → \(Wđ = \frac{1}{2} \times 4m \times (\frac{v}{2})^2 \) → <strong>không đổi</strong></li>
     </ul>
   </div>
   <div class="card">
