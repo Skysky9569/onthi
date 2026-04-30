@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ</title>
+    <style>
+        /* Setup giao diện cơ bản */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e1e1e; /* Nền tối */
+            color: #cccccc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #ffffff;
+            margin-bottom: 30px;
+        }
+
+        /* Style cho nút bấm */
+        .btn-link {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #0e639c; /* Màu xanh chuẩn */
+            text-decoration: none; /* Bỏ gạch chân của thẻ a */
+            border-radius: 6px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Hiệu ứng khi di chuột vào nút */
+        .btn-link:hover {
+            background-color: #1177bb;
+        }
+
+        /* Hiệu ứng khi click vào nút */
+        .btn-link:active {
+            transform: scale(0.96);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Chào mừng đến với Trang Chủ</h1>
+    
+    <!-- Đây là phần nút bấm chuyển sang val.html -->
+    <a href="vlck2.html" class="btn-link">Chuyển sang trang Val</a>
+
+</body>
+</html>
