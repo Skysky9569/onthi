@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toán 10 – Tổng Hợp Công Thức</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0e17;
+    --surface: #1a1828;
+    --surface2: #221f35;
+    --accent: #e8c547;
+    --accent2: #7c6af7;
+    --accent3: #f76a6a;
+    --text: #ede9f6;
+    --text-muted: #9b94b8;
+    --border: #2e2a45;
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: clamp(14px, 2vw, 16px);
+    min-height: 100vh;
+    padding: clamp(12px, 3vw, 32px);
+  }
+
+  /* HEADER */
+  header {
+    text-align: center;
+    margin-bottom: clamp(20px, 4vw, 40px);
+    padding: clamp(20px, 4vw, 40px) clamp(16px, 4vw, 32px);
+    background: linear-gradient(135deg, #1a1828 0%, #221f35 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(124,106,247,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 160px; height: 160px;
+    background: radial-gradient(circle, rgba(232,197,71,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--accent2);
+    color: #fff;
+    font-size: clamp(10px, 1.5vw, 12px);
+    font-family: 'Source Serif 4', serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 5vw, 42px);
+    color: var(--accent);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: clamp(12px, 1.8vw, 15px);
+    font-style: italic;
+  }
+
+  /* TABS NAV */
+  .tabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+    background: var(--surface);
+    padding: 8px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+
+  .tab-btn {
+    flex: 1 1 auto;
+    min-width: clamp(80px, 15vw, 130px);
+    padding: clamp(8px, 1.5vw, 12px) clamp(10px, 2vw, 18px);
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(12px, 1.6vw, 14px);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .tab-btn:hover {
+    background: var(--surface2);
+    color: var(--text);
+  }
+
+  .tab-btn.active {
+    background: var(--accent2);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(124,106,247,0.35);
+  }
+
+  /* TAB PANELS */
+  .tab-panel { display: none; animation: fadeIn 0.3s ease; }
+  .tab-panel.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* CARDS */
+  .section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: clamp(16px, 3vw, 28px);
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: var(--accent);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .icon-yellow { background: rgba(232,197,71,0.15); }
+  .icon-purple { background: rgba(124,106,247,0.15); }
+  .icon-red    { background: rgba(247,106,106,0.15); }
+  .icon-green  { background: rgba(80,200,140,0.15); }
+
+  .subsection {
+    background: var(--surface2);
+    border-left: 3px solid var(--accent2);
+    border-radius: 0 8px 8px 0;
+    padding: clamp(12px, 2vw, 18px);
+    margin: 14px 0;
+  }
+
+  .subsection-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(14px, 2vw, 17px);
+    color: var(--accent2);
+    margin-bottom: 10px;
+  }
+
+  p { line-height: 1.75; margin-bottom: 8px; color: var(--text); }
+  p:last-child { margin-bottom: 0; }
+
+  ul, ol { padding-left: 20px; line-height: 1.9; color: var(--text); }
+  li { margin-bottom: 4px; }
+
+  /* FORMULA BOX */
+  .formula-box {
+    background: #13111f;
+    border: 1px solid var(--accent2);
+    border-radius: 8px;
+    padding: clamp(10px, 2vw, 16px) clamp(14px, 2.5vw, 22px);
+    margin: 10px 0;
+    overflow-x: auto;
+    text-align: center;
+    font-size: clamp(13px, 1.8vw, 16px);
+  }
+
+  .formula-box.yellow { border-color: var(--accent); }
+  .formula-box.red    { border-color: var(--accent3); }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; margin: 12px 0; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: clamp(12px, 1.6vw, 14px);
+    min-width: 300px;
+  }
+
+  th {
+    background: var(--accent2);
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+  }
+
+  td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+  tr:hover td { background: rgba(124,106,247,0.08); }
+
+  /* NOTE BOX */
+  .note {
+    background: rgba(232,197,71,0.08);
+    border: 1px solid rgba(232,197,71,0.3);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: clamp(12px, 1.6vw, 14px);
+    color: #d4b83a;
+    line-height: 1.7;
+  }
+
+  .note strong { color: var(--accent); }
+
+  .note-red {
+    background: rgba(247,106,106,0.08);
+    border-color: rgba(247,106,106,0.3);
+    color: #e07070;
+  }
+
+  .note-red strong { color: var(--accent3); }
+
+  /* TAG */
+  .tag {
+    display: inline-block;
+    background: rgba(124,106,247,0.2);
+    color: #a89ef5;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 2px;
+    letter-spacing: 0.5px;
+  }
+
+  /* GRID 2 cols */
+  .grid2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 14px;
+    margin: 12px 0;
+  }
+
+  .card-small {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+
+  .card-small-title {
+    font-size: clamp(12px, 1.6vw, 14px);
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  /* HIGHLIGHT */
+  strong { color: var(--accent); }
+  em { color: var(--text-muted); }
+
+  /* RESPONSIVE tweak */
+  @media (max-width: 480px) {
+    .tab-btn { font-size: 11px; padding: 7px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Ôn tập cuối kỳ II</div>
+  <h1>Toán 10 – Tổng Hợp Công Thức</h1>
+  <p class="subtitle">Thống kê · Tổ hợp · Xác suất · Đường thẳng · Đường tròn</p>
+</header>
+
+<!-- TAB NAV -->
+<nav class="tabs-nav" role="tablist">
+  <button class="tab-btn active" onclick="switchTab('thongke', this)">📊 Thống kê</button>
+  <button class="tab-btn" onclick="switchTab('tohop', this)">🎲 Tổ hợp</button>
+  <button class="tab-btn" onclick="switchTab('xacxuat', this)">🎯 Xác suất</button>
+  <button class="tab-btn" onclick="switchTab('duongthang', this)">📐 Đường thẳng</button>
+  <button class="tab-btn" onclick="switchTab('duongtron', this)">⭕ Đường tròn</button>
+  <button class="tab-btn" onclick="switchTab('tomtat', this)">📋 Tóm tắt</button>
+</nav>
+
+<!-- ====== TAB: THỐNG KÊ ====== -->
+<div id="tab-thongke" class="tab-panel active">
+
+  <div class="section">
+    <div class="section-title"><span class="icon icon-yellow">📊</span>I. Đại lượng đo xu hướng trung tâm</div>
+
+    <div class="subsection">
+      <div class="subsection-title">1. Số trung bình cộng (Mean) – \(\bar{x}\)</div>
+      <p>Công thức thông thường:</p>
+      <div class="formula-box yellow">
+        \[\bar{x} = \dfrac{x_1 + x_2 + \cdots + x_n}{n}\]
+      </div>
+      <p>Với bảng tần số:</p>
+      <div class="formula-box yellow">
+        \[\bar{x} = \dfrac{x_1 \cdot f_1 + x_2 \cdot f_2 + \cdots + x_k \cdot f_k}{n}\]
+      </div>
+      <p>trong đó \(f_i\) là tần số của giá trị \(x_i\), \(n = f_1 + f_2 + \cdots + f_k\) là tổng số phần tử.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">2. Số trung vị (Median) – \(M_e\)</div>
+      <ul>
+        <li>Sắp xếp dãy số theo thứ tự <strong>tăng dần</strong></li>
+        <li>Nếu \(n\) <strong>lẻ</strong>: \(M_e\) là giá trị ở vị trí \(\dfrac{n+1}{2}\)</li>
+        <li>Nếu \(n\) <strong>chẵn</strong>: \(M_e\) là trung bình cộng của 2 giá trị ở vị trí \(\dfrac{n}{2}\) và \(\dfrac{n}{2}+1\)</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">3. Mốt (Mode) – \(M_0\)</div>
+      <ul>
+        <li>Là <strong>giá trị</strong> có tần số lớn nhất trong bảng số liệu</li>
+        <li>Một bộ số liệu có thể có một hoặc nhiều mốt</li>
+      </ul>
+      <div class="note">
+        <strong>⚠ Lưu ý:</strong> Mốt <em>không phải</em> là tần số lớn nhất, mà là <strong>giá trị</strong> tương ứng với tần số đó.
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon icon-purple">📏</span>II. Đại lượng đo độ phân tán</div>
+
+    <div class="subsection">
+      <div class="subsection-title">1. Khoảng biến thiên (Range) – \(R\)</div>
+      <div class="formula-box">
+        \[R = x_{\max} - x_{\min}\]
+      </div>
+      <p>Lấy <strong>giá trị lớn nhất trừ giá trị nhỏ nhất</strong> trong bộ số liệu.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">2. Phương sai (Variance) – \(s^2\)</div>
+      <p>Công thức thông thường:</p>
+      <div class="formula-box">
+        \[s^2 = \dfrac{(x_1 - \bar{x})^2 + (x_2 - \bar{x})^2 + \cdots + (x_n - \bar{x})^2}{n}\]
+      </div>
+      <p>Với bảng tần số:</p>
+      <div class="formula-box">
+        \[s^2 = \dfrac{(x_1-\bar{x})^2 \cdot f_1 + (x_2-\bar{x})^2 \cdot f_2 + \cdots + (x_k-\bar{x})^2 \cdot f_k}{n}\]
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">3. Độ lệch chuẩn (Standard Deviation) – \(s\)</div>
+      <div class="formula-box yellow">
+        \[s = \sqrt{s^2}\]
+      </div>
+      <ul>
+        <li>Độ lệch chuẩn càng <strong>nhỏ</strong> → số liệu càng <em>tập trung</em> quanh trung bình</li>
+        <li>Độ lệch chuẩn càng <strong>lớn</strong> → số liệu càng <em>phân tán</em></li>
+        <li>\(s \geq 0\); \(s = 0\) khi tất cả các giá trị bằng nhau</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">4. Tứ phân vị (Quartile)</div>
+      <p>Chia bộ số liệu đã sắp xếp thành 4 phần bằng nhau:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Ký hiệu</th><th>Tên</th><th>Vị trí</th></tr></thead>
+          <tbody>
+            <tr><td>\(Q_1\)</td><td>Tứ phân vị thứ nhất</td><td>Trung vị của nửa dưới</td></tr>
+            <tr><td>\(Q_2\)</td><td>Tứ phân vị thứ hai</td><td>Chính là số trung vị \(M_e\)</td></tr>
+            <tr><td>\(Q_3\)</td><td>Tứ phân vị thứ ba</td><td>Trung vị của nửa trên</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:12px"><strong>Khoảng tứ phân vị (IQR):</strong></p>
+      <div class="formula-box">
+        \[IQR = Q_3 - Q_1\]
+      </div>
+      <p>IQR phản ánh mức độ phân tán của 50% số liệu ở giữa, ít bị ảnh hưởng bởi ngoại lệ hơn \(R\).</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon icon-green">💡</span>III. Bảng so sánh ý nghĩa</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Đại lượng</th><th>Ý nghĩa</th><th>Khi nào dùng</th></tr></thead>
+        <tbody>
+          <tr><td>Trung bình \(\bar{x}\)</td><td>Giá trị đại diện chung</td><td>Số liệu không có ngoại lệ</td></tr>
+          <tr><td>Trung vị \(M_e\)</td><td>Giá trị chính giữa</td><td>Số liệu có ngoại lệ</td></tr>
+          <tr><td>Mốt \(M_0\)</td><td>Giá trị phổ biến nhất</td><td>Muốn biết xu hướng</td></tr>
+          <tr><td>Khoảng biến thiên \(R\)</td><td>Độ trải rộng toàn bộ</td><td>Đánh giá nhanh</td></tr>
+          <tr><td>Phương sai \(s^2\)</td><td>Mức độ phân tán bình quân</td><td>Tính toán chính xác</td></tr>
+          <tr><td>Độ lệch chuẩn \(s\)</td><td>Cùng đơn vị với \(x\)</td><td>So sánh trực quan</td></tr>
+          <tr><td>IQR</td><td>Phân tán phần giữa</td><td>Số liệu có ngoại lệ</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- ====== TAB: TỔ HỢP ====== -->
+<div id="tab-tohop" class="tab-panel">
+
+  <div class="section">
+    <div class="section-title"><span class="icon icon-yellow">🔢</span>I. Hoán vị – Chỉnh hợp – Tổ hợp</div>
+
+    <div class="grid2">
+      <div class="card-small">
+        <div class="card-small-title">Hoán vị \(n\) phần tử</div>
+        <div class="formula-box" style="margin:8px 0">
+          \[P_n = n!\]
+        </div>
+        <p style="font-size:13px">Sắp xếp <em>tất cả</em> \(n\) phần tử, có phân biệt thứ tự.</p>
+      </div>
+      <div class="card-small">
+        <div class="card-small-title">Chỉnh hợp chập \(k\) của \(n\)</div>
+        <div class="formula-box" style="margin:8px 0">
+          \[A_n^k = \dfrac{n!}{(n-k)!}\]
+        </div>
+        <p style="font-size:13px">Chọn \(k\) phần tử từ \(n\), <em>có</em> phân biệt thứ tự.</p>
+      </div>
+      <div class="card-small">
+        <div class="card-small-title">Tổ hợp chập \(k\) của \(n\)</div>
+        <div class="formula-box" style="margin:8px 0">
+          \[C_n^k = \dfrac{n!}{k!(n-k)!}\]
+        </div>
+        <p style="font-size:13px">Chọn \(k\) phần tử từ \(n\), <em>không</em> phân biệt thứ tự.</p>
+      </div>
+      <div class="card-small">
+        <div class="card-small-title">Nhị thức Newton</div>
+        <div class="formula-box" style="margin:8px 0">
+          \[(x+y)^n\] có \(n+1\) số hạng
+        </div>
+        <p style="font-size:13px">Số hạng tổng quát: \(C_n^k \cdot x^{n-k} \cdot y^k\)</p>
+      </div>
+    </div>
+
+    <div class="subsection" style="margin-top:16px">
+      <div class="subsection-title">Tính chất tổ hợp</div>
+      <div class="formula-box">
+        \[C_n^0 = C_n^n = 1 \qquad C_n^k = C_n^{n-k}\]
+      </div>
+      <div class="formula-box">
+        \[C_n^k + C_n^{k+1} = C_{n+1}^{k+1} \quad \text{(Công thức Pascal)}\]
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon icon-purple">📌</span>II. Quy tắc đếm</div>
+
+    <div class="grid2">
+      <div class="card-small">
+        <div class="card-small-title">Quy tắc cộng</div>
+        <p style="font-size:13px">Chọn <strong>1</strong> trong nhiều nhóm <em>không giao nhau</em> → <strong>cộng</strong> số phần tử các nhóm.</p>
+        <div class="formula-box" style="margin:8px 0">
+          \[n = n_1 + n_2 + \cdots + n_k\]
+        </div>
+      </div>
+      <div class="card-small">
+        <div class="card-small-title">Quy tắc nhân</div>
+        <p style="font-size:13px">Thực hiện nhiều bước <em>độc lập</em> liên tiếp → <strong>nhân</strong> số cách của mỗi bước.</p>
+        <div class="formula-box" style="margin:8px 0">
+          \[n = n_1 \times n_2 \times \cdots \times n_k\]
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon icon-green">💡</span>III. Phân biệt khi nào dùng A, C</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tình huống</th><th>Công thức</th></tr></thead>
+        <tbody>
+          <tr><td>Chọn có <strong>phân biệt thứ tự</strong> (chức vụ, xếp hạng…)</td><td>\(A_n^k\)</td></tr>
+          <tr><td>Chọn <strong>không phân biệt thứ tự</strong> (nhóm, đội…)</td><td>\(C_n^k\)</td></tr>
+          <tr><td>Sắp xếp tất cả \(n\) phần tử</td><td>\(P_n = n!\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      <strong>Ví dụ:</strong> Chọn lớp trưởng, lớp phó, bí thư từ 39 HS → có thứ tự → dùng \(A_{39}^3\)
+    </div>
+  </div>
+
+</div>
+
+<!-- ====== TAB: XÁC SUẤT ====== -->
+<div id="tab-xacxuat" class="tab-panel">
+
+  <div class="section">
+    <div class="section-title"><span class="icon icon-yellow">🎯</span>I. Không gian mẫu & Biến cố</div>
+    <div class="subsection">
+      <div class="subsection-title">Không gian mẫu \(\Omega\)</div>
+      <ul>
+        <li>Tập hợp tất cả các kết quả có thể xảy ra của phép thử</li>
+        <li>Gieo đồng xu \(n\) lần: \(n(\Omega) = 2^n\)</li>
+        <li>Gieo xúc sắc \(n\) lần: \(n(\Omega) = 6^n\)</li>
+      </ul>
+    </div>
+    <div class="subsection">
+      <div class="subsection-title">Biến cố \(A\)</div>
+      <ul>
+        <li>Là tập con của \(\Omega\)</li>
+        <li>\(\bar{A}\) là biến cố đối của \(A\) (không xảy ra \(A\))</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon icon-purple">📐</span>II. Công thức xác suất</div>
+
+    <div class="subsection">
+      <div class="subsection-title">Định nghĩa cổ điển</div>
+      <div class="formula-box yellow">
+        \[P(A) = \dfrac{n(A)}{n(\Omega)}\]
+      </div>
+      <p>trong đó \(n(A)\) là số kết quả thuận lợi cho \(A\), \(n(\Omega)\) là số kết quả của không gian mẫu.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Tính chất xác suất</div>
+      <div class="formula-box">
+        \[0 \leq P(A) \leq 1\]
+      </div>
+      <div class="formula-box">
+        \[P(\Omega) = 1 \qquad P(\emptyset) = 0\]
+      </div>
+      <div class="formula-box">
+        \[P(A) + P(\bar{A}) = 1 \quad \Rightarrow \quad P(\bar{A}) = 1 - P(A)\]
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Cộng xác suất (biến cố xung khắc)</div>
+      <p>Hai biến cố \(A, B\) xung khắc (không đồng thời xảy ra):</p>
+      <div class="formula-box">
+        \[P(A \cup B) = P(A) + P(B)\]
+      </div>
+      <p>Tổng quát (không xung khắc):</p>
+      <div class="formula-box">
+        \[P(A \cup B) = P(A) + P(B) - P(A \cap B)\]
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon icon-red">🎲</span>III. Ví dụ thường gặp</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Phép thử</th><th>Không gian mẫu</th><th>Ví dụ xác suất</th></tr></thead>
+        <tbody>
+          <tr><td>Gieo 1 đồng xu</td><td>\(n(\Omega)=2\)</td><td>P(ngửa) = \(\frac{1}{2}\)</td></tr>
+          <tr><td>Gieo 3 đồng xu</td><td>\(n(\Omega)=8\)</td><td>P(3 ngửa) = \(\frac{1}{8}\)</td></tr>
+          <tr><td>Gieo 1 xúc sắc</td><td>\(n(\Omega)=6\)</td><td>P(mặt chẵn) = \(\frac{3}{6}=\frac{1}{2}\)</td></tr>
+          <tr><td>Chọn 2 bi từ hộp</td><td>\(n(\Omega)=C_n^2\)</td><td>P(2 cùng màu) = \(\frac{C_{xanh}^2 + C_{do}^2}{C_n^2}\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note red note-red">
+      <strong>⚠ Câu sai hay gặp:</strong> \(P(A) \cdot P(\bar{A}) = 1\) → <strong>SAI!</strong> Đúng phải là \(P(A) + P(\bar{A}) = 1\)
+    </div>
+  </div>
+
+</div>
+
+<!-- ====== TAB: ĐƯỜNG THẲNG ====== -->
+<div id="tab-duongthang" class="tab-panel">
+
+  <div class="section">
+    <div class="section-title"><span class="icon icon-yellow">📐</span>I. Các dạng phương trình đường thẳng</div>
+
+    <div class="grid2">
+      <div class="card-small">
+        <div class="card-small-title">Dạng tổng quát</div>
+        <div class="formula-box yellow" style="margin:8px 0">
+          \[ax + by + c = 0\]
+        </div>
+        <p style="font-size:13px">VTPT: \(\vec{n} = (a;\, b)\)<br>VTCP: \(\vec{u} = (-b;\, a)\) hoặc \((b;\,-a)\)</p>
+      </div>
+      <div class="card-small">
+        <div class="card-small-title">Dạng tham số</div>
+        <div class="formula-box yellow" style="margin:8px 0">
+          \[\begin{cases} x = x_0 + at \\ y = y_0 + bt \end{cases}\]
+        </div>
+        <p style="font-size:13px">VTCP: \(\vec{u} = (a;\, b)\)<br>Điểm đi qua: \(M(x_0;\, y_0)\)</p>
+      </div>
+    </div>
+
+    <div class="subsection" style="margin-top:14px">
+      <div class="subsection-title">Dạng góc (hệ số góc)</div>
+      <div class="formula-box">
+        \[y = kx + m\]
+      </div>
+      <p>VTCP: \(\vec{u} = (1;\, k)\); VTPT: \(\vec{n} = (k;\, -1)\)</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon icon-purple">✏️</span>II. Viết phương trình đường thẳng</div>
+
+    <div class="subsection">
+      <div class="subsection-title">Qua điểm \(M(x_0; y_0)\), VTPT \(\vec{n}(a; b)\)</div>
+      <div class="formula-box">
+        \[a(x - x_0) + b(y - y_0) = 0\]
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Qua 2 điểm \(A(x_1; y_1)\), \(B(x_2; y_2)\)</div>
+      <p>VTCP: \(\vec{AB} = (x_2-x_1;\; y_2-y_1)\)</p>
+      <p>VTPT: \(\vec{n} = (y_2-y_1;\; x_1-x_2)\), rồi dùng công thức trên.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Đường thẳng vuông góc / song song</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Quan hệ</th><th>Điều kiện VTPT</th><th>Điều kiện VTCP</th></tr></thead>
+          <tbody>
+            <tr><td>\(d_1 \perp d_2\)</td><td>\(\vec{n_1} \cdot \vec{n_2} = 0\)</td><td>VTCP \(d_1\) = VTPT \(d_2\)</td></tr>
+            <tr><td>\(d_1 \parallel d_2\)</td><td>\(\vec{n_1} \parallel \vec{n_2}\)</td><td>\(\vec{u_1} \parallel \vec{u_2}\)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon icon-red">📏</span>III. Các công thức khoảng cách & vị trí</div>
+
+    <div class="subsection">
+      <div class="subsection-title">Khoảng cách từ điểm \(M(x_0; y_0)\) đến đường thẳng \(\Delta: ax+by+c=0\)</div>
+      <div class="formula-box yellow">
+        \[d(M, \Delta) = \dfrac{|ax_0 + by_0 + c|}{\sqrt{a^2 + b^2}}\]
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Giao điểm hai đường thẳng</div>
+      <p>Giải hệ phương trình gồm 2 phương trình của 2 đường thẳng.</p>
+      <ul>
+        <li>Hệ có <strong>nghiệm duy nhất</strong> → hai đường cắt nhau</li>
+        <li>Hệ <strong>vô nghiệm</strong> → hai đường song song</li>
+        <li>Hệ <strong>vô số nghiệm</strong> → hai đường trùng nhau</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Góc giữa hai đường thẳng</div>
+      <div class="formula-box">
+        \[\cos\varphi = \dfrac{|\vec{u_1} \cdot \vec{u_2}|}{|\vec{u_1}||\vec{u_2}|}\]
+      </div>
+      <p>hoặc dùng VTPT \(\vec{n_1}, \vec{n_2}\) tương tự.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ====== TAB: ĐƯỜNG TRÒN ====== -->
+<div id="tab-duongtron" class="tab-panel">
+
+  <div class="section">
+    <div class="section-title"><span class="icon icon-yellow">⭕</span>I. Phương trình đường tròn</div>
+
+    <div class="subsection">
+      <div class="subsection-title">Dạng chính tắc – tâm \(I(a; b)\), bán kính \(R\)</div>
+      <div class="formula-box yellow">
+        \[(x - a)^2 + (y - b)^2 = R^2\]
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Dạng mở rộng (khai triển)</div>
+      <div class="formula-box">
+        \[x^2 + y^2 - 2ax - 2by + c = 0\]
+      </div>
+      <p>trong đó tâm \(I(a;\, b)\) và bán kính:</p>
+      <div class="formula-box">
+        \[R = \sqrt{a^2 + b^2 - c}\]
+      </div>
+      <div class="note">
+        <strong>Điều kiện có đường tròn:</strong> \(a^2 + b^2 - c > 0\)
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Cách chuyển từ dạng mở rộng sang chính tắc</div>
+      <p>Hoàn thành bình phương:</p>
+      <div class="formula-box">
+        \[x^2 - 2ax = (x-a)^2 - a^2\]
+      </div>
+      <div class="formula-box">
+        \[y^2 - 2by = (y-b)^2 - b^2\]
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon icon-purple">📌</span>II. Tiếp tuyến của đường tròn</div>
+
+    <div class="subsection">
+      <div class="subsection-title">Tiếp tuyến tại điểm \(M(x_0; y_0)\) trên đường tròn tâm \(I\)</div>
+      <ul>
+        <li>Vectơ pháp tuyến của tiếp tuyến = \(\overrightarrow{IM} = (x_0 - a;\; y_0 - b)\)</li>
+        <li>Viết phương trình đường thẳng qua \(M\), VTPT là \(\overrightarrow{IM}\):</li>
+      </ul>
+      <div class="formula-box yellow">
+        \[(x_0-a)(x-x_0) + (y_0-b)(y-y_0) = 0\]
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Tiếp tuyến có hệ số góc \(k\) (tiếp tuyến từ ngoài)</div>
+      <p>Điều kiện tiếp tuyến: khoảng cách từ tâm \(I\) đến đường thẳng bằng \(R\):</p>
+      <div class="formula-box">
+        \[d(I, d) = R\]
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon icon-red">📐</span>III. Vị trí tương đối – đường thẳng & đường tròn</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Điều kiện</th><th>Vị trí tương đối</th></tr></thead>
+        <tbody>
+          <tr><td>\(d(I, \Delta) < R\)</td><td>Đường thẳng <strong>cắt</strong> đường tròn (2 điểm)</td></tr>
+          <tr><td>\(d(I, \Delta) = R\)</td><td>Đường thẳng <strong>tiếp xúc</strong> đường tròn (1 điểm)</td></tr>
+          <tr><td>\(d(I, \Delta) > R\)</td><td>Đường thẳng <strong>không giao</strong> đường tròn</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- ====== TAB: TÓM TẮT ====== -->
+<div id="tab-tomtat" class="tab-panel">
+
+  <div class="section">
+    <div class="section-title"><span class="icon icon-yellow">📋</span>Tổng hợp dạng bài & phương pháp</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Dạng bài</th><th>Phương pháp</th></tr></thead>
+        <tbody>
+          <tr><td>Tìm mốt</td><td>Tìm giá trị có tần số <strong>lớn nhất</strong> trong bảng</td></tr>
+          <tr><td>Khoảng biến thiên</td><td>\(R = x_{\max} - x_{\min}\)</td></tr>
+          <tr><td>Trung bình, phương sai</td><td>Tính \(\bar x\) trước, rồi tính \(s^2\)</td></tr>
+          <tr><td>Đếm có thứ tự</td><td>Dùng \(A_n^k\) (chỉnh hợp)</td></tr>
+          <tr><td>Đếm không thứ tự</td><td>Dùng \(C_n^k\) (tổ hợp)</td></tr>
+          <tr><td>Tính xác suất</td><td>\(P(A) = \frac{n(A)}{n(\Omega)}\), xác định \(\Omega\) trước</td></tr>
+          <tr><td>Viết PT đường thẳng</td><td>Xác định điểm qua + VTPT hoặc VTCP</td></tr>
+          <tr><td>Tìm tâm, bán kính</td><td>Đưa về dạng \((x-a)^2+(y-b)^2=R^2\)</td></tr>
+          <tr><td>Viết tiếp tuyến đường tròn</td><td>VTPT = \(\overrightarrow{IM}\), đường thẳng qua \(M\)</td></tr>
+          <tr><td>Khoảng cách điểm – đường thẳng</td><td>\(d = \frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}\)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon icon-red">⚠️</span>Các lỗi thường gặp</div>
+    <div class="note red note-red">
+      <strong>1.</strong> Nhầm Mốt với Tần số lớn nhất → Mốt là <em>giá trị</em>, không phải tần số.
+    </div>
+    <div class="note red note-red">
+      <strong>2.</strong> \(P(A) \cdot P(\bar A) = 1\) → <strong>SAI!</strong> Đúng là \(P(A) + P(\bar A) = 1\)
+    </div>
+    <div class="note red note-red">
+      <strong>3.</strong> Nhầm bán kính \(R\) với \(R^2\) khi đọc phương trình đường tròn dạng chính tắc.
+    </div>
+    <div class="note red note-red">
+      <strong>4.</strong> Dùng \(C_n^k\) khi bài yêu cầu phân biệt thứ tự (lớp trưởng, phó, bí thư…) → phải dùng \(A_n^k\).
+    </div>
+    <div class="note red note-red">
+      <strong>5.</strong> Quên điều kiện chữ số đầu tiên \(\neq 0\) khi đếm số có nhiều chữ số.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="icon icon-green">✅</span>Bảng công thức nhanh</div>
+    <div class="grid2">
+      <div class="card-small">
+        <div class="card-small-title">Thống kê</div>
+        <div class="formula-box" style="margin:6px 0;font-size:13px">
+          \(\bar x = \frac{x_1 f_1+\cdots}{n}\)
+        </div>
+        <div class="formula-box" style="margin:6px 0;font-size:13px">
+          \(s^2 = \frac{(x_i-\bar x)^2 f_i}{n}\)
+        </div>
+        <div class="formula-box" style="margin:6px 0;font-size:13px">
+          \(R = x_{\max}-x_{\min}\)
+        </div>
+      </div>
+      <div class="card-small">
+        <div class="card-small-title">Tổ hợp</div>
+        <div class="formula-box" style="margin:6px 0;font-size:13px">
+          \(A_n^k = \frac{n!}{(n-k)!}\)
+        </div>
+        <div class="formula-box" style="margin:6px 0;font-size:13px">
+          \(C_n^k = \frac{n!}{k!(n-k)!}\)
+        </div>
+      </div>
+      <div class="card-small">
+        <div class="card-small-title">Xác suất</div>
+        <div class="formula-box" style="margin:6px 0;font-size:13px">
+          \(P(A) = \frac{n(A)}{n(\Omega)}\)
+        </div>
+        <div class="formula-box" style="margin:6px 0;font-size:13px">
+          \(P(\bar A) = 1 - P(A)\)
+        </div>
+      </div>
+      <div class="card-small">
+        <div class="card-small-title">Đường thẳng & Đường tròn</div>
+        <div class="formula-box" style="margin:6px 0;font-size:13px">
+          \(d(M,\Delta)=\frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}\)
+        </div>
+        <div class="formula-box" style="margin:6px 0;font-size:13px">
+          \((x-a)^2+(y-b)^2=R^2\)
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+    if (window.MathJax) MathJax.typesetPromise();
+  }
+
+  // Re-render MathJax on tab switch (already handled above)
+  window.MathJax = {
+    tex: { inlineMath: [['\\(','\\)'], ['$','$']], displayMath: [['\\[','\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+  };
+</script>
+</body>
+</html>
