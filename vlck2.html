@@ -87,6 +87,18 @@ p { font-size: 14px; line-height: 1.7; color: var(--color-text-secondary); margi
 ul { padding-left: 1.2rem; }
 li { font-size: 14px; line-height: 1.8; color: var(--color-text-secondary); }
 strong { font-weight: 500; color: var(--color-text-primary); }
+
+.nuthome{
+  padding: 6px 14px; font-size: 13px; font-weight: 500;
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: var(--border-radius-md);
+  background: var(--color-background-primary);
+  color: var(--color-text-secondary);
+  cursor: pointer; transition: all 0.15s;
+  text-decoration: none;
+  border-radius: 6px;
+  
+}
 </style>
 <div class="container">
 <div class="tabs">
@@ -97,6 +109,7 @@ strong { font-weight: 500; color: var(--color-text-primary); }
   <button class="tab-btn" onclick="show('baoToan')">Bảo toàn ĐL</button>
   <button class="tab-btn" onclick="show('coNang')">Cơ năng – Hiệu suất</button>
   <button class="tab-btn" onclick="show('tron')">Chuyển động tròn</button>
+  <a href="index.html" class="nuthome" style="background-color: cornflowerblue;color:white">HOME</a>
 </div>
 
 <div id="cong" class="panel active">

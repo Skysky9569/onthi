@@ -1,55 +1,169 @@
 
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-.wrap { padding: 1rem 0; font-family: var(--font-sans); color: var(--color-text-primary); }
-.main-title { font-size: 20px; font-weight: 500; margin-bottom: 3px; }
-.main-sub { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
-.section { margin-bottom: 1.4rem; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; }
-.sec-header { display: flex; align-items: center; gap: 10px; padding: 11px 16px; border-bottom: 0.5px solid var(--color-border-tertiary); }
-.badge { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
-.sec-title { font-size: 15px; font-weight: 500; }
-.sec-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 13px; }
-.block { display: flex; flex-direction: column; gap: 5px; }
-.block-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
-.def-box { background: var(--color-background-secondary); border-left: 3px solid #5DCAA5; border-radius: 0 6px 6px 0; padding: 9px 12px; font-size: 13px; line-height: 1.6; color: var(--color-text-primary); }
+
+/* 🔥 font tự co giãn */
+html {
+  font-size: clamp(14px, 1.2vw, 18px);
+}
+
+body {
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* 🔥 căn giữa + giới hạn chiều rộng */
+.wrap {
+  max-width: 1100px;
+  margin: auto;
+  padding: 1rem;
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+}
+
+/* 🔥 tiêu đề to hơn */
+.main-title { font-size: 1.6rem; font-weight: 600; margin-bottom: 6px; }
+.main-sub { font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
+
+/* 🔥 box */
+.section {
+  margin-bottom: 1.6rem;
+  border: 1px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
+.sec-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border-tertiary);
+}
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.sec-title { font-size: 1.2rem; font-weight: 600; }
+
+.sec-body {
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 🔥 block */
+.block { display: flex; flex-direction: column; gap: 6px; }
+.block-title { font-size: 1rem; font-weight: 600; }
+
+/* 🔥 box nội dung */
+.def-box {
+  background: var(--color-background-secondary);
+  border-left: 4px solid #5DCAA5;
+  border-radius: 0 8px 8px 0;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+}
+
+/* màu giữ nguyên */
 .def-box.pur { border-left-color: #7F77DD; }
 .def-box.blue { border-left-color: #378ADD; }
 .def-box.amber { border-left-color: #EF9F27; }
 .def-box.red { border-left-color: #E24B4A; }
 .def-box.gray { border-left-color: #888780; }
 .def-box.pink { border-left-color: #D4537E; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
-.chip { font-size: 12px; padding: 3px 10px; border-radius: 20px; border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); color: var(--color-text-secondary); }
-.chip.g { background:#E1F5EE; color:#0F6E56; border-color:#5DCAA5; }
-.chip.b { background:#E6F1FB; color:#185FA5; border-color:#85B7EB; }
-.chip.a { background:#FAEEDA; color:#854F0B; border-color:#EF9F27; }
-.chip.r { background:#FCEBEB; color:#A32D2D; border-color:#F09595; }
-.chip.p { background:#EEEDFE; color:#534AB7; border-color:#AFA9EC; }
-.chip.pk { background:#FBEAF0; color:#993556; border-color:#ED93B1; }
-.formula-box { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 14px; }
-.formula-box .flabel { font-size: 11px; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
-.frow { font-family: var(--font-mono); font-size: 13px; color: var(--color-text-primary); margin-bottom: 2px; }
-.fnote { font-size: 11px; color: var(--color-text-secondary); margin-top: 3px; }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-.four-col { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; }
-@media (max-width: 520px) { .two-col,.three-col,.four-col { grid-template-columns: 1fr; } }
-@media (max-width: 650px) { .three-col,.four-col { grid-template-columns: 1fr 1fr; } }
-.proc-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
-.proc-row:last-child { border-bottom: none; }
-.proc-name { font-size: 12px; font-weight: 500; min-width: 140px; color: var(--color-text-primary); }
-.proc-detail { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
-.proc-detail b { color: var(--color-text-primary); font-weight: 500; }
-.phase-row { display: grid; grid-template-columns: 110px 1fr 1fr; gap: 8px; padding: 7px 0; border-bottom: 0.5px solid var(--color-border-tertiary); align-items: start; }
-.phase-row:last-child { border-bottom: none; }
-.phase-name { font-size: 12px; font-weight: 500; }
-.phase-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+
+/* 🔥 chips */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.chip {
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--color-border-tertiary);
+}
+
+/* 🔥 formula */
+.formula-box {
+  background: var(--color-background-secondary);
+  border-radius: var(--border-radius-md);
+  padding: 12px 14px;
+}
+
+.frow { font-size: 0.95rem; }
+.fnote { font-size: 0.8rem; }
+
+/* 🔥 GRID AUTO RESPONSIVE (QUAN TRỌNG NHẤT) */
+.two-col,
+.three-col,
+.four-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 12px;
+}
+
+/* 🔥 process row */
+.proc-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border-tertiary);
+}
+
+.proc-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-width: 120px;
+}
+
+.proc-detail { font-size: 0.9rem; }
+
+/* 🔥 phase */
+.phase-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-border-tertiary);
+
+}
+
+.nuthome{
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  text-decoration: none;
+  
+}
+
+.phase-name { font-size: 0.9rem; font-weight: 600; }
+.phase-desc { font-size: 0.85rem; }
+
+/* 🔥 mobile tối ưu thêm */
+@media (max-width: 600px) {
+  .phase-row {
+    grid-template-columns: 1fr;
+  }
+
+  .proc-row {
+    flex-direction: column;
+  }
+}
 </style>
 
 <div class="wrap">
 <div class="main-title">Sinh học 10 — Ôn tập cuối HK2</div>
-<div class="main-sub">Khái niệm · Tên quá trình · Ý nghĩa · Công thức</div>
-
+<div class="main-sub">Khái niệm · Tên quá trình · Ý nghĩa · Công thức Đóm</div>
+<a href="index.html" class="nuthome" style="background: #1e3ef3;color: #ffffff;">HOME</a>
 <!-- 1. VI SINH VẬT LÀ GÌ -->
 <div class="section">
   <div class="sec-header" style="background:#E1F5EE;">

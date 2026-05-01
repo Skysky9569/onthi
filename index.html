@@ -25,7 +25,9 @@
 
         /* Style cho nút bấm */
         .btn-link {
-            display: inline-block;
+            display: grid;
+            grid-template-columns: repeat(auto-fit , minmax(100px, 1fr));
+            text-align: center;
             padding: 12px 24px;
             font-size: 16px;
             font-weight: bold;
@@ -46,14 +48,31 @@
         .btn-link:active {
             transform: scale(0.96);
         }
+
+        .textdom {
+            font-weight: bold;
+            background: linear-gradient(270deg, red, orange, yellow, green, blue, purple);
+            background-size: 400%;
+            
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            animation: gradientMove 5s ease infinite;
+        }
+
+@keyframes gradientMove {
+  0% { background-position: 0% }
+  100% { background-position: 100% }
+}
     </style>
 </head>
 <body>
 
-    <h1>Chào mừng đến với Trang Chủ</h1>
+    <h1 class="textdom">Ôn thi cùng Đóm</h1>
     
     <!-- Đây là phần nút bấm chuyển sang val.html -->
-    <a href="vlck2.html" class="btn-link">Chuyển sang trang Val</a>
+    <a href="vlck2.html" class="btn-link">Lý</a>
+    <a href="sinhck2.html" class="btn-link">Sinh</a>
 
 </body>
 </html>
