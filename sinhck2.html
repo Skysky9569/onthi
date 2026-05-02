@@ -1,154 +1,152 @@
-
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sinh Học 10 – Ôn Tập Cơ Bản</title>
+<link rel="stylesheet" href="styles.css">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-/* 🔥 font tự co giãn */
-html {
-  font-size: clamp(14px, 1.2vw, 18px);
-}
-
-body {
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-/* 🔥 căn giữa + giới hạn chiều rộng */
+/* Additional styles specific to Biology page */
 .wrap {
   max-width: 1100px;
   margin: auto;
-  padding: 1rem;
-  font-family: var(--font-sans);
-  color: var(--color-text-primary);
+  padding: var(--spacing-xl);
 }
 
-/* 🔥 tiêu đề to hơn */
-.main-title { font-size: 1.6rem; font-weight: 600; margin-bottom: 6px; }
-.main-sub { font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; }
+.main-title {
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+}
 
-/* 🔥 box */
+.main-sub {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Section styles */
 .section {
-  margin-bottom: 1.6rem;
-  border: 1px solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
+  margin-bottom: var(--spacing-xl);
+  border: 1px solid var(--border-tertiary);
+  border-radius: var(--radius-lg);
   overflow: hidden;
 }
 
 .sec-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--color-border-tertiary);
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--border-tertiary);
 }
 
-.badge {
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: 4px 10px;
-  border-radius: 20px;
-  white-space: nowrap;
+.sec-title {
+  font-size: 18px;
+  font-weight: 600;
 }
-
-.sec-title { font-size: 1.2rem; font-weight: 600; }
 
 .sec-body {
-  padding: 1.2rem;
+  padding: var(--spacing-lg);
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: var(--spacing-sm);
 }
 
-/* 🔥 block */
-.block { display: flex; flex-direction: column; gap: 6px; }
-.block-title { font-size: 1rem; font-weight: 600; }
+/* Block styles */
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
 
-/* 🔥 box nội dung */
+.block-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+}
+
+/* Definition box styles */
 .def-box {
-  background: var(--color-background-secondary);
-  border-left: 4px solid #5DCAA5;
-  border-radius: 0 8px 8px 0;
-  padding: 12px 14px;
-  font-size: 0.95rem;
+  background: var(--bg-surface2);
+  border-left: 4px solid var(--accent-green);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: 15px;
 }
 
-/* màu giữ nguyên */
-.def-box.pur { border-left-color: #7F77DD; }
-.def-box.blue { border-left-color: #378ADD; }
-.def-box.amber { border-left-color: #EF9F27; }
-.def-box.red { border-left-color: #E24B4A; }
-.def-box.gray { border-left-color: #888780; }
-.def-box.pink { border-left-color: #D4537E; }
+/* Color variants */
+.def-box.pur { border-left-color: var(--accent-purple); }
+.def-box.blue { border-left-color: var(--accent-blue); }
+.def-box.amber { border-left-color: var(--accent-amber); }
+.def-box.red { border-left-color: var(--accent-red); }
+.def-box.gray { border-left-color: var(--text-muted); }
+.def-box.pink { border-left-color: var(--accent-pink); }
 
-/* 🔥 chips */
-.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+/* Chips styles */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
 
 .chip {
-  font-size: 0.8rem;
-  padding: 4px 12px;
-  border-radius: 20px;
-  border: 1px solid var(--color-border-tertiary);
+  font-size: 13px;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-tertiary);
 }
 
-/* 🔥 formula */
+/* Formula box styles */
 .formula-box {
-  background: var(--color-background-secondary);
-  border-radius: var(--border-radius-md);
-  padding: 12px 14px;
+  background: var(--bg-surface2);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md) var(--spacing-lg);
 }
 
-.frow { font-size: 0.95rem; }
-.fnote { font-size: 0.8rem; }
+.frow { font-size: 15px; }
+.fnote { font-size: 13px; }
 
-/* 🔥 GRID AUTO RESPONSIVE (QUAN TRỌNG NHẤT) */
-.two-col,
-.three-col,
-.four-col {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 12px;
-}
-
-/* 🔥 process row */
+/* Process row styles */
 .proc-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--color-border-tertiary);
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--border-tertiary);
 }
 
 .proc-name {
-  font-size: 0.9rem;
+  font-size: 14px;
   font-weight: 600;
   min-width: 120px;
 }
 
-.proc-detail { font-size: 0.9rem; }
+.proc-detail { font-size: 14px; }
 
-/* 🔥 phase */
+/* Phase row styles */
 .phase-row {
   display: grid;
   grid-template-columns: 120px 1fr 1fr;
-  gap: 10px;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--color-border-tertiary);
-
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--border-tertiary);
 }
 
-.nuthome{
-  font-size: 0.75rem;
+.phase-name { font-size: 14px; font-weight: 600; }
+.phase-desc { font-size: 13px; }
+
+/* Home button */
+.nuthome {
+  font-size: 13px;
   font-weight: 500;
-  padding: 4px 10px;
-  border-radius: 20px;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-full);
   white-space: nowrap;
   text-decoration: none;
-  
 }
 
-.phase-name { font-size: 0.9rem; font-weight: 600; }
-.phase-desc { font-size: 0.85rem; }
-
-/* 🔥 mobile tối ưu thêm */
+/* Mobile optimizations */
 @media (max-width: 600px) {
   .phase-row {
     grid-template-columns: 1fr;
@@ -157,13 +155,32 @@ body {
   .proc-row {
     flex-direction: column;
   }
+
+  .wrap {
+    padding: var(--spacing-md);
+  }
 }
 </style>
+</head>
+<body>
+
+<!-- Theme Toggle Button -->
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">
+  <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+  </svg>
+</button>
+
+<!-- Search Bar -->
+<div class="search-container">
+  <input type="text" class="search-input" id="search-input" placeholder="Tìm kiếm nội dung (Ctrl/Cmd + K)..." oninput="searchContent()">
+  <span class="search-icon">🔍</span>
+</div>
 
 <div class="wrap">
 <div class="main-title">Sinh học 10 — Ôn tập cuối HK2</div>
 <div class="main-sub">Khái niệm · Tên quá trình · Ý nghĩa · Công thức Đóm</div>
-<a href="index.html" class="nuthome" style="background: #1e3ef3;color: #ffffff;">HOME</a>
+<a href="index.html" class="nuthome" style="background: var(--accent-blue); color: #ffffff;">🏠 HOME</a>
 <!-- 1. VI SINH VẬT LÀ GÌ -->
 <div class="section">
   <div class="sec-header" style="background:#E1F5EE;">
@@ -543,4 +560,105 @@ body {
   </div>
 </div>
 
-</div>
+<script>
+// Theme Toggle Function
+function toggleTheme() {
+  const html = document.documentElement;
+  const currentTheme = html.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  updateThemeIcon(newTheme);
+}
+
+// Load saved theme
+function loadTheme() {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeIcon(savedTheme);
+}
+
+// Update theme icon
+function updateThemeIcon(theme) {
+  const icon = document.getElementById('theme-icon');
+  if (theme === 'dark') {
+    icon.innerHTML = '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>';
+  } else {
+    icon.innerHTML = '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>';
+  }
+}
+
+// Search Function
+function searchContent() {
+  const query = document.getElementById('search-input').value.toLowerCase();
+  const sections = document.querySelectorAll('.section');
+
+  sections.forEach(section => {
+    const text = section.textContent.toLowerCase();
+    if (text.includes(query) || query === '') {
+      section.style.display = 'block';
+      // Highlight matching text
+      if (query !== '') {
+        highlightText(section, query);
+      } else {
+        removeHighlight(section);
+      }
+    } else {
+      section.style.display = 'none';
+    }
+  });
+}
+
+// Highlight matching text
+function highlightText(element, query) {
+  removeHighlight(element);
+  if (!query) return;
+
+  const walker = document.createTreeWalker(
+    element,
+    NodeFilter.SHOW_TEXT,
+    null,
+    false
+  );
+
+  const nodesToReplace = [];
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    if (node.textContent.toLowerCase().includes(query)) {
+      nodesToReplace.push(node);
+    }
+  }
+
+  nodesToReplace.forEach(node => {
+    const span = document.createElement('span');
+    const regex = new RegExp(`(${query})`, 'gi');
+    span.innerHTML = node.textContent.replace(regex, '<mark style="background: yellow; padding: 2px;">$1</mark>');
+    node.parentNode.replaceChild(span, node);
+  });
+}
+
+// Remove highlight
+function removeHighlight(element) {
+  const marks = element.querySelectorAll('mark');
+  marks.forEach(mark => {
+    const parent = mark.parentNode;
+    parent.replaceChild(document.createTextNode(mark.textContent), mark);
+    parent.normalize();
+  });
+}
+
+// Keyboard shortcut for search
+document.addEventListener('keydown', function(e) {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+    e.preventDefault();
+    document.getElementById('search-input').focus();
+  }
+});
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  loadTheme();
+});
+</script>
+</body>
+</html>

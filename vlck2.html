@@ -1,105 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vật Lý 10 – Ôn Tập Cơ Bản</title>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: var(--font-sans); }
-.container { padding: 1rem 0; }
-.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.5rem; }
-.tab-btn {
-  padding: 6px 14px; font-size: 13px; font-weight: 500;
-  border: 0.5px solid var(--color-border-secondary);
-  border-radius: var(--border-radius-md);
-  background: var(--color-background-primary);
-  color: var(--color-text-secondary);
-  cursor: pointer; transition: all 0.15s;
-}
-.tab-btn.active {
-  border: 2px solid red;
-  background: var(--color-background-secondary);
-  color: var(--color-text-primary);
-  border-color: var(--color-border-primary);
-}
-.panel { display: none; }
-.panel.active { display: block; }
-.section-title {
-  font-size: 16px; font-weight: 500;
-  color: var(--color-text-primary);
-  margin: 1.25rem 0 0.75rem;
-  padding-bottom: 6px;
-  border-bottom: 0.5px solid var(--color-border-tertiary);
-  display: inline-block;
-  border: 1px solid red;
-  padding: 10px;
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-}
-.card {
-  background: var(--color-background-primary);
-  border: 0.5px solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  padding: 1rem 1.25rem;
-  margin-bottom: 0.75rem;
-}
-.card-label {
-  font-size: 15px; font-weight: bold;
-  color: var(--color-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 6px;
-}
-.formula {
-  background: var(--color-background-secondary);
-  border-left: 3px solid #7F77DD;
-  border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
-  padding: 8px 12px;
-  font-family: var(--font-mono);
-  font-size: 14px;
-  color: var(--color-text-primary);
-  margin: 6px 0;
-}
-.note {
-  background: var(--color-background-secondary);
-  border-left: 3px solid #1D9E75;
-  border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
-  padding: 8px 12px;
-  font-size: 13px;
-  color: var(--color-text-secondary);
-  margin: 6px 0;
-  line-height: 1.6;
-}
-.warn {
-  background: var(--color-background-secondary);
-  border-left: 3px solid #D85A30;
-  border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
-  padding: 8px 12px;
-  font-size: 13px;
-  color: var(--color-text-secondary);
-  margin: 6px 0;
-  line-height: 1.6;
-}
-.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.badge {
-  display: inline-block; font-size: 11px; font-weight: 500;
-  padding: 2px 8px; border-radius: 20px;
-  background: #EEEDFE; color: #3C3489;
-  margin-right: 4px; margin-bottom: 4px;
-}
-p { font-size: 14px; line-height: 1.7; color: var(--color-text-secondary); margin: 4px 0; }
-ul { padding-left: 1.2rem; }
-li { font-size: 14px; line-height: 1.8; color: var(--color-text-secondary); }
-strong { font-weight: 500; color: var(--color-text-primary); }
+<!-- Theme Toggle Button -->
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">
+  <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+  </svg>
+</button>
 
-.nuthome{
-  padding: 6px 14px; font-size: 13px; font-weight: 500;
-  border: 0.5px solid var(--color-border-secondary);
-  border-radius: var(--border-radius-md);
-  background: var(--color-background-primary);
-  color: var(--color-text-secondary);
-  cursor: pointer; transition: all 0.15s;
-  text-decoration: none;
-  border-radius: 6px;
-  
-}
-</style>
+<!-- Search Bar -->
+<div class="search-container">
+  <input type="text" class="search-input" id="search-input" placeholder="Tìm kiếm nội dung (Ctrl/Cmd + K)..." oninput="searchContent()">
+  <span class="search-icon">🔍</span>
+</div>
+
 <div class="container">
 <div class="tabs">
   <button class="tab-btn active" onclick="show('cong')">Năng lượng & Công</button>
@@ -109,10 +31,10 @@ strong { font-weight: 500; color: var(--color-text-primary); }
   <button class="tab-btn" onclick="show('baoToan')">Bảo toàn ĐL</button>
   <button class="tab-btn" onclick="show('coNang')">Cơ năng – Hiệu suất</button>
   <button class="tab-btn" onclick="show('tron')">Chuyển động tròn</button>
-  <a href="index.html" class="nuthome" style="background-color: cornflowerblue;color:white">HOME</a>
+  <a href="index.html" class="tab-btn">HOME</a>
 </div>
 
-<div id="cong" class="panel active">
+<div id="cong" class="tab-panel active">
   <div class="section-title">Năng lượng & Công cơ học</div>
   <div class="card">
     <div class="card-label">Khái niệm</div>
@@ -120,23 +42,23 @@ strong { font-weight: 500; color: var(--color-text-primary); }
   </div>
   <div class="card">
     <div class="card-label">Công thức</div>
-    <div class="formula">A = F · s · cos α</div>
+    <div class="formula-box">A = F · s · cos α</div>
     <p>Trong đó: F = lực (N), s = quãng đường (m), α = góc giữa lực và hướng chuyển động</p>
   </div>
   <div class="card">
     <div class="card-label">Phân loại theo góc α</div>
     <div class="grid2">
       <div>
-        <div class="note">α = 90° → A = 0 (lực không sinh công)<br>Ví dụ: phản lực trên mặt phẳng ngang</div>
+        <div class="note-box">α = 90° → A = 0 (lực không sinh công)<br>Ví dụ: phản lực trên mặt phẳng ngang</div>
       </div>
       <div>
-        <div class="note">0° ≤ α &lt; 90° → A &gt; 0 (công phát động)</div>
+        <div class="note-box">0° ≤ α &lt; 90° → A &gt; 0 (công phát động)</div>
       </div>
       <div>
-        <div class="warn">90° &lt; α ≤ 180° → A &lt; 0 (công cản)<br>Ví dụ: lực ma sát, trọng lực khi đẩy lên</div>
+        <div class="warning-box">90° &lt; α ≤ 180° → A &lt; 0 (công cản)<br>Ví dụ: lực ma sát, trọng lực khi đẩy lên</div>
       </div>
       <div>
-        <div class="note">α = 0° → A = F·s (lực song song chiều đi)</div>
+        <div class="note-box">α = 0° → A = F·s (lực song song chiều đi)</div>
       </div>
     </div>
   </div>
@@ -152,11 +74,11 @@ strong { font-weight: 500; color: var(--color-text-primary); }
   </div>
   <div class="card">
     <div class="card-label">Lưu ý quan trọng</div>
-    <div class="warn">Nhiệt lượng KHÔNG phải là một dạng năng lượng (là số đo năng lượng truyền đi). Đơn vị W (oát) là đơn vị công suất, KHÔNG phải đơn vị công.</div>
+    <div class="warning-box">Nhiệt lượng KHÔNG phải là một dạng năng lượng (là số đo năng lượng truyền đi). Đơn vị W (oát) là đơn vị công suất, KHÔNG phải đơn vị công.</div>
   </div>
 </div>
 
-<div id="congSuat" class="panel">
+<div id="congSuat" class="tab-panel">
   <div class="section-title">Công suất</div>
   <div class="card">
     <div class="card-label">Định nghĩa</div>
@@ -170,8 +92,8 @@ strong { font-weight: 500; color: var(--color-text-primary); }
   </div>
   <div class="card">
     <div class="card-label">Đơn vị đặc biệt</div>
-    <div class="note">1 kW = 1000 W<br>kW.h là đơn vị của <strong>công</strong> (không phải công suất):<br>1 kW.h = 3 600 000 J = 3,6×10⁶ J</div>
-    <div class="warn">J.s KHÔNG phải đơn vị công suất. P = At (sai), P = Fv² (sai).</div>
+    <div class="note-box">1 kW = 1000 W<br>kW.h là đơn vị của <strong>công</strong> (không phải công suất):<br>1 kW.h = 3 600 000 J = 3,6×10⁶ J</div>
+    <div class="warning-box">J.s KHÔNG phải đơn vị công suất. P = At (sai), P = Fv² (sai).</div>
   </div>
   <div class="card">
     <div class="card-label">Lưu ý</div>
@@ -183,7 +105,7 @@ strong { font-weight: 500; color: var(--color-text-primary); }
   </div>
 </div>
 
-<div id="nangLuong" class="panel">
+<div id="nangLuong" class="tab-panel">
   <div class="section-title">Động năng – Thế năng</div>
   <div class="grid2">
     <div class="card">
@@ -211,13 +133,13 @@ strong { font-weight: 500; color: var(--color-text-primary); }
   </div>
   <div class="card">
     <div class="card-label">Lưu ý quan trọng</div>
-    <div class="warn">Lực vuông góc với vận tốc (ví dụ: lực hướng tâm, phản lực) KHÔNG làm thay đổi động năng.</div>
-    <div class="note">Hiệu thế năng giữa hai điểm chỉ phụ thuộc chênh lệch độ cao theo phương thẳng đứng và khối lượng vật, KHÔNG phụ thuộc hình dạng đường đi.</div>
-    <div class="note">Công tối thiểu nâng vật từ mặt đất lên cao h: A = mgh (nâng đều)</div>
+    <div class="warning-box">Lực vuông góc với vận tốc (ví dụ: lực hướng tâm, phản lực) KHÔNG làm thay đổi động năng.</div>
+    <div class="note-box">Hiệu thế năng giữa hai điểm chỉ phụ thuộc chênh lệch độ cao theo phương thẳng đứng và khối lượng vật, KHÔNG phụ thuộc hình dạng đường đi.</div>
+    <div class="note-box">Công tối thiểu nâng vật từ mặt đất lên cao h: A = mgh (nâng đều)</div>
   </div>
 </div>
 
-<div id="dongLuong" class="panel">
+<div id="dongLuong" class="tab-panel">
   <div class="section-title">Động lượng</div>
   <div class="card">
     <div class="card-label">Định nghĩa & công thức</div>
@@ -228,7 +150,7 @@ strong { font-weight: 500; color: var(--color-text-primary); }
     <div class="card-label">Xung lực & biến thiên động lượng</div>
     <div class="formula"> \( \vec{p} \cdot \Delta t = \Delta \vec{p} = \vec{p_2} - \vec{p_1} \)</div>
     <p>Xung lực của F trong thời gian Δt bằng độ biến thiên động lượng.</p>
-    <div class="note">Đây là dạng khác của Định luật II Newton: \(\vec{F} = \frac{\Delta \vec{p}}{\Delta t}  \)</div>
+    <div class="note-box">Đây là dạng khác của Định luật II Newton: \(\vec{F} = \frac{\Delta \vec{p}}{\Delta t}  \)</div>
   </div>
   <div class="card">
     <div class="card-label">Mối quan hệ động lượng – động năng</div>
@@ -245,11 +167,11 @@ strong { font-weight: 500; color: var(--color-text-primary); }
   </div>
   <div class="card">
     <div class="card-label">Lưu ý</div>
-    <div class="warn">Khi rơi tự do: động lượng thay đổi cả về độ lớn lẫn hướng? → Sai! Rơi tự do chỉ thay đổi về ĐỘ LỚN (hướng không đổi – thẳng đứng xuống). Khi chuyển động thẳng đều: động lượng KHÔNG thay đổi.</div>
+    <div class="warning-box">Khi rơi tự do: động lượng thay đổi cả về độ lớn lẫn hướng? → Sai! Rơi tự do chỉ thay đổi về ĐỘ LỚN (hướng không đổi – thẳng đứng xuống). Khi chuyển động thẳng đều: động lượng KHÔNG thay đổi.</div>
   </div>
 </div>
 
-<div id="baoToan" class="panel">
+<div id="baoToan" class="tab-panel">
   <div class="section-title">Định luật bảo toàn động lượng</div>
   <div class="card">
     <div class="card-label">Hệ kín (hệ cô lập)</div>
@@ -261,26 +183,26 @@ strong { font-weight: 500; color: var(--color-text-primary); }
       <div class="card-label">Va chạm mềm (dính lại)</div>
       <div class="formula"> \(m_1v_1 + m_2v_2 = (m_1 + m_2)V \) </div>
       <div class="formula"> Nhiệt tỏa ra: \(Q = Wđtrước - Wđsau \) </div>
-      <div class="note">Động lượng bảo toàn. Động năng KHÔNG BẢO TUÀN (biến thành nhiệt, biến dạng).</div>
+      <div class="note-box">Động lượng bảo toàn. Động năng KHÔNG BẢO TUÀN (biến thành nhiệt, biến dạng).</div>
     </div>
     <div class="card">
       <div class="card-label">Va chạm đàn hồi</div>
       <div class="formula"> \(v_1' = \frac{m_1 - m_2}{m_1 + m_2} \) ; \(v_2' = \frac{2m_1}{m_1 + m_2} \)</div>
-      <div class="note">Sau va chạm hai vật tách rời nhau. Động lượng bảo toàn. Động năng cũng bảo toàn.</div>
+      <div class="note-box">Sau va chạm hai vật tách rời nhau. Động lượng bảo toàn. Động năng cũng bảo toàn.</div>
     </div>
   </div>
   <div class="card">
     <div class="card-label">Vật tách ra từ trạng thái đứng yên</div>
     <div class="formula"> \(m_1v_1 + m_2v_2 = (m_1 + m_2)V \)</div>
-    <div class="note">Hai phần chuyển động ngược chiều nhau. Tích m·v của mỗi phần có độ lớn bằng nhau (độ lớn động lượng bằng nhau). Vật nhẹ hơn → vận tốc lớn hơn.</div>
+    <div class="note-box">Hai phần chuyển động ngược chiều nhau. Tích m·v của mỗi phần có độ lớn bằng nhau (độ lớn động lượng bằng nhau). Vật nhẹ hơn → vận tốc lớn hơn.</div>
   </div>
   <div class="card">
     <div class="card-label">Hệ kín ban đầu đứng yên → một phần chuyển động</div>
-    <div class="warn">Phần còn lại chuyển động theo hướng NGƯỢC LẠI (không phải đứng yên, không phải cùng chiều).</div>
+    <div class="warning-box">Phần còn lại chuyển động theo hướng NGƯỢC LẠI (không phải đứng yên, không phải cùng chiều).</div>
   </div>
 </div>
 
-<div id="coNang" class="panel">
+<div id="coNang" class="tab-panel">
   <div class="section-title">Cơ năng – Hiệu suất</div>
   <div class="card">
     <div class="card-label">Cơ năng</div>
@@ -290,15 +212,15 @@ strong { font-weight: 500; color: var(--color-text-primary); }
   <div class="card">
     <div class="card-label">Bảo toàn cơ năng</div>
     <div class="formula">\(W_1 + W_2 = \frac{1}{2} mv_1^2 + mgh_1 = \frac{1}{2} mv_2^2 + mgh_2 \)</div>
-    <div class="note">Rơi tự do: cơ năng bảo toàn. Khi \(Wđ = Wt => \frac{1}{2}mv^2 = mgh \)</div>
-    <div class="warn">Chuyển động có ma sát, trong chất lỏng → cơ năng GIẢM.</div>
+    <div class="note-box">Rơi tự do: cơ năng bảo toàn. Khi \(Wđ = Wt => \frac{1}{2}mv^2 = mgh \)</div>
+    <div class="warning-box">Chuyển động có ma sát, trong chất lỏng → cơ năng GIẢM.</div>
   </div>
   <div class="card">
     <div class="card-label">Hiệu suất</div>
     <div class="formula">H = Wci / Wtp × 100% = Aci / Atp × 100%</div>
-    <div class="note">Wci = năng lượng có ích,Whp = năng lượng hao phí ,Wtp = năng lượng toàn phần = Wci + Whp</div>
-    <div class="note">Hiệu suất luôn \(\le \) 1 (nhỏ hơn hoặc bằng 100%). Hiệu suất càng cao → năng lượng hao phí càng ít.</div>
-    <div class="warn">Hiệu suất = Wci / Wtp</div>
+    <div class="note-box">Wci = năng lượng có ích,Whp = năng lượng hao phí ,Wtp = năng lượng toàn phần = Wci + Whp</div>
+    <div class="note-box">Hiệu suất luôn \(\le \) 1 (nhỏ hơn hoặc bằng 100%). Hiệu suất càng cao → năng lượng hao phí càng ít.</div>
+    <div class="warning-box">Hiệu suất = Wci / Wtp</div>
   </div>
   <div class="card">
     <div class="card-label">Ném vật – bảo toàn cơ năng (bỏ qua sức cản)</div>
@@ -309,7 +231,7 @@ strong { font-weight: 500; color: var(--color-text-primary); }
   </div>
 </div>
 
-<div id="tron" class="panel">
+<div id="tron" class="tab-panel">
   <div class="section-title">Chuyển động tròn đều</div>
   <div class="card">
     <div class="card-label">Các đại lượng cơ bản</div>
@@ -336,7 +258,7 @@ strong { font-weight: 500; color: var(--color-text-primary); }
     <div class="card-label">Gia tốc hướng tâm & lực hướng tâm</div>
     <div class="formula">aht = v²/r = ω²r = 4π²r/T²</div>
     <div class="formula">Fht = m·aht = mv²/r = mω²r</div>
-    <div class="note">Gia tốc hướng tâm luôn hướng vào tâm quỹ đạo. Độ lớn không đổi nhưng hướng luôn thay đổi.</div>
+    <div class="note-box">Gia tốc hướng tâm luôn hướng vào tâm quỹ đạo. Độ lớn không đổi nhưng hướng luôn thay đổi.</div>
   </div>
   <div class="card">
     <div class="card-label">Tính chất vectơ vận tốc trong CĐTĐ</div>
@@ -346,7 +268,7 @@ strong { font-weight: 500; color: var(--color-text-primary); }
       <li>Hướng <strong>luôn thay đổi</strong> → vectơ vận tốc KHÔNG bảo toàn</li>
       <li>Là đại lượng <strong>có hướng</strong> (không phải vô hướng)</li>
     </ul>
-    <div class="warn">Trong CĐTĐ có cùng tốc độ dài: bán kính lớn → chu kì lớn (T tỉ lệ thuận r). Tốc độ góc ω tỉ lệ nghịch r.</div>
+    <div class="warning-box">Trong CĐTĐ có cùng tốc độ dài: bán kính lớn → chu kì lớn (T tỉ lệ thuận r). Tốc độ góc ω tỉ lệ nghịch r.</div>
   </div>
   <div class="card">
     <div class="card-label">Quy đổi hay dùng</div>
@@ -360,10 +282,216 @@ strong { font-weight: 500; color: var(--color-text-primary); }
 </div>
 
 <script>
-function show(id) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  event.target.classList.add('active');
+// Theme Toggle Function
+function toggleTheme() {
+  const html = document.documentElement;
+  const currentTheme = html.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  updateThemeIcon(newTheme);
 }
+
+// Load saved theme
+function loadTheme() {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeIcon(savedTheme);
+}
+
+// Update theme icon
+function updateThemeIcon(theme) {
+  const icon = document.getElementById('theme-icon');
+  if (theme === 'dark') {
+    icon.innerHTML = '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>';
+  } else {
+    icon.innerHTML = '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>';
+  }
+}
+
+// Search Function
+function searchContent() {
+  const query = document.getElementById('search-input').value.toLowerCase();
+  const cards = document.querySelectorAll('.card');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+  const tabButtons = document.querySelectorAll('.tab-btn');
+
+  // Reset to initial state if query is empty
+  if (query === '') {
+    tabPanels.forEach(panel => {
+      panel.classList.remove('active');
+      panel.style.display = 'none';
+    });
+    tabButtons.forEach(btn => btn.classList.remove('active'));
+
+    // Show only the first tab (cong) as default
+    document.getElementById('cong').classList.add('active');
+    document.querySelector('.tab-btn[onclick="show(\'cong\')"]').classList.add('active');
+
+    // Reset all cards
+    cards.forEach(card => {
+      card.style.display = 'block';
+      removeHighlight(card);
+    });
+    return;
+  }
+
+  // Search across all tabs
+  let hasResults = false;
+  const tabsWithResults = new Set();
+
+  cards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+    if (text.includes(query)) {
+      card.style.display = 'block';
+      highlightText(card, query);
+      hasResults = true;
+
+      // Find which tab this card belongs to
+      const panel = card.closest('.tab-panel');
+      if (panel) {
+        tabsWithResults.add(panel.id);
+      }
+    } else {
+      card.style.display = 'none';
+      removeHighlight(card);
+    }
+  });
+
+  // Show all tabs that have results
+  tabPanels.forEach(panel => {
+    if (tabsWithResults.has(panel.id)) {
+      panel.style.display = 'block';
+      panel.classList.add('active');
+    } else {
+      panel.style.display = 'none';
+      panel.classList.remove('active');
+    }
+  });
+
+  // Highlight tabs that have results
+  tabButtons.forEach(btn => {
+    const tabId = btn.getAttribute('onclick')?.match(/'([^']+)'/)?.[1];
+    if (tabId && tabsWithResults.has(tabId)) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+}
+
+// Highlight matching text
+function highlightText(element, query) {
+  removeHighlight(element);
+  if (!query) return;
+
+  const walker = document.createTreeWalker(
+    element,
+    NodeFilter.SHOW_TEXT,
+    null,
+    false
+  );
+
+  const nodesToReplace = [];
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    if (node.textContent.toLowerCase().includes(query)) {
+      nodesToReplace.push(node);
+    }
+  }
+
+  nodesToReplace.forEach(node => {
+    const span = document.createElement('span');
+    const regex = new RegExp(`(${query})`, 'gi');
+    span.innerHTML = node.textContent.replace(regex, '<mark style="background: yellow; padding: 2px;">$1</mark>');
+    node.parentNode.replaceChild(span, node);
+  });
+}
+
+// Remove highlight
+function removeHighlight(element) {
+  const marks = element.querySelectorAll('mark');
+  marks.forEach(mark => {
+    const parent = mark.parentNode;
+    parent.replaceChild(document.createTextNode(mark.textContent), mark);
+    parent.normalize();
+  });
+}
+
+// Keyboard shortcut for search
+document.addEventListener('keydown', function(e) {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+    e.preventDefault();
+    document.getElementById('search-input').focus();
+  }
+});
+
+// Tab switching function
+function show(id) {
+  const tabPanels = document.querySelectorAll('.tab-panel');
+  const tabButtons = document.querySelectorAll('.tab-btn');
+
+  // Hide all panels and remove active class
+  tabPanels.forEach(panel => {
+    panel.classList.remove('active');
+    panel.style.display = 'none';
+  });
+
+  // Remove active class from all buttons
+  tabButtons.forEach(btn => btn.classList.remove('active'));
+
+  // Show selected panel and add active class
+  const selectedPanel = document.getElementById(id);
+  if (selectedPanel) {
+    selectedPanel.classList.add('active');
+    selectedPanel.style.display = 'block';
+  }
+
+  // Add active class to clicked button
+  if (event && event.target) {
+    event.target.classList.add('active');
+  }
+
+  // Reset all cards to visible when switching tabs
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.style.display = 'block';
+    removeHighlight(card);
+  });
+
+  // Clear search input
+  const searchInput = document.getElementById('search-input');
+  if (searchInput) {
+    searchInput.value = '';
+  }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  loadTheme();
+
+  // Ensure only the first tab is visible on load
+  const tabPanels = document.querySelectorAll('.tab-panel');
+  const tabButtons = document.querySelectorAll('.tab-btn');
+
+  tabPanels.forEach((panel, index) => {
+    if (index === 0) {
+      panel.classList.add('active');
+      panel.style.display = 'block';
+    } else {
+      panel.classList.remove('active');
+      panel.style.display = 'none';
+    }
+  });
+
+  tabButtons.forEach((btn, index) => {
+    if (index === 0) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+});
 </script>
+</body>
+</html>

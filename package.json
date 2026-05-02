@@ -1,0 +1,32 @@
+{
+  "name": "design-system-automation",
+  "version": "1.0.0",
+  "description": "Automated design system based on toanck2.html with visual comparison and auto-fix capabilities",
+  "main": "compare.js",
+  "scripts": {
+    "compare": "node compare.js",
+    "install-deps": "npm install",
+    "setup": "npm install && mkdir -p screenshots output",
+    "test": "node compare.js output.html"
+  },
+  "keywords": [
+    "design-system",
+    "visual-testing",
+    "automation",
+    "playwright",
+    "pixelmatch"
+  ],
+  "author": "Design System Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "pixelmatch": "^5.3.0",
+    "playwright": "^1.40.0",
+    "pngjs": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  }
+}
