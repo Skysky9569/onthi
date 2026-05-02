@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vật Lý 10 – Ôn Tập Cơ Bản</title>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="components.css">
 </head>
 <body>
 
@@ -23,16 +25,23 @@
 </div>
 
 <div class="container">
-<div class="tabs">
-  <button class="tab-btn active" onclick="show('cong')">Năng lượng & Công</button>
-  <button class="tab-btn" onclick="show('congSuat')">Công suất</button>
-  <button class="tab-btn" onclick="show('nangLuong')">Động năng – Thế năng</button>
-  <button class="tab-btn" onclick="show('dongLuong')">Động lượng</button>
-  <button class="tab-btn" onclick="show('baoToan')">Bảo toàn ĐL</button>
-  <button class="tab-btn" onclick="show('coNang')">Cơ năng – Hiệu suất</button>
-  <button class="tab-btn" onclick="show('tron')">Chuyển động tròn</button>
-  <a href="index.html" class="tab-btn">HOME</a>
-</div>
+  <header>
+    <div class="badge">Vật Lý 10</div>
+    <h1>Ôn Tập Cơ Bản</h1>
+    <p class="subtitle">Năng lượng · Công · Động lượng · Bảo toàn · Chuyển động tròn</p>
+  </header>
+
+  <!-- TAB NAV -->
+  <nav class="tabs-nav" role="tablist">
+    <button class="tab-btn active" onclick="switchTab('cong', this)">⚡ Năng lượng & Công</button>
+    <button class="tab-btn" onclick="switchTab('congSuat', this)">🔋 Công suất</button>
+    <button class="tab-btn" onclick="switchTab('nangLuong', this)">🎯 Động năng – Thế năng</button>
+    <button class="tab-btn" onclick="switchTab('dongLuong', this)">📊 Động lượng</button>
+    <button class="tab-btn" onclick="switchTab('baoToan', this)">🔄 Bảo toàn ĐL</button>
+    <button class="tab-btn" onclick="switchTab('coNang', this)">⚙️ Cơ năng – Hiệu suất</button>
+    <button class="tab-btn" onclick="switchTab('tron', this)">🔵 Chuyển động tròn</button>
+    <a href="index.html" class="tab-btn">🏠HOME</a>
+  </nav>
 
 <div id="cong" class="tab-panel active">
   <div class="section-title">Năng lượng & Công cơ học</div>
@@ -427,7 +436,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 // Tab switching function
-function show(id) {
+function switchTab(id, btn) {
   const tabPanels = document.querySelectorAll('.tab-panel');
   const tabButtons = document.querySelectorAll('.tab-btn');
 
@@ -438,7 +447,7 @@ function show(id) {
   });
 
   // Remove active class from all buttons
-  tabButtons.forEach(btn => btn.classList.remove('active'));
+  tabButtons.forEach(b => b.classList.remove('active'));
 
   // Show selected panel and add active class
   const selectedPanel = document.getElementById(id);
@@ -448,8 +457,8 @@ function show(id) {
   }
 
   // Add active class to clicked button
-  if (event && event.target) {
-    event.target.classList.add('active');
+  if (btn) {
+    btn.classList.add('active');
   }
 
   // Reset all cards to visible when switching tabs
@@ -464,6 +473,9 @@ function show(id) {
   if (searchInput) {
     searchInput.value = '';
   }
+
+  // Re-render MathJax
+  if (window.MathJax) MathJax.typesetPromise();
 }
 
 // Initialize on page load

@@ -4,163 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sinh Học 10 – Ôn Tập Cơ Bản</title>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<style>
-/* Additional styles specific to Biology page */
-.wrap {
-  max-width: 1100px;
-  margin: auto;
-  padding: var(--spacing-xl);
-}
-
-.main-title {
-  font-size: clamp(24px, 3vw, 32px);
-  font-weight: 600;
-  margin-bottom: var(--spacing-sm);
-}
-
-.main-sub {
-  font-size: 14px;
-  color: var(--text-secondary);
-  margin-bottom: var(--spacing-xl);
-}
-
-/* Section styles */
-.section {
-  margin-bottom: var(--spacing-xl);
-  border: 1px solid var(--border-tertiary);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-
-.sec-header {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-md) var(--spacing-lg);
-  border-bottom: 1px solid var(--border-tertiary);
-}
-
-.sec-title {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.sec-body {
-  padding: var(--spacing-lg);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-}
-
-/* Block styles */
-.block {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
-}
-
-.block-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: var(--spacing-xs);
-}
-
-/* Definition box styles */
-.def-box {
-  background: var(--bg-surface2);
-  border-left: 4px solid var(--accent-green);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  padding: var(--spacing-md) var(--spacing-lg);
-  font-size: 15px;
-}
-
-/* Color variants */
-.def-box.pur { border-left-color: var(--accent-purple); }
-.def-box.blue { border-left-color: var(--accent-blue); }
-.def-box.amber { border-left-color: var(--accent-amber); }
-.def-box.red { border-left-color: var(--accent-red); }
-.def-box.gray { border-left-color: var(--text-muted); }
-.def-box.pink { border-left-color: var(--accent-pink); }
-
-/* Chips styles */
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-sm);
-}
-
-.chip {
-  font-size: 13px;
-  padding: var(--spacing-xs) var(--spacing-md);
-  border-radius: var(--radius-full);
-  border: 1px solid var(--border-tertiary);
-}
-
-/* Formula box styles */
-.formula-box {
-  background: var(--bg-surface2);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-md) var(--spacing-lg);
-}
-
-.frow { font-size: 15px; }
-.fnote { font-size: 13px; }
-
-/* Process row styles */
-.proc-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-sm) 0;
-  border-bottom: 1px solid var(--border-tertiary);
-}
-
-.proc-name {
-  font-size: 14px;
-  font-weight: 600;
-  min-width: 120px;
-}
-
-.proc-detail { font-size: 14px; }
-
-/* Phase row styles */
-.phase-row {
-  display: grid;
-  grid-template-columns: 120px 1fr 1fr;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-sm) 0;
-  border-bottom: 1px solid var(--border-tertiary);
-}
-
-.phase-name { font-size: 14px; font-weight: 600; }
-.phase-desc { font-size: 13px; }
-
-/* Home button */
-.nuthome {
-  font-size: 13px;
-  font-weight: 500;
-  padding: var(--spacing-xs) var(--spacing-md);
-  border-radius: var(--radius-full);
-  white-space: nowrap;
-  text-decoration: none;
-}
-
-/* Mobile optimizations */
-@media (max-width: 600px) {
-  .phase-row {
-    grid-template-columns: 1fr;
-  }
-
-  .proc-row {
-    flex-direction: column;
-  }
-
-  .wrap {
-    padding: var(--spacing-md);
-  }
-}
-</style>
+<link rel="stylesheet" href="components.css">
 </head>
 <body>
 
@@ -177,488 +24,621 @@
   <span class="search-icon">🔍</span>
 </div>
 
-<div class="wrap">
-<div class="main-title">Sinh học 10 — Ôn tập cuối HK2</div>
-<div class="main-sub">Khái niệm · Tên quá trình · Ý nghĩa · Công thức Đóm</div>
-<a href="index.html" class="nuthome" style="background: var(--accent-blue); color: #ffffff;">🏠 HOME</a>
-<!-- 1. VI SINH VẬT LÀ GÌ -->
-<div class="section">
-  <div class="sec-header" style="background:#E1F5EE;">
-    <span class="badge" style="background:#9FE1CB;color:#085041;">Chủ đề 1</span>
-    <span class="sec-title">Vi sinh vật (VSV) là gì?</span>
-  </div>
-  <div class="sec-body">
-    <div class="block">
-      <div class="block-title">Định nghĩa</div>
-      <div class="def-box">Vi sinh vật là những sinh vật có kích thước rất nhỏ, chỉ quan sát được dưới kính hiển vi (đo bằng micromet hoặc nanomet). Chúng có thể là đơn bào hoặc đa bào, nhân sơ hoặc nhân thực.</div>
-    </div>
-    <div class="block">
-      <div class="block-title">Đặc điểm chung</div>
-      <div class="chips">
-        <span class="chip g">Kích thước siêu nhỏ (µm – nm)</span>
-        <span class="chip g">Trao đổi chất nhanh</span>
-        <span class="chip g">Hấp thụ dinh dưỡng nhanh</span>
-        <span class="chip g">Sinh trưởng & sinh sản nhanh</span>
-        <span class="chip g">Phân bố rộng khắp</span>
-        <span class="chip g">Thích ứng cao với môi trường</span>
-      </div>
-    </div>
-    <div class="block">
-      <div class="block-title">Phân loại theo cấu tạo</div>
-      <div class="two-col">
-        <div class="def-box blue">
-          <b>VSV nhân sơ (Prokaryote)</b><br>
-          Không có màng nhân. Gồm: vi khuẩn (Bacteria), Archaea. Được phân biệt Gram (+)/(–) bằng <b>nhuộm Gram</b>.
-        </div>
-        <div class="def-box pur">
-          <b>VSV nhân thực (Eukaryote)</b><br>
-          Có màng nhân. Gồm: nấm đơn bào (nấm men), động vật nguyên sinh (tảo, amip,...), vi tảo.
-        </div>
-      </div>
-    </div>
-    <div class="block">
-      <div class="block-title">Các phương pháp quan sát</div>
-      <div class="chips">
-        <span class="chip b">Nhuộm Gram: phân biệt Gram (+) và Gram (–)</span>
-        <span class="chip b">Nhuộm đơn: quan sát hình dạng tổng quát</span>
-        <span class="chip b">Soi tươi: quan sát khả năng di động</span>
-        <span class="chip b">Phân lập: tách riêng từng chủng VSV</span>
-      </div>
-    </div>
-  </div>
-</div>
+<div class="container">
+  <header>
+    <div class="badge">Sinh Học 10</div>
+    <h1>Ôn Tập Cơ Bản</h1>
+    <p class="subtitle">Khái niệm · Tên quá trình · Ý nghĩa · Công thức</p>
+  </header>
 
-<!-- 2. DINH DƯỠNG -->
-<div class="section">
-  <div class="sec-header" style="background:#EEEDFE;">
-    <span class="badge" style="background:#CECBF6;color:#3C3489;">Chủ đề 2</span>
-    <span class="sec-title">Các hình thức dinh dưỡng của VSV</span>
-  </div>
-  <div class="sec-body">
-    <div class="block">
-      <div class="block-title">Cơ sở phân loại</div>
-      <div class="def-box pur">Phân loại dựa trên <b>nguồn năng lượng</b> (ánh sáng / hóa học) và <b>nguồn carbon chủ yếu</b> (CO₂ / chất hữu cơ).</div>
-    </div>
-    <div class="four-col">
-      <div class="formula-box">
-        <div class="flabel" style="color:#0F6E56;">Quang tự dưỡng</div>
-        <div style="font-size:12px;margin-bottom:4px;">NL: <b>Ánh sáng</b><br>C: <b>CO₂</b></div>
-        <div style="font-size:11px;color:var(--color-text-secondary);">Vi tảo, VK lam, VK có diệp lục</div>
-        <div style="font-size:11px;color:#0F6E56;margin-top:4px;">Ý nghĩa: tạo O₂, cơ sở chuỗi thức ăn</div>
-      </div>
-      <div class="formula-box">
-        <div class="flabel" style="color:#993556;">Quang dị dưỡng</div>
-        <div style="font-size:12px;margin-bottom:4px;">NL: <b>Ánh sáng</b><br>C: <b>Hữu cơ</b></div>
-        <div style="font-size:11px;color:var(--color-text-secondary);">VK không lưu huỳnh màu lục & màu tía</div>
-        <div style="font-size:11px;color:#993556;margin-top:4px;">Ý nghĩa: phân giải chất hữu cơ trong nước</div>
-      </div>
-      <div class="formula-box">
-        <div class="flabel" style="color:#185FA5;">Hóa tự dưỡng</div>
-        <div style="font-size:12px;margin-bottom:4px;">NL: <b>Hóa học</b><br>C: <b>CO₂</b></div>
-        <div style="font-size:11px;color:var(--color-text-secondary);">VK nitrat hóa, VK sắt, VK lưu huỳnh</div>
-        <div style="font-size:11px;color:#185FA5;margin-top:4px;">Ý nghĩa: chu trình nitơ, lưu huỳnh trong đất</div>
-      </div>
-      <div class="formula-box">
-        <div class="flabel" style="color:#854F0B;">Hóa dị dưỡng</div>
-        <div style="font-size:12px;margin-bottom:4px;">NL: <b>Hóa học</b><br>C: <b>Hữu cơ</b></div>
-        <div style="font-size:11px;color:var(--color-text-secondary);">Nấm, ĐV nguyên sinh, VK hoại sinh</div>
-        <div style="font-size:11px;color:#854F0B;margin-top:4px;">Ý nghĩa: phân giải xác hữu cơ, làm sạch môi trường</div>
-      </div>
-    </div>
-  </div>
-</div>
+  <!-- TAB NAV -->
+  <nav class="tabs-nav" role="tablist">
+    <button class="tab-btn active" onclick="switchTab('visinhvat', this)">🔬 Vi sinh vật</button>
+    <button class="tab-btn" onclick="switchTab('dinhduong', this)">🍃 Dinh dưỡng</button>
+    <button class="tab-btn" onclick="switchTab('tonghop', this)">⚗️ Tổng hợp & Phân giải</button>
+    <button class="tab-btn" onclick="switchTab('lenmen', this)">🍺 Lên men</button>
+    <button class="tab-btn" onclick="switchTab('sinhtruong', this)">📈 Sinh trưởng</button>
+    <button class="tab-btn" onclick="switchTab('virus', this)">🦠 Virus</button>
+    <button class="tab-btn" onclick="switchTab('ungdung', this)">🌱 Vai trò & Ứng dụng</button>
+    <a href="index.html" class="tab-btn">🏠HOME</a>
+  </nav>
+  <!-- ====== TAB: VI SINH VẬT ====== -->
+  <div id="tab-visinhvat" class="tab-panel active">
 
-<!-- 3. TỔNG HỢP & PHÂN GIẢI -->
-<div class="section">
-  <div class="sec-header" style="background:#FAEEDA;">
-    <span class="badge" style="background:#FAC775;color:#633806;">Chủ đề 3</span>
-    <span class="sec-title">Các quá trình tổng hợp & phân giải chất</span>
-  </div>
-  <div class="sec-body">
-    <div class="block">
-      <div class="block-title">Quá trình tổng hợp (anabolism) — diễn ra trong tế bào chất</div>
-      <div class="proc-row">
-        <span class="proc-name">Tổng hợp protein</span>
-        <span class="proc-detail"><b>Phương trình:</b> (Amino acid)ₙ → Protein &nbsp;|&nbsp; Liên kết: <b>peptide</b> (không phải glycosid) &nbsp;|&nbsp; <b>Ý nghĩa:</b> cấu tạo tế bào, enzyme, kháng thể; cơ sở sản xuất protein đơn bào, amino acid quý</span>
-      </div>
-      <div class="proc-row">
-        <span class="proc-name">Tổng hợp lipid</span>
-        <span class="proc-detail"><b>Phương trình:</b> Glycerol + Acid béo → Lipid &nbsp;|&nbsp; <b>Ý nghĩa:</b> cấu tạo màng sinh chất, dự trữ năng lượng</span>
-      </div>
-      <div class="proc-row">
-        <span class="proc-name">Tổng hợp polysaccharide</span>
-        <span class="proc-detail"><b>Phương trình:</b> (Glucose)ₙ → Polysaccharide &nbsp;|&nbsp; <b>Ý nghĩa:</b> cấu tạo thành tế bào (cellulose, chitin, peptidoglycan), dự trữ năng lượng</span>
-      </div>
-      <div class="proc-row">
-        <span class="proc-name">Tổng hợp acid nucleic</span>
-        <span class="proc-detail"><b>Phương trình:</b> (Nucleotide)ₙ → DNA/RNA &nbsp;|&nbsp; <b>Ý nghĩa:</b> lưu trữ và truyền thông tin di truyền</span>
-      </div>
-    </div>
-    <div class="block">
-      <div class="block-title">Quá trình phân giải (catabolism) — VSV tiết enzyme ngoại bào</div>
-      <div class="proc-row">
-        <span class="proc-name">Phân giải protein</span>
-        <span class="proc-detail"><b>Enzyme:</b> protease &nbsp;|&nbsp; Protein → Peptide → Amino acid &nbsp;|&nbsp; <b>Ý nghĩa:</b> phân giải xác hữu cơ; <b>Ứng dụng:</b> làm nước mắm, nước tương, bột ngọt</span>
-      </div>
-      <div class="proc-row">
-        <span class="proc-name">Phân giải carbohydrate</span>
-        <span class="proc-detail"><b>Enzyme:</b> amylase, cellulase,... &nbsp;|&nbsp; Tinh bột/cellulose → Đường đơn &nbsp;|&nbsp; <b>Ứng dụng:</b> sản xuất ethanol, acid hữu cơ, bánh kẹo, syrup</span>
-      </div>
-      <div class="proc-row">
-        <span class="proc-name">Phân giải lipid</span>
-        <span class="proc-detail"><b>Enzyme:</b> lipase &nbsp;|&nbsp; Lipid → Glycerol + Acid béo &nbsp;|&nbsp; <b>Ứng dụng:</b> xử lý nước thải, dầu loang</span>
-      </div>
-      <div class="proc-row">
-        <span class="proc-name">Phân giải nucleic acid</span>
-        <span class="proc-detail"><b>Enzyme:</b> nuclease &nbsp;|&nbsp; DNA/RNA → Nucleotide &nbsp;|&nbsp; <b>Ý nghĩa:</b> tái sử dụng nguyên liệu trong hệ sinh thái</span>
-      </div>
-    </div>
-    <div class="block">
-      <div class="block-title">Cơ chế hấp thụ phân tử lớn</div>
-      <div class="def-box amber">VSV tiết enzyme ra ngoài tế bào (<b>ngoại bào</b>) để phân giải các phân tử lớn (protein, tinh bột, lipid, cellulose) thành phân tử nhỏ, rồi mới hấp thụ vào bên trong tế bào.</div>
-    </div>
-  </div>
-</div>
+    <div class="section">
+      <div class="section-title"><span class="icon icon-green">🔬</span>1. Vi sinh vật (VSV) là gì?</div>
 
-<!-- 4. LÊN MEN -->
-<div class="section">
-  <div class="sec-header" style="background:#E6F1FB;">
-    <span class="badge" style="background:#B5D4F4;color:#0C447C;">Chủ đề 4</span>
-    <span class="sec-title">Quá trình lên men</span>
-  </div>
-  <div class="sec-body">
-    <div class="block">
-      <div class="block-title">Lên men là gì?</div>
-      <div class="def-box blue">Lên men là quá trình <b>phân giải carbohydrate</b> (đường) diễn ra trong điều kiện <b>kị khí</b> (không có oxy), tạo ra các sản phẩm hữu cơ như ethanol, acid lactic,... và năng lượng (ATP).</div>
-    </div>
-    <div class="two-col">
-      <div class="formula-box">
-        <div class="flabel" style="color:#185FA5;">Lên men rượu (Ethanol)</div>
-        <div class="frow">Glucose → 2 Ethanol + 2 CO₂</div>
-        <div class="fnote">Tác nhân: nấm men Saccharomyces cerevisiae</div>
-        <div class="fnote" style="color:#185FA5;margin-top:4px;">Ý nghĩa: sản xuất bia, rượu, bánh mì (CO₂ làm nở bột)</div>
+      <div class="subsection">
+        <div class="subsection-title">Định nghĩa</div>
+        <div class="note-box">Vi sinh vật là những sinh vật có kích thước rất nhỏ, chỉ quan sát được dưới kính hiển vi (đo bằng micromet hoặc nanomet). Chúng có thể là đơn bào hoặc đa bào, nhân sơ hoặc nhân thực.</div>
       </div>
-      <div class="formula-box">
-        <div class="flabel" style="color:#0F6E56;">Lên men lactic</div>
-        <div class="frow">Glucose → 2 Lactic acid</div>
-        <div class="fnote">Tác nhân: vi khuẩn lactic (Lactobacillus,...)</div>
-        <div class="fnote" style="color:#0F6E56;margin-top:4px;">Ý nghĩa: làm sữa chua, dưa chua, kim chi, pho mát</div>
-      </div>
-    </div>
-    <div class="block">
-      <div class="block-title">Phân biệt lactic đồng hình vs dị hình</div>
-      <div class="two-col">
-        <div class="def-box">
-          <b>Lactic đồng hình</b><br>
-          Chỉ tạo ra <b>lactic acid</b> duy nhất. Sản phẩm ít loại hơn, hiệu suất lactic cao hơn.
-        </div>
-        <div class="def-box pink">
-          <b>Lactic dị hình</b><br>
-          Tạo ra <b>lactic acid + ethanol + acetic acid + CO₂</b>. Nhiều sản phẩm hơn đồng hình.
-        </div>
-      </div>
-    </div>
-    <div class="block">
-      <div class="block-title">Sữa chua — phân tích quá trình</div>
-      <div class="chips">
-        <span class="chip g">Lên men lactic (không phải lên men rượu)</span>
-        <span class="chip g">Phân giải carbohydrate (lactose trong sữa → lactic acid)</span>
-        <span class="chip g">Vi khuẩn lactic dị hình có tham gia (tạo hương vị)</span>
-        <span class="chip r">Không tạo ethanol thuần túy như lên men rượu</span>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- 5. SINH TRƯỞNG -->
-<div class="section">
-  <div class="sec-header" style="background:#EAF3DE;">
-    <span class="badge" style="background:#C0DD97;color:#27500A;">Chủ đề 5</span>
-    <span class="sec-title">Sinh trưởng của quần thể VSV</span>
+      <div class="subsection">
+        <div class="subsection-title">Đặc điểm chung</div>
+        <div class="chips">
+          <span class="tag">Kích thước siêu nhỏ (µm – nm)</span>
+          <span class="tag">Trao đổi chất nhanh</span>
+          <span class="tag">Hấp thụ dinh dưỡng nhanh</span>
+          <span class="tag">Sinh trưởng & sinh sản nhanh</span>
+          <span class="tag">Phân bố rộng khắp</span>
+          <span class="tag">Thích ứng cao với môi trường</span>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Phân loại theo cấu tạo</div>
+        <div class="grid2">
+          <div class="card-small">
+            <div class="card-small-title" style="color: var(--accent-blue);">VSV nhân sơ (Prokaryote)</div>
+            <p style="font-size:13px">Không có màng nhân. Gồm: vi khuẩn (Bacteria), Archaea. Được phân biệt Gram (+)/(–) bằng <strong>nhuộm Gram</strong>.</p>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title" style="color: var(--accent-purple);">VSV nhân thực (Eukaryote)</div>
+            <p style="font-size:13px">Có màng nhân. Gồm: nấm đơn bào (nấm men), động vật nguyên sinh (tảo, amip,...), vi tảo.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Các phương pháp quan sát</div>
+        <div class="chips">
+          <span class="tag">Nhuộm Gram: phân biệt Gram (+) và Gram (–)</span>
+          <span class="tag">Nhuộm đơn: quan sát hình dạng tổng quát</span>
+          <span class="tag">Soi tươi: quan sát khả năng di động</span>
+          <span class="tag">Phân lập: tách riêng từng chủng VSV</span>
+        </div>
+      </div>
+    </div>
+
   </div>
-  <div class="sec-body">
-    <div class="block">
-      <div class="block-title">Khái niệm sinh trưởng</div>
-      <div class="def-box" style="border-left-color:#639922;">Sinh trưởng của quần thể VSV là sự <b>tăng số lượng tế bào</b> của quần thể theo thời gian. VSV sinh sản chủ yếu bằng cách <b>phân đôi (binary fission)</b>.</div>
-    </div>
-    <div class="block">
-      <div class="block-title">Các khái niệm quan trọng</div>
-      <div class="proc-row">
-        <span class="proc-name">Thời gian thế hệ (g)</span>
-        <span class="proc-detail">Thời gian cần để một tế bào phân đôi thành 2 tế bào con. Ký hiệu: <b>g</b> (phút hoặc giờ)</span>
+
+  <!-- ====== TAB: DINH DƯỠNG ====== -->
+  <div id="tab-dinhduong" class="tab-panel">
+
+    <div class="section">
+      <div class="section-title"><span class="icon icon-purple">🍃</span>2. Các hình thức dinh dưỡng của VSV</div>
+
+      <div class="subsection">
+        <div class="subsection-title">Cơ sở phân loại</div>
+        <div class="note-box">Phân loại dựa trên <strong>nguồn năng lượng</strong> (ánh sáng / hóa học) và <strong>nguồn carbon chủ yếu</strong> (CO₂ / chất hữu cơ).</div>
       </div>
-      <div class="proc-row">
-        <span class="proc-name">Số lần phân bào (n)</span>
-        <span class="proc-detail">n = t / g &nbsp;&nbsp;(t: tổng thời gian nuôi cấy)</span>
-      </div>
-    </div>
-    <div class="formula-box">
-      <div class="flabel">Công thức tính số tế bào</div>
-      <div class="frow">Nₜ = N₀ × 2ⁿ</div>
-      <div class="fnote">N₀: số tế bào ban đầu &nbsp;|&nbsp; n = t / g &nbsp;|&nbsp; g: thời gian thế hệ &nbsp;|&nbsp; t: thời gian nuôi cấy</div>
-      <div class="fnote" style="color:#639922;margin-top:6px;">Ví dụ: g = 20 phút, t = 3h20p = 200 phút → n = 10 → Nₜ = 1 × 2¹⁰ = 1024 tế bào</div>
-    </div>
-    <div class="block">
-      <div class="block-title">4 pha sinh trưởng trong nuôi cấy không liên tục</div>
-      <div class="phase-row" style="font-size:12px;font-weight:500;color:var(--color-text-secondary);border-bottom:0.5px solid var(--color-border-tertiary);">
-        <span>Pha</span><span>Đặc điểm</span><span>Ý nghĩa / Ứng dụng</span>
-      </div>
-      <div class="phase-row">
-        <span class="phase-name" style="color:#534AB7;">1. Tiềm phát (Lag)</span>
-        <span class="phase-desc">VK thích nghi với môi trường, chưa phân bào. Tổng hợp enzyme, protein cần thiết.</span>
-        <span class="phase-desc">Thời gian chờ trước khi tăng trưởng mạnh</span>
-      </div>
-      <div class="phase-row">
-        <span class="phase-name" style="color:#185FA5;">2. Lũy thừa (Log)</span>
-        <span class="phase-desc">Phân bào nhanh nhất, số tế bào tăng theo cấp số nhân. Chuyển hóa mạnh.</span>
-        <span class="phase-desc">Thu sinh khối tối ưu ở pha này</span>
-      </div>
-      <div class="phase-row">
-        <span class="phase-name" style="color:#3B6D11;">3. Cân bằng</span>
-        <span class="phase-desc">Số tế bào sinh ra = số tế bào chết. Dinh dưỡng cạn, chất thải tích lũy.</span>
-        <span class="phase-desc">Số tế bào ổn định cao nhất</span>
-      </div>
-      <div class="phase-row">
-        <span class="phase-name" style="color:#A32D2D;">4. Suy vong</span>
-        <span class="phase-desc">Số tế bào chết > số sinh ra. Dinh dưỡng cạn kiệt, độc tố cao.</span>
-        <span class="phase-desc">Quần thể suy giảm</span>
-      </div>
-    </div>
-    <div class="block">
-      <div class="block-title">So sánh hai phương pháp nuôi cấy</div>
-      <div class="two-col">
-        <div class="def-box" style="border-left-color:#888780;">
-          <b>Nuôi cấy không liên tục</b><br>
-          Không bổ sung dinh dưỡng, không lấy sản phẩm. Có đủ 4 pha. <b>Mục đích:</b> nghiên cứu sinh trưởng.
-        </div>
-        <div class="def-box blue">
-          <b>Nuôi cấy liên tục</b><br>
-          Bổ sung dinh dưỡng liên tục + lấy sản phẩm liên tục. Duy trì pha lũy thừa. <b>Mục đích:</b> sản xuất sinh khối, sản phẩm công nghiệp với lượng lớn.
+
+      <div class="subsection">
+        <div class="subsection-title">4 loại hình thức dinh dưỡng</div>
+        <div class="grid2">
+          <div class="card-small">
+            <div class="card-small-title" style="color: var(--accent-green);">Quang tự dưỡng</div>
+            <p style="font-size:12px;margin-bottom:4px;"><strong>NL:</strong> Ánh sáng | <strong>C:</strong> CO₂</p>
+            <p style="font-size:11px;color:var(--text-muted);">Vi tảo, VK lam, VK có diệp lục</p>
+            <div class="note" style="margin-top:4px;"><strong>Ý nghĩa:</strong> tạo O₂, cơ sở chuỗi thức ăn</div>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title" style="color: var(--accent-pink);">Quang dị dưỡng</div>
+            <p style="font-size:12px;margin-bottom:4px;"><strong>NL:</strong> Ánh sáng | <strong>C:</strong> Hữu cơ</p>
+            <p style="font-size:11px;color:var(--text-muted);">VK không lưu huỳnh màu lục & màu tía</p>
+            <div class="note" style="margin-top:4px;"><strong>Ý nghĩa:</strong> phân giải chất hữu cơ trong nước</div>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title" style="color: var(--accent-blue);">Hóa tự dưỡng</div>
+            <p style="font-size:12px;margin-bottom:4px;"><strong>NL:</strong> Hóa học | <strong>C:</strong> CO₂</p>
+            <p style="font-size:11px;color:var(--text-muted);">VK nitrat hóa, VK sắt, VK lưu huỳnh</p>
+            <div class="note" style="margin-top:4px;"><strong>Ý nghĩa:</strong> chu trình nitơ, lưu huỳnh trong đất</div>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title" style="color: var(--accent-orange);">Hóa dị dưỡng</div>
+            <p style="font-size:12px;margin-bottom:4px;"><strong>NL:</strong> Hóa học | <strong>C:</strong> Hữu cơ</p>
+            <p style="font-size:11px;color:var(--text-muted);">Nấm, ĐV nguyên sinh, VK hoại sinh</p>
+            <div class="note" style="margin-top:4px;"><strong>Ý nghĩa:</strong> phân giải xác hữu cơ, làm sạch môi trường</div>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
-</div>
 
-<!-- 6. VIRUS -->
-<div class="section">
-  <div class="sec-header" style="background:#FCEBEB;">
-    <span class="badge" style="background:#F7C1C1;color:#791F1F;">Chủ đề 6</span>
-    <span class="sec-title">Virus — Khái niệm, Cấu trúc & Chu kỳ nhân lên</span>
+  <!-- ====== TAB: TỔNG HỢP & PHÂN GIẢI ====== -->
+  <div id="tab-tonghop" class="tab-panel">
+
+    <div class="section">
+      <div class="section-title"><span class="icon icon-yellow">⚗️</span>3. Các quá trình tổng hợp & phân giải chất</div>
+
+      <div class="subsection">
+        <div class="subsection-title">Quá trình tổng hợp (anabolism) — diễn ra trong tế bào chất</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Quá trình</th>
+                <th>Phương trình</th>
+                <th>Liên kết</th>
+                <th>Ý nghĩa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Tổng hợp protein</td>
+                <td>(Amino acid)ₙ → Protein</td>
+                <td>peptide</td>
+                <td>Cấu tạo tế bào, enzyme, kháng thể</td>
+              </tr>
+              <tr>
+                <td>Tổng hợp lipid</td>
+                <td>Glycerol + Acid béo → Lipid</td>
+                <td>ester</td>
+                <td>Cấu tạo màng sinh chất, dự trữ năng lượng</td>
+              </tr>
+              <tr>
+                <td>Tổng hợp polysaccharide</td>
+                <td>(Glucose)ₙ → Polysaccharide</td>
+                <td>glycosidic</td>
+                <td>Cấu tạo thành tế bào, dự trữ năng lượng</td>
+              </tr>
+              <tr>
+                <td>Tổng hợp acid nucleic</td>
+                <td>(Nucleotide)ₙ → DNA/RNA</td>
+                <td>phosphodiester</td>
+                <td>Lưu trữ và truyền thông tin di truyền</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Quá trình phân giải (catabolism) — VSV tiết enzyme ngoại bào</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Quá trình</th>
+                <th>Enzyme</th>
+                <th>Phản ứng</th>
+                <th>Ứng dụng</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Phân giải protein</td>
+                <td>protease</td>
+                <td>Protein → Peptide → Amino acid</td>
+                <td>Làm nước mắm, nước tương, bột ngọt</td>
+              </tr>
+              <tr>
+                <td>Phân giải carbohydrate</td>
+                <td>amylase, cellulase</td>
+                <td>Tinh bột/cellulose → Đường đơn</td>
+                <td>Sản xuất ethanol, acid hữu cơ, bánh kẹo</td>
+              </tr>
+              <tr>
+                <td>Phân giải lipid</td>
+                <td>lipase</td>
+                <td>Lipid → Glycerol + Acid béo</td>
+                <td>Xử lý nước thải, dầu loang</td>
+              </tr>
+              <tr>
+                <td>Phân giải nucleic acid</td>
+                <td>nuclease</td>
+                <td>DNA/RNA → Nucleotide</td>
+                <td>Tái sử dụng nguyên liệu trong hệ sinh thái</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Cơ chế hấp thụ phân tử lớn</div>
+        <div class="note-box">VSV tiết enzyme ra ngoài tế bào (<strong>ngoại bào</strong>) để phân giải các phân tử lớn (protein, tinh bột, lipid, cellulose) thành phân tử nhỏ, rồi mới hấp thụ vào bên trong tế bào.</div>
+      </div>
+    </div>
+
   </div>
-  <div class="sec-body">
-    <div class="block">
-      <div class="block-title">Virus là gì?</div>
-      <div class="def-box red">Virus là thực thể <b>chưa có cấu tạo tế bào</b>, kích thước siêu nhỏ (đo bằng nanomet), chỉ chứa <b>một loại nucleic acid</b> (DNA hoặc RNA), là <b>ký sinh nội bào bắt buộc</b> — không thể tự nhân lên ngoài tế bào vật chủ. Ngoài tế bào, virus tồn tại dạng <b>đại phân tử hóa học</b> bất hoạt.</div>
-    </div>
-    <div class="block">
-      <div class="block-title">Cấu trúc cơ bản</div>
-      <div class="proc-row">
-        <span class="proc-name">Lõi nucleic acid</span>
-        <span class="proc-detail">DNA hoặc RNA (không có cả hai). <b>Chứa vật chất di truyền</b> của virus. Quyết định tính di truyền và khả năng gây bệnh.</span>
+
+  <!-- ====== TAB: LÊN MEN ====== -->
+  <div id="tab-lenmen" class="tab-panel">
+
+    <div class="section">
+      <div class="section-title"><span class="icon icon-red">🍺</span>4. Quá trình lên men</div>
+
+      <div class="subsection">
+        <div class="subsection-title">Lên men là gì?</div>
+        <div class="note-box">Lên men là quá trình <strong>phân giải carbohydrate</strong> (đường) diễn ra trong điều kiện <strong>kị khí</strong> (không có oxy), tạo ra các sản phẩm hữu cơ như ethanol, acid lactic,... và năng lượng (ATP).</div>
       </div>
-      <div class="proc-row">
-        <span class="proc-name">Vỏ capsid</span>
-        <span class="proc-detail">Cấu tạo từ các đơn vị protein gọi là <b>capsomer</b>. Bảo vệ nucleic acid, quyết định hình dạng virus.</span>
-      </div>
-      <div class="proc-row">
-        <span class="proc-name">Vỏ ngoài (envelope)</span>
-        <span class="proc-detail">Chỉ có ở một số virus. Cấu tạo: <b>lớp kép phospholipid + protein</b> (bắt nguồn từ màng tế bào vật chủ).</span>
-      </div>
-      <div class="proc-row">
-        <span class="proc-name">Gai glycoprotein</span>
-        <span class="proc-detail">Nằm trên vỏ ngoài. Mang <b>tính kháng nguyên</b>, giúp virus <b>nhận diện và bám đặc hiệu</b> vào thụ thể bề mặt tế bào vật chủ.</span>
-      </div>
-    </div>
-    <div class="block">
-      <div class="block-title">Tính đặc hiệu vật chủ</div>
-      <div class="def-box red">Mỗi loại virus chỉ xâm nhập được vào một số tế bào nhất định vì <b>phân tử bề mặt của virus phải khớp đặc hiệu với thụ thể trên bề mặt tế bào vật chủ</b> (như chìa khóa – ổ khóa).</div>
-    </div>
-    <div class="block">
-      <div class="block-title">Phage (thực khuẩn thể) là gì?</div>
-      <div class="def-box red">Phage là virus ký sinh trên <b>vi khuẩn</b>. Khi xâm nhập, phage <b>chỉ bơm nucleic acid vào</b> tế bào vi khuẩn; vỏ capsid ở lại bên ngoài.</div>
-    </div>
-    <div class="block">
-      <div class="block-title">Hai chu kỳ nhân lên</div>
-      <div class="two-col">
-        <div class="def-box red">
-          <b>Chu trình tan (Lytic cycle)</b><br>
-          Virus xâm nhập → nhân bản nucleic acid và vỏ capsid → lắp ráp virus mới → <b>phá vỡ và giết chết tế bào vật chủ</b> → phóng thích virus mới.
-          <br><span style="color:#A32D2D;font-size:11px;">Hậu quả: tế bào vật chủ chết</span>
-        </div>
-        <div class="def-box pink">
-          <b>Chu trình tiềm tan (Lysogenic cycle)</b><br>
-          Virus xâm nhập → <b>tích hợp hệ gene vào NST vật chủ (prophage)</b> → nhân lên cùng tế bào vật chủ mà không phá vỡ nó. Khi điều kiện kích thích → chuyển sang chu trình tan.
-          <br><span style="color:#993556;font-size:11px;">Tế bào vật chủ sống nhưng mang gene virus</span>
+
+      <div class="subsection">
+        <div class="subsection-title">2 loại lên men chính</div>
+        <div class="grid2">
+          <div class="card-small">
+            <div class="card-small-title" style="color: var(--accent-blue);">Lên men rượu (Ethanol)</div>
+            <div class="formula-box" style="margin:8px 0;font-size:13px;">Glucose → 2 Ethanol + 2 CO₂ <p>\( C_6H_{12}O_6 \xrightarrow{\text{men rượu, yếm khí}} 2C_2H_5OH + 2CO_2 \)</p></div>
+            <p style="font-size:11px;"><strong>Tác nhân:</strong> nấm men Saccharomyces cerevisiae</p>
+            <div class="note" style="margin-top:4px;"><strong>Ý nghĩa:</strong> sản xuất bia, rượu, bánh mì</div>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title" style="color: var(--accent-green);">Lên men lactic</div>
+            <div class="formula-box" style="margin:8px 0;font-size:13px;">Glucose → 2 Lactic acid<p>\[C_6H_{12}O_6 \rightarrow 2C_3H_6O_3\]</p></div>
+            <p style="font-size:11px;"><strong>Tác nhân:</strong> vi khuẩn lactic (Lactobacillus)</p>
+            <div class="note" style="margin-top:4px;"><strong>Ý nghĩa:</strong> làm sữa chua, dưa chua, kim chi</div>
+          </div>
         </div>
       </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Phân biệt lactic đồng hình vs dị hình</div>
+        <div class="grid2">
+          <div class="card-small">
+            <div class="card-small-title">Lactic đồng hình</div>
+            <p style="font-size:13px">Chỉ tạo ra <strong>lactic acid</strong> duy nhất. Sản phẩm ít loại hơn, hiệu suất lactic cao hơn.</p>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title" style="color: var(--accent-pink);">Lactic dị hình</div>
+            <p style="font-size:13px">Tạo ra <strong>lactic acid + ethanol + acetic acid + CO₂</strong>. Nhiều sản phẩm hơn đồng hình.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Sữa chua — phân tích quá trình</div>
+        <div class="chips">
+          <span class="tag">Lên men lactic (không phải lên men rượu)</span>
+          <span class="tag">Phân giải carbohydrate (lactose trong sữa → lactic acid)</span>
+          <span class="tag">Vi khuẩn lactic dị hình có tham gia (tạo hương vị)</span>
+          <span class="tag" style="color: var(--accent-red);">Không tạo ethanol thuần túy như lên men rượu</span>
+        </div>
+      </div>
     </div>
-    <div class="block">
-      <div class="block-title">Thí nghiệm lai virus (trong đề thi)</div>
-      <div class="def-box gray">Virus lai = vỏ capsid của chủng A + nucleic acid của chủng B. <br>→ Xâm nhập theo vỏ (vào vật chủ của A). <br>→ Sau khi nhân lên: virus thế hệ sau có <b>vỏ của B và lõi của B</b> (vì nucleic acid B điều khiển tổng hợp). <br>→ Thế hệ sau xâm nhập vật chủ của B.</div>
-    </div>
+
   </div>
-</div>
 
-<!-- 7. VAI TRÒ & ỨNG DỤNG -->
-<div class="section">
-  <div class="sec-header" style="background:#F1EFE8;">
-    <span class="badge" style="background:#D3D1C7;color:#444441;">Chủ đề 7</span>
-    <span class="sec-title">Vai trò & Ứng dụng của VSV</span>
+  <!-- ====== TAB: SINH TRƯỞNG ====== -->
+  <div id="tab-sinhtruong" class="tab-panel">
+
+    <div class="section">
+      <div class="section-title"><span class="icon icon-yellow">📈</span>5. Sinh trưởng của quần thể VSV</div>
+
+      <div class="subsection">
+        <div class="subsection-title">Khái niệm sinh trưởng</div>
+        <div class="note-box">Sinh trưởng của quần thể VSV là sự <strong>tăng số lượng tế bào</strong> của quần thể theo thời gian. VSV sinh sản chủ yếu bằng cách <strong>phân đôi (binary fission)</strong>.</div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Các khái niệm quan trọng</div>
+        <div class="grid2">
+          <div class="card-small">
+            <div class="card-small-title">Thời gian thế hệ (g)</div>
+            <p style="font-size:13px">Thời gian cần để một tế bào phân đôi thành 2 tế bào con. Ký hiệu: <strong>g</strong> (phút hoặc giờ)</p>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title">Số lần phân bào (n)</div>
+            <p style="font-size:13px">n = t / g &nbsp;&nbsp;(t: tổng thời gian nuôi cấy)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Công thức tính số tế bào</div>
+        <div class="formula-box">
+          \[N_t = N_0 \times 2^n\]
+        </div>
+        <p style="font-size:13px">N₀: số tế bào ban đầu | n = t / g | g: thời gian thế hệ | t: thời gian nuôi cấy</p>
+        <div class="note" style="margin-top:8px;"><strong>Ví dụ:</strong> g = 20 phút, t = 3h20p = 200 phút → n = 10 → Nₜ = 1 × 2¹⁰ = 1024 tế bào</div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">4 pha sinh trưởng trong nuôi cấy không liên tục</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Pha</th>
+                <th>Đặc điểm</th>
+                <th>Ý nghĩa / Ứng dụng</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="color: var(--accent-purple);font-weight:600;">1. Tiềm phát (Lag)</td>
+                <td>VK thích nghi với môi trường, chưa phân bào. Tổng hợp enzyme, protein cần thiết.</td>
+                <td>Thời gian chờ trước khi tăng trưởng mạnh</td>
+              </tr>
+              <tr>
+                <td style="color: var(--accent-blue);font-weight:600;">2. Lũy thừa (Log)</td>
+                <td>Phân bào nhanh nhất, số tế bào tăng theo cấp số nhân. Chuyển hóa mạnh.</td>
+                <td>Thu sinh khối tối ưu ở pha này</td>
+              </tr>
+              <tr>
+                <td style="color: var(--accent-green);font-weight:600;">3. Cân bằng</td>
+                <td>Số tế bào sinh ra = số tế bào chết. Dinh dưỡng cạn, chất thải tích lũy.</td>
+                <td>Số tế bào ổn định cao nhất</td>
+              </tr>
+              <tr>
+                <td style="color: var(--accent-red);font-weight:600;">4. Suy vong</td>
+                <td>Số tế bào chết > số sinh ra. Dinh dưỡng cạn kiệt, độc tố cao.</td>
+                <td>Quần thể suy giảm</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">So sánh hai phương pháp nuôi cấy</div>
+        <div class="grid2">
+          <div class="card-small">
+            <div class="card-small-title">Nuôi cấy không liên tục</div>
+            <p style="font-size:13px">Không bổ sung dinh dưỡng, không lấy sản phẩm. Có đủ 4 pha. <strong>Mục đích:</strong> nghiên cứu sinh trưởng.</p>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title" style="color: var(--accent-blue);">Nuôi cấy liên tục</div>
+            <p style="font-size:13px">Bổ sung dinh dưỡng liên tục + lấy sản phẩm liên tục. Duy trì pha lũy thừa. <strong>Mục đích:</strong> sản xuất sinh khối, sản phẩm công nghiệp với lượng lớn.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
-  <div class="sec-body">
-    <div class="three-col">
-      <div class="formula-box">
-        <div class="flabel" style="color:#0F6E56;">Với tự nhiên</div>
-        <div style="font-size:12px;line-height:1.6;">
-          • VSV tự dưỡng tạo O₂ và chất dinh dưỡng<br>
-          • Phân giải xác sinh vật → làm giàu đất<br>
-          • Tham gia chu trình vật chất (N, C, S, P)<br>
-          • Cộng sinh với sinh vật khác
+
+  <!-- ====== TAB: VIRUS ====== -->
+  <div id="tab-virus" class="tab-panel">
+
+    <div class="section">
+      <div class="section-title"><span class="icon icon-red">🦠</span>6. Virus — Khái niệm, Cấu trúc & Chu kỳ nhân lên</div>
+
+      <div class="subsection">
+        <div class="subsection-title">Virus là gì?</div>
+        <div class="note-red">Virus là thực thể <strong>chưa có cấu tạo tế bào</strong>, kích thước siêu nhỏ (đo bằng nanomet), chỉ chứa <strong>một loại nucleic acid</strong> (DNA hoặc RNA), là <strong>ký sinh nội bào bắt buộc</strong> — không thể tự nhân lên ngoài tế bào vật chủ. Ngoài tế bào, virus tồn tại dạng <strong>đại phân tử hóa học</strong> bất hoạt.</div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Cấu trúc cơ bản</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Thành phần</th>
+                <th>Mô tả</th>
+                <th>Chức năng</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Lõi nucleic acid</td>
+                <td>DNA hoặc RNA (không có cả hai)</td>
+                <td>Chứa vật chất di truyền, quyết định tính di truyền và khả năng gây bệnh</td>
+              </tr>
+              <tr>
+                <td>Vỏ capsid</td>
+                <td>Cấu tạo từ các đơn vị protein gọi là capsomer</td>
+                <td>Bảo vệ nucleic acid, quyết định hình dạng virus</td>
+              </tr>
+              <tr>
+                <td>Vỏ ngoài (envelope)</td>
+                <td>Lớp kép phospholipid + protein (chỉ có ở một số virus)</td>
+                <td>Bảo vệ, bắt nguồn từ màng tế bào vật chủ</td>
+              </tr>
+              <tr>
+                <td>Gai glycoprotein</td>
+                <td>Nằm trên vỏ ngoài</td>
+                <td>Mang tính kháng nguyên, giúp virus nhận diện và bám đặc hiệu vào thụ thể</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      <div class="formula-box">
-        <div class="flabel" style="color:#185FA5;">Với con người</div>
-        <div style="font-size:12px;line-height:1.6;">
-          • Hệ vi sinh vật đường ruột: tiêu hóa, miễn dịch, tổng hợp vitamin K, B₁₂<br>
-          • Làm thực phẩm: bánh mì, bia, rượu, sữa chua, dưa chua, nước mắm<br>
-          • Sản xuất kháng sinh, vaccine, hormone, vitamin
+
+      <div class="subsection">
+        <div class="subsection-title">Tính đặc hiệu vật chủ</div>
+        <div class="note-red">Mỗi loại virus chỉ xâm nhập được vào một số tế bào nhất định vì <strong>phân tử bề mặt của virus phải khớp đặc hiệu với thụ thể trên bề mặt tế bào vật chủ</strong> (như chìa khóa – ổ khóa).</div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Phage (thực khuẩn thể) là gì?</div>
+        <div class="note-red">Phage là virus ký sinh trên <strong>vi khuẩn</strong>. Khi xâm nhập, phage <strong>chỉ bơm nucleic acid vào</strong> tế bào vi khuẩn; vỏ capsid ở lại bên ngoài.</div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Hai chu kỳ nhân lên</div>
+        <div class="grid2">
+          <div class="card-small">
+            <div class="card-small-title" style="color: var(--accent-red);">Chu trình tan (Lytic cycle)</div>
+            <p style="font-size:13px">Virus xâm nhập → nhân bản nucleic acid và vỏ capsid → lắp ráp virus mới → <strong>phá vỡ và giết chết tế bào vật chủ</strong> → phóng thích virus mới.</p>
+            <div class="note-red" style="margin-top:4px;"><strong>Hậu quả:</strong> tế bào vật chủ chết</div>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title" style="color: var(--accent-pink);">Chu trình tiềm tan (Lysogenic cycle)</div>
+            <p style="font-size:13px">Virus xâm nhập → <strong>tích hợp hệ gene vào NST vật chủ (prophage)</strong> → nhân lên cùng tế bào vật chủ mà không phá vỡ nó. Khi điều kiện kích thích → chuyển sang chu trình tan.</p>
+            <div class="note" style="margin-top:4px;"><strong>Kết quả:</strong> tế bào vật chủ sống nhưng mang gene virus</div>
+          </div>
         </div>
       </div>
-      <div class="formula-box">
-        <div class="flabel" style="color:#854F0B;">Với môi trường & NN</div>
-        <div style="font-size:12px;line-height:1.6;">
-          • Xử lý ô nhiễm: rác hữu cơ, dầu loang, nước thải<br>
-          • Biến khoáng khó tiêu → dễ tiêu (đạm, lân, kali)<br>
-          • Thuốc trừ sâu sinh học: an toàn, phân hủy nhanh<br>
-          • Phân vi sinh
-        </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Thí nghiệm lai virus (trong đề thi)</div>
+        <div class="note-box">Virus lai = vỏ capsid của chủng A + nucleic acid của chủng B. <br>→ Xâm nhập theo vỏ (vào vật chủ của A). <br>→ Sau khi nhân lên: virus thế hệ sau có <strong>vỏ của B và lõi của B</strong> (vì nucleic acid B điều khiển tổng hợp). <br>→ Thế hệ sau xâm nhập vật chủ của B.</div>
       </div>
     </div>
-    <div class="block">
-      <div class="block-title">Thuốc trừ sâu vi sinh vs Thuốc trừ sâu hóa học</div>
-      <div class="two-col">
-        <div class="def-box" style="border-left-color:#639922;">
-          <b>Thuốc trừ sâu vi sinh (ưu điểm)</b><br>
-          An toàn với người và thiên địch · Phân hủy nhanh · Bảo vệ cân bằng sinh học · Chi phí thấp
-        </div>
-        <div class="def-box red">
-          <b>Thuốc trừ sâu hóa học (nhược điểm)</b><br>
-          Thời gian phân hủy kéo dài · Ô nhiễm đất và nước · Ảnh hưởng thiên địch và hệ sinh thái
-        </div>
-      </div>
-    </div>
-    <div class="block">
-      <div class="block-title">Cơ sở khoa học khi ứng dụng VSV</div>
-      <div class="chips">
-        <span class="chip p">Khả năng tổng hợp nội bào → tạo protein, amino acid, kháng sinh, hormone</span>
-        <span class="chip a">Khả năng phân giải ngoại bào → nước mắm, nước tương, xử lý ô nhiễm</span>
-        <span class="chip g">Khả năng lên men → bia, rượu, sữa chua, dưa chua</span>
-        <span class="chip b">Khả năng sinh trưởng nhanh → sản xuất sinh khối lớn</span>
-      </div>
-    </div>
+
   </div>
-</div>
 
-<script>
-// Theme Toggle Function
-function toggleTheme() {
-  const html = document.documentElement;
-  const currentTheme = html.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  html.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-  updateThemeIcon(newTheme);
-}
+  <!-- ====== TAB: VAI TRÒ & ỨNG DỤNG ====== -->
+  <div id="tab-ungdung" class="tab-panel">
 
-// Load saved theme
-function loadTheme() {
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  updateThemeIcon(savedTheme);
-}
+    <div class="section">
+      <div class="section-title"><span class="icon icon-green">🌱</span>7. Vai trò & Ứng dụng của VSV</div>
 
-// Update theme icon
-function updateThemeIcon(theme) {
-  const icon = document.getElementById('theme-icon');
-  if (theme === 'dark') {
-    icon.innerHTML = '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>';
-  } else {
-    icon.innerHTML = '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>';
-  }
-}
+      <div class="subsection">
+        <div class="subsection-title">Vai trò trong 3 lĩnh vực chính</div>
+        <div class="grid2">
+          <div class="card-small">
+            <div class="card-small-title" style="color: var(--accent-green);">Với tự nhiên</div>
+            <p style="font-size:12px;line-height:1.6;">
+              • VSV tự dưỡng tạo O₂ và chất dinh dưỡng<br>
+              • Phân giải xác sinh vật → làm giàu đất<br>
+              • Tham gia chu trình vật chất (N, C, S, P)<br>
+              • Cộng sinh với sinh vật khác
+            </p>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title" style="color: var(--accent-blue);">Với con người</div>
+            <p style="font-size:12px;line-height:1.6;">
+              • Hệ vi sinh vật đường ruột: tiêu hóa, miễn dịch<br>
+              • Làm thực phẩm: bánh mì, bia, rượu, sữa chua<br>
+              • Sản xuất kháng sinh, vaccine, hormone, vitamin
+            </p>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title" style="color: var(--accent-orange);">Với môi trường & NN</div>
+            <p style="font-size:12px;line-height:1.6;">
+              • Xử lý ô nhiễm: rác hữu cơ, dầu loang, nước thải<br>
+              • Biến khoáng khó tiêu → dễ tiêu (đạm, lân, kali)<br>
+              • Thuốc trừ sâu sinh học: an toàn, phân hủy nhanh<br>
+              • Phân vi sinh
+            </p>
+          </div>
+        </div>
+      </div>
 
-// Search Function
-function searchContent() {
-  const query = document.getElementById('search-input').value.toLowerCase();
-  const sections = document.querySelectorAll('.section');
+      <div class="subsection">
+        <div class="subsection-title">Thuốc trừ sâu vi sinh vs Thuốc trừ sâu hóa học</div>
+        <div class="grid2">
+          <div class="card-small">
+            <div class="card-small-title" style="color: var(--accent-green);">Thuốc trừ sâu vi sinh (ưu điểm)</div>
+            <p style="font-size:13px">An toàn với người và thiên địch · Phân hủy nhanh · Bảo vệ cân bằng sinh học · Chi phí thấp</p>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title" style="color: var(--accent-red);">Thuốc trừ sâu hóa học (nhược điểm)</div>
+            <p style="font-size:13px">Thời gian phân hủy kéo dài · Ô nhiễm đất và nước · Ảnh hưởng thiên địch và hệ sinh thái</p>
+          </div>
+        </div>
+      </div>
 
-  sections.forEach(section => {
-    const text = section.textContent.toLowerCase();
-    if (text.includes(query) || query === '') {
-      section.style.display = 'block';
-      // Highlight matching text
-      if (query !== '') {
-        highlightText(section, query);
+      <div class="subsection">
+        <div class="subsection-title">Cơ sở khoa học khi ứng dụng VSV</div>
+        <div class="chips">
+          <span class="tag">Khả năng tổng hợp nội bào → tạo protein, amino acid, kháng sinh, hormone</span>
+          <span class="tag">Khả năng phân giải ngoại bào → nước mắm, nước tương, xử lý ô nhiễm</span>
+          <span class="tag">Khả năng lên men → bia, rượu, sữa chua, dưa chua</span>
+          <span class="tag">Khả năng sinh trưởng nhanh → sản xuất sinh khối lớn</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Theme Toggle Function
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+    }
+
+    // Load saved theme
+    function loadTheme() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+    }
+
+    // Update theme icon
+    function updateThemeIcon(theme) {
+      const icon = document.getElementById('theme-icon');
+      if (theme === 'dark') {
+        icon.innerHTML = '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>';
       } else {
-        removeHighlight(section);
+        icon.innerHTML = '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>';
       }
-    } else {
-      section.style.display = 'none';
     }
-  });
-}
 
-// Highlight matching text
-function highlightText(element, query) {
-  removeHighlight(element);
-  if (!query) return;
+    // Search Function
+    function searchContent() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const sections = document.querySelectorAll('.section');
 
-  const walker = document.createTreeWalker(
-    element,
-    NodeFilter.SHOW_TEXT,
-    null,
-    false
-  );
-
-  const nodesToReplace = [];
-  while (walker.nextNode()) {
-    const node = walker.currentNode;
-    if (node.textContent.toLowerCase().includes(query)) {
-      nodesToReplace.push(node);
+      sections.forEach(section => {
+        const text = section.textContent.toLowerCase();
+        if (text.includes(query) || query === '') {
+          section.style.display = 'block';
+          // Highlight matching text
+          if (query !== '') {
+            highlightText(section, query);
+          } else {
+            removeHighlight(section);
+          }
+        } else {
+          section.style.display = 'none';
+        }
+      });
     }
-  }
 
-  nodesToReplace.forEach(node => {
-    const span = document.createElement('span');
-    const regex = new RegExp(`(${query})`, 'gi');
-    span.innerHTML = node.textContent.replace(regex, '<mark style="background: yellow; padding: 2px;">$1</mark>');
-    node.parentNode.replaceChild(span, node);
-  });
-}
+    // Highlight matching text
+    function highlightText(element, query) {
+      removeHighlight(element);
+      if (!query) return;
 
-// Remove highlight
-function removeHighlight(element) {
-  const marks = element.querySelectorAll('mark');
-  marks.forEach(mark => {
-    const parent = mark.parentNode;
-    parent.replaceChild(document.createTextNode(mark.textContent), mark);
-    parent.normalize();
-  });
-}
+      const walker = document.createTreeWalker(
+        element,
+        NodeFilter.SHOW_TEXT,
+        null,
+        false
+      );
 
-// Keyboard shortcut for search
-document.addEventListener('keydown', function(e) {
-  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-    e.preventDefault();
-    document.getElementById('search-input').focus();
-  }
-});
+      const nodesToReplace = [];
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        if (node.textContent.toLowerCase().includes(query)) {
+          nodesToReplace.push(node);
+        }
+      }
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-  loadTheme();
-});
-</script>
+      nodesToReplace.forEach(node => {
+        const span = document.createElement('span');
+        const regex = new RegExp(`(${query})`, 'gi');
+        span.innerHTML = node.textContent.replace(regex, '<mark style="background: yellow; padding: 2px;">$1</mark>');
+        node.parentNode.replaceChild(span, node);
+      });
+    }
+
+    // Remove highlight
+    function removeHighlight(element) {
+      const marks = element.querySelectorAll('mark');
+      marks.forEach(mark => {
+        const parent = mark.parentNode;
+        parent.replaceChild(document.createTextNode(mark.textContent), mark);
+        parent.normalize();
+      });
+    }
+
+    // Keyboard shortcut for search
+    document.addEventListener('keydown', function (e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        document.getElementById('search-input').focus();
+      }
+    });
+
+    // Tab switching function
+    function switchTab(id, btn) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      btn.classList.add('active');
+      if (window.MathJax) MathJax.typesetPromise();
+    }
+
+    // Re-render MathJax on tab switch (already handled above)
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea'] }
+    };
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function () {
+      loadTheme();
+    });
+  </script>
 </body>
 </html>
