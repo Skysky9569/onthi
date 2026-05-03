@@ -40,14 +40,14 @@
     <button class="tab-btn" onclick="switchTab('baoToan', this)">🔄 Bảo toàn ĐL</button>
     <button class="tab-btn" onclick="switchTab('coNang', this)">⚙️ Cơ năng – Hiệu suất</button>
     <button class="tab-btn" onclick="switchTab('tron', this)">🔵 Chuyển động tròn</button>
-    <a href="index.html" class="tab-btn">🏠HOME</a>
+    <a href="index.html" class="tab-btn" target="_self">🏠HOME</a>
   </nav>
 
 <div id="cong" class="tab-panel active">
   <div class="section-title">Năng lượng & Công cơ học</div>
   <div class="card">
-    <div class="card-label">Khái niệm</div>
-    <p>Công là đại lượng <strong>vô hướng</strong>, có giá trị đại số (có thể dương, âm hoặc bằng 0). Đơn vị: <strong>Jun (J)</strong> = N.m = W.s</p>
+    <div class="card-label">Định nghĩa</div>
+    <p><strong>Công</strong> là đại lượng đặc trưng cho sự chuyển hóa năng lượng khi lực tác dụng làm vật chuyển dời. Công là đại lượng <strong>vô hướng</strong>, có giá trị đại số (có thể dương, âm hoặc bằng 0). Đơn vị: <strong>Jun (J)</strong> = N.m = W.s</p>
   </div>
   <div class="card">
     <div class="card-label">Công thức</div>
@@ -119,13 +119,13 @@
   <div class="grid2">
     <div class="card">
       <div class="card-label">Động năng</div>
+      <p><strong>Động năng</strong> là năng lượng của vật do vận tốc của vật. Động năng là đại lượng vô hướng, luôn không âm (≥ 0). Phụ thuộc vào hệ quy chiếu. Đơn vị: J</p>
       <div class="formula"> \(Wđ = \frac{1}{2}mv^2 \) </div>
-      <p>Vô hướng, <strong>không âm</strong> (≥ 0). Phụ thuộc vào hệ quy chiếu. Đơn vị: J</p>
     </div>
     <div class="card">
       <div class="card-label">Thế năng trọng trường</div>
+      <p><strong>Thế năng trọng trường</strong> là năng lượng của vật do vị trí của vật trong trường trọng lực. Có thể dương, âm hoặc bằng 0 (phụ thuộc mốc). Đơn vị: J</p>
       <div class="formula">Wt = m · g · h</div>
-      <p>Có thể dương, âm hoặc bằng 0 (phụ thuộc mốc). Đơn vị: J</p>
     </div>
   </div>
   <div class="card">
@@ -151,9 +151,9 @@
 <div id="dongLuong" class="tab-panel">
   <div class="section-title">Động lượng</div>
   <div class="card">
-    <div class="card-label">Định nghĩa & công thức</div>
+    <div class="card-label">Định nghĩa</div>
+    <p><strong>Động lượng</strong> là đại lượng vectơ đặc trưng cho trạng thái chuyển động của vật, bằng tích khối lượng và vectơ vận tốc. Đơn vị: <strong>kg.m/s = N.s</strong>. Cùng phương, cùng chiều với vận tốc.</p>
     <div class="formula">\( \vec{p} = m \cdot \vec{v} \) </div>
-    <p>Đơn vị: <strong>kg.m/s = N.s</strong>. Cùng phương, cùng chiều với \( \vec{v} \).</p>
   </div>
   <div class="card">
     <div class="card-label">Xung lực & biến thiên động lượng</div>
@@ -215,8 +215,8 @@
   <div class="section-title">Cơ năng – Hiệu suất</div>
   <div class="card">
     <div class="card-label">Cơ năng</div>
+    <p><strong>Cơ năng</strong> là tổng của động năng và thế năng của vật. Cơ năng có thể âm, dương hoặc bằng 0. Được bảo toàn khi <strong>chỉ có lực thế</strong> (không có ma sát, lực cản).</p>
     <div class="formula"> \(W = Wđ + Wt = \frac{1}{2} mv^2 + mgh\) </div>
-    <p>Cơ năng có thể âm, dương hoặc bằng 0. Được bảo toàn khi <strong>chỉ có lực thế</strong> (không có ma sát, lực cản).</p>
   </div>
   <div class="card">
     <div class="card-label">Bảo toàn cơ năng</div>
@@ -226,10 +226,10 @@
   </div>
   <div class="card">
     <div class="card-label">Hiệu suất</div>
+    <p><strong>Hiệu suất</strong> là tỷ lệ giữa năng lượng có ích và năng lượng toàn phần, đặc trưng cho mức độ sử dụng hiệu quả năng lượng. Hiệu suất luôn ≤ 1 (nhỏ hơn hoặc bằng 100%).</p>
     <div class="formula">H = Wci / Wtp × 100% = Aci / Atp × 100%</div>
-    <div class="note-box">Wci = năng lượng có ích,Whp = năng lượng hao phí ,Wtp = năng lượng toàn phần = Wci + Whp</div>
-    <div class="note-box">Hiệu suất luôn \(\le \) 1 (nhỏ hơn hoặc bằng 100%). Hiệu suất càng cao → năng lượng hao phí càng ít.</div>
-    <div class="warning-box">Hiệu suất = Wci / Wtp</div>
+    <div class="note-box">Wci = năng lượng có ích, Whp = năng lượng hao phí, Wtp = năng lượng toàn phần = Wci + Whp</div>
+    <div class="note-box">Hiệu suất càng cao → năng lượng hao phí càng ít.</div>
   </div>
   <div class="card">
     <div class="card-label">Ném vật – bảo toàn cơ năng (bỏ qua sức cản)</div>
@@ -247,19 +247,31 @@
     <div class="grid2">
       <div>
         <div class="formula">T = 1/f = 2π/ω</div>
-        <p>T: chu kì (s), f: tần số (Hz = vòng/s)</p>
+        <p><strong>Chu kỳ (T)</strong>: thời gian để vật thực hiện 1 vòng quay. Đơn vị: giây (s)</p>
+      </div>
+      <div>
+        <div class="formula">f = 1/T = ω/2π</div>
+        <p><strong>Tần số (f)</strong>: số vòng quay trong 1 giây. Đơn vị: Hz = vòng/s</p>
       </div>
       <div>
         <div class="formula">ω = 2πf = 2π/T</div>
-        <p>ω: tốc độ góc (rad/s)</p>
+        <p><strong>Tốc độ góc (ω)</strong>: góc quét trong 1 giây. Đơn vị: rad/s</p>
       </div>
       <div>
         <div class="formula">v = ω · r</div>
-        <p>v: tốc độ dài (m/s), r: bán kính (m)</p>
+        <p><strong>Tốc độ dài (v)</strong>: độ dài quỹ đạo đi được trong 1 giây. Đơn vị: m/s</p>
       </div>
       <div>
         <div class="formula">θ = s/r</div>
-        <p>θ: góc quét (rad), s: cung (m)</p>
+        <p><strong>Góc quét (θ)</strong>: góc mà vật quay được. Đơn vị: radian (rad)</p>
+      </div>
+      <div>
+        <div class="formula">s = θ · r</div>
+        <p><strong>Cung (s)</strong>: độ dài quỹ đạo mà vật đi được. Đơn vị: mét (m)</p>
+      </div>
+      <div>
+        <div class="formula">r = v/ω</div>
+        <p><strong>Bán kính (r)</strong>: khoảng cách từ tâm đến vật. Đơn vị: mét (m)</p>
       </div>
     </div>
   </div>
