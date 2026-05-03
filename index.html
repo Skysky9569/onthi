@@ -51,25 +51,29 @@
 
         .textdom {
             font-weight: bold;
-            
+            font-size: 3rem;
             background: linear-gradient(
-                270deg,
-                red,
-                orange,
-                yellow,
-                green,
-                blue,
-                purple,
-                red
+                90deg,
+                #ff0000,
+                #ff7f00,
+                #ffff00,
+                #00ff00,
+                #0000ff,
+                #4b0082,
+                #9400d3,
+                #ff0000
             );
 
-            background-size: 600%; /* 🔥 tăng để mượt hơn */
+            background-size: 400%;
 
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
 
-            animation: gradientMove 8s linear infinite; /* 🔥 chậm hơn = mượt hơn */
-            text-shadow: 0 0 8px rgba(255,255,255,0.6);
+            animation: gradientMove 6s ease infinite;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+            letter-spacing: 2px;
             }
 
             @keyframes gradientMove {
@@ -88,6 +92,7 @@
     <a href="sinhck2.html" class="btn-link">Sinh</a>
     <a href="toanck2.html" class="btn-link">Toán</a>
     <a href="hoack2.html" class="btn-link">Hóa</a>
+    <!-- <a href="clock.html" class="btn-link">⏰ Đồng Hồ</a> -->
 
 </body>
 </html>

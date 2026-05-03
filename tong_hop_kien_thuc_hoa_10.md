@@ -1,593 +1,402 @@
-# TỔNG HỢP KIẾN THỨC HÓA HỌC 10 - CUỐI KÌ 2 (2025-2026)
+# TỔNG HỢP KIẾN THỨC HÓA 10 - KỲ THI CUỐI KỲ
 
-## PHẦN I: HÓA HỌC VÔ CƠ
+## 📚 MỤC LỤC
 
-### Chương 1: Kim loại và Phi kim
-
-#### 1. Kim loại (K)
-**Đặc điểm chung:**
-- Có tính khử mạnh
-- Cho electron trong phản ứng hóa học
-- Tác dụng với axit loãng, nước, phi kim, muối
-
-**Phản ứng điển hình:**
-- **Với axit loãng:** K + axit → muối + H₂↑
-  - Ví dụ: Zn + 2HCl → ZnCl₂ + H₂↑
-- **Với nước:** K + H₂O → bazơ + H₂↑
-  - Ví dụ: 2Na + 2H₂O → 2NaOH + H₂↑
-- **Với phi kim:** K + phi kim → hợp chất
-  - Ví dụ: 2Fe + 3Cl₂ → 2FeCl₃
-
-#### 2. Phi kim (P)
-**Đặc điểm chung:**
-- Có tính oxi hóa
-- Nhận electron trong phản ứng hóa học
-- Tác dụng với kim loại, H₂, nước
-
-**Phản ứng điển hình:**
-- **Với kim loại:** P + K → hợp chất
-- **Với H₂:** P + H₂ → hợp chất khí
-- **Với nước:** P + H₂O → axit
+1. [Halogen và các hợp chất](#1-halogen-và-các-hợp-chất)
+2. [Phản ứng oxi hóa - khử](#2-phản-ứng-oxi-hóa---khử)
+3. [Tốc độ phản ứng](#3-tốc-độ-phản-ứng)
+4. [Nhiệt hóa học](#4-nhiệt-hóa-học)
+5. [Bài toán ứng dụng](#5-bài-toán-ứng-dụng)
+6. [Các phản ứng hóa học quan trọng](#6-các-phản-ứng-hóa-học-quan-trọng)
+7. [Kết luận và lời khuyên](#7-kết-luận-và-lời-khuyên)
 
 ---
 
-### Chương 2: Oxit, Bazơ, Axit, Muối
+## 1. HALOGEN VÀ CÁC HỢP CHẤT
 
-#### 1. Oxit (O)
-**Phân loại:**
-- **Oxit cơ bản:** Oxit của kim loại (CuO, Fe₂O₃, CaO)
-- **Oxit axit:** Oxit của phi kim (CO₂, SO₂, SO₃)
-- **Oxit lưỡng tính:** Oxit của kim loại có tính lưỡng tính (Al₂O₃, ZnO)
+### 📌 Khái niệm cơ bản
+- **Halogen**: Nhóm VIIA trong bảng tuần hoàn (F, Cl, Br, I)
+- **Đặc điểm chung**: Phi kim điển hình, có 7 electron lớp ngoài cùng
+- **Số oxi hóa đặc trưng**: -1 trong hợp chất
 
-**Phản ứng:**
-- **Oxit cơ bản + axit → muối + nước**
-  - CuO + 2HCl → CuCl₂ + H₂O
-- **Oxit axit + bazơ → muối + nước**
-  - CO₂ + 2NaOH → Na₂CO₃ + H₂O
-- **Oxit lưỡng tính + axit/bazơ → muối + nước**
-  - Al₂O₃ + 6HCl → 2AlCl₃ + 3H₂O
-  - Al₂O₃ + 2NaOH → 2NaAlO₂ + H₂O
+### 📊 Tính chất của các halogen
 
-#### 2. Bazơ (B)
-**Đặc điểm:**
-- Có vị chua, làm đổi màu quỳ tím thành xanh
-- Tác dụng với axit, oxit axit, muối
+| Halogen | Trạng thái | Màu sắc | Tính oxi hóa |
+|---------|-----------|---------|-------------|
+| Fluorine (F) | Khí | Vàng nhạt | Mạnh nhất |
+| Chlorine (Cl) | Khí | Vàng lục | Rất mạnh |
+| Bromine (Br) | Lỏng | Đỏ nâu | Mạnh |
+| Iodine (I) | Rắn | Tím đen | Yếu hơn |
 
-**Phản ứng:**
-- **Bazơ + axit → muối + nước** (phản ứng trung hòa)
-  - NaOH + HCl → NaCl + H₂O
-- **Bazơ + oxit axit → muối + nước**
-  - 2NaOH + CO₂ → Na₂CO₃ + H₂O
-- **Bazơ + muối → bazơ mới + muối mới**
-  - 2NaOH + CuSO₄ → Cu(OH)₂↓ + Na₂SO₄
+### ⚗️ Các phản ứng quan trọng
 
-#### 3. Axit (A)
-**Đặc điểm:**
-- Có vị chua, làm đổi màu quỳ xanh thành đỏ
-- Tác dụng với kim loại, bazơ, oxit cơ bản, muối
+#### Phản ứng với kim loại:
+```
+Fe + Cl₂ → FeCl₃
+Cu + Cl₂ → CuCl₂
+Al + Cl₂ → AlCl₃
+Zn + Cl₂ → ZnCl₂
+```
 
-**Phản ứng:**
-- **Axit + kim loại → muối + H₂↑**
-  - 2HCl + Zn → ZnCl₂ + H₂↑
-- **Axit + bazơ → muối + nước** (trung hòa)
-  - HCl + NaOH → NaCl + H₂O
-- **Axit + oxit cơ bản → muối + nước**
-  - 2HCl + CuO → CuCl₂ + H₂O
-- **Axit + muối → axit mới + muối mới**
-  - 2HCl + Na₂CO₃ → 2NaCl + H₂O + CO₂↑
+#### Phản ứng với hydrogen:
+```
+H₂ + F₂ → 2HF (phản ứng mãnh liệt, nổ)
+H₂ + Cl₂ → 2HCl (phản ứng mạnh, cần ánh sáng hoặc nhiệt)
+H₂ + Br₂ → 2HBr (phản ứng ở nhiệt độ cao)
+H₂ + I₂ ⇌ 2HI (phản ứng thuận nghịch)
+```
 
-#### 4. Muối (M)
-**Phân loại:**
-- **Muối trung hòa:** NaCl, KNO₃
-- **Muối axit:** NaHSO₄, KHCO₃
-- **Muối bazơ:** Cu(OH)Cl, Fe(OH)₂Cl
+#### Phản ứng thế:
+```
+Cl₂ + 2NaBr → 2NaCl + Br₂
+Cl₂ + 2NaI → 2NaCl + I₂
+Br₂ + 2NaI → 2NaBr + I₂
+```
 
-**Phản ứng:**
-- **Muối + kim loại → muối mới + kim loại mới**
-  - CuSO₄ + Zn → ZnSO₄ + Cu
-- **Muối + bazơ → muối mới + bazơ mới**
-  - CuSO₄ + 2NaOH → Cu(OH)₂↓ + Na₂SO₄
-- **Muối + axit → muối mới + axit mới**
-  - CaCO₃ + 2HCl → CaCl₂ + H₂O + CO₂↑
+#### Phản ứng với nước:
+```
+Cl₂ + H₂O ⇌ HCl + HClO (nước chlorine)
+```
 
----
+### 🧪 Các hợp chất quan trọng
 
-### Chương 3: Phản ứng oxi hóa khử
+#### Hydrohalic acids:
+- **HF**: Acid yếu, ăn mòn thủy tinh hữu cơ
+- **HCl, HBr, HI**: Acid mạnh, tan tốt trong nước
 
-#### 1. Khái niệm cơ bản
-- **Oxi hóa:** Chất mất electron, tăng số oxi hóa
-- **Khử:** Chất nhận electron, giảm số oxi hóa
-- **Chất oxi hóa:** Chất có tính oxi hóa, nhận electron
-- **Chất khử:** Chất có tính khử, cho electron
+#### Nước Javel:
+- Thành phần chính: NaClO (sodium hypochlorite)
+- Công thức sản xuất: Cl₂ + 2NaOH → NaCl + NaClO + H₂O
+- Tính chất: Tẩy màu, khử trùng
 
-#### 2. Phản ứng oxi hóa khử điển hình
+#### Nước muối sinh lý:
+- Nồng độ: 0,9% NaCl
+- Công dụng: Diệt khuẩn, sát trùng trong y học
 
-**Phản ứng đốt cháy:**
-- C + O₂ → CO₂
-- S + O₂ → SO₂
-- 2Mg + O₂ → 2MgO
-
-**Phản ứng thế:**
-- Zn + CuSO₄ → ZnSO₄ + Cu
-- Fe + CuSO₄ → FeSO₄ + Cu
-
-**Phản ứng hợp thành:**
-- 2H₂ + O₂ → 2H₂O
-- N₂ + 3H₂ → 2NH₃
-
-#### 3. Tính khử của các halogen (I₂, Br₂, Cl₂)
-
-**Lưu ý:** Các halogen (Cl₂, Br₂, I₂) có tính oxi hóa mạnh, nhưng cũng có thể thể hiện tính khử trong một số phản ứng đặc biệt với các chất oxi hóa mạnh hơn.
-
-**Iod (I₂) - Tính khử:**
-
-**a) Tác dụng với H₂S (sulfua hidrat):**
-- I₂ + H₂S → S↓ + 2HI
-- Hiện tượng: Xuất hiện kết tủa màu vàng của lưu huỳnh
-
-**b) Tác dụng với SO₂ (lưu huỳnh điôxit):**
-- I₂ + SO₂ + 2H₂O → H₂SO₄ + 2HI
-- I₂ bị khử thành I⁻, SO₂ bị oxi hóa thành SO₄²⁻
-
-**c) Tác dụng với Na₂S₂O₃ (natri thiosunfat):**
-- I₂ + 2Na₂S₂O₃ → 2NaI + Na₂S₄O₆
-- Phản ứng dùng để định lượng I₂
-
-**d) Tác dụng với H₂O₂ (nước oxi hóa):**
-- I₂ + H₂O₂ → 2HIO
-- I₂ bị oxi hóa thành HIO
-
-**e) Tác dụng với Cl₂ (clo):**
-- I₂ + 5Cl₂ + 6H₂O → 2HIO₃ + 10HCl
-- I₂ bị oxi hóa mạnh thành HIO₃
-
-**f) Tác dụng với HNO₃ đặc (axit nitric đặc):**
-- I₂ + 10HNO₃ → 2HIO₃ + 10NO₂↑ + 4H₂O
-- I₂ bị oxi hóa thành HIO₃
+### ⚠️ Điều cần lưu ý:
+- Fluorine chỉ có số oxi hóa -1 trong hợp chất
+- Chlorine vừa có tính oxi hóa vừa có tính khử
+- Iodine tập trung ở tuyến giáp trong cơ thể người
+- Chlorine dùng để khử trùng nước sinh hoạt
 
 ---
 
-**Brom (Br₂) - Tính khử:**
+## 2. PHẢN ỨNG OXI HÓA - KHỬ
 
-**a) Tác dụng với H₂S (sulfua hidrat):**
-- Br₂ + H₂S → S↓ + 2HBr
-- Hiện tượng: Xuất hiện kết tủa màu vàng của lưu huỳnh
+### 📌 Khái niệm cơ bản
+- **Chất oxi hóa**: Chất nhận electron
+- **Chất khử**: Chất nhường electron
+- **Số oxi hóa**: Số electron mà nguyên tử nhường hoặc nhận khi hình thành hợp chất
 
-**b) Tác dụng với SO₂ (lưu huỳnh điôxit):**
-- Br₂ + SO₂ + 2H₂O → H₂SO₄ + 2HBr
-- Br₂ bị khử thành Br⁻, SO₂ bị oxi hóa thành SO₄²⁻
+### 📐 Quy tắc xác định số oxi hóa:
+1. Số oxi hóa của nguyên tử trong đơn chất = 0
+2. Số oxi hóa của H = +1 (trừ hydride kim loại = -1)
+3. Số oxi hóa của O = -2 (trừ peroxide = -1, superoxide = -1/2)
+4. Tổng số oxi hóa trong hợp chất = 0
+5. Tổng số oxi hóa trong ion = điện tích của ion
 
-**c) Tác dụng với Na₂S₂O₃ (natri thiosunfat):**
-- Br₂ + 2Na₂S₂O₃ → 2NaBr + Na₂S₄O₆
-- Phản ứng dùng để định lượng Br₂
+### 🔢 Ví dụ tính số oxi hóa:
+- **HClO₂**: H(+1) + Cl(x) + 2O(-2) = 0 → x = +3
+- **HClO₄**: H(+1) + Cl(x) + 4O(-2) = 0 → x = +7
 
-**d) Tác dụng với H₂O₂ (nước oxi hóa):**
-- Br₂ + H₂O₂ → 2HBrO
-- Br₂ bị oxi hóa thành HBrO
-
-**e) Tác dụng với Cl₂ (clo):**
-- Br₂ + 5Cl₂ + 6H₂O → 2HBrO₃ + 10HCl
-- Br₂ bị oxi hóa mạnh thành HBrO₃
-
-**f) Tác dụng với HNO₃ đặc (axit nitric đặc):**
-- Br₂ + 10HNO₃ → 2HBrO₃ + 10NO₂↑ + 4H₂O
-- Br₂ bị oxi hóa thành HBrO₃
+### ⚠️ Điều cần lưu ý:
+- Chlorine có thể đóng vai trò chất oxi hóa hoặc chất khử tùy phản ứng
+- Trong phản ứng với H₂O, chlorine vừa oxi hóa vừa khử
 
 ---
 
-**Clo (Cl₂) - Tính khử:**
+## 3. TỐC ĐỘ PHẢN ỨNG
 
-**a) Tác dụng với H₂S (sulfua hidrat):**
-- Cl₂ + H₂S → S↓ + 2HCl
-- Hiện tượng: Xuất hiện kết tủa màu vàng của lưu huỳnh
+### 📌 Khái niệm cơ bản
+- **Tốc độ phản ứng**: Mức độ xảy ra nhanh hay chậm của phản ứng hóa học
+- **Đơn vị**: mol/(L·s) hoặc mol/(L·min)
 
-**b) Tác dụng với SO₂ (lưu huỳnh điôxit):**
-- Cl₂ + SO₂ + 2H₂O → H₂SO₄ + 2HCl
-- Cl₂ bị khử thành Cl⁻, SO₂ bị oxi hóa thành SO₄²⁻
+### 📐 Biểu thức tốc độ phản ứng:
 
-**c) Tác dụng với Na₂S₂O₃ (natri thiosunfat):**
-- Cl₂ + 2Na₂S₂O₃ → 2NaCl + Na₂S₄O₆
-- Phản ứng dùng để định lượng Cl₂
+#### Phản ứng tổng quát: aA + bB → cC + dD
+```
+v = k·[A]ᵃ·[B]ᵇ
+```
 
-**d) Tác dụng với H₂O₂ (nước oxi hóa):**
-- Cl₂ + H₂O₂ → 2HClO
-- Cl₂ bị oxi hóa thành HClO
+#### Ví dụ cụ thể:
+- Phản ứng: X + 2Y → 2Z
+  ```
+  v = k·[X]·[Y]²
+  ```
 
-**e) Tác dụng với KMnO₄ (permanganat kali):**
-- 5Cl₂ + 2KMnO₄ + 8H₂O → 2MnCl₂ + 2KCl + 8HClO
-- Cl₂ bị oxi hóa thành HClO
+- Phản ứng: 2NO + O₂ → 2NO₂
+  ```
+  v = k·[NO]²·[O₂]
+  ```
 
-**f) Tác dụng với HNO₃ đặc (axit nitric đặc):**
-- Cl₂ + 10HNO₃ → 2HClO₃ + 10NO₂↑ + 4H₂O
-- Cl₂ bị oxi hóa thành HClO₃
+- Phản ứng: 2X + Y → 2Z
+  ```
+  v = k·[X]²·[Y]
+  ```
 
----
+### 🎯 Các yếu tố ảnh hưởng đến tốc độ phản ứng:
 
-**Tóm tắt:**
-- **I₂ (Iod):** Dễ bị oxi hóa nhất, có tính khử mạnh nhất trong nhóm halogen
-- **Br₂ (Brom):** Có tính khử trung bình
-- **Cl₂ (Clo):** Có tính khử yếu nhất, chủ yếu có tính oxi hóa
+1. **Nồng độ chất tham gia phản ứng**
+   - Tăng nồng độ → Tăng tốc độ phản ứng
 
-**Thứ tự tính khử tăng dần:** Cl₂ < Br₂ < I₂
+2. **Nhiệt độ**
+   - Tăng nhiệt độ → Tăng tốc độ phản ứng
+   - Quy tắc: Tăng 10°C → Tốc độ tăng 2-3 lần
 
----
+3. **Diện tích tiếp xúc**
+   - Tăng diện tích → Tăng tốc độ phản ứng
 
-### Chương 4: Điện phân
+4. **Chất xúc tác**
+   - Chất xúc tác tăng tốc độ nhưng không bị tiêu hao
+   - Ví dụ: MnO₂ xúc tác phân giải H₂O₂
 
-#### 1. Khái niệm
-Điện phân là quá trình biến đổi điện năng thành hóa năng, xảy ra ở điện cực khi cho dòng điện đi qua dung dịch điện phân hoặc chất điện phân nóng chảy.
+5. **Áp suất** (cho phản ứng khí)
+   - Tăng áp suất → Tăng nồng độ → Tăng tốc độ
 
-#### 2. Điện phân dung dịch muối
+### ⚗️ Phản ứng phân giải H₂O₂:
+```
+2H₂O₂ → 2H₂O + O₂
+```
+- **Chất xúc tác**: MnO₂ (bột đen)
+- **Biểu thức tốc độ**: v = k·[H₂O₂]²·[O₂]
 
-**Điện phân NaCl (nước):**
-- **Cátốt:** 2H₂O + 2e⁻ → H₂↑ + 2OH⁻
-- **Anốt:** 2Cl⁻ → Cl₂↑ + 2e⁻
-- **Phản ứng tổng:** 2NaCl + 2H₂O → 2NaOH + H₂↑ + Cl₂↑
-
-**Điện phân CuSO₄ (nước):**
-- **Cátốt:** Cu²⁺ + 2e⁻ → Cu
-- **Anốt:** 2H₂O → O₂↑ + 4H⁺ + 4e⁻
-- **Phản ứng tổng:** 2CuSO₄ + 2H₂O → 2Cu + 2H₂SO₄ + O₂↑
-
-#### 3. Điện phân dung dịch axit
-
-**Điện phân H₂SO₄ (nước):**
-- **Cátốt:** 2H₂O + 2e⁻ → H₂↑ + 2OH⁻
-- **Anốt:** 2H₂O → O₂↑ + 4H⁺ + 4e⁻
-- **Phản ứng tổng:** 2H₂O → 2H₂↑ + O₂↑
-
----
-
-## PHẦN II: HÓA HỌC HỮU CƠ
-
-### Chương 1: Hydrocarbon
-
-#### 1. Alkan (CₙH₂ₙ₊₂)
-**Đặc điểm:**
-- Liên kết đơn C-C
-- Bão hòa với H₂
-- Tính chất: cháy, tác dụng với halogen
-
-**Phản ứng điển hình:**
-- **Đốt cháy:** CₙH₂ₙ₊₂ + (3n+1)/2 O₂ → nCO₂ + (n+1)H₂O
-- **Tác dụng với halogen:** CₙH₂ₙ₊₂ + X₂ → CₙH₂ₙ₊₁X + HX
-
-**Ví dụ:**
-- CH₄ (metan)
-- C₂H₆ (etan)
-- C₃H₈ (propan)
-
-#### 2. Alken (CₙH₂ₙ)
-**Đặc điểm:**
-- Có một liên kết đôi C=C
-- Không bão hòa với H₂
-- Tính chất: cháy, tác dụng với H₂, X₂, HX, H₂O
-
-**Phản ứng điển hình:**
-- **Đốt cháy:** CₙH₂ₙ + 3n/2 O₂ → nCO₂ + nH₂O
-- **Tác dụng với H₂:** CₙH₂ₙ + H₂ → CₙH₂ₙ₊₂
-- **Tác dụng với X₂:** CₙH₂ₙ + X₂ → CₙH₂ₙX₂
-- **Tác dụng với HX:** CₙH₂ₙ + HX → CₙH₂ₙ₊₁X
-
-**Ví dụ:**
-- C₂H₄ (eten)
-- C₃H₆ (propen)
-
-#### 3. Alkin (CₙH₂ₙ₋₂)
-**Đặc điểm:**
-- Có một liên kết ba C≡C
-- Không bão hòa với H₂
-- Tính chất: cháy, tác dụng với H₂, X₂, HX, H₂O
-
-**Phản ứng điển hình:**
-- **Đốt cháy:** CₙH₂ₙ₋₂ + (3n-1)/2 O₂ → nCO₂ + (n-1)H₂O
-- **Tác dụng với H₂:** CₙH₂ₙ₋₂ + 2H₂ → CₙH₂ₙ₊₂
-- **Tác dụng với X₂:** CₙH₂ₙ₋₂ + 2X₂ → CₙH₂ₙX₄
-- **Tác dụng với HX:** CₙH₂ₙ₋₂ + 2HX → CₙH₂ₙX₂
-
-**Ví dụ:**
-- C₂H₂ (etin)
-- C₃H₄ (propin)
+### ⚠️ Điều cần lưu ý:
+- Tốc độ phản ứng không phụ thuộc vào thời gian xảy ra phản ứng
+- Theo thời gian, nồng độ chất tham gia giảm → Tốc độ phản ứng giảm
+- Chất xúc tác không bị tiêu hởa sau phản ứng
+- Tăng nồng độ chất tham gia lên n lần → Tốc độ tăng lên nᵐ lần (m = bậc phản ứng)
 
 ---
 
-### Chương 2: Các dẫn xuất hydrocarbon
+## 4. NHIỆT HÓA HỌC
 
-#### 1. Rượu (R-OH)
-**Đặc điểm:**
-- Chứa nhóm -OH
-- Tính chất: cháy, tác dụng với kim loại, axit
+### 📌 Khái niệm cơ bản
+- **Nhiệt phản ứng (ΔH)**: Nhiệt lượng tỏa ra hoặc thu vào trong phản ứng
+- **Đơn vị**: kJ/mol hoặc kJ
 
-**Phản ứng điển hình:**
-- **Đốt cháy:** C₂H₅OH + 3O₂ → 2CO₂ + 3H₂O
-- **Tác dụng với Na:** 2C₂H₅OH + 2Na → 2C₂H₅ONa + H₂↑
-- **Tác dụng với axit:** C₂H₅OH + CH₃COOH → CH₃COOC₂H₅ + H₂O
+### 🔥 Phân loại phản ứng theo nhiệt:
 
-**Ví dụ:**
-- CH₃OH (metanol)
-- C₂H₅OH (etanol)
+#### Phản ứng tỏa nhiệt (ΔH < 0):
+- Giải phóng nhiệt lượng ra môi trường
+- Ví dụ: 4NH₃ + 3O₂ → 2N₂ + 6H₂O (ΔH = -1531 kJ)
 
-#### 2. Phenol (C₆H₅-OH)
-**Đặc điểm:**
-- Nhóm -OH gắn trực tiếp vào vòng benzen
-- Tính chất: cháy, tác dụng với NaOH, FeCl₃
+#### Phản ứng thu nhiệt (ΔH > 0):
+- Hấp thu nhiệt lượng từ môi trường
+- Ví dụ: 2NaHCO₃ → Na₂CO₃ + H₂O + CO₂ (ΔH = +20,33 kJ)
 
-**Phản ứng điển hình:**
-- **Tác dụng với NaOH:** C₆H₅OH + NaOH → C₆H₅ONa + H₂O
-- **Tác dụng với FeCl₃:** C₆H₅OH + FeCl₃ → [C₆H₅O]₃Fe + 3HCl
+### 🌡️ Nhiệt tạo thành chuẩn (ΔfH°):
+- **Định nghĩa**: Nhiệt lượng khi tạo thành 1 mol chất từ các nguyên tố ở trạng thái chuẩn
+- **Đơn vị**: kJ/mol
+- **Đặc điểm**:
+  - ΔfH° của đơn chất = 0
+  - ΔfH° của hợp chất thường ≠ 0
 
-#### 3. Aldehyde (R-CHO)
-**Đặc điểm:**
-- Chứa nhóm -CHO
-- Tính chất: cháy, tác dụng với chất oxi hóa nhẹ
+### 📊 Ví dụ nhiệt tạo thành chuẩn:
+- **H₂O(l)**: ΔfH° ≠ 0 (hợp chất)
+- **N₂(g)**: ΔfH° = 0 (đơn chất)
+- **CH₄(g)**: ΔfH° ≠ 0 (hợp chất)
+- **CuO(s)**: ΔfH° ≠ 0 (hợp chất)
+- **O₂(g)**: ΔfH° = 0 (đơn chất)
 
-**Phản ứng điển hình:**
-- **Đốt cháy:** CH₃CHO + 5/2 O₂ → 2CO₂ + 2H₂O
-- **Tác dụng với AgNO₃/NH₃:** CH₃CHO + 2Ag(NH₃)₂OH → 2Ag↓ + CH₃COONH₄ + 3NH₃ + H₂O
-- **Tác dụng với Cu(OH)₂:** CH₃CHO + 2Cu(OH)₂ → CH₃COOH + Cu₂O↓ + 2H₂O
+### ⚗️ Các phương trình nhiệt hóa học:
 
-**Ví dụ:**
-- HCHO (formaldehyde)
-- CH₃CHO (acetaldehyde)
+#### Phản ứng hợp thành ethylen:
+```
+C₂H₄(g) + H₂(g) → C₂H₆(g) ΔH = -137,0 kJ
+```
+→ Giải phóng 137,0 kJ nhiệt
 
-#### 4. Carboxylic acid (R-COOH)
-**Đặc điểm:**
-- Chứa nhóm -COOH
-- Tính chất: cháy, tác dụng với rượu, kim loại
+#### Phản ứng phân giải CO₂:
+```
+CO₂(g) → CO(g) + O₂(g) ΔH = +280,0 kJ
+```
+→ Hấp thu 280,0 kJ nhiệt
 
-**Phản ứng điển hình:**
-- **Đốt cháy:** CH₃COOH + 2O₂ → 2CO₂ + 2H₂O
-- **Tác dụng với rượu:** CH₃COOH + C₂H₅OH → CH₃COOC₂H₅ + H₂O
-- **Tác dụng với Na:** 2CH₃COOH + 2Na → 2CH₃COONa + H₂↑
-
-**Ví dụ:**
-- HCOOH (axit formic)
-- CH₃COOH (axit acetic)
-
-#### 5. Ester (R-COO-R')
-**Đặc điểm:**
-- Chứa nhóm -COO-
-- Tính chất: cháy, tác dụng với nước
-
-**Phản ứng điển hình:**
-- **Đốt cháy:** CH₃COOC₂H₅ + 5O₂ → 4CO₂ + 4H₂O
-- **Tác dụng với nước:** CH₃COOC₂H₅ + H₂O → CH₃COOH + C₂H₅OH
-
-**Ví dụ:**
-- CH₃COOCH₃ (methyl acetate)
-- CH₃COOC₂H₅ (ethyl acetate)
+### ⚠️ Điều cần lưu ý:
+- ΔH < 0: Phản ứng tỏa nhiệt
+- ΔH > 0: Phản ứng thu nhiệt
+- Đơn vị enthalpy: kJ/mol
+- Đơn vị nhiệt phản ứng: kJ
+- Nhiệt tạo thành chuẩn của đơn chất luôn bằng 0
 
 ---
 
-## PHẦN III: HÓA HỌC PHÂN TÍCH
+## 5. BÀI TOÁN ỨNG DỤNG
 
-### Chương 1: Phản ứng nhận biết
+### 🧮 Bài toán làm muối:
 
-#### 1. Nhận biết ion
-**Ion NH₄⁺:**
-- NH₄⁺ + NaOH → NH₃↑ + H₂O + Na⁺
-- NH₃ làm ẩm quỳ đỏ chuyển thành xanh
+#### Công thức cơ bản:
+```
+m_muối = V_nước × C_NaCl × η
+```
 
-**Ion Cl⁻:**
-- Cl⁻ + AgNO₃ → AgCl↓ (trắng) + NO₃⁻
-- AgCl không tan trong HNO₃
+#### Trong đó:
+- V_nước: Thể tích nước biển (L)
+- C_NaCl: Nồng độ NaCl trong nước biển (g/L)
+- η: Hiệu suất quá trình (%)
 
-**Ion SO₄²⁻:**
-- SO₄²⁻ + BaCl₂ → BaSO₄↓ (trắng) + 2Cl⁻
-- BaSO₄ không tan trong HCl
+#### Ví dụ 1:
+- V = 500.000 L
+- C = 30 g/L
+- η = 70%
+```
+m = 500.000 × 30 × 0,7 = 10.500.000 g = 10,5 tấn
+```
 
-**Ion CO₃²⁻:**
-- CO₃²⁻ + 2HCl → CO₂↑ + H₂O + 2Cl⁻
-- CO₂ làm vôi đục (Ca(OH)₂)
+#### Ví dụ 2:
+- V = 600.000 L
+- C = 35 g/L
+- η = 60%
+```
+m = 600.000 × 35 × 0,6 = 12.600.000 g = 12,6 tấn
+```
 
-#### 2. Nhận biết chất
-**Axit:**
-- Làm quỳ xanh chuyển thành đỏ
-- Tác dụng với kim loại tạo H₂
+### 🏭 Bài toán công nghiệp sản xuất chlorine và nước Javel:
 
-**Bazơ:**
-- Làm quỳ đỏ chuyển thành xanh
-- Tác dụng với axit tạo muối + nước
+#### Phản ứng điện phân NaCl:
+```
+2NaCl + 2H₂O → 2NaOH + H₂↑ + Cl₂↑
+```
 
-**Muối:**
-- Tác dụng với axit/bazơ tạo khí
-- Tác dụng với AgNO₃/BaCl₂ tạo kết tủa
+#### Phản ứng sản xuất nước Javel:
+```
+Cl₂ + 2NaOH → NaCl + NaClO + H₂O
+```
 
----
+#### Công thức tính:
+```
+m_NaClO = m_Cl₂ × %_sử_dụng × η × (M_NaClO/M_Cl₂)
+```
 
-### Chương 2: Phương pháp phân tích định tính
+#### Trong đó:
+- m_Cl₂: Khối lượng chlorine sản xuất
+- %_sử_dụng: Tỷ lệ chlorine dùng làm nước Javel
+- η: Hiệu suất phản ứng
+- M_NaClO = 74,5 g/mol
+- M_Cl₂ = 71 g/mol
 
-#### 1. Phương pháp nhận biết
-- **Quỳ:** Dùng để nhận biết axit/bazơ
-- **AgNO₃:** Dùng để nhận biết ion Cl⁻, Br⁻, I⁻
-- **BaCl₂:** Dùng để nhận biết ion SO₄²⁻
-- **NaOH:** Dùng để nhận biết ion NH₄⁺
+#### Ví dụ 1:
+- m_Cl₂ = 710 kg/ngày
+- %_sử_dụng = 20%
+- η = 100%
+- Nước Javel chứa 10% NaClO
+```
+m_NaClO = 710 × 0,2 × 1,0 × (74,5/71) = 149 kg
+m_nước_Javel = 149/0,1 = 1490 kg = 1,49 tấn
+```
 
-#### 2. Phương pháp tách chất
-- **Lọc:** Tách chất rắn khỏi dung dịch
-- **Chưng cất:** Tách chất lỏng có nhiệt độ sôi khác nhau
-- **Kết tinh:** Tách chất rắn từ dung dịch bão hòa
-- **Chiết xuất:** Tách chất bằng dung môi khác
+#### Ví dụ 2:
+- m_Cl₂ = 3,55 tấn/ngày
+- %_sử_dụng = 30%
+- η = 80%
+```
+m_NaClO = 3550 × 0,3 × 0,8 × (74,5/71) = 896 kg = 0,896 tấn
+```
 
----
+### ⚡ Bài toán tốc độ phản ứng:
 
-### Chương 3: Phương pháp phân tích định lượng
+#### Công thức cơ bản:
+```
+v = k·[A]ᵃ·[B]ᵇ
+```
 
-#### 1. Định lượng bằng thể tích
-- **Định lượng axit/bazơ:** Dùng dung dịch chuẩn để định lượng
-- **Định lượng khí:** Dùng thể tích khí để tính số mol
+#### Ví dụ 1: Phản ứng X + 2Y → 2Z
+- k = 0,6 (mol⁻²·L²·s⁻¹)
+- [X]₀ = 0,5 M, [Y]₀ = 0,8 M
+- Khi [Y] giảm còn 0,2 M → [Y] = 0,2 M
+```
+v = 0,6 × 0,5 × (0,2)² = 0,012 mol/(L·s)
+```
 
-#### 2. Định lượng bằng khối lượng
-- **Định lượng chất rắn:** Dùng khối lượng để tính số mol
-- **Định lượng kết tủa:** Dùng khối lượng kết tủa để tính số mol
+#### Ví dụ 2: Phản ứng 2X + Y → 2Z
+- k = 0,8 (mol⁻²·L²·s⁻¹)
+- [X]₀ = 0,6 M, [Y]₀ = 0,9 M
+- Khi [Y] giảm 0,1 M → [Y] = 0,8 M
+```
+v = 0,8 × (0,6)² × 0,8 = 0,2304 mol/(L·s)
+```
 
-#### 3. Công thức tính
-- **Số mol:** n = m/M = V/V_m = N/N_A
-- **Nồng độ mol:** C = n/V
-- **Nồng độ khối lượng:** ρ = m/V
-- **Phần trăm khối lượng:** % = (m_chất/m_hòa tan) × 100%
-
----
-
-## CÔNG THỨC QUAN TRỌNG
-
-### 1. Công thức tính nồng độ
-- **Nồng độ mol:** C = n/V (mol/L)
-- **Nồng độ khối lượng:** ρ = m/V (g/L)
-- **Phần trăm khối lượng:** % = (m_chất/m_hòa tan) × 100%
-
-### 2. Công thức khí
-- **Phương trình trạng thái khí:** PV = nRT
-- **Định luật Avogadro:** V₁/n₁ = V₂/n₂ (cùng điều kiện)
-- **Định luật Boyle:** P₁V₁ = P₂V₂ (nhiệt độ không đổi)
-- **Định luật Charles:** V₁/T₁ = V₂/T₂ (áp suất không đổi)
-
-### 3. Công thức tính khối lượng mol
-- **Khối lượng mol:** M = m/n (g/mol)
-- **Số mol:** n = m/M = V/V_m = N/N_A
-
-### 4. Các hằng số quan trọng
-- **Số Avogadro:** N_A = 6.022 × 10²³ mol⁻¹
-- **Khối lượng mol khí:** V_m = 22.4 L/mol (đktc)
-- **Hằng số khí:** R = 8.314 J/(mol·K)
-
----
-
-## CÁC PHẢN ỨNG QUAN TRỌNG
-
-### 1. Phản ứng oxi hóa khử
-- **Oxi hóa:** Mất electron, tăng số oxi hóa
-- **Khử:** Nhận electron, giảm số oxi hóa
-- **Số oxi hóa:** Tổng số electron mà nguyên tử có thể nhường hoặc nhận
-
-### 2. Phản ứng trung hòa
-- **Axit + Bazơ → Muối + Nước**
-- Ví dụ: HCl + NaOH → NaCl + H₂O
-
-### 3. Phản ứng tráng bạc
-- **AgNO₃ + NaCl → AgCl↓ + NaNO₃**
-- Dùng để nhận biết ion Cl⁻
-
-### 4. Phản ứng tạo khí
-- **Kim loại + Axit → Muối + H₂↑**
-- Ví dụ: Zn + 2HCl → ZnCl₂ + H₂↑
+### ⚠️ Điều cần lưu ý:
+- Chuyển đổi đơn vị: 1 tấn = 1.000 kg = 1.000.000 g
+- Hiệu suất luôn < 100% trong thực tế
+- Khi tính tốc độ phản ứng, cần sử dụng nồng độ tại thời điểm đó
+- Trong phản ứng thế, halogen mạnh hơn sẽ thế halogen yếu hơn
 
 ---
 
-## CÁC CHẤT QUAN TRỌNG
+## 6. CÁC PHẢN ỨNG HÓA HỌC QUAN TRỌNG CẦN GHI NHỚ
 
-### 1. Axit mạnh
-- HCl, HNO₃, H₂SO₄
-- Điện li hoàn toàn trong nước
+### ⚗️ Phản ứng với kim loại:
+```
+Fe + Cl₂ → FeCl₃
+Cu + Cl₂ → CuCl₂
+Al + Cl₂ → AlCl₃
+Zn + Cl₂ → ZnCl₂
+```
 
-### 2. Bazơ mạnh
-- NaOH, KOH, Ca(OH)₂
-- Điện li hoàn toàn trong nước
+### ⚗️ Phản ứng với hydrogen:
+```
+H₂ + F₂ → 2HF
+H₂ + Cl₂ → 2HCl
+H₂ + Br₂ → 2HBr
+H₂ + I₂ ⇌ 2HI
+```
 
-### 3. Muối quan trọng
-- NaCl, KNO₃, CaCO₃
-- Các muối tan và không tan
+### ⚗️ Phản ứng thế:
+```
+Cl₂ + 2NaBr → 2NaCl + Br₂
+Cl₂ + 2NaI → 2NaCl + I₂
+Br₂ + 2NaI → 2NaBr + I₂
+```
 
-### 4. Oxit quan trọng
-- **Oxit cơ bản:** CuO, Fe₂O₃
-- **Oxit axit:** CO₂, SO₂, SO₃
-- **Oxit lưỡng tính:** Al₂O₃, ZnO
+### ⚗️ Phản ứng với acid:
+```
+Al + HCl → AlCl₃ + H₂
+Zn + HCl → ZnCl₂ + H₂
+```
 
----
-
-## PHƯƠNG PHÁP GIẢI BÀI TẬP
-
-### 1. Bài tập về nồng độ
-1. Xác định chất và khối lượng/mol
-2. Tính thể tích dung dịch
-3. Áp dụng công thức nồng độ
-4. Kiểm tra kết quả
-
-### 2. Bài tập về phản ứng hóa học
-1. Viết phương trình phản ứng
-2. Cân bằng phương trình
-3. Tính số mol các chất
-4. Áp dụng định luật bảo toàn khối lượng
-
-### 3. Bài tập về khí
-1. Xác định điều kiện chuẩn hay không chuẩn
-2. Chọn công thức phù hợp
-3. Chuyển đổi đơn vị nếu cần
-4. Tính toán và kiểm tra
+### ⚗️ Phản ứng công nghiệp:
+```
+2NaCl + 2H₂O → 2NaOH + H₂ + Cl₂ (điện phân)
+Cl₂ + 2NaOH → NaCl + NaClO + H₂O (nước Javel)
+```
 
 ---
 
-## CÁC LƯU Ý QUAN TRỌNG
+## 7. KẾT LUẬN VÀ LỜI KHUYÊN
 
-### 1. Khi giải bài tập
-- Luôn kiểm tra đơn vị
-- Cân bằng phương trình phản ứng
-- Chú ý điều kiện phản ứng
-- Kiểm tra tính hợp lý của kết quả
+### 🎯 Điểm quan trọng cần nhớ:
+1. **Halogen**: Nhóm VIIA, 7 electron lớp ngoài, số oxi hóa -1
+2. **Tính oxi hóa**: F > Cl > Br > I
+3. **Phản ứng với H₂**: F₂ mạnh nhất, I₂ thuận nghịch
+4. **Tốc độ phản ứng**: v = k·[A]ᵃ·[B]ᵇ
+5. **Nhiệt hóa học**: ΔH < 0 (tỏa nhiệt), ΔH > 0 (thu nhiệt)
+6. **Nhiệt tạo thành chuẩn**: Đơn chất = 0, hợp chất ≠ 0
 
-### 2. Khi làm thí nghiệm
-- Tuân thủ quy trình an toàn
-- Sử dụng đúng dụng cụ
-- Quan sát kỹ hiện tượng
-- Ghi chép đầy đủ
+### ❌ Lỗi thường gặp:
+- Nhầm lẫn giữa chất oxi hóa và chất khử
+- Sai khi tính số oxi hóa
+- Quên đơn vị khi tính toán
+- Không chú ý hiệu suất trong bài toán thực tế
+- Nhầm lẫn giữa phản ứng tỏa nhiệt và thu nhiệt
 
-### 3. Khi ôn tập
-- Nắm vững các khái niệm cơ bản
-- Luyện tập các dạng bài tập
-- Tổng hợp công thức quan trọng
-- Làm các đề thi thử
-
----
-
-## CÁC DẠNG BÀI TẬP THƯỜNG GẶP
-
-### 1. Bài tập tính toán
-- Tính nồng độ dung dịch
-- Tính khối lượng, số mol
-- Tính thể tích khí
-
-### 2. Bài tập phản ứng
-- Viết và cân bằng phương trình
-- Tính sản phẩm phản ứng
-- Xác định chất dư/thừa
-
-### 3. Bài tập nhận biết
-- Nhận biết các ion
-- Nhận biết các chất
-- Phân tích hỗn hợp
-
-### 4. Bài tập tổng hợp
-- Bài tập nhiều bước
-- Bài tập thực tế
-- Bài tập liên môn
+### 💡 Lời khuyên khi làm bài:
+1. Đọc kỹ đề bài, xác định loại bài toán
+2. Viết công thức phản ứng đầy đủ
+3. Chú ý đơn vị và hiệu suất
+4. Kiểm tra lại kết quả
+5. Áp dụng kiến thức vào thực tế
 
 ---
 
-## MẸO NHỚ KIẾN THỨC
+## 📝 TÀI LIỆU THAM KHẢO
 
-### 1. Nhớ công thức
-- Liên hệ với thực tế
-- Lập bảng công thức
-- Luyện tập thường xuyên
-
-### 2. Nhớ phản ứng
-- Hiểu cơ chế phản ứng
-- Nhớ các phản ứng đặc trưng
-- Lập sơ đồ phản ứng
-
-### 3. Nhớ chất
-- Phân loại theo nhóm
-- Nhớ tính chất đặc trưng
-- Liên hệ ứng dụng
-
----
-
-## TÀI LIỆU THAM KHẢO
-
+- Đề ôn tập Hóa 10 - Kỳ thi cuối kỳ
 - Giáo trình Hóa học 10
-- Các đề thi năm trước
-- Sách bài tập nâng cao
-- Tài liệu trực tuyến
+- Các bài tập và ví dụ minh họa
 
 ---
-*Lưu ý: Đây là tài liệu tổng hợp từ file HÓA-10-MA-TRẬN-CUỐI-KÌ-2-2025-2026.pdf, cần kết hợp với giáo trình và bài giảng của giáo viên để có sự chuẩn xác nhất.*
+
+**📅 Ngày tạo:** 2026-05-03
+**👤 Môn học:** Hóa học 10
+**🎯 Mục tiêu:** Ôn tập kỳ thi cuối kỳ

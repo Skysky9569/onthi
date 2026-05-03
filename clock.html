@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đồng Hồ - Ôn Thi Hoặc KO=)))</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e1e1e;
+            color: #cccccc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+
+        .clock-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .time {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .date {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .day {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        .timezone {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 10px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #0e639c;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+        }
+
+        .back-btn:hover {
+            background-color: #1177bb;
+        }
+
+        .back-btn:active {
+            transform: scale(0.96);
+        }
+
+        .message {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .time {
+                font-size: 2.5rem;
+            }
+
+            .clock-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⏰ Đồng Hồ</h1>
+
+        <div class="clock-container">
+            <div class="date" id="date"></div>
+            <div class="day" id="day"></div>
+            <div class="time" id="time"></div>
+            <div class="timezone" id="timezone"></div>
+        </div>
+
+        <div class="message" id="message"></div>
+
+        <a href="index.html" class="back-btn">← Quay lại trang chủ</a>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+
+            // Format time
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+
+            // Format date
+            const days = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
+            const months = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
+                           'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
+
+            const dayName = days[now.getDay()];
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = months[now.getMonth()];
+            const year = now.getFullYear();
+
+            const dateString = `${day}, ${month} ${year}`;
+            const dayString = dayName;
+
+            // Get timezone
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+            // Update DOM
+            document.getElementById('time').textContent = timeString;
+            document.getElementById('date').textContent = dateString;
+            document.getElementById('day').textContent = dayString;
+            document.getElementById('timezone').textContent = `🌍 ${timezone}`;
+
+            // Update message based on time
+            const hour = now.getHours();
+            let message = '';
+
+            if (hour >= 5 && hour < 12) {
+                message = '🌅 Chào buổi sáng! Chúc bạn một ngày tốt lành!';
+            } else if (hour >= 12 && hour < 18) {
+                message = '☀️ Chào buổi chiều! Đừng quên nghỉ ngơi nhé!';
+            } else if (hour >= 18 && hour < 22) {
+                message = '🌆 Chào buổi tối! Thời gian vàng để ôn thi!';
+            } else {
+                message = '🌙 Đêm rồi! Đừng quên ngủ đủ giấc nhé!';
+            }
+
+            document.getElementById('message').textContent = message;
+        }
+
+        // Update clock immediately and then every second
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>

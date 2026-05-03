@@ -3,10 +3,12 @@
  * Uses Playwright and pixelmatch to compare HTML files
  */
 
+require('dotenv').config();
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 const pixelmatch = require('pixelmatch');
+const telegramNotifier = require('./telegramNotifier');
 
 // Configuration
 const CONFIG = {
@@ -174,6 +176,11 @@ function generateReport(results) {
 
 // Main comparison function
 async function compareFiles(inputFiles) {
+  const startTime = Date.now();
+
+  // Notify start
+  await telegramNotifier.notifyStart('node compare.js', inputFiles);
+
   ensureDirectories();
 
   console.log('🚀 Starting visual comparison...\n');
@@ -228,6 +235,12 @@ async function compareFiles(inputFiles) {
   console.log('\n✅ Comparison complete!');
   console.log(`📄 Report: ${reportPath}`);
   console.log(`📁 Screenshots: ${CONFIG.screenshotDir}/`);
+
+  // Send Telegram notification with results
+  await telegramNotifier.notifyComparisonResults(results);
+
+  const duration = Date.now() - startTime;
+  console.log(`⏱️  Total duration: ${duration}ms`);
 
   return results;
 }
@@ -291,6 +304,7 @@ function main() {
     })
     .catch(error => {
       console.error('\n❌ Error during comparison:', error);
+      telegramNotifier.notifyError(error, 'Visual comparison process');
       process.exit(1);
     });
 }

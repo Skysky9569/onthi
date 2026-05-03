@@ -5,25 +5,89 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hóa 10 – Tổng Hợp Kiến Thức</title>
+
+  <!-- MathJax Configuration -->
+  <script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+  </script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  
   <style>
-    /* Chemistry-specific styles */
-    body {
-      font-family: 'Source Serif 4', Georgia, serif;
-    }
-
-    /* Chemistry color theme */
+    /* CSS Variables (Added missing variables to ensure proper styling) */
     :root {
+      --spacing-sm: 8px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      
+      /* Colors */
+      --text-primary: #333333;
+      --text-secondary: #666666;
+      --bg-main: #f9f9f9;
+      --bg-surface: #ffffff;
+      --bg-surface2: #f5f5f5;
+      --border-primary: #e0e0e0;
+      
+      /* Theme colors */
       --accent-chemistry: #00897B;      /* Teal - Màu chính cho Hóa học */
       --accent-reaction: #FF7043;       /* Orange - Màu cho phản ứng */
-      --accent-formula: #CDDC39;       /* Lime - Màu cho công thức */
-      --accent-organic: #9C27B0;       /* Purple - Màu cho hữu cơ */
-      --accent-analysis: #2196F3;      /* Blue - Màu cho phân tích */
-      --accent-redox: #FF5722;         /* Deep Orange - Màu cho oxi hóa khử */
+      --accent-formula: #CDDC39;        /* Lime - Màu cho công thức */
+      --accent-organic: #9C27B0;        /* Purple - Màu cho hữu cơ */
+      --accent-analysis: #2196F3;       /* Blue - Màu cho phân tích */
+      --accent-redox: #FF5722;          /* Deep Orange - Màu cho oxi hóa khử */
+      --accent-yellow: #ffeeba;
+    }
+
+    [data-theme="dark"] {
+      --text-primary: #f0f0f0;
+      --text-secondary: #aaaaaa;
+      --bg-main: #121212;
+      --bg-surface: #1e1e1e;
+      --bg-surface2: #2d2d2d;
+      --border-primary: #444444;
+    }
+
+    /* Basic layout */
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      line-height: 1.6;
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Ensure proper font rendering for Vietnamese */
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      box-sizing: border-box;
     }
 
     /* Header for chemistry */
@@ -64,6 +128,7 @@
     header h1 {
       color: white;
       margin-bottom: var(--spacing-sm);
+      font-family: 'Playfair Display', serif;
     }
 
     header .subtitle {
@@ -73,38 +138,180 @@
     }
 
     header .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 15px;
       background: rgba(255, 255, 255, 0.2);
       color: white;
       border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
+    /* Tabs Navigation */
+    .tabs-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+
+    .tab-btn {
+      padding: 10px 16px;
+      border: 1px solid var(--border-primary);
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      font-family: inherit;
+    }
+
+    .tab-btn:hover {
+      background-color: var(--bg-surface2);
+      transform: translateY(-2px);
+    }
+
+    /* Tab button active state */
+    .tab-btn.active {
+      color: white;
+      border-color: transparent;
+    }
+
+    .tab-btn.active.chemistry { background: var(--accent-chemistry); }
+    .tab-btn.active.organic { background: var(--accent-organic); }
+    .tab-btn.active.analysis { background: var(--accent-analysis); }
+    .tab-btn.active.redox { background: var(--accent-redox); }
+    .tab-btn.active.formula { background: var(--accent-formula); color: #333;}
+    .tab-btn.active.warning { background: #FFC107; color: #333;}
+    .tab-btn.active.success { background: #4CAF50; }
+    .tab-btn.active.info { background: #00BCD4; }
+
+    /* Search Bar */
+    .search-container {
+      position: relative;
+      margin-bottom: 20px;
+      max-width: 500px;
+      margin: 0 auto 30px auto;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 20px 12px 40px;
+      border-radius: 25px;
+      border: 1px solid var(--border-primary);
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      font-size: 16px;
+      font-family: inherit;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: all 0.3s;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent-chemistry);
+      box-shadow: 0 4px 12px rgba(0, 137, 123, 0.2);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
     /* Icon backgrounds for chemistry */
-    .icon-chemistry {
-      background: rgba(0, 137, 123, 0.15);
-      color: #00897B;
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin-right: 8px;
     }
 
-    .icon-organic {
-      background: rgba(156, 39, 176, 0.15);
-      color: #9C27B0;
+    .icon-chemistry { background: rgba(0, 137, 123, 0.15); color: #00897B; }
+    .icon-organic { background: rgba(156, 39, 176, 0.15); color: #9C27B0; }
+    .icon-analysis { background: rgba(33, 150, 243, 0.15); color: #2196F3; }
+    .icon-redox { background: rgba(255, 87, 34, 0.15); color: #FF5722; }
+    .icon-formula { background: rgba(205, 220, 57, 0.15); color: #CDDC39; }
+
+    /* Section & Subsection styling */
+    .section {
+      background-color: var(--bg-surface);
+      border-radius: var(--radius-xl);
+      padding: var(--spacing-lg);
+      margin-bottom: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      border: 1px solid var(--border-primary);
     }
 
-    .icon-analysis {
-      background: rgba(33, 150, 243, 0.15);
-      color: #2196F3;
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border-primary);
+      font-family: 'Playfair Display', serif;
     }
 
-    .icon-redox {
-      background: rgba(255, 87, 34, 0.15);
-      color: #FF5722;
+    .subsection { margin-bottom: 25px; }
+    .subsection-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--text-primary);
     }
 
-    .icon-formula {
-      background: rgba(205, 220, 57, 0.15);
-      color: #CDDC39;
+    /* Section title colors */
+    .section-title.chemistry { color: var(--accent-chemistry); border-bottom-color: var(--accent-chemistry); }
+    .section-title.organic { color: var(--accent-organic); border-bottom-color: var(--accent-organic); }
+    .section-title.analysis { color: var(--accent-analysis); border-bottom-color: var(--accent-analysis); }
+    .section-title.redox { color: var(--accent-redox); border-bottom-color: var(--accent-redox); }
+
+    /* Card small variants */
+    .card-small {
+      background-color: var(--bg-main);
+      border-radius: var(--radius-md);
+      padding: 15px;
+      margin-bottom: 15px;
+      border: 1px solid var(--border-primary);
     }
+
+    .card-small-title {
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
+    .card-small.chemistry { border-left: 4px solid var(--accent-chemistry); }
+    .card-small.organic { border-left: 4px solid var(--accent-organic); }
+    .card-small.analysis { border-left: 4px solid var(--accent-analysis); }
+    .card-small.redox { border-left: 4px solid var(--accent-redox); }
 
     /* Formula box variants for chemistry */
+    .formula-box {
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-md);
+      padding: 12px 15px;
+      margin: 10px 0;
+      overflow-x: auto;
+      text-align: center;
+    }
+
+    .formula-box p {
+      margin-top: 0;
+      text-align: left;
+    }
+
     .formula-box.chemistry {
       border-color: var(--accent-chemistry);
       background: linear-gradient(135deg, rgba(0, 137, 123, 0.05) 0%, rgba(0, 137, 123, 0.1) 100%);
@@ -130,45 +337,15 @@
       background: linear-gradient(135deg, rgba(33, 150, 243, 0.05) 0%, rgba(33, 150, 243, 0.1) 100%);
     }
 
-    /* Section title colors */
-    .section-title.chemistry {
-      color: var(--accent-chemistry);
-      border-bottom-color: var(--accent-chemistry);
-    }
-
-    .section-title.organic {
-      color: var(--accent-organic);
-      border-bottom-color: var(--accent-organic);
-    }
-
-    .section-title.analysis {
-      color: var(--accent-analysis);
-      border-bottom-color: var(--accent-analysis);
-    }
-
-    .section-title.redox {
-      color: var(--accent-redox);
-      border-bottom-color: var(--accent-redox);
-    }
-
-    /* Tab button active state */
-    .tab-btn.active.chemistry {
-      background: var(--accent-chemistry);
-    }
-
-    .tab-btn.active.organic {
-      background: var(--accent-organic);
-    }
-
-    .tab-btn.active.analysis {
-      background: var(--accent-analysis);
-    }
-
-    .tab-btn.active.redox {
-      background: var(--accent-redox);
-    }
-
     /* Note box variants for chemistry */
+    .note-box {
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-md);
+      padding: 15px;
+      margin: 15px 0;
+      background-color: var(--bg-surface2);
+    }
+
     .note-box.chemistry {
       border-color: var(--accent-chemistry);
       background: linear-gradient(135deg, rgba(0, 137, 123, 0.05) 0%, rgba(0, 137, 123, 0.1) 100%);
@@ -178,28 +355,18 @@
       border-color: var(--accent-reaction);
       background: linear-gradient(135deg, rgba(255, 112, 67, 0.05) 0%, rgba(255, 112, 67, 0.1) 100%);
     }
-
-    /* Card small variants */
-    .card-small.chemistry {
-      border-left: 4px solid var(--accent-chemistry);
-    }
-
-    .card-small.organic {
-      border-left: 4px solid var(--accent-organic);
-    }
-
-    .card-small.analysis {
-      border-left: 4px solid var(--accent-analysis);
-    }
-
-    .card-small.redox {
-      border-left: 4px solid var(--accent-redox);
+    
+    .note-box.redox {
+      border-color: var(--accent-redox);
+      background: linear-gradient(135deg, rgba(255, 87, 34, 0.05) 0%, rgba(255, 87, 34, 0.1) 100%);
     }
 
     /* Table enhancements */
     .table-wrap {
       overflow-x: auto;
       margin: 12px 0;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-primary);
     }
 
     table {
@@ -233,37 +400,18 @@
     }
 
     /* Dark mode adjustments */
-    [data-theme="dark"] .formula-box.chemistry {
-      background: linear-gradient(135deg, rgba(0, 137, 123, 0.1) 0%, rgba(0, 137, 123, 0.2) 100%);
-    }
-
-    [data-theme="dark"] .formula-box.reaction {
-      background: linear-gradient(135deg, rgba(255, 112, 67, 0.1) 0%, rgba(255, 112, 67, 0.2) 100%);
-    }
-
-    [data-theme="dark"] .formula-box.redox {
-      background: linear-gradient(135deg, rgba(255, 87, 34, 0.1) 0%, rgba(255, 87, 34, 0.2) 100%);
-    }
-
-    [data-theme="dark"] .formula-box.organic {
-      background: linear-gradient(135deg, rgba(156, 39, 176, 0.1) 0%, rgba(156, 39, 176, 0.2) 100%);
-    }
-
-    [data-theme="dark"] .formula-box.analysis {
-      background: linear-gradient(135deg, rgba(33, 150, 243, 0.1) 0%, rgba(33, 150, 243, 0.2) 100%);
-    }
-
-    [data-theme="dark"] th {
-      background: var(--accent-chemistry);
-    }
-
-    [data-theme="dark"] tr:nth-child(even) {
-      background: var(--bg-surface2);
-    }
-
-    [data-theme="dark"] tr:hover {
-      background: rgba(0, 137, 123, 0.1);
-    }
+    [data-theme="dark"] .formula-box.chemistry { background: linear-gradient(135deg, rgba(0, 137, 123, 0.1) 0%, rgba(0, 137, 123, 0.2) 100%); }
+    [data-theme="dark"] .formula-box.reaction { background: linear-gradient(135deg, rgba(255, 112, 67, 0.1) 0%, rgba(255, 112, 67, 0.2) 100%); }
+    [data-theme="dark"] .formula-box.redox { background: linear-gradient(135deg, rgba(255, 87, 34, 0.1) 0%, rgba(255, 87, 34, 0.2) 100%); }
+    [data-theme="dark"] .formula-box.organic { background: linear-gradient(135deg, rgba(156, 39, 176, 0.1) 0%, rgba(156, 39, 176, 0.2) 100%); }
+    [data-theme="dark"] .formula-box.analysis { background: linear-gradient(135deg, rgba(33, 150, 243, 0.1) 0%, rgba(33, 150, 243, 0.2) 100%); }
+    [data-theme="dark"] th { background: var(--accent-chemistry); }
+    [data-theme="dark"] tr:nth-child(even) { background: var(--bg-surface2); }
+    [data-theme="dark"] tr:hover { background: rgba(0, 137, 123, 0.1); }
+    
+    [data-theme="dark"] .note-box.chemistry { background: linear-gradient(135deg, rgba(0, 137, 123, 0.1) 0%, rgba(0, 137, 123, 0.2) 100%); }
+    [data-theme="dark"] .note-box.reaction { background: linear-gradient(135deg, rgba(255, 112, 67, 0.1) 0%, rgba(255, 112, 67, 0.2) 100%); }
+    [data-theme="dark"] .note-box.redox { background: linear-gradient(135deg, rgba(255, 87, 34, 0.1) 0%, rgba(255, 87, 34, 0.2) 100%); }
 
     /* Halogen reaction styling */
     .halogen-reaction {
@@ -291,6 +439,8 @@
     .tab-panel {
       display: none;
       animation: fadeIn 0.3s ease;
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
 
     .tab-panel.active {
@@ -298,19 +448,117 @@
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Scroll to Top Button */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      color: var(--text-primary);
+      transition: all 0.3s;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .scroll-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-to-top:hover {
+      transform: scale(1.1);
+    }
+
+    .scroll-to-top svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Theme Toggle Button */
+    .theme-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      color: var(--text-primary);
+      transition: all 0.3s;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    .theme-toggle svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    /* Typography fixes */
+    ul, ol {
+      margin-top: 0.5em;
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.3em;
+    }
+
+    /* MathJax styling fixes */
+    .formula-box mjx-container {
+      overflow-x: auto;
+      overflow-y: hidden;
+      max-width: 100%;
+    }
+
+    /* List item fixes for dark mode */
+    [data-theme="dark"] mark {
+      background: #856404;
+      color: #fff;
     }
   </style>
 </head>
 
 <body>
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" aria-label="Scroll to top">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
+
   <!-- Theme Toggle -->
   <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">
     <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -318,8 +566,8 @@
     </svg>
   </button>
 
-  <!-- Search Bar -->
   <div class="container">
+    <!-- Search Bar -->
     <div class="search-container">
       <input type="text" class="search-input" id="search-input" placeholder="Tìm kiếm kiến thức (Ctrl/Cmd + K)..." oninput="searchContent()">
       <span class="search-icon">🔍</span>
@@ -337,13 +585,15 @@
       <button class="tab-btn organic" onclick="switchTab('hco', this)">⚗️ Hữu cơ</button>
       <button class="tab-btn analysis" onclick="switchTab('phanich', this)">🔬 Phân tích</button>
       <button class="tab-btn redox" onclick="switchTab('oxikhuc', this)">⚡ Oxi hóa khử</button>
-      <button class="tab-btn" onclick="switchTab('congthuc', this)">🧮 Công thức</button>
-      <button class="tab-btn" onclick="switchTab('chathoa', this)">🧫 Chất</button>
-      <button class="tab-btn" onclick="switchTab('phuongphap', this)">📝 Phương pháp</button>
-      <button class="tab-btn" onclick="switchTab('luuy', this)">⚠️ Lưu ý</button>
-      <button class="tab-btn" onclick="switchTab('baitap', this)">🎯 Bài tập</button>
-      <button class="tab-btn" onclick="switchTab('meo', this)">💡 Mẹo</button>
-      <a href="index.html" class="tab-btn">🏠HOME</a>
+      <button class="tab-btn chemistry" onclick="switchTab('halogen', this)">🌡️ Halogen</button>
+      <button class="tab-btn redox" onclick="switchTab('tocdo', this)">⏱️ Tốc độ</button>
+      <button class="tab-btn redox" onclick="switchTab('nhiet', this)">🔥 Nhiệt</button>
+      <button class="tab-btn formula" onclick="switchTab('congthuc', this)">🧮 Công thức</button>
+      <button class="tab-btn chemistry" onclick="switchTab('chathoa', this)">🧫 Chất</button>
+      <button class="tab-btn analysis" onclick="switchTab('phuongphap', this)">📝 Phương pháp</button>
+      <button class="tab-btn warning" onclick="switchTab('luuy', this)">⚠️ Lưu ý</button>
+      <button class="tab-btn success" onclick="switchTab('baitap', this)">🎯 Bài tập</button>
+      <button class="tab-btn info" onclick="switchTab('meo', this)">💡 Mẹo</button>
     </nav>
 
     <!-- Tab Panels -->
@@ -372,17 +622,18 @@
             <p><strong>Phản ứng điển hình:</strong></p>
             <div class="formula-box chemistry">
               <p><strong>Với axit loãng:</strong> K + axit → muối + H₂↑</p>
-              <p>Ví dụ: \[Zn + 2HCl \rightarrow ZnCl_2 + H_2\uparrow\]</p>
+              $$K + \text{axit} \rightarrow \text{muối} + H_2\uparrow$$
             </div>
 
             <div class="formula-box chemistry">
               <p><strong>Với nước:</strong> K + H₂O → bazơ + H₂↑</p>
-              <p>Ví dụ: \[2Na + 2H_2O \rightarrow 2NaOH + H_2\uparrow\]</p>
+              $$K + H_2O \rightarrow \text{bazơ} + H_2\uparrow$$
+              <p>Ví dụ: $$2Na + 2H_2O \rightarrow 2NaOH + H_2\uparrow$$</p>
             </div>
 
             <div class="formula-box chemistry">
               <p><strong>Với phi kim:</strong> K + phi kim → hợp chất</p>
-              <p>Ví dụ: \[2Fe + 3Cl_2 \rightarrow 2FeCl_3\]</p>
+              <p>Ví dụ: $$2Fe + 3Cl_2 \rightarrow 2FeCl_3$$</p>
             </div>
           </div>
 
@@ -426,16 +677,16 @@
             <p><strong>Phản ứng:</strong></p>
             <div class="formula-box chemistry">
               <p><strong>Oxit cơ bản + axit → muối + nước</strong></p>
-              \[CuO + 2HCl \rightarrow CuCl_2 + H_2O\]
+              $$CuO + 2HCl \rightarrow CuCl_2 + H_2O$$
             </div>
             <div class="formula-box chemistry">
               <p><strong>Oxit axit + bazơ → muối + nước</strong></p>
-              \[CO_2 + 2NaOH \rightarrow Na_2CO_3 + H_2O\]
+              $$CO_2 + 2NaOH \rightarrow Na_2CO_3 + H_2O$$
             </div>
             <div class="formula-box chemistry">
               <p><strong>Oxit lưỡng tính + axit/bazơ → muối + nước</strong></p>
-              \[Al_2O_3 + 6HCl \rightarrow 2AlCl_3 + 3H_2O\]
-              \[Al_2O_3 + 2NaOH \rightarrow 2NaAlO_2 + H_2O\]
+              $$Al_2O_3 + 6HCl \rightarrow 2AlCl_3 + 3H_2O$$
+              $$Al_2O_3 + 2NaOH \rightarrow 2NaAlO_2 + H_2O$$
             </div>
           </div>
 
@@ -451,15 +702,15 @@
             <p><strong>Phản ứng:</strong></p>
             <div class="formula-box chemistry">
               <p><strong>Bazơ + axit → muối + nước</strong> (phản ứng trung hòa)</p>
-              \[NaOH + HCl \rightarrow NaCl + H_2O\]
+              $$NaOH + HCl \rightarrow NaCl + H_2O$$
             </div>
             <div class="formula-box chemistry">
               <p><strong>Bazơ + oxit axit → muối + nước</strong></p>
-              \[2NaOH + CO_2 \rightarrow Na_2CO_3 + H_2O\]
+              $$2NaOH + CO_2 \rightarrow Na_2CO_3 + H_2O$$
             </div>
             <div class="formula-box chemistry">
               <p><strong>Bazơ + muối → bazơ mới + muối mới</strong></p>
-              \[2NaOH + CuSO_4 \rightarrow Cu(OH)_2\downarrow + Na_2SO_4\]
+              $$2NaOH + CuSO_4 \rightarrow Cu(OH)_2\downarrow + Na_2SO_4$$
             </div>
           </div>
 
@@ -475,19 +726,19 @@
             <p><strong>Phản ứng:</strong></p>
             <div class="formula-box chemistry">
               <p><strong>Axit + kim loại → muối + H₂↑</strong></p>
-              \[2HCl + Zn \rightarrow ZnCl_2 + H_2\uparrow\]
+              $$2HCl + Zn \rightarrow ZnCl_2 + H_2\uparrow$$
             </div>
             <div class="formula-box chemistry">
               <p><strong>Axit + bazơ → muối + nước</strong> (trung hòa)</p>
-              \[HCl + NaOH \rightarrow NaCl + H_2O\]
+              $$HCl + NaOH \rightarrow NaCl + H_2O$$
             </div>
             <div class="formula-box chemistry">
               <p><strong>Axit + oxit cơ bản → muối + nước</strong></p>
-              \[2HCl + CuO \rightarrow CuCl_2 + H_2O\]
+              $$2HCl + CuO \rightarrow CuCl_2 + H_2O$$
             </div>
             <div class="formula-box chemistry">
               <p><strong>Axit + muối → axit mới + muối mới</strong></p>
-              \[2HCl + Na_2CO_3 \rightarrow 2NaCl + H_2O + CO_2\uparrow\]
+              $$2HCl + Na_2CO_3 \rightarrow 2NaCl + H_2O + CO_2\uparrow$$
             </div>
           </div>
 
@@ -504,15 +755,15 @@
             <p><strong>Phản ứng:</strong></p>
             <div class="formula-box chemistry">
               <p><strong>Muối + kim loại → muối mới + kim loại mới</strong></p>
-              \[CuSO_4 + Zn \rightarrow ZnSO_4 + Cu\]
+              $$CuSO_4 + Zn \rightarrow ZnSO_4 + Cu$$
             </div>
             <div class="formula-box chemistry">
               <p><strong>Muối + bazơ → muối mới + bazơ mới</strong></p>
-              \[CuSO_4 + 2NaOH \rightarrow Cu(OH)_2\downarrow + Na_2SO_4\]
+              $$CuSO_4 + 2NaOH \rightarrow Cu(OH)_2\downarrow + Na_2SO_4$$
             </div>
             <div class="formula-box chemistry">
               <p><strong>Muối + axit → muối mới + axit mới</strong></p>
-              \[CaCO_3 + 2HCl \rightarrow CaCl_2 + H_2O + CO_2\uparrow\]
+              $$CaCO_3 + 2HCl \rightarrow CaCl_2 + H_2O + CO_2\uparrow$$
             </div>
           </div>
         </div>
@@ -532,15 +783,21 @@
             <p><strong>Điện phân NaCl (nước):</strong></p>
             <div class="formula-box chemistry">
               <p><strong>Cátốt:</strong> 2H₂O + 2e⁻ → H₂↑ + 2OH⁻</p>
+              $$2H_2O + 2e^- \rightarrow H_2\uparrow + 2OH^-$$
               <p><strong>Anốt:</strong> 2Cl⁻ → Cl₂↑ + 2e⁻</p>
+              $$2Cl^- \rightarrow Cl_2\uparrow + 2e^-$$
               <p><strong>Phản ứng tổng:</strong> 2NaCl + 2H₂O → 2NaOH + H₂↑ + Cl₂↑</p>
+              $$2NaCl + 2H_2O \rightarrow 2NaOH + H_2\uparrow + Cl_2\uparrow$$
             </div>
 
             <p><strong>Điện phân CuSO₄ (nước):</strong></p>
             <div class="formula-box chemistry">
               <p><strong>Cátốt:</strong> Cu²⁺ + 2e⁻ → Cu</p>
+              $$Cu^{2+} + 2e^- \rightarrow Cu$$
               <p><strong>Anốt:</strong> 2H₂O → O₂↑ + 4H⁺ + 4e⁻</p>
+              $$2H_2O \rightarrow O_2\uparrow + 4H^+ + 4e^-$$
               <p><strong>Phản ứng tổng:</strong> 2CuSO₄ + 2H₂O → 2Cu + 2H₂SO₄ + O₂↑</p>
+              $$2CuSO_4 + 2H_2O \rightarrow 2Cu + 2H_2SO_4 + O_2\uparrow$$
             </div>
           </div>
 
@@ -550,8 +807,11 @@
             <p><strong>Điện phân H₂SO₄ (nước):</strong></p>
             <div class="formula-box chemistry">
               <p><strong>Cátốt:</strong> 2H₂O + 2e⁻ → H₂↑ + 2OH⁻</p>
+              $$2H_2O + 2e^- \rightarrow H_2\uparrow + 2OH^-$$
               <p><strong>Anốt:</strong> 2H₂O → O₂↑ + 4H⁺ + 4e⁻</p>
+              $$2H_2O \rightarrow O_2\uparrow + 4H^+ + 4e^-$$
               <p><strong>Phản ứng tổng:</strong> 2H₂O → 2H₂↑ + O₂↑</p>
+              $$2H_2O \rightarrow 2H_2\uparrow + O_2\uparrow$$
             </div>
           </div>
         </div>
@@ -583,9 +843,11 @@
             <p><strong>Phản ứng điển hình:</strong></p>
             <div class="formula-box organic">
               <p><strong>Đốt cháy:</strong> CₙH₂ₙ₊₂ + (3n+1)/2 O₂ → nCO₂ + (n+1)H₂O</p>
+              $$C_nH_{2n+2} + \frac{3n+1}{2}O_2 \rightarrow nCO_2 + (n+1)H_2O$$
             </div>
             <div class="formula-box organic">
               <p><strong>Tác dụng với halogen:</strong> CₙH₂ₙ₊₂ + X₂ → CₙH₂ₙ₊₁X + HX</p>
+              $$C_nH_{2n+2} + X_2 \rightarrow C_nH_{2n+1}X + HX$$
             </div>
 
             <p><strong>Ví dụ:</strong></p>
@@ -609,15 +871,19 @@
             <p><strong>Phản ứng điển hình:</strong></p>
             <div class="formula-box organic">
               <p><strong>Đốt cháy:</strong> CₙH₂ₙ + 3n/2 O₂ → nCO₂ + nH₂O</p>
+              $$C_nH_{2n} + \frac{3n}{2}O_2 \rightarrow nCO_2 + nH_2O$$
             </div>
             <div class="formula-box organic">
               <p><strong>Tác dụng với H₂:</strong> CₙH₂ₙ + H₂ → CₙH₂ₙ₊₂</p>
+              $$C_nH_{2n} + H_2 \rightarrow C_nH_{2n+2}$$
             </div>
             <div class="formula-box organic">
               <p><strong>Tác dụng với X₂:</strong> CₙH₂ₙ + X₂ → CₙH₂ₙX₂</p>
+              $$C_nH_{2n} + X_2 \rightarrow C_nH_{2n}X_2$$
             </div>
             <div class="formula-box organic">
               <p><strong>Tác dụng với HX:</strong> CₙH₂ₙ + HX → CₙH₂ₙ₊₁X</p>
+              $$C_nH_{2n} + HX \rightarrow C_nH_{2n+1}X$$
             </div>
 
             <p><strong>Ví dụ:</strong></p>
@@ -640,15 +906,19 @@
             <p><strong>Phản ứng điển hình:</strong></p>
             <div class="formula-box organic">
               <p><strong>Đốt cháy:</strong> CₙH₂ₙ₋₂ + (3n-1)/2 O₂ → nCO₂ + (n-1)H₂O</p>
+              $$C_nH_{2n-2} + \frac{3n-1}{2}O_2 \rightarrow nCO_2 + (n-1)H_2O$$
             </div>
             <div class="formula-box organic">
               <p><strong>Tác dụng với H₂:</strong> CₙH₂ₙ₋₂ + 2H₂ → CₙH₂ₙ₊₂</p>
+              $$C_nH_{2n-2} + 2H_2 \rightarrow C_nH_{2n+2}$$
             </div>
             <div class="formula-box organic">
               <p><strong>Tác dụng với X₂:</strong> CₙH₂ₙ₋₂ + 2X₂ → CₙH₂ₙX₄</p>
+              $$C_nH_{2n-2} + 2X_2 \rightarrow C_nH_{2n}X_4$$
             </div>
             <div class="formula-box organic">
               <p><strong>Tác dụng với HX:</strong> CₙH₂ₙ₋₂ + 2HX → CₙH₂ₙX₂</p>
+              $$C_nH_{2n-2} + 2HX \rightarrow C_nH_{2n}X_2$$
             </div>
 
             <p><strong>Ví dụ:</strong></p>
@@ -675,12 +945,15 @@
             <p><strong>Phản ứng điển hình:</strong></p>
             <div class="formula-box organic">
               <p><strong>Đốt cháy:</strong> C₂H₅OH + 3O₂ → 2CO₂ + 3H₂O</p>
+              $$C_2H_5OH + 3O_2 \rightarrow 2CO_2 + 3H_2O$$
             </div>
             <div class="formula-box organic">
               <p><strong>Tác dụng với Na:</strong> 2C₂H₅OH + 2Na → 2C₂H₅ONa + H₂↑</p>
+              $$2C_2H_5OH + 2Na \rightarrow 2C_2H_5ONa + H_2\uparrow$$
             </div>
             <div class="formula-box organic">
               <p><strong>Tác dụng với axit:</strong> C₂H₅OH + CH₃COOH → CH₃COOC₂H₅ + H₂O</p>
+              $$C_2H_5OH + CH_3COOH \rightarrow CH_3COOC_2H_5 + H_2O$$
             </div>
 
             <p><strong>Ví dụ:</strong></p>
@@ -702,9 +975,11 @@
             <p><strong>Phản ứng điển hình:</strong></p>
             <div class="formula-box organic">
               <p><strong>Tác dụng với NaOH:</strong> C₆H₅OH + NaOH → C₆H₅ONa + H₂O</p>
+              $$C_6H_5OH + NaOH \rightarrow C_6H_5ONa + H_2O$$
             </div>
             <div class="formula-box organic">
               <p><strong>Tác dụng với FeCl₃:</strong> C₆H₅OH + FeCl₃ → [C₆H₅O]₃Fe + 3HCl</p>
+              $$C_6H_5OH + FeCl_3 \rightarrow [C_6H_5O]_3Fe + 3HCl$$
             </div>
           </div>
 
@@ -720,12 +995,15 @@
             <p><strong>Phản ứng điển hình:</strong></p>
             <div class="formula-box organic">
               <p><strong>Đốt cháy:</strong> CH₃CHO + 5/2 O₂ → 2CO₂ + 2H₂O</p>
+              $$CH_3CHO + \frac{5}{2}O_2 \rightarrow 2CO_2 + 2H_2O$$
             </div>
             <div class="formula-box organic">
               <p><strong>Tác dụng với AgNO₃/NH₃:</strong> CH₃CHO + 2Ag(NH₃)₂OH → 2Ag↓ + CH₃COONH₄ + 3NH₃ + H₂O</p>
+              $$CH_3CHO + 2Ag(NH_3)_2OH \rightarrow 2Ag\downarrow + CH_3COONH_4 + 3NH_3 + H_2O$$
             </div>
             <div class="formula-box organic">
               <p><strong>Tác dụng với Cu(OH)₂:</strong> CH₃CHO + 2Cu(OH)₂ → CH₃COOH + Cu₂O↓ + 2H₂O</p>
+              $$CH_3CHO + 2Cu(OH)_2 \rightarrow CH_3COOH + Cu_2O\downarrow + 2H_2O$$
             </div>
 
             <p><strong>Ví dụ:</strong></p>
@@ -747,12 +1025,15 @@
             <p><strong>Phản ứng điển hình:</strong></p>
             <div class="formula-box organic">
               <p><strong>Đốt cháy:</strong> CH₃COOH + 2O₂ → 2CO₂ + 2H₂O</p>
+              $$CH_3COOH + 2O_2 \rightarrow 2CO_2 + 2H_2O$$
             </div>
             <div class="formula-box organic">
               <p><strong>Tác dụng với rượu:</strong> CH₃COOH + C₂H₅OH → CH₃COOC₂H₅ + H₂O</p>
+              $$CH_3COOH + C_2H_5OH \rightarrow CH_3COOC_2H_5 + H_2O$$
             </div>
             <div class="formula-box organic">
               <p><strong>Tác dụng với Na:</strong> 2CH₃COOH + 2Na → 2CH₃COONa + H₂↑</p>
+              $$2CH_3COOH + 2Na \rightarrow 2CH_3COONa + H_2\uparrow$$
             </div>
 
             <p><strong>Ví dụ:</strong></p>
@@ -774,9 +1055,11 @@
             <p><strong>Phản ứng điển hình:</strong></p>
             <div class="formula-box organic">
               <p><strong>Đốt cháy:</strong> CH₃COOC₂H₅ + 5O₂ → 4CO₂ + 4H₂O</p>
+              $$CH_3COOC_2H_5 + 5O_2 \rightarrow 4CO_2 + 4H_2O$$
             </div>
             <div class="formula-box organic">
               <p><strong>Tác dụng với nước:</strong> CH₃COOC₂H₅ + H₂O → CH₃COOH + C₂H₅OH</p>
+              $$CH_3COOC_2H_5 + H_2O \rightarrow CH_3COOH + C_2H_5OH$$
             </div>
 
             <p><strong>Ví dụ:</strong></p>
@@ -806,25 +1089,25 @@
 
             <p><strong>Ion NH₄⁺:</strong></p>
             <div class="formula-box analysis">
-              \[NH_4^+ + NaOH \rightarrow NH_3\uparrow + H_2O + Na^+\]
+              $$NH_4^+ + NaOH \rightarrow NH_3\uparrow + H_2O + Na^+$$
             </div>
             <p>NH₃ làm ẩm quỳ đỏ chuyển thành xanh</p>
 
             <p><strong>Ion Cl⁻:</strong></p>
             <div class="formula-box analysis">
-              \[Cl^- + AgNO_3 \rightarrow AgCl\downarrow (trắng) + NO_3^-\]
+              $$Cl^- + AgNO_3 \rightarrow AgCl\downarrow (\text{trắng}) + NO_3^-$$
             </div>
             <p>AgCl không tan trong HNO₃</p>
 
             <p><strong>Ion SO₄²⁻:</strong></p>
             <div class="formula-box analysis">
-              \[SO_4^{2-} + BaCl_2 \rightarrow BaSO_4\downarrow (trắng) + 2Cl^-\]
+              $$SO_4^{2-} + BaCl_2 \rightarrow BaSO_4\downarrow (\text{trắng}) + 2Cl^-$$
             </div>
             <p>BaSO₄ không tan trong HCl</p>
 
             <p><strong>Ion CO₃²⁻:</strong></p>
             <div class="formula-box analysis">
-              \[CO_3^{2-} + 2HCl \rightarrow CO_2\uparrow + H_2O + 2Cl^-\]
+              $$CO_3^{2-} + 2HCl \rightarrow CO_2\uparrow + H_2O + 2Cl^-$$
             </div>
             <p>CO₂ làm vôi đục (Ca(OH)₂)</p>
           </div>
@@ -945,36 +1228,36 @@
           <div class="card-small redox">
             <div class="card-small-title">Phản ứng đốt cháy:</div>
             <div class="formula-box redox">
-              \[C + O_2 \rightarrow CO_2\]
+              $$C + O_2 \rightarrow CO_2$$
             </div>
             <div class="formula-box redox">
-              \[S + O_2 \rightarrow SO_2\]
+              $$S + O_2 \rightarrow SO_2$$
             </div>
             <div class="formula-box redox">
-              \[2Mg + O_2 \rightarrow 2MgO\]
+              $$2Mg + O_2 \rightarrow 2MgO$$
             </div>
           </div>
 
           <div class="card-small redox">
             <div class="card-small-title">Phản ứng thế:</div>
             <div class="formula-box redox">
-              \[Zn + CuSO_4 \rightarrow ZnSO_4 + Cu\]
+              $$Zn + CuSO_4 \rightarrow ZnSO_4 + Cu$$
             </div>
             <div class="formula-box redox">
-              \[Fe + CuSO_4 \rightarrow FeSO_4 + Cu\]
+              $$Fe + CuSO_4 \rightarrow FeSO_4 + Cu$$
             </div>
           </div>
 
           <div class="card-small redox">
             <div class="card-small-title">Phản ứng hợp thành:</div>
             <div class="formula-box redox">
-              \[2H_2 + O_2 \rightarrow 2H_2O\]
+              $$2H_2 + O_2 \rightarrow 2H_2O$$
             </div>
             <div class="formula-box redox">
-              \[N_2 + 3H_2 \rightarrow 2NH_3\]
+              $$N_2 + 3H_2 \rightarrow 2NH_3$$
             </div>
           </div>
-        </div>
+        </div> <!-- End of subsection 2 -->
 
         <!-- Tính khử của các halogen -->
         <div class="subsection">
@@ -991,7 +1274,7 @@
             <div class="halogen-reaction">
               <div class="halogen-reaction-title">a) Tác dụng với H₂S (sulfua hidrat)</div>
               <div class="formula-box redox">
-                \[I_2 + H_2S \rightarrow S\downarrow + 2HI\]
+                $$I_2 + H_2S \rightarrow S\downarrow + 2HI$$
               </div>
               <div class="halogen-reaction-note">Hiện tượng: Xuất hiện kết tủa màu vàng của lưu huỳnh</div>
             </div>
@@ -999,7 +1282,7 @@
             <div class="halogen-reaction">
               <div class="halogen-reaction-title">b) Tác dụng với SO₂ (lưu huỳnh điôxit)</div>
               <div class="formula-box redox">
-                \[I_2 + SO_2 + 2H_2O \rightarrow H_2SO_4 + 2HI\]
+                $$I_2 + SO_2 + 2H_2O \rightarrow H_2SO_4 + 2HI$$
               </div>
               <div class="halogen-reaction-note">I₂ bị khử thành I⁻, SO₂ bị oxi hóa thành SO₄²⁻</div>
             </div>
@@ -1007,7 +1290,7 @@
             <div class="halogen-reaction">
               <div class="halogen-reaction-title">c) Tác dụng với Na₂S₂O₃ (natri thiosunfat)</div>
               <div class="formula-box redox">
-                \[I_2 + 2Na_2S_2O_3 \rightarrow 2NaI + Na_2S_4O_6\]
+                $$I_2 + 2Na_2S_2O_3 \rightarrow 2NaI + Na_2S_4O_6$$
               </div>
               <div class="halogen-reaction-note">Phản ứng dùng để định lượng I₂</div>
             </div>
@@ -1015,7 +1298,7 @@
             <div class="halogen-reaction">
               <div class="halogen-reaction-title">d) Tác dụng với H₂O₂ (nước oxi hóa)</div>
               <div class="formula-box redox">
-                \[I_2 + H_2O_2 \rightarrow 2HIO\]
+                $$I_2 + H_2O_2 \rightarrow 2HIO$$
               </div>
               <div class="halogen-reaction-note">I₂ bị oxi hóa thành HIO</div>
             </div>
@@ -1023,7 +1306,7 @@
             <div class="halogen-reaction">
               <div class="halogen-reaction-title">e) Tác dụng với Cl₂ (clo)</div>
               <div class="formula-box redox">
-                \[I_2 + 5Cl_2 + 6H_2O \rightarrow 2HIO_3 + 10HCl\]
+                $$I_2 + 5Cl_2 + 6H_2O \rightarrow 2HIO_3 + 10HCl$$
               </div>
               <div class="halogen-reaction-note">I₂ bị oxi hóa mạnh thành HIO₃</div>
             </div>
@@ -1031,7 +1314,7 @@
             <div class="halogen-reaction">
               <div class="halogen-reaction-title">f) Tác dụng với HNO₃ đặc (axit nitric đặc)</div>
               <div class="formula-box redox">
-                \[I_2 + 10HNO_3 \rightarrow 2HIO_3 + 10NO_2\uparrow + 4H_2O\]
+                $$I_2 + 10HNO_3 \rightarrow 2HIO_3 + 10NO_2\uparrow + 4H_2O$$
               </div>
               <div class="halogen-reaction-note">I₂ bị oxi hóa thành HIO₃</div>
             </div>
@@ -1044,7 +1327,7 @@
             <div class="halogen-reaction">
               <div class="halogen-reaction-title">a) Tác dụng với H₂S (sulfua hidrat)</div>
               <div class="formula-box redox">
-                \[Br_2 + H_2S \rightarrow S\downarrow + 2HBr\]
+                $$Br_2 + H_2S \rightarrow S\downarrow + 2HBr$$
               </div>
               <div class="halogen-reaction-note">Hiện tượng: Xuất hiện kết tủa màu vàng của lưu huỳnh</div>
             </div>
@@ -1052,7 +1335,7 @@
             <div class="halogen-reaction">
               <div class="halogen-reaction-title">b) Tác dụng với SO₂ (lưu huỳnh điôxit)</div>
               <div class="formula-box redox">
-                \[Br_2 + SO_2 + 2H_2O \rightarrow H_2SO_4 + 2HBr\]
+                $$Br_2 + SO_2 + 2H_2O \rightarrow H_2SO_4 + 2HBr$$
               </div>
               <div class="halogen-reaction-note">Br₂ bị khử thành Br⁻, SO₂ bị oxi hóa thành SO₄²⁻</div>
             </div>
@@ -1060,7 +1343,7 @@
             <div class="halogen-reaction">
               <div class="halogen-reaction-title">c) Tác dụng với Na₂S₂O₃ (natri thiosunfat)</div>
               <div class="formula-box redox">
-                \[Br_2 + 2Na_2S_2O_3 \rightarrow 2NaBr + Na_2S_4O_6\]
+                $$Br_2 + 2Na_2S_2O_3 \rightarrow 2NaBr + Na_2S_4O_6$$
               </div>
               <div class="halogen-reaction-note">Phản ứng dùng để định lượng Br₂</div>
             </div>
@@ -1068,7 +1351,7 @@
             <div class="halogen-reaction">
               <div class="halogen-reaction-title">d) Tác dụng với H₂O₂ (nước oxi hóa)</div>
               <div class="formula-box redox">
-                \[Br_2 + H_2O_2 \rightarrow 2HBrO\]
+                $$Br_2 + H_2O_2 \rightarrow 2HBrO$$
               </div>
               <div class="halogen-reaction-note">Br₂ bị oxi hóa thành HBrO</div>
             </div>
@@ -1076,7 +1359,7 @@
             <div class="halogen-reaction">
               <div class="halogen-reaction-title">e) Tác dụng với Cl₂ (clo)</div>
               <div class="formula-box redox">
-                \[Br_2 + 5Cl_2 + 6H_2O \rightarrow 2HBrO_3 + 10HCl\]
+                $$Br_2 + 5Cl_2 + 6H_2O \rightarrow 2HBrO_3 + 10HCl$$
               </div>
               <div class="halogen-reaction-note">Br₂ bị oxi hóa mạnh thành HBrO₃</div>
             </div>
@@ -1084,7 +1367,7 @@
             <div class="halogen-reaction">
               <div class="halogen-reaction-title">f) Tác dụng với HNO₃ đặc (axit nitric đặc)</div>
               <div class="formula-box redox">
-                \[Br_2 + 10HNO_3 \rightarrow 2HBrO_3 + 10NO_2\uparrow + 4H_2O\]
+                $$Br_2 + 10HNO_3 \rightarrow 2HBrO_3 + 10NO_2\uparrow + 4H_2O$$
               </div>
               <div class="halogen-reaction-note">Br₂ bị oxi hóa thành HBrO₃</div>
             </div>
@@ -1097,7 +1380,7 @@
             <div class="halogen-reaction">
               <div class="halogen-reaction-title">a) Tác dụng với H₂S (sulfua hidrat)</div>
               <div class="formula-box redox">
-                \[Cl_2 + H_2S \rightarrow S\downarrow + 2HCl\]
+                $$Cl_2 + H_2S \rightarrow S\downarrow + 2HCl$$
               </div>
               <div class="halogen-reaction-note">Hiện tượng: Xuất hiện kết tủa màu vàng của lưu huỳnh</div>
             </div>
@@ -1105,7 +1388,7 @@
             <div class="halogen-reaction">
               <div class="halogen-reaction-title">b) Tác dụng với SO₂ (lưu huỳnh điôxit)</div>
               <div class="formula-box redox">
-                \[Cl_2 + SO_2 + 2H_2O \rightarrow H_2SO_4 + 2HCl\]
+                $$Cl_2 + SO_2 + 2H_2O \rightarrow H_2SO_4 + 2HCl$$
               </div>
               <div class="halogen-reaction-note">Cl₂ bị khử thành Cl⁻, SO₂ bị oxi hóa thành SO₄²⁻</div>
             </div>
@@ -1113,7 +1396,7 @@
             <div class="halogen-reaction">
               <div class="halogen-reaction-title">c) Tác dụng với Na₂S₂O₃ (natri thiosunfat)</div>
               <div class="formula-box redox">
-                \[Cl_2 + 2Na_2S_2O_3 \rightarrow 2NaCl + Na_2S_4O_6\]
+                $$Cl_2 + 2Na_2S_2O_3 \rightarrow 2NaCl + Na_2S_4O_6$$
               </div>
               <div class="halogen-reaction-note">Phản ứng dùng để định lượng Cl₂</div>
             </div>
@@ -1121,7 +1404,7 @@
             <div class="halogen-reaction">
               <div class="halogen-reaction-title">d) Tác dụng với H₂O₂ (nước oxi hóa)</div>
               <div class="formula-box redox">
-                \[Cl_2 + H_2O_2 \rightarrow 2HClO\]
+                $$Cl_2 + H_2O_2 \rightarrow 2HClO$$
               </div>
               <div class="halogen-reaction-note">Cl₂ bị oxi hóa thành HClO</div>
             </div>
@@ -1129,7 +1412,7 @@
             <div class="halogen-reaction">
               <div class="halogen-reaction-title">e) Tác dụng với KMnO₄ (permanganat kali)</div>
               <div class="formula-box redox">
-                \[5Cl_2 + 2KMnO_4 + 8H_2O \rightarrow 2MnCl_2 + 2KCl + 8HClO\]
+                $$5Cl_2 + 2KMnO_4 + 8H_2O \rightarrow 2MnCl_2 + 2KCl + 8HClO$$
               </div>
               <div class="halogen-reaction-note">Cl₂ bị oxi hóa thành HClO</div>
             </div>
@@ -1137,7 +1420,7 @@
             <div class="halogen-reaction">
               <div class="halogen-reaction-title">f) Tác dụng với HNO₃ đặc (axit nitric đặc)</div>
               <div class="formula-box redox">
-                \[Cl_2 + 10HNO_3 \rightarrow 2HClO_3 + 10NO_2\uparrow + 4H_2O\]
+                $$Cl_2 + 10HNO_3 \rightarrow 2HClO_3 + 10NO_2\uparrow + 4H_2O$$
               </div>
               <div class="halogen-reaction-note">Cl₂ bị oxi hóa thành HClO₃</div>
             </div>
@@ -1152,7 +1435,669 @@
               <li><strong>Cl₂ (Clo):</strong> Có tính khử yếu nhất, chủ yếu có tính oxi hóa</li>
             </ul>
             <div class="formula-box redox">
-              \[\text{Thứ tự tính khử tăng dần: } Cl_2 < Br_2 < I_2\]
+              $$\text{Thứ tự tính khử tăng dần: } Cl_2 < Br_2 < I_2$$
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: Halogen -->
+    <div id="halogen" class="tab-panel">
+      <div class="section">
+        <div class="section-title chemistry">
+          <span class="icon icon-chemistry">🌡️</span>
+          V. Halogen và các hợp chất
+        </div>
+
+        <!-- Khái niệm cơ bản -->
+        <div class="subsection">
+          <div class="subsection-title">1. Khái niệm cơ bản</div>
+
+          <div class="card-small chemistry">
+            <p><strong>Halogen:</strong> Nhóm VIIA trong bảng tuần hoàn (F, Cl, Br, I)</p>
+            <p><strong>Đặc điểm chung:</strong></p>
+            <ul>
+              <li>Phi kim điển hình</li>
+              <li>Có 7 electron lớp ngoài cùng</li>
+              <li>Số oxi hóa đặc trưng = -1 trong hợp chất</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tính chất của các halogen -->
+        <div class="subsection">
+          <div class="subsection-title">2. Tính chất của các halogen</div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Halogen</th>
+                  <th>Trạng thái</th>
+                  <th>Màu sắc</th>
+                  <th>Tính oxi hóa</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Fluorine (F)</td>
+                  <td>Khí</td>
+                  <td>Vàng nhạt</td>
+                  <td>Mạnh nhất</td>
+                </tr>
+                <tr>
+                  <td>Chlorine (Cl)</td>
+                  <td>Khí</td>
+                  <td>Vàng lục</td>
+                  <td>Rất mạnh</td>
+                </tr>
+                <tr>
+                  <td>Bromine (Br)</td>
+                  <td>Lỏng</td>
+                  <td>Đỏ nâu</td>
+                  <td>Mạnh</td>
+                </tr>
+                <tr>
+                  <td>Iodine (I)</td>
+                  <td>Rắn</td>
+                  <td>Tím đen</td>
+                  <td>Yếu hơn</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="note-box chemistry">
+            <strong>📊 Thứ tự tính oxi hóa:</strong> F > Cl > Br > I
+          </div>
+        </div>
+
+        <!-- Phản ứng với kim loại -->
+        <div class="subsection">
+          <div class="subsection-title">3. Phản ứng với kim loại</div>
+
+          <div class="card-small chemistry">
+            <div class="card-small-title">Phản ứng điển hình:</div>
+            <div class="formula-box chemistry">
+              <p><strong>Fe + Cl₂ → FeCl₃</strong></p>
+              $$Fe + Cl_2 \rightarrow FeCl_3$$
+            </div>
+            <div class="formula-box chemistry">
+              <p><strong>Cu + Cl₂ → CuCl₂</strong></p>
+              $$Cu + Cl_2 \rightarrow CuCl_2$$
+            </div>
+            <div class="formula-box chemistry">
+              <p><strong>Al + Cl₂ → AlCl₃</strong></p>
+              $$2Al + 3Cl_2 \rightarrow 2AlCl_3$$
+            </div>
+            <div class="formula-box chemistry">
+              <p><strong>Zn + Cl₂ → ZnCl₂</strong></p>
+              $$Zn + Cl_2 \rightarrow ZnCl_2$$
+            </div>
+          </div>
+        </div>
+
+        <!-- Phản ứng với hydrogen -->
+        <div class="subsection">
+          <div class="subsection-title">4. Phản ứng với hydrogen</div>
+
+          <div class="card-small chemistry">
+            <div class="card-small-title">Phản ứng điển hình:</div>
+            <div class="formula-box chemistry">
+              <p><strong>H₂ + F₂ → 2HF</strong> (phản ứng mãnh liệt, nổ)</p>
+              $$H_2 + F_2 \rightarrow 2HF$$
+            </div>
+            <div class="formula-box chemistry">
+              <p><strong>H₂ + Cl₂ → 2HCl</strong> (phản ứng mạnh, cần ánh sáng hoặc nhiệt)</p>
+              $$H_2 + Cl_2 \rightarrow 2HCl$$
+            </div>
+            <div class="formula-box chemistry">
+              <p><strong>H₂ + Br₂ → 2HBr</strong> (phản ứng ở nhiệt độ cao)</p>
+              $$H_2 + Br_2 \rightarrow 2HBr$$
+            </div>
+            <div class="formula-box chemistry">
+              <p><strong>H₂ + I₂ ⇌ 2HI</strong> (phản ứng thuận nghịch)</p>
+              $$H_2 + I_2 \rightleftharpoons 2HI$$
+            </div>
+          </div>
+
+          <div class="note-box reaction">
+            <strong>⚠️ Lưu ý:</strong> Phản ứng giữa I₂ và H₂ là phản ứng thuận nghịch, không diễn ra hoàn toàn.
+          </div>
+        </div>
+
+        <!-- Phản ứng thế -->
+        <div class="subsection">
+          <div class="subsection-title">5. Phản ứng thế</div>
+
+          <div class="card-small chemistry">
+            <div class="card-small-title">Phản ứng thế giữa các halogen:</div>
+            <div class="formula-box chemistry">
+              <p><strong>Cl₂ + 2NaBr → 2NaCl + Br₂</strong></p>
+              $$Cl_2 + 2NaBr \rightarrow 2NaCl + Br_2$$
+            </div>
+            <div class="formula-box chemistry">
+              <p><strong>Cl₂ + 2NaI → 2NaCl + I₂</strong></p>
+              $$Cl_2 + 2NaI \rightarrow 2NaCl + I_2$$
+            </div>
+            <div class="formula-box chemistry">
+              <p><strong>Br₂ + 2NaI → 2NaBr + I₂</strong></p>
+              $$Br_2 + 2NaI \rightarrow 2NaBr + I_2$$
+            </div>
+          </div>
+
+          <div class="note-box chemistry">
+            <strong>📊 Quy tắc:</strong> Halogen mạnh hơn sẽ thế halogen yếu hơn trong phản ứng thế.
+          </div>
+        </div>
+
+        <!-- Các hợp chất quan trọng -->
+        <div class="subsection">
+          <div class="subsection-title">6. Các hợp chất quan trọng</div>
+
+          <div class="card-small chemistry">
+            <div class="card-small-title">Hydrohalic acids:</div>
+            <ul>
+              <li><strong>HF:</strong> Acid yếu, ăn mòn thủy tinh hữu cơ</li>
+              <li><strong>HCl, HBr, HI:</strong> Acid mạnh, tan tốt trong nước</li>
+            </ul>
+          </div>
+
+          <div class="card-small chemistry">
+            <div class="card-small-title">Nước Javel:</div>
+            <ul>
+              <li>Thành phần chính: NaClO (sodium hypochlorite)</li>
+              <li>Công thức sản xuất: Cl₂ + 2NaOH → NaCl + NaClO + H₂O</li>
+              $$Cl_2 + 2NaOH \rightarrow NaCl + NaClO + H_2O$$
+              <li>Tính chất: Tẩy màu, khử trùng</li>
+            </ul>
+          </div>
+
+          <div class="card-small chemistry">
+            <div class="card-small-title">Nước muối sinh lý:</div>
+            <ul>
+              <li>Nồng độ: 0,9% NaCl</li>
+              <li>Công dụng: Diệt khuẩn, sát trùng trong y học</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Ứng dụng thực tế -->
+        <div class="subsection">
+          <div class="subsection-title">7. Ứng dụng thực tế</div>
+
+          <div class="card-small chemistry">
+            <div class="card-small-title">Các ứng dụng quan trọng:</div>
+            <ul>
+              <li><strong>Chlorine:</strong> Khử trùng nước sinh hoạt, sản xuất nước Javel</li>
+              <li><strong>Iodine:</strong> Tập trung ở tuyến giáp trong cơ thể người</li>
+              <li><strong>Nước muối sinh lý:</strong> Diệt khuẩn, sát trùng trong y học</li>
+              <li><strong>Nước Javel:</strong> Tẩy màu, khử trùng</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Điều cần lưu ý -->
+        <div class="subsection">
+          <div class="subsection-title">8. Điều cần lưu ý</div>
+
+          <div class="note-box chemistry">
+            <ul>
+              <li>Fluorine chỉ có số oxi hóa -1 trong hợp chất</li>
+              <li>Chlorine vừa có tính oxi hóa vừa có tính khử</li>
+              <li>Iodine tập trung ở tuyến giáp trong cơ thể người</li>
+              <li>Chlorine dùng để khử trùng nước sinh hoạt</li>
+              <li>Trong phản ứng thế, halogen mạnh hơn sẽ thế halogen yếu hơn</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: Tốc độ phản ứng -->
+    <div id="tocdo" class="tab-panel">
+      <div class="section">
+        <div class="section-title redox">
+          <span class="icon icon-redox">⏱️</span>
+          VI. Tốc độ phản ứng
+        </div>
+
+        <!-- Khái niệm cơ bản -->
+        <div class="subsection">
+          <div class="subsection-title">1. Khái niệm cơ bản</div>
+
+          <div class="card-small redox">
+            <p><strong>Tốc độ phản ứng:</strong> Mức độ xảy ra nhanh hay chậm của phản ứng hóa học</p>
+            <p><strong>Đơn vị:</strong> mol/(L·s) hoặc mol/(L·min)</p>
+          </div>
+        </div>
+
+        <!-- Biểu thức tốc độ phản ứng -->
+        <div class="subsection">
+          <div class="subsection-title">2. Biểu thức tốc độ phản ứng</div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Phản ứng tổng quát: aA + bB → cC + dD</div>
+            <div class="formula-box redox">
+              <p><strong>Biểu thức tốc độ:</strong> v = k·[A]ᵃ·[B]ᵇ</p>
+              $$v = k \cdot [A]^a \cdot [B]^b$$
+            </div>
+            <p><strong>Trong đó:</strong></p>
+            <ul>
+              <li>v: Tốc độ phản ứng</li>
+              <li>k: Hằng số tốc độ</li>
+              <li>[A], [B]: Nồng độ các chất tham gia</li>
+              <li>a, b: Bậc phản ứng theo từng chất</li>
+            </ul>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Ví dụ cụ thể:</div>
+            <div class="formula-box redox">
+              <p><strong>Phản ứng: X + 2Y → 2Z</strong></p>
+              $$v = k \cdot [X] \cdot [Y]^2$$
+            </div>
+            <div class="formula-box redox">
+              <p><strong>Phản ứng: 2NO + O₂ → 2NO₂</strong></p>
+              $$v = k \cdot [NO]^2 \cdot [O_2]$$
+            </div>
+            <div class="formula-box redox">
+              <p><strong>Phản ứng: 2X + Y → 2Z</strong></p>
+              $$v = k \cdot [X]^2 \cdot [Y]$$
+            </div>
+          </div>
+        </div>
+
+        <!-- Các yếu tố ảnh hưởng -->
+        <div class="subsection">
+          <div class="subsection-title">3. Các yếu tố ảnh hưởng đến tốc độ phản ứng</div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">1. Nồng độ chất tham gia phản ứng</div>
+            <ul>
+              <li>Tăng nồng độ → Tăng tốc độ phản ứng</li>
+              <li>Tăng nồng độ lên n lần → Tốc độ tăng lên nᵐ lần (m = bậc phản ứng)</li>
+            </ul>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">2. Nhiệt độ</div>
+            <ul>
+              <li>Tăng nhiệt độ → Tăng tốc độ phản ứng</li>
+              <li>Quy tắc: Tăng 10°C → Tốc độ tăng 2-3 lần</li>
+            </ul>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">3. Diện tích tiếp xúc</div>
+            <ul>
+              <li>Tăng diện tích → Tăng tốc độ phản ứng</li>
+              <li>Phản ứng ở bề mặt diễn ra nhanh hơn</li>
+            </ul>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">4. Chất xúc tác</div>
+            <ul>
+              <li>Chất xúc tác tăng tốc độ nhưng không bị tiêu hao</li>
+              <li>Ví dụ: MnO₂ xúc tác phân giải H₂O₂</li>
+            </ul>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">5. Áp suất (cho phản ứng khí)</div>
+            <ul>
+              <li>Tăng áp suất → Tăng nồng độ → Tăng tốc độ</li>
+              <li>Áp suất ảnh hưởng đến phản ứng có khí</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Phản ứng phân giải H₂O₂ -->
+        <div class="subsection">
+          <div class="subsection-title">4. Phản ứng phân giải H₂O₂</div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Phản ứng:</div>
+            <div class="formula-box redox">
+              <p><strong>2H₂O₂ → 2H₂O + O₂</strong></p>
+              $$2H_2O_2 \rightarrow 2H_2O + O_2$$
+            </div>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Chất xúc tác:</div>
+            <ul>
+              <li>MnO₂ (bột đen)</li>
+              <li>Không bị tiêu hao sau phản ứng</li>
+            </ul>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Biểu thức tốc độ:</div>
+            <div class="formula-box redox">
+              <p>v = k·[H₂O₂]²·[O₂]</p>
+              $$v = k \cdot [H_2O_2]^2 \cdot [O_2]$$
+            </div>
+          </div>
+        </div>
+
+        <!-- Điều cần lưu ý -->
+        <div class="subsection">
+          <div class="subsection-title">5. Điều cần lưu ý</div>
+
+          <div class="note-box redox">
+            <ul>
+              <li>Tốc độ phản ứng không phụ thuộc vào thời gian xảy ra phản ứng</li>
+              <li>Theo thời gian, nồng độ chất tham gia giảm → Tốc độ phản ứng giảm</li>
+              <li>Chất xúc tác không bị tiêu hao sau phản ứng</li>
+              <li>Tăng nồng độ chất tham gia lên n lần → Tốc độ tăng lên nᵐ lần</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Ví dụ bài toán -->
+        <div class="subsection">
+          <div class="subsection-title">6. Ví dụ bài toán</div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Ví dụ 1: Phản ứng X + 2Y → 2Z</div>
+            <ul>
+              <li>k = 0,6 (mol⁻²·L²·s⁻¹)</li>
+              <li>[X]₀ = 0,5 M, [Y]₀ = 0,8 M</li>
+              <li>Khi [Y] giảm còn 0,2 M</li>
+            </ul>
+            <div class="formula-box redox">
+              <p>v = 0,6 × 0,5 × (0,2)² = 0,012 mol/(L·s)</p>
+              $$v = 0.6 \times 0.5 \times (0.2)^2 = 0.012 \text{ mol/(L·s)}$$
+            </div>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Ví dụ 2: Phản ứng 2X + Y → 2Z</div>
+            <ul>
+              <li>k = 0,8 (mol⁻²·L²·s⁻¹)</li>
+              <li>[X]₀ = 0,6 M, [Y]₀ = 0,9 M</li>
+              <li>Khi [Y] giảm 0,1 M → [Y] = 0,8 M</li>
+            </ul>
+            <div class="formula-box redox">
+              <p>v = 0,8 × (0,6)² × 0,8 = 0,2304 mol/(L·s)</p>
+              $$v = 0.8 \times (0.6)^2 \times 0.8 = 0.2304 \text{ mol/(L·s)}$$
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: Nhiệt hóa học -->
+    <div id="nhiet" class="tab-panel">
+      <div class="section">
+        <div class="section-title redox">
+          <span class="icon icon-redox">🔥</span>
+          VII. Nhiệt hóa học
+        </div>
+
+        <!-- Khái niệm cơ bản -->
+        <div class="subsection">
+          <div class="subsection-title">1. Khái niệm cơ bản</div>
+
+          <div class="card-small redox">
+            <p><strong>Nhiệt phản ứng (ΔH):</strong> Nhiệt lượng tỏa ra hoặc thu vào trong phản ứng</p>
+            <p><strong>Đơn vị:</strong> kJ/mol hoặc kJ</p>
+          </div>
+        </div>
+
+        <!-- Phân loại phản ứng -->
+        <div class="subsection">
+          <div class="subsection-title">2. Phân loại phản ứng theo nhiệt</div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Phản ứng tỏa nhiệt (ΔH < 0):</div>
+            <ul>
+              <li>Giải phóng nhiệt lượng ra môi trường</li>
+              <li>Ví dụ: 4NH₃ + 3O₂ → 2N₂ + 6H₂O (ΔH = -1531 kJ)</li>
+              $$4NH_3 + 3O_2 \rightarrow 2N_2 + 6H_2O \quad (\Delta H = -1531 \text{ kJ})$$
+            </ul>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Phản ứng thu nhiệt (ΔH > 0):</div>
+            <ul>
+              <li>Hấp thu nhiệt lượng từ môi trường</li>
+              <li>Ví dụ: 2NaHCO₃ → Na₂CO₃ + H₂O + CO₂ (ΔH = +20,33 kJ)</li>
+              $$2NaHCO_3 \rightarrow Na_2CO_3 + H_2O + CO_2 \quad (\Delta H = +20.33 \text{ kJ})$$
+            </ul>
+          </div>
+
+          <div class="note-box redox">
+            <strong>📊 Quy tắc:</strong>
+            <ul>
+              <li>ΔH < 0: Phản ứng tỏa nhiệt</li>
+              <li>ΔH > 0: Phản ứng thu nhiệt</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Nhiệt tạo thành chuẩn -->
+        <div class="subsection">
+          <div class="subsection-title">3. Nhiệt tạo thành chuẩn (ΔfH°)</div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Định nghĩa:</div>
+            <p>Nhiệt lượng khi tạo thành 1 mol chất từ các nguyên tố ở trạng thái chuẩn</p>
+            <p><strong>Đơn vị:</strong> kJ/mol</p>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Đặc điểm:</div>
+            <ul>
+              <li>ΔfH° của đơn chất = 0</li>
+              <li>ΔfH° của hợp chất thường ≠ 0</li>
+            </ul>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Ví dụ:</div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Chất</th>
+                    <th>ΔfH°</th>
+                    <th>Giải thích</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>H₂O(l)</td>
+                    <td>≠ 0</td>
+                    <td>Hợp chất</td>
+                  </tr>
+                  <tr>
+                    <td>N₂(g)</td>
+                    <td>= 0</td>
+                    <td>Đơn chất</td>
+                  </tr>
+                  <tr>
+                    <td>CH₄(g)</td>
+                    <td>≠ 0</td>
+                    <td>Hợp chất</td>
+                  </tr>
+                  <tr>
+                    <td>CuO(s)</td>
+                    <td>≠ 0</td>
+                    <td>Hợp chất</td>
+                  </tr>
+                  <tr>
+                    <td>O₂(g)</td>
+                    <td>= 0</td>
+                    <td>Đơn chất</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phương trình nhiệt hóa học -->
+        <div class="subsection">
+          <div class="subsection-title">4. Phương trình nhiệt hóa học</div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Phản ứng hợp thành ethylen:</div>
+            <div class="formula-box redox">
+              <p><strong>C₂H₄(g) + H₂(g) → C₂H₆(g) ΔH = -137,0 kJ</strong></p>
+              $$C_2H_4(g) + H_2(g) \rightarrow C_2H_6(g) \quad \Delta H = -137.0 \text{ kJ}$$
+            </div>
+            <p>→ Giải phóng 137,0 kJ nhiệt</p>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Phản ứng phân giải CO₂:</div>
+            <div class="formula-box redox">
+              <p><strong>CO₂(g) → CO(g) + O₂(g) ΔH = +280,0 kJ</strong></p>
+              $$CO_2(g) \rightarrow CO(g) + O_2(g) \quad \Delta H = +280.0 \text{ kJ}$$
+            </div>
+            <p>→ Hấp thu 280,0 kJ nhiệt</p>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Phản ứng phân giải NaHCO₃:</div>
+            <div class="formula-box redox">
+              <p><strong>2NaHCO₃(s) → Na₂CO₃(s) + H₂O(l) + CO₂(g) ΔH = +20,33 kJ</strong></p>
+              $$2NaHCO_3(s) \rightarrow Na_2CO_3(s) + H_2O(l) + CO_2(g) \quad \Delta H = +20.33 \text{ kJ}$$
+            </div>
+            <p>→ Hấp thu 20,33 kJ nhiệt</p>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Phản ứng oxi hóa NH₃:</div>
+            <div class="formula-box redox">
+              <p><strong>4NH₃(g) + 3O₂(g) → 2N₂(g) + 6H₂O(l) ΔH = -1531 kJ</strong></p>
+              $$4NH_3(g) + 3O_2(g) \rightarrow 2N_2(g) + 6H_2O(l) \quad \Delta H = -1531 \text{ kJ}$$
+            </div>
+            <p>→ Giải phóng 1531 kJ nhiệt</p>
+          </div>
+        </div>
+
+        <!-- Điều cần lưu ý -->
+        <div class="subsection">
+          <div class="subsection-title">5. Điều cần lưu ý</div>
+
+          <div class="note-box redox">
+            <ul>
+              <li>ΔH < 0: Phản ứng tỏa nhiệt</li>
+              <li>ΔH > 0: Phản ứng thu nhiệt</li>
+              <li>Đơn vị enthalpy: kJ/mol</li>
+              <li>Đơn vị nhiệt phản ứng: kJ</li>
+              <li>Nhiệt tạo thành chuẩn của đơn chất luôn bằng 0</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Ví dụ bài toán -->
+        <div class="subsection">
+          <div class="subsection-title">6. Ví dụ bài toán</div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Ví dụ 1: Xác định loại phản ứng</div>
+            <ul>
+              <li>C₂H₄(g) + H₂(g) → C₂H₆(g) ΔH = -137,0 kJ</li>
+              <li>→ Phản ứng tỏa nhiệt (giải phóng 137,0 kJ)</li>
+            </ul>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Ví dụ 2: Xác định chất có ΔfH° = 0</div>
+            <ul>
+              <li>H₂O(l): ΔfH° ≠ 0 (hợp chất)</li>
+              <li>N₂(g): ΔfH° = 0 (đơn chất)</li>
+              <li>CH₄(g): ΔfH° ≠ 0 (hợp chất)</li>
+              <li>O₂(g): ΔfH° = 0 (đơn chất)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Hệ số nhiệt độ -->
+        <div class="subsection">
+          <div class="subsection-title">4. Hệ số nhiệt độ (γ)</div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">1. Công thức tính hệ số nhiệt độ γ</div>
+            <p>Nếu bạn biết tốc độ phản ứng hoặc hằng số tốc độ ở hai nhiệt độ khác nhau, bạn có thể tính γ bằng công thức:</p>
+            <div class="formula-box redox">
+              <p><strong>Công thức:</strong></p>
+              $$\gamma = \left( \frac{v_2}{v_1} \right)^{\frac{10}{T_2 - T_1}} \quad \text{hoặc} \quad \gamma = \left( \frac{k_2}{k_1} \right)^{\frac{10}{T_2 - T_1}}$$
+            </div>
+            <p><strong>Trong đó:</strong></p>
+            <ul>
+              <li>$T_1, T_2$: Nhiệt độ tại hai thời điểm khảo sát (có thể dùng đơn vị $^\circ C$ hoặc $K$)</li>
+              <li>$v_1, v_2$: Tốc độ phản ứng tương ứng với nhiệt độ $T_1$ và $T_2$</li>
+              <li>$k_1, k_2$: Hằng số tốc độ phản ứng tương ứng với nhiệt độ $T_1$ và $T_2$</li>
+            </ul>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">2. Công thức tính sự thay đổi tốc độ phản ứng</div>
+            <p>Đây là dạng bài tập phổ biến nhất. Khi biết hệ số γ và sự thay đổi nhiệt độ, bạn có thể tìm xem tốc độ phản ứng tăng lên bao nhiêu lần ($n$):</p>
+            <div class="formula-box redox">
+              <p><strong>Công thức:</strong></p>
+              $$n = \frac{v_2}{v_1} = \gamma^{\frac{T_2 - T_1}{10}}$$
+            </div>
+            <p><strong>Ví dụ nhanh:</strong></p>
+            <p>Nếu một phản ứng có $\gamma = 2$, khi tăng nhiệt độ từ $20^\circ C$ lên $50^\circ C$, tốc độ phản ứng sẽ tăng:</p>
+            <div class="formula-box redox">
+              $$n = 2^{\frac{50-20}{10}} = 2^3 = 8 \text{ (lần)}$$
+            </div>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">3. Mối liên hệ với thời gian phản ứng</div>
+            <p>Vì tốc độ phản ứng ($v$) tỉ lệ nghịch với thời gian phản ứng ($t$) để cùng tiêu thụ một lượng chất như nhau, ta có:</p>
+            <div class="formula-box redox">
+              <p><strong>Công thức:</strong></p>
+              $$\frac{v_2}{v_1} = \frac{t_1}{t_2} = \gamma^{\frac{T_2 - T_1}{10}}$$
+            </div>
+            <div class="note-box redox">
+              <strong>⚠️ Lưu ý:</strong> Nếu đề bài cho thời gian, hãy cẩn thận vì nhiệt độ tăng thì thời gian phản ứng phải giảm xuống.
+            </div>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">4. Ví dụ bài toán</div>
+            <p><strong>Ví dụ 1: Tính hệ số nhiệt độ</strong></p>
+            <ul>
+              <li>Tại $20^\circ C$, tốc độ phản ứng là $v_1 = 0.5$ mol/(L·s)</li>
+              <li>Tại $40^\circ C$, tốc độ phản ứng là $v_2 = 2.0$ mol/(L·s)</li>
+            </ul>
+            <div class="formula-box redox">
+              <p><strong>Tính γ:</strong></p>
+              $$\gamma = \left( \frac{2.0}{0.5} \right)^{\frac{10}{40-20}} = 4^{\frac{10}{20}} = 4^{0.5} = 2$$
+            </div>
+
+            <p><strong>Ví dụ 2: Tính tốc độ phản ứng mới</strong></p>
+            <ul>
+              <li>Hệ số nhiệt độ $\gamma = 3$</li>
+              <li>Tốc độ phản ứng tại $25^\circ C$ là $v_1 = 0.6$ mol/(L·s)</li>
+              <li>Tính tốc độ phản ứng tại $55^\circ C$</li>
+            </ul>
+            <div class="formula-box redox">
+              <p><strong>Tính v₂:</strong></p>
+              $$n = 3^{\frac{55-25}{10}} = 3^3 = 27$$
+              $$v_2 = 27 \times 0.6 = 16.2 \text{ mol/(L·s)}$$
+            </div>
+
+            <p><strong>Ví dụ 3: Tính thời gian phản ứng</strong></p>
+            <ul>
+              <li>Hệ số nhiệt độ $\gamma = 2$</li>
+              <li>Thời gian phản ứng tại $20^\circ C$ là $t_1 = 60$ phút</li>
+              <li>Tính thời gian phản ứng tại $40^\circ C$</li>
+            </ul>
+            <div class="formula-box redox">
+              <p><strong>Tính t₂:</strong></p>
+              $$\frac{t_1}{t_2} = 2^{\frac{40-20}{10}} = 2^2 = 4$$
+              $$t_2 = \frac{60}{4} = 15 \text{ phút}$$
             </div>
           </div>
         </div>
@@ -1164,38 +2109,45 @@
       <div class="section">
         <div class="section-title">
           <span class="icon icon-formula">🧮</span>
-          V. Công thức quan trọng
+          VIII. Công thức quan trọng
         </div>
 
         <div class="subsection">
           <div class="subsection-title">1. Công thức tính nồng độ</div>
           <div class="card-small">
             <div class="formula-box">
-              <p><strong>Nồng độ mol:</strong> C = n/V (mol/L)</p>
+              <p><strong>Nồng độ mol:</strong> $$C = \frac{n}{V_{dd}}$$</p>
+              <p><em>Trong đó:</em> C (mol/L), n (số mol), $V_{dd}$ (thể tích dung dịch - L)</p>
             </div>
             <div class="formula-box">
-              <p><strong>Nồng độ khối lượng:</strong> ρ = m/V (g/L)</p>
+              <p><strong>Nồng độ khối lượng:</strong> $$\rho = \frac{m}{V}$$</p>
+              <p><em>Trong đó:</em> $\rho$ (g/L), m (khối lượng - g), V (thể tích - L)</p>
             </div>
             <div class="formula-box">
-              <p><strong>Phần trăm khối lượng:</strong> % = (m_chất/m_hòa tan) × 100%</p>
+              <p><strong>Phần trăm khối lượng:</strong> $$\% = \frac{m_{\text{chất}}}{m_{\text{hòa tan}}} \times 100\%$$</p>
+              <p><em>Trong đó:</em> $m_{\text{chất}}$ (khối lượng chất - g), $m_{\text{hòa tan}}$ (khối lượng dung dịch - g)</p>
             </div>
           </div>
         </div>
 
         <div class="subsection">
-          <div class="subsection-title">2. Công thức khí</div>
+          <div class="subsection-title">2. Công thức tính số mol</div>
           <div class="card-small">
             <div class="formula-box">
-              <p><strong>Phương trình trạng thái khí:</strong> PV = nRT</p>
+              <p><strong>Từ khối lượng:</strong> $$n = \frac{m}{M}$$</p>
+              <p><em>Trong đó:</em> n (số mol), m (khối lượng - g), M (khối lượng mol - g/mol)</p>
             </div>
             <div class="formula-box">
-              <p><strong>Định luật Avogadro:</strong> V₁/n₁ = V₂/n₂ (cùng điều kiện)</p>
+              <p><strong>Từ thể tích khí (đktc):</strong> $$n = \frac{V_{khí}}{V_m} = \frac{V_{khí}}{22.4}$$</p>
+              <p><em>Trong đó:</em> n (số mol), $V_{khí}$ (thể tích khí - L), $V_m = 22.4$ L/mol (đktc)</p>
             </div>
             <div class="formula-box">
-              <p><strong>Định luật Boyle:</strong> P₁V₁ = P₂V₂ (nhiệt độ không đổi)</p>
+              <p><strong>Từ số phân tử:</strong> $$n = \frac{N}{N_A}$$</p>
+              <p><em>Trong đó:</em> n (số mol), N (số phân tử), $N_A = 6.022 \times 10^{23}$ mol⁻¹</p>
             </div>
             <div class="formula-box">
-              <p><strong>Định luật Charles:</strong> V₁/T₁ = V₂/T₂ (áp suất không đổi)</p>
+              <p><strong>Từ nồng độ mol:</strong> $$n = C \times V_{dd}$$</p>
+              <p><em>Trong đó:</em> n (số mol), C (nồng độ mol - mol/L), $V_{dd}$ (thể tích dung dịch - L)</p>
             </div>
           </div>
         </div>
@@ -1204,22 +2156,74 @@
           <div class="subsection-title">3. Công thức tính khối lượng mol</div>
           <div class="card-small">
             <div class="formula-box">
-              <p><strong>Khối lượng mol:</strong> M = m/n (g/mol)</p>
+              <p><strong>Khối lượng mol:</strong> $$M = \frac{m}{n}$$</p>
+              <p><em>Trong đó:</em> M (g/mol), m (khối lượng - g), n (số mol)</p>
             </div>
             <div class="formula-box">
-              <p><strong>Số mol:</strong> n = m/M = V/V_m = N/N_A</p>
+              <p><strong>Từ công thức hóa học:</strong> $$M = \sum_{i=1}^{n} A_i \times n_i$$</p>
+              <p><em>Trong đó:</em> $A_i$ (khối lượng nguyên tử), $n_i$ (số nguyên tử)</p>
             </div>
           </div>
         </div>
 
         <div class="subsection">
-          <div class="subsection-title">4. Các hằng số quan trọng</div>
+          <div class="subsection-title">4. Công thức tính thể tích</div>
           <div class="card-small">
-            <ul>
-              <li><strong>Số Avogadro:</strong> N_A = 6.022 × 10²³ mol⁻¹</li>
-              <li><strong>Khối lượng mol khí:</strong> V_m = 22.4 L/mol (đktc)</li>
-              <li><strong>Hằng số khí:</strong> R = 8.314 J/(mol·K)</li>
-            </ul>
+            <div class="formula-box">
+              <p><strong>Thể tích khí (đktc):</strong> $$V_{khí} = n \times V_m = n \times 22.4$$</p>
+              <p><em>Trong đó:</em> $V_{khí}$ (L), n (số mol), $V_m = 22.4$ L/mol</p>
+            </div>
+            <div class="formula-box">
+              <p><strong>Thể tích dung dịch:</strong> $$V_{dd} = \frac{n}{C}$$</p>
+              <p><em>Trong đó:</em> $V_{dd}$ (L), n (số mol), C (nồng độ mol - mol/L)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">5. Công thức tính khối lượng</div>
+          <div class="card-small">
+            <div class="formula-box">
+              <p><strong>Từ số mol:</strong> $$m = n \times M$$</p>
+              <p><em>Trong đó:</em> m (g), n (số mol), M (g/mol)</p>
+            </div>
+            <div class="formula-box">
+              <p><strong>Từ nồng độ:</strong> $$m = C \times V_{dd} \times M$$</p>
+              <p><em>Trong đó:</em> m (g), C (mol/L), $V_{dd}$ (L), M (g/mol)</p>
+            </div>
+            <div class="formula-box">
+              <p><strong>Từ phần trăm:</strong> $$m_{\text{chất}} = \frac{\% \times m_{\text{hòa tan}}}{100}$$</p>
+              <p><em>Trong đó:</em> $m_{\text{chất}}$ (g), % (phần trăm), $m_{\text{hòa tan}}$ (g)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">6. Công thức hiệu suất</div>
+          <div class="card-small">
+            <div class="formula-box">
+              <p><strong>Hiệu suất:</strong> $$\eta = \frac{m_{\text{thực}}}{m_{\text{lý thuyết}}} \times 100\%$$</p>
+              <p><em>Trong đó:</em> $\eta$ (%), $m_{\text{thực}}$ (khối lượng thực tế - g), $m_{\text{lý thuyết}}$ (khối lượng lý thuyết - g)</p>
+            </div>
+            <div class="formula-box">
+              <p><strong>Khối lượng thực tế:</strong> $$m_{\text{thực}} = \frac{\eta \times m_{\text{lý thuyết}}}{100}$$</p>
+              <p><em>Trong đó:</em> $m_{\text{thực}}$ (g), $\eta$ (%), $m_{\text{lý thuyết}}$ (g)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">7. Công thức phản ứng hóa học</div>
+          <div class="card-small">
+            <div class="formula-box">
+              <p><strong>Định luật bảo toàn khối lượng:</strong> $$\sum m_{\text{phản ứng}} = \sum m_{\text{sản phẩm}}$$</p>
+            </div>
+            <div class="formula-box">
+              <p><strong>Định luật bảo toàn số nguyên tử:</strong> $$\sum n_{\text{phản ứng}} = \sum n_{\text{sản phẩm}}$$</p>
+            </div>
+            <div class="formula-box">
+              <p><strong>Tỷ lệ mol:</strong> $$\frac{n_A}{n_B} = \frac{a}{b} \quad \text{(theo phương trình: } aA + bB \rightarrow cC + dD)$$</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1230,7 +2234,7 @@
       <div class="section">
         <div class="section-title">
           <span class="icon">🧫</span>
-          VI. Các chất quan trọng
+          IX. Các chất quan trọng
         </div>
 
         <div class="subsection">
@@ -1281,7 +2285,7 @@
       <div class="section">
         <div class="section-title">
           <span class="icon">📝</span>
-          VII. Phương pháp giải bài tập
+          X. Phương pháp giải bài tập
         </div>
 
         <div class="subsection">
@@ -1327,7 +2331,7 @@
       <div class="section">
         <div class="section-title">
           <span class="icon">⚠️</span>
-          VIII. Các lưu ý quan trọng
+          XI. Các lưu ý quan trọng
         </div>
 
         <div class="subsection">
@@ -1373,7 +2377,7 @@
       <div class="section">
         <div class="section-title">
           <span class="icon">🎯</span>
-          IX. Các dạng bài tập thường gặp
+          XII. Các dạng bài tập thường gặp
         </div>
 
         <div class="subsection">
@@ -1419,6 +2423,171 @@
             </ul>
           </div>
         </div>
+
+        <!-- Bài toán làm muối -->
+        <div class="subsection">
+          <div class="subsection-title">5. Bài toán làm muối</div>
+
+          <div class="card-small chemistry">
+            <div class="card-small-title">Công thức cơ bản:</div>
+            <div class="formula-box chemistry">
+              <p><strong>m_muối = V_nước × C_NaCl × η</strong></p>
+              $$m_{\text{muối}} = V_{\text{nước}} \times C_{\text{NaCl}} \times \eta$$
+            </div>
+            <p><strong>Trong đó:</strong></p>
+            <ul>
+              <li>V_nước: Thể tích nước biển (L)</li>
+              <li>C_NaCl: Nồng độ NaCl trong nước biển (g/L)</li>
+              <li>η: Hiệu suất quá trình (%)</li>
+            </ul>
+          </div>
+
+          <div class="card-small chemistry">
+            <div class="card-small-title">Ví dụ 1:</div>
+            <ul>
+              <li>V = 500.000 L</li>
+              <li>C = 30 g/L</li>
+              <li>η = 70%</li>
+            </ul>
+            <div class="formula-box chemistry">
+              <p>m = 500.000 × 30 × 0,7 = 10.500.000 g = 10,5 tấn</p>
+              $$m = 500.000 \times 30 \times 0.7 = 10.500.000 \text{ g} = 10.5 \text{ tấn}$$
+            </div>
+          </div>
+
+          <div class="card-small chemistry">
+            <div class="card-small-title">Ví dụ 2:</div>
+            <ul>
+              <li>V = 600.000 L</li>
+              <li>C = 35 g/L</li>
+              <li>η = 60%</li>
+            </ul>
+            <div class="formula-box chemistry">
+              <p>m = 600.000 × 35 × 0,6 = 12.600.000 g = 12,6 tấn</p>
+              $$m = 600.000 \times 35 \times 0.6 = 12.600.000 \text{ g} = 12.6 \text{ tấn}$$
+            </div>
+          </div>
+        </div>
+
+        <!-- Bài toán công nghiệp -->
+        <div class="subsection">
+          <div class="subsection-title">6. Bài toán công nghiệp sản xuất chlorine và nước Javel</div>
+
+          <div class="card-small chemistry">
+            <div class="card-small-title">Phản ứng điện phân NaCl:</div>
+            <div class="formula-box chemistry">
+              <p><strong>2NaCl + 2H₂O → 2NaOH + H₂↑ + Cl₂↑</strong></p>
+              $$2NaCl + 2H_2O \rightarrow 2NaOH + H_2\uparrow + Cl_2\uparrow$$
+            </div>
+          </div>
+
+          <div class="card-small chemistry">
+            <div class="card-small-title">Phản ứng sản xuất nước Javel:</div>
+            <div class="formula-box chemistry">
+              <p><strong>Cl₂ + 2NaOH → NaCl + NaClO + H₂O</strong></p>
+              $$Cl_2 + 2NaOH \rightarrow NaCl + NaClO + H_2O$$
+            </div>
+          </div>
+
+          <div class="card-small chemistry">
+            <div class="card-small-title">Công thức tính:</div>
+            <div class="formula-box chemistry">
+              <p><strong>m_NaClO = m_Cl₂ × %_sử_dụng × η × (M_NaClO/M_Cl₂)</strong></p>
+              $$m_{\text{NaClO}} = m_{\text{Cl}_2} \times \%\_{\text{sử dụng}} \times \eta \times \left(\frac{M_{\text{NaClO}}}{M_{\text{Cl}_2}}\right)$$
+            </div>
+            <p><strong>Trong đó:</strong></p>
+            <ul>
+              <li>m_Cl₂: Khối lượng chlorine sản xuất</li>
+              <li>%_sử_dụng: Tỷ lệ chlorine dùng làm nước Javel</li>
+              <li>η: Hiệu suất phản ứng</li>
+              <li>M_NaClO = 74,5 g/mol</li>
+              <li>M_Cl₂ = 71 g/mol</li>
+            </ul>
+          </div>
+
+          <div class="card-small chemistry">
+            <div class="card-small-title">Ví dụ 1:</div>
+            <ul>
+              <li>m_Cl₂ = 710 kg/ngày</li>
+              <li>%_sử_dụng = 20%</li>
+              <li>η = 100%</li>
+              <li>Nước Javel chứa 10% NaClO</li>
+            </ul>
+            <div class="formula-box chemistry">
+              <p>m_NaClO = 710 × 0,2 × 1,0 × (74,5/71) = 149 kg</p>
+              <p>m_nước_Javel = 149/0,1 = 1490 kg = 1,49 tấn</p>
+              $$m_{\text{NaClO}} = 710 \times 0.2 \times 1.0 \times \left(\frac{74.5}{71}\right) = 149 \text{ kg}$$
+              $$m_{\text{nước Javel}} = \frac{149}{0.1} = 1490 \text{ kg} = 1.49 \text{ tấn}$$
+            </div>
+          </div>
+
+          <div class="card-small chemistry">
+            <div class="card-small-title">Ví dụ 2:</div>
+            <ul>
+              <li>m_Cl₂ = 3,55 tấn/ngày</li>
+              <li>%_sử_dụng = 30%</li>
+              <li>η = 80%</li>
+            </ul>
+            <div class="formula-box chemistry">
+              <p>m_NaClO = 3550 × 0,3 × 0,8 × (74,5/71) = 896 kg = 0,896 tấn</p>
+              $$m_{\text{NaClO}} = 3550 \times 0.3 \times 0.8 \times \left(\frac{74.5}{71}\right) = 896 \text{ kg} = 0.896 \text{ tấn}$$
+            </div>
+          </div>
+        </div>
+
+        <!-- Bài toán tốc độ phản ứng -->
+        <div class="subsection">
+          <div class="subsection-title">7. Bài toán tốc độ phản ứng</div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Công thức cơ bản:</div>
+            <div class="formula-box redox">
+              <p><strong>v = k·[A]ᵃ·[B]ᵇ</strong></p>
+              $$v = k \cdot [A]^a \cdot [B]^b$$
+            </div>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Ví dụ 1: Phản ứng X + 2Y → 2Z</div>
+            <ul>
+              <li>k = 0,6 (mol⁻²·L²·s⁻¹)</li>
+              <li>[X]₀ = 0,5 M, [Y]₀ = 0,8 M</li>
+              <li>Khi [Y] giảm còn 0,2 M</li>
+            </ul>
+            <div class="formula-box redox">
+              <p>v = 0,6 × 0,5 × (0,2)² = 0,012 mol/(L·s)</p>
+              $$v = 0.6 \times 0.5 \times (0.2)^2 = 0.012 \text{ mol/(L·s)}$$
+            </div>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Ví dụ 2: Phản ứng 2X + Y → 2Z</div>
+            <ul>
+              <li>k = 0,8 (mol⁻²·L²·s⁻¹)</li>
+              <li>[X]₀ = 0,6 M, [Y]₀ = 0,9 M</li>
+              <li>Khi [Y] giảm 0,1 M → [Y] = 0,8 M</li>
+            </ul>
+            <div class="formula-box redox">
+              <p>v = 0,8 × (0,6)² × 0,8 = 0,2304 mol/(L·s)</p>
+              $$v = 0.8 \times (0.6)^2 \times 0.8 = 0.2304 \text{ mol/(L·s)}$$
+            </div>
+          </div>
+        </div>
+
+        <!-- Điều cần lưu ý khi làm bài toán -->
+        <div class="subsection">
+          <div class="subsection-title">8. Điều cần lưu ý khi làm bài toán</div>
+
+          <div class="note-box chemistry">
+            <ul>
+              <li>Chuyển đổi đơn vị: 1 tấn = 1.000 kg = 1.000.000 g</li>
+              <li>Hiệu suất luôn < 100% trong thực tế</li>
+              <li>Khi tính tốc độ phản ứng, cần sử dụng nồng độ tại thời điểm đó</li>
+              <li>Trong phản ứng thế, halogen mạnh hơn sẽ thế halogen yếu hơn</li>
+              <li>Luôn kiểm tra đơn vị của kết quả</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1427,7 +2596,7 @@
       <div class="section">
         <div class="section-title">
           <span class="icon">💡</span>
-          X. Mẹo nhớ kiến thức
+          XIII. Mẹo nhớ kiến thức
         </div>
 
         <div class="subsection">
@@ -1501,6 +2670,23 @@
       }
     }
 
+    // Scroll to Top Functions
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    function handleScroll() {
+      const scrollButton = document.querySelector('.scroll-to-top');
+      if (window.scrollY > 300) {
+        scrollButton.classList.add('visible');
+      } else {
+        scrollButton.classList.remove('visible');
+      }
+    }
+
     function updateThemeIcon(theme) {
       const icon = document.getElementById('theme-icon');
       if (theme === 'dark') {
@@ -1531,29 +2717,67 @@
       btn.classList.add('active');
     }
 
-    // Search Function
+    // Search Function with protection for MathJax
+    let originalContents = {};
+
+    // Store original HTML of tab panels for search clear
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('.tab-panel').forEach(panel => {
+        originalContents[panel.id] = panel.innerHTML;
+      });
+      loadTheme();
+      window.addEventListener('scroll', handleScroll);
+    });
+
     function searchContent() {
-      const query = document.getElementById('search-input').value.toLowerCase();
+      const query = document.getElementById('search-input').value.toLowerCase().trim();
       const tabPanels = document.querySelectorAll('.tab-panel');
 
-      // Remove previous highlights
+      // If search is empty, restore original DOM (fixes MathJax getting broken)
+      if (query.length < 2) {
+         tabPanels.forEach(panel => {
+            if(originalContents[panel.id]) {
+                panel.innerHTML = originalContents[panel.id];
+            }
+         });
+         // Re-render MathJax
+         if(window.MathJax) {
+            MathJax.typesetPromise();
+         }
+         return;
+      }
+
+      // Restore first before new search
       tabPanels.forEach(panel => {
-        removeHighlight(panel);
+          if(originalContents[panel.id]) {
+              panel.innerHTML = originalContents[panel.id];
+          }
       });
 
-      if (query.length < 2) return;
-
-      // Search and highlight
+      // Search and highlight (skipping MathJax containers)
       tabPanels.forEach(panel => {
         highlightText(panel, query);
       });
+      
+      // Re-render math because modifying DOM might break it
+      if(window.MathJax) {
+          MathJax.typesetPromise();
+      }
     }
 
     function highlightText(element, query) {
       const walker = document.createTreeWalker(
         element,
         NodeFilter.SHOW_TEXT,
-        null,
+        {
+          acceptNode: function(node) {
+             // Skip mathjax nodes
+             if(node.parentElement && (node.parentElement.tagName.toLowerCase().includes('mjx') || node.parentElement.classList.contains('MathJax'))) {
+                return NodeFilter.FILTER_REJECT;
+             }
+             return NodeFilter.FILTER_ACCEPT;
+          }
+        },
         false
       );
 
@@ -1561,26 +2785,20 @@
       let node;
 
       while (node = walker.nextNode()) {
-        if (node.textContent.toLowerCase().includes(query)) {
+        if (node.textContent.toLowerCase().includes(query) && node.textContent.trim() !== '') {
           nodesToReplace.push(node);
         }
       }
 
       nodesToReplace.forEach(node => {
         const span = document.createElement('span');
+        // Escape query for regex
+        const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         span.innerHTML = node.textContent.replace(
-          new RegExp(`(${query})`, 'gi'),
-          '<mark style="background: var(--accent-yellow); padding: 2px 4px; border-radius: 3px;">$1</mark>'
+          new RegExp(`(${safeQuery})`, 'gi'),
+          '<mark style="background: var(--accent-yellow); color: #000; padding: 0 2px; border-radius: 3px;">$1</mark>'
         );
         node.parentNode.replaceChild(span, node);
-      });
-    }
-
-    function removeHighlight(element) {
-      const marks = element.querySelectorAll('mark');
-      marks.forEach(mark => {
-        const text = document.createTextNode(mark.textContent);
-        mark.parentNode.replaceChild(text, mark);
       });
     }
 
@@ -1591,9 +2809,6 @@
         document.getElementById('search-input').focus();
       }
     });
-
-    // Load theme on page load
-    loadTheme();
   </script>
 </body>
 

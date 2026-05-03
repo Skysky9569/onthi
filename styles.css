@@ -786,6 +786,35 @@ em {
   background: #FF5722;
 }
 
+.tabs-nav .tab-btn.active.formula {
+  background: #CDDC39;
+}
+
+.tabs-nav .tab-btn.active.warning {
+  background: #FFC107;
+}
+
+.tabs-nav .tab-btn.active.success {
+  background: #4CAF50;
+}
+
+.tabs-nav .tab-btn.active.info {
+  background: #03A9F4;
+}
+
+/* Home link styling */
+.tabs-nav .tab-btn.home-link {
+  background: var(--accent-blue);
+  color: white;
+  font-weight: 600;
+}
+
+.tabs-nav .tab-btn.home-link:hover {
+  background: var(--accent-blue);
+  color: white;
+  opacity: 0.9;
+}
+
 /* Section title colors */
 .section-title.chemistry {
   color: #00897B;

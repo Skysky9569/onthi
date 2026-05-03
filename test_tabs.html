@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Tab Functionality</title>
+  <style>
+    .tab-panel {
+      display: none;
+      padding: 20px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+    .tab-panel.active {
+      display: block;
+    }
+    .tab-btn {
+      padding: 10px 20px;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      background-color: #007bff;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Test Tab Functionality</h1>
+
+  <div>
+    <button class="tab-btn active" onclick="switchTab('tab1', this)">Tab 1</button>
+    <button class="tab-btn" onclick="switchTab('tab2', this)">Tab 2</button>
+    <button class="tab-btn" onclick="switchTab('tab3', this)">Tab 3</button>
+  </div>
+
+  <div id="tab1" class="tab-panel active">
+    <h2>Tab 1 Content</h2>
+    <p>This is the content of tab 1.</p>
+  </div>
+
+  <div id="tab2" class="tab-panel">
+    <h2>Tab 2 Content</h2>
+    <p>This is the content of tab 2.</p>
+  </div>
+
+  <div id="tab3" class="tab-panel">
+    <h2>Tab 3 Content</h2>
+    <p>This is the content of tab 3.</p>
+  </div>
+
+  <script>
+    function switchTab(tabId, btn) {
+      console.log('Switching to tab:', tabId);
+
+      // Hide all tab panels
+      document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+
+      // Remove active class from all tab buttons
+      document.querySelectorAll('.tab-btn').forEach(button => {
+        button.classList.remove('active');
+      });
+
+      // Show selected tab panel
+      document.getElementById(tabId).classList.add('active');
+
+      // Add active class to clicked button
+      btn.classList.add('active');
+
+      console.log('Tab switched successfully');
+    }
+
+    console.log('Test page loaded');
+  </script>
+</body>
+</html>
