@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn Tập Cuối HK2 - Sinh Học 10</title>
+    <!-- React & ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f3f4f6; }
+        .smooth-transition { transition: all 0.2s ease-in-out; }
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // Data: 40 Câu hỏi trắc nghiệm
+        const questionsData = [
+            { id: 1, text: "Dựa vào thành phần cấu tạo, có thể chia vi sinh vật thành:", options: ["A. VSV nhân sơ và VSV nhân thực.", "B. VSV đa bào và VSV đơn bào.", "C. VSV nhân sơ và VSV đơn bào.", "D. VSV nhân thực và VSV đa bào."], correct: 0 },
+            { id: 2, text: "Đặc điểm có ở hầu hết các loài vi sinh vật là gì?", options: ["A. Chuyển hoá chất dinh dưỡng nhanh.", "B. Thuộc các giới: Nguyên sinh, Nấm, Động vật.", "C. Kích thước siêu hiển vi (được đo bằng nanomet).", "D. Chỉ phân bố ở nơi có điều kiện khắc nghiệt."], correct: 0 },
+            { id: 3, text: "Các VSV nào sau đây là VSV nhân thực?", options: ["A. Nấm đơn bào, động vật nguyên sinh.", "B. Archaea, vi khuẩn.", "C. Vi nấm, vi khuẩn.", "D. Động vật nguyên sinh, vi khuẩn."], correct: 0 },
+            { id: 4, text: "Điều nào sau đây là sai khi nói về đặc điểm của vi sinh vật?", options: ["A. Thích ứng cao với môi trường.", "B. Trao đổi chất nhanh.", "C. Hấp thụ dinh dưỡng chậm.", "D. Phân bố rất rộng."], correct: 2 },
+            { id: 5, text: "Nhóm vi sinh vật có hình thức quang dị dưỡng là:", options: ["A. Nấm, động vật nguyên sinh.", "B. Vi khuẩn không chứa lưu huỳnh màu lục và màu tía.", "C. Vi tảo, vi khuẩn lam.", "D. Vi khuẩn nitrit hoá, vi khuẩn sắt."], correct: 1 },
+            { id: 6, text: "Hình thức dinh dưỡng đều dùng nguồn năng lượng và nguồn carbon từ chất hữu cơ được gọi là:", options: ["A. Quang tự dưỡng.", "B. Hóa dị dưỡng.", "C. Hóa tự dưỡng.", "D. Quang dị dưỡng."], correct: 1 },
+            { id: 7, text: "Các vi sinh vật nào sau đây có hình thức dinh dưỡng theo kiểu quang tự dưỡng?", options: ["A. Tảo đơn bào, các vi khuẩn chứa diệp lục.", "B. Nấm và tất cả vi khuẩn.", "C. Vi khuẩn lưu huỳnh, động vật nguyên sinh.", "D. Vi khuẩn lam, vi khuẩn nitrate hóa."], correct: 0 },
+            { id: 8, text: "Các hình thức dinh dưỡng của vi sinh vật được phân chia dựa trên các tiêu chí:", options: ["A. Nhóm sinh vật và nguồn năng lượng.", "B. Nhóm sinh vật và nguồn cacbon chủ yếu.", "C. Hình thức hô hấp nguồn cacbon chủ yếu.", "D. Nguồn năng lượng và nguồn cacbon chủ yếu."], correct: 3 },
+            { id: 9, text: "Đặc điểm có ở hầu hết các loài vi sinh vật là:", options: ["A. Thuộc nhiều giới: nguyên sinh, nấm và động vật.", "B. Kích thước siêu hiển vi (được đo bằng nanomet).", "C. Hấp thụ và chuyển hóa chất dinh dưỡng nhanh.", "D. Chỉ phân bố ở những nơi có điều kiện khắc nghiệt."], correct: 2 },
+            { id: 10, text: "Để phân biệt vi khuẩn Gram dương (+) và Gram (–) người ta đã sử dụng phương pháp nào?", options: ["A. Nhuộm Gram.", "B. Nhuộm đơn.", "C. Nhuộm kép.", "D. Quan sát."], correct: 0 },
+            { id: 11, text: "Đặc điểm nào sau đây không đúng về cấu tạo của vi sinh vật?", options: ["A. Cơ thể nhỏ bé, chỉ nhìn thấy rõ dưới kính hiển vi.", "B. Tất cả các vi sinh vật đều có nhân sơ.", "C. Một số vi sinh vật có cơ thể đa bào.", "D. Đa số vi sinh vật có cơ thể là một tế bào."], correct: 1 },
+            { id: 12, text: "Phương pháp nào sau đây dùng để quan sát khả năng di động của vi khuẩn?", options: ["A. Nhuộm đơn.", "B. Soi tươi.", "C. Nhuộm Gram.", "D. Phân lập."], correct: 1 },
+            { id: 13, text: "Để tổng hợp được các chất hữu cơ, mọi vi sinh vật cần bắt buộc sử dụng:", options: ["A. Carbon.", "B. Năng lượng và enzyme.", "C. Năng lượng.", "D. Carbon và ánh sáng."], correct: 1 },
+            { id: 14, text: "Phương trình tổng hợp protein ở vi sinh vật nào sau đây là đúng?", options: ["A. [Amino acid]n -> Protein", "B. Protein -> [Amino acid]n", "C. [Nucleotide]n -> Protein", "D. Protein -> [Nucleotide]n"], correct: 0 },
+            { id: 15, text: "Vi sinh vật tổng hợp lipid bằng cách:", options: ["A. Liên kết glycerol và glutamic acid.", "B. Liên kết lysine và acid béo.", "C. Liên kết glycerol và acid béo.", "D. Liên kết lysine và glutamic acid."], correct: 2 },
+            { id: 16, text: "Việc làm nước tương, nước mắm trong dân gian thực chất là ứng dụng của quá trình gì?", options: ["A. Phân giải carbohydrate.", "B. Phân giải protein.", "C. Tổng hợp protein.", "D. Phân giải nucleic acid."], correct: 1 },
+            { id: 17, text: "Phát biểu nào sau đây là sai khi nói về sự tổng hợp protein của vi sinh vật?", options: ["A. Vi sinh vật có khả năng tự tổng hợp các loại amino acid.", "B. Vi sinh vật có khả năng tổng hợp protein.", "C. Protein tổng hợp được khi liên kết các amino acid với nhau bằng liên kết glycosid.", "D. Phương trình tổng hợp protein là: (Amino acid)n -> Protein."], correct: 2 },
+            { id: 18, text: "Có hai hình thức lên men, đó là:", options: ["A. Lên men rượu và lên men lactic.", "B. Lên men hiếu khí và lên men kị khí.", "C. Lên men lactic và lên men hiếu khí.", "D. Lên men rượu và lên men kị khí."], correct: 0 },
+            { id: 19, text: "Bằng cách nào vi sinh vật có thể hấp thụ được các chất có kích thước phân tử lớn như protein, tinh bột, lipid, cellulose?", options: ["A. Chúng được vận chuyển chủ động qua các kênh trên màng sinh.", "B. Chúng được khuếch tán trực tiếp qua màng sinh chất.", "C. Các phân tử nói trên vào tế bào theo cơ chế nhập bào.", "D. Chúng tiết ra các enzyme tương ứng để phân giải ngoại bào sau đó hấp thụ."], correct: 3 },
+            { id: 20, text: "Môi trường nuôi không cấy liên tục là môi trường nuôi cấy:", options: ["A. Được bổ sung chất dinh dưỡng, không được lấy đi các sản phẩm của quá trình nuôi cấy", "B. Không được bổ sung chất dinh dưỡng, nhưng được lấy đi các sản phẩm của quá trình nuôi cấy.", "C. Không được bổ sung chất dinh dưỡng, không được lấy đi các sản phẩm của quá trình nuôi cấy.", "D. Được bổ sung chất dinh dưỡng, và được lấy đi các sản phẩm của quá trình nuôi cấy."], correct: 2 },
+            { id: 21, text: "Quá trình phân giải các hợp chất carbohydrate ở vi sinh vật xảy ra ở:", options: ["A. bên trong nhân tế bào vi sinh vật.", "B. bên ngoài cơ thể vi sinh vật.", "C. bên trong tế bào chất tế bào vi sinh vật.", "D. tại ti thể của tế bào vi sinh vật."], correct: 1 },
+            { id: 22, text: "Mục đích thường thấy của việc nuôi cấy vi khuẩn không liên tục là để:", options: ["A. Hạn chế sự sinh trưởng của vi khuẩn.", "B. Thu được nhiều sản phẩm và sinh khối từ vi sinh vật.", "C. Tăng mật độ tế bào vi khuẩn ở mức cao nhất.", "D. Nghiên cứu quá trình sinh trưởng của vi khuẩn đó."], correct: 3 },
+            { id: 23, text: "Môi trường nuôi cấy liên tục là môi trường nuôi cấy:", options: ["A. Được bổ sung chất dinh dưỡng, không được lấy đi các sản phẩm của quá trình nuôi cấy", "B. Không được bổ sung chất dinh dưỡng, nhưng được lấy đi các sản phẩm của quá trình nuôi cấy.", "C. Không được bổ sung chất dinh dưỡng, không được lấy đi các sản phẩm của quá trình nuôi cấy.", "D. Được bổ sung chất dinh dưỡng, và được lấy đi các sản phẩm của quá trình nuôi cấy."], correct: 3 },
+            { id: 24, text: "Vai trò của vi sinh vật đối với tự nhiên là:", options: ["A. Phân giải các chất thải đặc biệt là các chất thải độc hại như: nhựa, hóa chất nhân tạo, chất phóng xạ làm giảm ô nhiễm môi trường.", "B. Cộng sinh trong cơ thể người giúp tăng cường miễn dịch, tiêu hóa; tổng hợp một số vitamin, amino axit không thay thế.", "C. VSV tự dưỡng tạo ra O2 và chất dinh dưỡng cung cấp cho các sinh vật dị dưỡng.", "D. Sử dụng trong chế biến thực phẩm, sản xuất thuốc kháng sinh, vitamin, … trên quy mô công nghiệp."], correct: 2 },
+            { id: 25, text: "Mục đích của việc sử dụng môi trường nuôi cấy vi khuẩn liên tục trong công nghiệp là:", options: ["A. Hạn chế sự sinh trưởng của vi sinh vật.", "B. Thu được nhiều sản phẩm và sinh khối từ vi sinh vật.", "C. Tăng mật độ tế bào vi sinh vật ở mức cao nhất.", "D. Kéo dài thời gian thế hệ của quần thể vi sinh vật."], correct: 1 },
+            { id: 26, text: "Đối với con người vi sinh vật có vai trò:", options: ["A. Cộng sinh nhiều loài sinh vật giúp các loài tồn tại trong tự nhiên.", "B. Phân giải các chất thải độc hại làm giảm ô nhiễm môi trường.", "C. Tạo ra oxi và các chất dinh dưỡng cung cấp cho các sinh vật.", "D. Phân giải xác sinh vật làm giàu dinh dưỡng cho đất trồng."], correct: 1 },
+            { id: 27, text: "Vì sao vi sinh vật đặc biệt có ích cho ngành nông nghiệp?", options: ["A. Vi sinh vật có khả năng biến đạm khó tiêu thành đạm dễ tiêu.", "B. Vi sinh vật có khả năng biến lân khó tiêu thành lân dễ tiêu.", "C. Vi sinh vật có khả năng biến kali khó tiêu thành kali dễ tiêu.", "D. Vi sinh vật có khả năng biến khoáng khó tiêu thành khoáng dễ tiêu."], correct: 0 },
+            { id: 28, text: "Con người chú trọng việc sử dụng thuốc trừ sâu vi sinh thay cho thuốc trừ sâu hóa học vì:", options: ["A. Thuốc trừ sâu hóa học tiêu diệt sâu, bệnh trên diện tích rộng.", "B. Thuốc trừ sâu hóa học thường có thời gian phân hủy kéo dài gây tồn dư độc hại.", "C. Thuốc trừ sâu hóa học có khả năng tiêu diệt nhanh sâu, bệnh.", "D. Thuốc trừ sâu hóa học rất phức tạp trong khâu bảo quản."], correct: 1 },
+            { id: 29, text: "Nhận định nào sao đây không nói về lợi ích của kích thước nhỏ ở vi sinh vật?", options: ["A. Làm tăng tốc độ trao đổi chất và sinh trưởng", "B. Có lợi trong việc lưu trữ, nuôi cấy và nghiên cứu vi sinh vật", "C. Tạo ra oxi và cung cấp chất dinh dưỡng", "D. Tạo ra một số lượng lớn tế bào trong một khoảng không gian nhỏ"], correct: 2 },
+            { id: 30, text: "Vì sao thuốc trừ sâu vi sinh ngày càng được ưa chuộng trong ngành nông nghiệp?", options: ["A. Bảo quản dễ dàng, thời gian sử dụng kéo dài.", "B. Thuốc phân hủy chậm nên độc lực kéo dài.", "C. Tiêu diệt sâu, bệnh hại nhanh chóng.", "D. An toàn với con người và các thiên địch có lợi."], correct: 3 },
+            { id: 31, text: "Dựa vào đặc điểm nào của vi sinh vật người ta sử dụng chúng để xử lí ô nhiễm môi trường?", options: ["A. Vi sinh vật có khả năng phân giải các chất phức tạp.", "B. Khả năng sinh trưởng và sinh sản nhanh.", "C. Khả năng phân bố và thích nghi cao.", "D. Khả năng sống trong những môi trường cực đoan."], correct: 0 },
+            { id: 32, text: "Đâu không phải ưu điểm của thuốc trừ sâu sinh học so với với thuốc trừ sâu hóa học?", options: ["A. An toàn với sức khỏe con người và môi trường.", "B. Cho hiệu quả diệt trừ sâu hại nhanh chóng.", "C. Bảo vệ được sự cân bằng sinh học trong tự nhiên.", "D. Sản xuất khá đơn giản và có chi phí thấp."], correct: 1 },
+            { id: 33, text: "Thành phần cấu tạo nào dưới đây chứa vật chất di truyền của virus?", options: ["A. Vỏ capsid.", "B. Lõi nucleic acid.", "C. Màng phospholipid kép.", "D. Gai glycoprotein."], correct: 1 },
+            { id: 34, text: "Một số virus còn có lớp vỏ ngoài (envelope) cấu tạo từ:", options: ["A. Lớp kép phospholipid và protein.", "B. Lớp kép phospholipid và cellulose.", "C. Lớp kép phospholipid và nucleic acid.", "D. Lớp đơn phospholipid và chitin."], correct: 0 },
+            { id: 35, text: "Không thể nuôi virus trong môi trường nhân tạo giống như vi khuẩn được vì:", options: ["A. Kích thước của nó vô cùng nhỏ bé.", "B. Hệ gene chỉ chứa một loại nucleic acid.", "C. Chúng không có hình dạng đặc thù.", "D. Chúng là kí sinh nội bào bắt buộc."], correct: 3 },
+            { id: 36, text: "Trên vỏ ngoài virus có chứa:", options: ["A. Các gai glycoprotein.", "B. Các gai peptidoglycan.", "C. Các gai pepsinogen.", "D. Các gai amino acid."], correct: 0 },
+            { id: 37, text: "Mỗi loại virus chỉ xâm nhập vào một số tế bào vật chủ nhất định vì:", options: ["A. Bề mặt của tế bào vật chủ được bảo vệ bởi một lớp protein chống lại sự xâm nhập.", "B. Bề mặt của virus có lớp vỏ ngoài hoặc vỏ capsid trơ với các thụ thể.", "C. Virus chỉ xâm nhập được khi phân tử bề mặt khớp đặc hiệu với thụ thể bề mặt tế bào vật chủ.", "D. Virus chỉ xâm nhập được khi hệ gene của nó khớp hoàn toàn với hệ gene của tế bào vật chủ."], correct: 2 },
+            { id: 38, text: "Chu trình tan là chu trình:", options: ["A. Virus nhân lên làm tan và giết chết tế bào vật chủ.", "B. Virus chỉ nhân bản hệ gene và không phá vỡ tế bào vật chủ.", "C. Virus làm tan hệ gene nhưng không gây chết tế bào vật chủ.", "D. Virus chỉ nhân bản vỏ capsid mà không nhân bản hệ gene."], correct: 0 },
+            { id: 39, text: "Điều nào sau đây là đúng với sự xâm nhập của phage vào tế bào chủ?", options: ["A. Phage đưa cả nucleic acid và vỏ capsid vào tế bào chủ.", "B. Phage chỉ bơm nucleic acid vào tế bào chủ.", "C. Phage chỉ đưa vỏ protein vào tế bào chủ.", "D. Phage vào tế bào chủ bằng cơ chế thực bào."], correct: 1 },
+            { id: 40, text: "Chu trình tiềm tan là chu trình:", options: ["A. Virus nhân lên làm tan và giết chết tế bào vật chủ.", "B. Virus chỉ nhân bản hệ gene và không phá vỡ tế bào vật chủ.", "C. Virus làm tan hệ gene nhưng không gây chết tế bào vật chủ.", "D. Virus chỉ nhân bản vỏ capsid mà không nhân bản hệ gene."], correct: 1 }
+        ];
+
+        // Data: Câu hỏi đúng/sai (Phần II)
+        const trueFalseData = [
+            {
+                id: 1,
+                context: "Mỗi nhận định sau là đúng hay sai khi nói về quá trình lên men của vi sinh vật?",
+                statements: [
+                    { id: "1a", text: "a. Sản phẩm chính yếu của quá trình lên men rượu là ethanol.", isTrue: true },
+                    { id: "1b", text: "b. Trong quá trình lên men lactic có sự tham gia của nấm men rượu.", isTrue: false },
+                    { id: "1c", text: "c. Quá trình lên men thực chất là quá trình phân giải protein của vi sinh vật.", isTrue: false },
+                    { id: "1d", text: "d. Quá trình lên men của vi khuẩn lactic đồng hình sinh ra nhiều chất hơn so với quá trình lên men của vi khuẩn lactic dị hình.", isTrue: false }
+                ]
+            },
+            {
+                id: 2,
+                context: "Phát biểu nào đúng, phát biểu nào sai khi nói về sự tổng hợp protein của vi sinh vật?",
+                statements: [
+                    { id: "2a", text: "a. Vi sinh vật có khả năng tổng hợp protein.", isTrue: true },
+                    { id: "2b", text: "b. Vi sinh vật có khả năng tự tổng hợp các loại amino acid.", isTrue: true },
+                    { id: "2c", text: "c. Phương trình tổng hợp protein là: (Amino acid)n -> Protein.", isTrue: true },
+                    { id: "2d", text: "d. Protein tổng hợp được khi liên kết các amino acid với nhau bằng liên kết glycosid.", isTrue: false }
+                ]
+            },
+            {
+                id: 3,
+                context: "Sữa chua là một chế phẩm sữa được sản xuất bằng cách lên men sữa bò tươi, sữa bột hay sữa động vật nói chung. Dựa trên thông tin và kiến thức đã học, hãy cho biết mỗi mệnh đề sau là đúng hay sai khi nói về quá trình làm sữa chua?",
+                statements: [
+                    { id: "3a", text: "a. Lên men sữa chua là lên men ethanol.", isTrue: false },
+                    { id: "3b", text: "b. Quá trình lên men sữa chua có tạo ra ethanol và acetic acid.", isTrue: false },
+                    { id: "3c", text: "c. Quá trình lên men sữa chua có sự tham gia của vi khuẩn lactic dị hình.", isTrue: false },
+                    { id: "3d", text: "d. Quá trình làm sữa chua thực chất là quá trình phân giải carbohydrate của vi sinh vật.", isTrue: true }
+                ]
+            },
+            {
+                id: 4,
+                context: "Khi nói về sự sinh trưởng của quần thể vi khuẩn, mỗi mệnh đề sau là đúng hay sai?",
+                statements: [
+                    { id: "4a", text: "a. Trong nuôi cấy liên tục, quần thể vi sinh vật sinh trưởng liên tục, mật độ vi sinh vật tương đối ổn định.", isTrue: true },
+                    { id: "4b", text: "b. Trong nuôi cấy không liên tục, số lượng tế bào trong quần thể tăng rất nhanh ở pha cân bằng.", isTrue: false },
+                    { id: "4c", text: "c. Mục đích của 2 phương pháp nuôi cấy liên tục và không liên tục là để sản xuất sinh khối.", isTrue: false },
+                    { id: "4d", text: "d. Trong nuôi cấy liên tục có 4 pha: Tiềm phát -> luỹ thừa -> cân bằng -> suy vong.", isTrue: false }
+                ]
+            },
+            {
+                id: 5,
+                context: "Hãy cho biết mỗi nhận định sau đây là Đúng hay Sai?",
+                statements: [
+                    { id: "5a", text: "a. Đơn vị cấu tạo của vỏ capsid của virus là capsomer.", isTrue: true },
+                    { id: "5b", text: "b. Lớp vỏ ngoài của virus có tên là enternal.", isTrue: false },
+                    { id: "5c", text: "c. Lớp vỏ ngoài có cấu tạo là lớp đơn phospholipid và protein.", isTrue: false },
+                    { id: "5d", text: "d. Các gai mang tính kháng nguyên giúp virus bám vào vật chủ, nhận diện tế bào vật chủ là các gai glycoprotein.", isTrue: true }
+                ]
+            },
+            {
+                id: 6,
+                context: "Hãy cho biết mỗi nhận định sau đây là Đúng hay Sai?",
+                statements: [
+                    { id: "6a", text: "a. Phage còn có tên gọi khác là thực thể khuẩn.", isTrue: true },
+                    { id: "6b", text: "b. Hình thức sống của virus là sống kí sinh nội bào bắt buộc.", isTrue: true },
+                    { id: "6c", text: "c. Virus không được xem là một thực thể sống hoàn chỉnh do virus có kích thước quá nhỏ bé.", isTrue: false },
+                    { id: "6d", text: "d. Trong điều kiện ngoài tế bào, virus có khả năng tồn tại lâu dài ở trạng thái đại phân tử hóa học.", isTrue: true }
+                ]
+            },
+            {
+                id: 7,
+                context: "Một nhà khoa học tiến hành thí nghiệm lai hai chủng virus A và B như sau: Lấy vỏ capsid của virus A trộn với nucleic acid của virus B tạo thành virus lai. Biết mỗi loại virus chỉ kí sinh trong một loại vật chủ, mỗi nhận định sau đây là Đúng hay Sai?",
+                statements: [
+                    { id: "7a", text: "a. Virus lai có vỏ của chủng A và lõi của chủng B", isTrue: true },
+                    { id: "7b", text: "b. Virus lai có thể xâm nhập vào tế bào vật chủ của virus B.", isTrue: false },
+                    { id: "7c", text: "c. Virus lai sau khi nhân lên có thể xâm nhập vào vật chủ của cả virus A và virus B.", isTrue: false },
+                    { id: "7d", text: "d. Virus lai sau khi nhân lên sẽ có vỏ của chủng B và lõi của chủng B.", isTrue: true }
+                ]
+            }
+        ];
+
+        // Icons
+        const CheckIcon = () => (
+            <svg className="w-5 h-5 inline-block mr-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+        );
+
+        const XIcon = () => (
+            <svg className="w-5 h-5 inline-block mr-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        );
+
+        const App = () => {
+            const [answers, setAnswers] = React.useState({});
+            const [tfAnswers, setTfAnswers] = React.useState({});
+            const [activeTab, setActiveTab] = React.useState('mcq'); // 'mcq' or 'tf'
+            const [showConfirmModal, setShowConfirmModal] = React.useState(false);
+            
+            // Tính số điểm MCQ
+            const correctCount = Object.keys(answers).filter(
+                id => answers[id] === questionsData.find(q => q.id === parseInt(id)).correct
+            ).length;
+            const answeredCount = Object.keys(answers).length;
+
+            // Tính số điểm T/F
+            let tfTotalStmts = 0;
+            trueFalseData.forEach(q => tfTotalStmts += q.statements.length);
+            
+            let tfCorrectCount = 0;
+            Object.keys(tfAnswers).forEach(stmtId => {
+                const stmt = trueFalseData.flatMap(q => q.statements).find(s => s.id === stmtId);
+                if (stmt && tfAnswers[stmtId] === stmt.isTrue) {
+                    tfCorrectCount++;
+                }
+            });
+            const tfAnsweredCount = Object.keys(tfAnswers).length;
+
+            const handleSelect = (questionId, optionIndex) => {
+                if (answers[questionId] !== undefined) return; // Đã trả lời thì không cho đổi
+                setAnswers(prev => ({
+                    ...prev,
+                    [questionId]: optionIndex
+                }));
+            };
+
+            const requestReset = () => {
+                setShowConfirmModal(true);
+            };
+
+            const confirmReset = () => {
+                setAnswers({});
+                setTfAnswers({});
+                setShowConfirmModal(false);
+                window.scrollTo(0, 0);
+            };
+
+            const cancelReset = () => {
+                setShowConfirmModal(false);
+            };
+
+            return (
+                <div className="min-h-screen pb-20">
+                    {/* Header cố định */}
+                    <header className="sticky top-0 z-50 bg-blue-600 text-white shadow-lg py-4 px-6 flex flex-col sm:flex-row justify-between items-center">
+                        <h1 className="text-xl md:text-2xl font-bold mb-2 sm:mb-0">Ôn Tập Sinh 10 - Cuối HK2</h1>
+                        <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">
+                            <div className="text-sm font-semibold bg-blue-700 px-3 py-1 rounded-full border border-blue-400">
+                                Trắc nghiệm: <span className="text-green-300">{correctCount}</span> / {answeredCount}
+                            </div>
+                            <div className="text-sm font-semibold bg-blue-700 px-3 py-1 rounded-full border border-blue-400">
+                                Đúng/Sai: <span className="text-green-300">{tfCorrectCount}</span> / {tfAnsweredCount}
+                            </div>
+                            <button onClick={requestReset} className="text-sm bg-red-500 hover:bg-red-600 px-3 py-1.5 rounded-lg font-medium shadow smooth-transition">
+                                Làm lại
+                            </button>
+                        </div>
+                    </header>
+
+                    {/* Tabs navigation */}
+                    <div className="max-w-4xl mx-auto px-4 md:px-6 mt-6">
+                        <div className="flex space-x-2 bg-gray-200 p-1 rounded-lg">
+                            <button 
+                                onClick={() => setActiveTab('mcq')}
+                                className={`flex-1 py-2 px-4 rounded-md font-medium text-sm sm:text-base smooth-transition ${activeTab === 'mcq' ? 'bg-white text-blue-600 shadow' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-300'}`}
+                            >
+                                Phần I: Chọn đáp án
+                            </button>
+                            <button 
+                                onClick={() => setActiveTab('tf')}
+                                className={`flex-1 py-2 px-4 rounded-md font-medium text-sm sm:text-base smooth-transition ${activeTab === 'tf' ? 'bg-white text-blue-600 shadow' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-300'}`}
+                            >
+                                Phần II: Đúng/Sai
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Custom Confirm Modal */}
+                    {showConfirmModal && (
+                        <div className="fixed inset-0 bg-black bg-opacity-50 z-[60] flex items-center justify-center p-4">
+                            <div className="bg-white rounded-xl shadow-2xl p-6 max-w-sm w-full text-center">
+                                <h3 className="text-xl font-bold text-gray-800 mb-4">Xác nhận làm lại</h3>
+                                <p className="text-gray-600 mb-6">Bạn có chắc chắn muốn xóa hết kết quả và làm lại bài từ đầu không?</p>
+                                <div className="flex justify-center space-x-4">
+                                    <button onClick={cancelReset} className="px-5 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors font-medium">Hủy</button>
+                                    <button onClick={confirmReset} className="px-5 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors font-medium">Đồng ý</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Nội dung chính */}
+                    <main className="max-w-4xl mx-auto p-4 md:p-6 mt-2">
+                        {/* Tab Phần I: Trắc nghiệm MCQ */}
+                        {activeTab === 'mcq' && (
+                            <div className="fade-in">
+                                <div className="bg-white rounded-xl shadow-md p-6 mb-8 border border-gray-200">
+                                    <h2 className="text-xl font-bold text-gray-800 mb-2">Phần I: Trắc nghiệm (40 Câu)</h2>
+                                    <p className="text-gray-600">Chọn một đáp án đúng nhất cho mỗi câu hỏi. Kết quả đúng/sai sẽ hiển thị ngay lập tức.</p>
+                                </div>
+
+                                <div className="space-y-8">
+                                    {questionsData.map((q, index) => {
+                                        const isAnswered = answers[q.id] !== undefined;
+                                        const selectedOpt = answers[q.id];
+
+                                        return (
+                                            <div key={q.id} className="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-blue-500 hover:shadow-lg smooth-transition">
+                                                <h3 className="text-lg font-semibold text-gray-800 mb-4 leading-relaxed">
+                                                    <span className="text-blue-600 font-bold mr-2">Câu {index + 1}:</span>
+                                                    {q.text}
+                                                </h3>
+                                                
+                                                <div className="flex flex-col space-y-3">
+                                                    {q.options.map((option, optIdx) => {
+                                                        const isCorrectOpt = optIdx === q.correct;
+                                                        const isSelected = selectedOpt === optIdx;
+                                                        
+                                                        let btnClass = "text-left px-5 py-3 rounded-lg border-2 font-medium smooth-transition w-full text-base lg:text-lg ";
+                                                        
+                                                        if (!isAnswered) {
+                                                            btnClass += "border-gray-200 bg-gray-50 text-gray-700 hover:bg-blue-50 hover:border-blue-300 cursor-pointer";
+                                                        } else {
+                                                            if (isSelected && isCorrectOpt) {
+                                                                btnClass += "border-green-500 bg-green-500 text-white shadow-md";
+                                                            } else if (isSelected && !isCorrectOpt) {
+                                                                btnClass += "border-red-500 bg-red-500 text-white shadow-md";
+                                                            } else if (!isSelected && isCorrectOpt) {
+                                                                btnClass += "border-green-400 bg-green-50 text-green-700";
+                                                            } else {
+                                                                btnClass += "border-gray-200 bg-gray-50 text-gray-400 opacity-60 cursor-not-allowed";
+                                                            }
+                                                        }
+
+                                                        return (
+                                                            <button 
+                                                                key={optIdx}
+                                                                onClick={() => handleSelect(q.id, optIdx)}
+                                                                disabled={isAnswered}
+                                                                className={btnClass}
+                                                            >
+                                                                <div className="flex items-center">
+                                                                    {isAnswered && isSelected && isCorrectOpt && <CheckIcon />}
+                                                                    {isAnswered && isSelected && !isCorrectOpt && <XIcon />}
+                                                                    <span>{option}</span>
+                                                                </div>
+                                                            </button>
+                                                        );
+                                                    })}
+                                                </div>
+
+                                                {isAnswered && (
+                                                    <div className={`mt-4 p-3 rounded-md font-medium text-sm sm:text-base flex items-center ${selectedOpt === q.correct ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                                                        {selectedOpt === q.correct ? 
+                                                            "✅ Rất tốt! Bạn đã trả lời đúng." : 
+                                                            `❌ Sai rồi! Đáp án đúng là: ${q.options[q.correct].substring(0, 2)}`}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                                
+                                {answeredCount === questionsData.length && (
+                                    <div className="mt-12 bg-blue-600 text-white rounded-xl shadow-xl p-8 text-center">
+                                        <h2 className="text-3xl font-bold mb-4">Hoàn thành Phần I! 🎉</h2>
+                                        <p className="text-xl mb-6">Điểm số Phần I của bạn: <strong>{correctCount} / 40</strong></p>
+                                        <button onClick={() => {setActiveTab('tf'); window.scrollTo(0,0);}} className="bg-white text-blue-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg smooth-transition text-lg">
+                                            Chuyển sang Phần II
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        {/* Tab Phần II: Đúng/Sai */}
+                        {activeTab === 'tf' && (
+                            <div className="fade-in">
+                                <div className="bg-white rounded-xl shadow-md p-6 mb-8 border border-gray-200">
+                                    <h2 className="text-xl font-bold text-gray-800 mb-2">Phần II: Trắc nghiệm Đúng/Sai (7 Câu)</h2>
+                                    <p className="text-gray-600">Với mỗi câu hỏi, chọn Đúng hoặc Sai cho từng ý a, b, c, d. Kết quả sẽ hiện ngay sau khi chọn.</p>
+                                </div>
+
+                                <div className="space-y-8">
+                                    {trueFalseData.map((q, index) => {
+                                        return (
+                                            <div key={q.id} className="bg-white rounded-xl shadow-md p-6 md:p-8 border-l-4 border-purple-500 hover:shadow-lg smooth-transition">
+                                                <h3 className="text-lg font-semibold text-gray-800 mb-6 leading-relaxed">
+                                                    <span className="text-purple-600 font-bold mr-2">Câu {index + 1}:</span>
+                                                    {q.context}
+                                                </h3>
+                                                
+                                                <div className="space-y-4">
+                                                    {q.statements.map(stmt => {
+                                                        const isAnswered = tfAnswers[stmt.id] !== undefined;
+                                                        const userChoice = tfAnswers[stmt.id];
+
+                                                        return (
+                                                            <div key={stmt.id} className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
+                                                                <span className="text-gray-800 font-medium mb-3 md:mb-0 md:mr-4 md:flex-1">{stmt.text}</span>
+                                                                
+                                                                <div className="flex space-x-2 shrink-0">
+                                                                    <button 
+                                                                        onClick={() => !isAnswered && setTfAnswers(prev => ({...prev, [stmt.id]: true}))}
+                                                                        disabled={isAnswered}
+                                                                        className={`px-4 py-2 rounded-md font-semibold transition-colors ${
+                                                                            !isAnswered ? 'bg-white border-2 border-gray-300 text-gray-600 hover:border-green-500 hover:text-green-600' : 
+                                                                            userChoice === true ? (stmt.isTrue ? 'bg-green-500 text-white border-2 border-green-500' : 'bg-red-500 text-white border-2 border-red-500') :
+                                                                            (stmt.isTrue ? 'bg-green-100 text-green-700 border-2 border-green-300' : 'bg-gray-200 text-gray-300 border-2 border-gray-200 cursor-not-allowed')
+                                                                        }`}
+                                                                    >
+                                                                        Đúng
+                                                                    </button>
+                                                                    <button 
+                                                                        onClick={() => !isAnswered && setTfAnswers(prev => ({...prev, [stmt.id]: false}))}
+                                                                        disabled={isAnswered}
+                                                                        className={`px-4 py-2 rounded-md font-semibold transition-colors ${
+                                                                            !isAnswered ? 'bg-white border-2 border-gray-300 text-gray-600 hover:border-red-500 hover:text-red-600' : 
+                                                                            userChoice === false ? (!stmt.isTrue ? 'bg-green-500 text-white border-2 border-green-500' : 'bg-red-500 text-white border-2 border-red-500') :
+                                                                            (!stmt.isTrue ? 'bg-green-100 text-green-700 border-2 border-green-300' : 'bg-gray-200 text-gray-300 border-2 border-gray-200 cursor-not-allowed')
+                                                                        }`}
+                                                                    >
+                                                                        Sai
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+
+                                {tfAnsweredCount === tfTotalStmts && (
+                                    <div className="mt-12 bg-purple-600 text-white rounded-xl shadow-xl p-8 text-center">
+                                        <h2 className="text-3xl font-bold mb-4">Hoàn thành Phần II! 🎉</h2>
+                                        <p className="text-xl mb-6">Điểm số Đúng/Sai: <strong>{tfCorrectCount} / {tfTotalStmts}</strong></p>
+                                        <p className="text-lg mb-6">Tổng điểm cả 2 phần: <strong className="text-yellow-300">{correctCount + tfCorrectCount} / {questionsData.length + tfTotalStmts}</strong></p>
+                                        <button onClick={requestReset} className="bg-white text-purple-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg smooth-transition text-lg">
+                                            Làm lại toàn bộ
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </main>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
