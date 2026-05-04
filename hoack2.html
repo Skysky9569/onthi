@@ -174,17 +174,29 @@
     .search-container {
       max-width: 600px;
       margin: 0 auto 30px;
+      position: relative;
     }
 
     .search-input {
       width: 100%;
-      padding: 15px 25px;
+      padding: 15px 50px 15px 25px;
       border-radius: 30px;
       border: 2px solid var(--border-color);
       background: var(--bg-surface);
       color: var(--text-primary);
       font-size: 1rem;
       outline: none;
+      box-sizing: border-box;
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      pointer-events: none;
+      color: var(--text-secondary);
     }
 
     .search-input:focus {
