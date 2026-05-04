@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoa Trên Đảo - Lê Quang Trạng</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg-main: #FFF8DC;
+    --bg-surface: #ffffff;
+    --text-primary: #2C1810;
+    --text-secondary: #5D4037;
+    --accent-literature: #8B4513;
+    --accent-secondary: #D2691E;
+    --border-color: #D7CCC8;
+    --radius-lg: 16px;
+    --radius-md: 12px;
+}
+
+[data-theme="dark"] {
+    --bg-main: #1a120b;
+    --bg-surface: #2d2419;
+    --text-primary: #EFEBE9;
+    --text-secondary: #BCAAA4;
+    --border-color: #4E342E;
+    --accent-literature: #CD853F;
+}
+
+body {
+    font-family: 'Source Serif 4', serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.8;
+    transition: all 0.3s ease;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+    color: white;
+    border-radius: var(--radius-lg);
+    margin-bottom: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin: 0;
+}
+
+.author-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    padding: 25px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--accent-literature);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-secondary);
+}
+
+.quote-box {
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.05) 0%, rgba(210, 105, 30, 0.05) 100%);
+    border-left: 4px solid var(--accent-literature);
+    padding: 20px;
+    border-radius: 4px;
+    margin: 15px 0;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+.info-box {
+    background: rgba(139, 69, 19, 0.05);
+    border-left: 4px solid var(--accent-literature);
+    padding: 15px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.character-box {
+    background: rgba(210, 105, 30, 0.05);
+    border-left: 4px solid var(--accent-secondary);
+    padding: 15px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background: var(--bg-surface);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--accent-literature);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.back-btn:hover {
+    background: var(--accent-secondary);
+    transform: translateY(-2px);
+}
+
+ul, ol {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+strong {
+    color: var(--accent-literature);
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 40px 15px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Theme Toggle Button -->
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">
+  <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+  </svg>
+</button>
+
+<div class="container">
+  <a href="vanck2.html" class="back-btn">← Quay lại trang chủ</a>
+
+  <header>
+    <h1>Hoa Trên Đảo</h1>
+    <div class="author-badge">Lê Quang Trạng</div>
+  </header>
+
+  <div class="card">
+    <div class="card-title">Giới thiệu tác giả</div>
+    <p><strong>Lê Quang Trạng</strong> là nhà văn Việt Nam với phong cách văn xuôi nhẹ nhàng, giàu hình ảnh và cảm xúc. Các tác phẩm của ông thường viết về cuộc sống con người và thiên nhiên, đặc biệt là những câu chuyện về những người dấn thân vào vùng khó khăn.</p>
+    <div class="info-box">
+      <strong>Đặc điểm văn phong:</strong>
+      <ul>
+        <li>Ngôn ngữ nhẹ nhàng, giàu hình ảnh</li>
+        <li>Cảm xúc sâu sắc, chân thành</li>
+        <li>Thường viết về con người và thiên nhiên</li>
+        <li>Giàu tính nhân văn và triết lý</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Bối cảnh sáng tác</div>
+    <p>Tản văn "Hoa trên đảo" được viết dựa trên những trải nghiệm thực tế của tác giả khi đến các vùng đảo xa xôi. Tác phẩm phản ánh cuộc sống của những người giáo viên tình nguyện đến dạy học ở những nơi khó khăn, khắc nghiệt nhất của đất nước.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Tóm tắt nội dung</div>
+    <p>Tản văn kể về chuyến đi của nhân vật "tôi" đến đảo Vọng gặp cô giáo Hiên - một người trẻ tình nguyện dạy học trên đảo xa. Qua hình ảnh Hiên, tác giả ca ngợi tinh thần dấn thân và tình yêu thương của người giáo viên vùng cao, đồng thời thể hiện niềm tin vào sự phát triển của những vùng đất khó khăn.</p>
+    <div class="quote-box">
+      "Em vừa làm cô, vừa làm mẹ cho hơn chục đứa nhỏ rắn rỏi và mạnh mẽ như những cây dừa gầy khẳng khái trước sóng biển."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Phân tích nhân vật Hiên</div>
+
+    <div class="character-box">
+      <strong>1. Ngoại hình:</strong>
+      <ul>
+        <li>Cô giáo nhỏ nhắn, trẻ trung</li>
+        <li>Ánh mắt long lanh, tươi vui</li>
+        <li>Nụ cười ấm áp như nắng sớm</li>
+        <li>Vẻ đẹp giản dị, mộc mạc</li>
+      </ul>
+    </div>
+
+    <div class="character-box">
+      <strong>2. Hoàn cảnh công tác:</strong>
+      <ul>
+        <li>Cô giáo dạy học trên đảo Vọng xa xôi</li>
+        <li>Làm việc trong điều kiện khó khăn, thiếu thốn</li>
+        <li>Lớp học đơn sơ, làm từ xác thuyền đắm</li>
+        <li>Đảo nghèo, thiếu nước và sách</li>
+      </ul>
+    </div>
+
+    <div class="character-box">
+      <strong>3. Tính cách:</strong>
+      <ul>
+        <li>Tận tụy với nghề giáo</li>
+        <li>Yêu thương học sinh như con</li>
+        <li>Hy sinh, dấn thân</li>
+        <li>Lạc quan, tin tưởng vào tương lai</li>
+        <li>Khát vọng gieo chữ, trồng người</li>
+      </ul>
+    </div>
+
+    <div class="character-box">
+      <strong>4. Sự dấn thân:</strong>
+      <ul>
+        <li>"Vừa làm cô, vừa làm mẹ cho hơn chục đứa nhỏ"</li>
+        <li>Sửa sang lớp học chuẩn bị khi bão đến</li>
+        <li>Dạy đám trẻ trồng rau, lao động</li>
+        <li>"ngoài này chẳng khát nước bằng khát sách"</li>
+        <li>Quyết tâm ở lại đến khi các em lớn</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Biện pháp nghệ thuật</div>
+
+    <div class="info-box">
+      <strong>1. Biện pháp so sánh:</strong>
+      <div class="quote-box">
+        "hơn chục đứa nhỏ rắn rỏi và mạnh mẽ như những cây dừa gầy khẳng khái trước sóng biển"
+      </div>
+      <p><em>Tác dụng:</em> Nhấn mạnh sự khỏe khoắn, kiên cường của các em nhỏ nơi đảo xa như cây dừa vẫn đứng vững trước gió bão, sóng biển. Qua đó thể hiện tình yêu thương, sự tận tụy của Hiên với các em nhỏ.</p>
+    </div>
+
+    <div class="info-box">
+      <strong>2. Hình ảnh ẩn dụ:</strong>
+      <div class="quote-box">
+        "gieo mồ hôi xuống Vọng là đảo sẽ trổ hoa"
+      </div>
+      <p><em>Tác dụng:</em> Ẩn dụ cho sự cần cù, chịu khó sẽ mang lại thành quả. Hình ảnh "hoa" tượng trưng cho sự phát triển, tươi đẹp của đảo Vọng nhờ công sức của con người.</p>
+    </div>
+
+    <div class="info-box">
+      <strong>3. Biện pháp nhân hóa:</strong>
+      <div class="quote-box">
+        "nhìn đám trẻ tươi vui, tôi lại thấy đảo như một đóa hoa lớn giữa nền biển xanh"
+      </div>
+      <p><em>Tác dụng:</em> Làm cho đảo trở nên sống động, giàu cảm xúc. Hình ảnh "đóa hoa lớn" thể hiện vẻ đẹp và sự phát triển của đảo nhờ công sức con người.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Ý nghĩa chi tiết "gieo mồ hôi xuống Vọng là đảo sẽ trổ hoa"</div>
+    <div class="info-box">
+      <strong>Ý nghĩa chi tiết:</strong>
+      <ul>
+        <li><strong>Khái quát:</strong> Sự cần cù, chăm chỉ, chịu thương chịu khó của những con người trên đảo Vọng sẽ mang đến sự thay đổi, những thành quả ngọt ngào.</li>
+        <li><strong>Niềm tin và hy vọng:</strong> Chi tiết thể hiện niềm tin, hy vọng mãnh liệt của Hiên và các em nhỏ vào một tương lai tươi sáng trên đảo xa.</li>
+        <li><strong>Thông điệp nhân văn:</strong> Khẳng định thông điệp nhân văn sâu sắc: Dù hoàn cảnh khó khăn, khắc nghiệt đến đâu, chỉ cần con người có niềm tin, ý chí, nghị lực, tận tụy và biết gieo trồng những điều tốt đẹp, cuộc sống sẽ tươi đẹp như những bông hoa khoe sắc nơi đảo Vọng khô cằn.</li>
+        <li><strong>Giá trị biểu tượng:</strong> Chi tiết có giá trị biểu tượng cao, thể hiện tinh thần lạc quan và nghị lực của con người Việt Nam trong quá trình xây dựng và phát triển đất nước.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Ý nghĩa tác phẩm</div>
+    <ul>
+      <li><strong>Ca ngợi tinh thần dấn thân:</strong> Tác phẩm ca ngợi những người trẻ dấn thân vào vùng khó khăn, cống hiến cho sự nghiệp giáo dục.</li>
+      <li><strong>Thể hiện tình yêu thương:</strong> Tình yêu thương của cô giáo Hiên đối với học sinh, tình yêu thương của con người đối với cuộc sống.</li>
+      <li><strong>Khẳng định giá trị giáo dục:</strong> Giáo dục là chìa khóa mở ra tương lai, ngay cả ở những nơi khó khăn nhất.</li>
+      <li><strong>Niềm tin vào tương lai:</strong> Niềm tin vào sự phát triển của những vùng đất khó khăn nhờ công sức con người.</li>
+      <li><strong>Giá trị nhân văn:</strong> Tác phẩm giàu tính nhân văn, khơi gợi lòng trắc ẩn và trách nhiệm xã hội.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Bài học nhận thức và hành động</div>
+    <div class="info-box">
+      <strong>Bài học nhận thức:</strong>
+      <ul>
+        <li>Hiểu và trân trọng tinh thần dấn thân của những người làm việc ở vùng khó khăn</li>
+        <li>Nhận thức được giá trị của giáo dục trong sự phát triển của đất nước</li>
+        <li>Hiểu rằng hạnh phúc không chỉ nằm ở sự giàu có vật chất</li>
+        <li>Niềm tin vào sức mạnh của ý chí và nghị lực con người</li>
+      </ul>
+    </div>
+    <div class="info-box">
+      <strong>Bài học hành động:</strong>
+      <ul>
+        <li>Sống có trách nhiệm, biết dấn thân vào những việc có ích</li>
+        <li>Yêu thương và chia sẻ với người xung quanh</li>
+        <li>Phấn đấu học tập, rèn luyện để đóng góp cho xã hội</li>
+        <li>Giữ gìn và phát triển những giá trị nhân văn</li>
+        <li>Sống lạc quan, tin tưởng vào tương lai</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Bài tập đọc hiểu có đáp án</div>
+
+    <div class="info-box">
+      <strong>Câu 1:</strong> Xác định ngôi kể của đoạn trích.<br>
+      <em>Đáp án:</em> Ngôi kể thứ nhất (người kể chuyện xưng "tôi").
+    </div>
+
+    <div class="info-box">
+      <strong>Câu 2:</strong> Xác định lời của người kể chuyện và lời của nhân vật trong các câu văn sau:<br>
+      - Tôi hỏi Hiên rằng, "em sẽ ở lại đảo đến khi nào?".<br>
+      - Hiên cười, "cháu cũng không biết nữa, nhưng thấy mấy đứa trẻ còn nhỏ dại, đảo còn nghèo quá, cháu không nỡ bỏ".<br>
+      <em>Đáp án:</em> Lời người kể: "Tôi hỏi Hiên rằng", "Hiên cười"; Lời nhân vật: "em sẽ ở lại đảo đến khi nào?", "cháu cũng không biết nữa, nhưng thấy mấy đứa trẻ còn nhỏ dại, đảo còn nghèo quá, cháu không nỡ bỏ".
+    </div>
+
+    <div class="info-box">
+      <strong>Câu 3:</strong> Nêu tác dụng của biện pháp tu từ so sánh trong câu văn: "Em vừa làm cô, vừa làm mẹ cho hơn chục đứa nhỏ rắn rỏi và mạnh mẽ như những cây dừa gầy khẳng khái trước sóng biển".<br>
+      <em>Đáp án:</em> Biện pháp so sánh: "như những cây dừa gầy khẳng khái trước sóng biển". Tác dụng: Nhấn mạnh sự khỏe khoắn, kiên cường, sức sống mãnh liệt của các em nhỏ nơi đảo xa như cây dừa vẫn đứng vững trước gió bão, sóng biển. Qua đó thể hiện tình yêu thương, sự tận tụy của Hiên với các em nhỏ. Biện pháp tu từ so sánh tạo hình ảnh gợi cảm, sinh động, tăng giá trị biểu đạt và sức lay động cho câu văn.
+    </div>
+
+    <div class="info-box">
+      <strong>Câu 4:</strong> Trình bày ý nghĩa của chi tiết "gieo mồ hôi xuống Vọng là đảo sẽ trổ hoa" trong đoạn trích ở phần Đọc hiểu.<br>
+      <em>Đáp án:</em> Khái quát chi tiết: Sự cần cù, chăm chỉ, chịu thương chịu khó của những con người trên đảo Vọng sẽ mang đến sự thay đổi, những thành quả ngọt ngào. Ý nghĩa: Chi tiết thể hiện niềm tin, hy vọng mãnh liệt của Hiên và các em nhỏ vào một tương lai tươi sáng trên đảo xa. Chi tiết khẳng định thông điệp nhân văn sâu sắc: Dù hoàn cảnh khó khăn, khắc nghiệt đến đâu, chỉ cần con người có niềm tin, ý chí, nghị lực, tận tụy và biết gieo trồng những điều tốt đẹp, cuộc sống sẽ tươi đẹp như những bông hoa khoe sắc nơi đảo Vọng khô cằn.
+    </div>
+
+    <div class="info-box">
+      <strong>Câu 5:</strong> Từ chi tiết "Câu nói của Hiên làm tôi sực tỉnh, đâu phải đất giàu mới là nơi đáng đến - như tôi mong mỏi điều chi đó đẹp đẽ lấp lánh ở chốn này mà lặn lội đi tìm?" anh/chị hãy nêu những việc cần làm để vun đắp hạnh phúc từ những điều giản dị trong cuộc sống (trình bày khoảng 5-7 dòng).<br>
+      <em>Đáp án:</em> Chi tiết trên thể hiện nhận thức của nhân vật "tôi" về ý nghĩa của cuộc sống: hạnh phúc đích thực không nằm ở sự giàu có về vật chất mà ở những giá trị tinh thần. Đó có thể là sự gắn bó chân thành, là tình yêu thương, là khát vọng gieo chữ, trồng người trên hòn đảo nghèo. Những việc cần làm để vun đắp hạnh phúc từ những điều giản dị: Biết trân trọng những gì mình đang có; Sống có trách nhiệm, yêu thương, nhân hậu và biết cho đi; Biết nuôi dưỡng đam mê, lý tưởng, sống tích cực.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Tài liệu tham khảo</div>
+    <ul>
+      <li>Lê Quang Trạng, "Hoa trên đảo", trong Tuyển tập truyện ngắn hay, NXB Trẻ, 2022</li>
+      <li>Giáo trình Ngữ văn 10, Bộ Giáo dục và Đào tạo</li>
+      <li>Tài liệu ôn tập Ngữ văn 10 HKII</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+// Theme Toggle Function
+function toggleTheme() {
+  const html = document.documentElement;
+  const currentTheme = html.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  updateThemeIcon(newTheme);
+}
+
+// Load saved theme
+function loadTheme() {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeIcon(savedTheme);
+}
+
+// Update theme icon
+function updateThemeIcon(theme) {
+  const icon = document.getElementById('theme-icon');
+  if (theme === 'dark') {
+    icon.innerHTML = '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>';
+  } else {
+    icon.innerHTML = '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>';
+  }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  loadTheme();
+});
+</script>
+</body>
+</html>

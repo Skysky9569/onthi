@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Người Gánh Nước Thuê - Võ Thị Hảo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg-main: #FFF8DC;
+    --bg-surface: #ffffff;
+    --text-primary: #2C1810;
+    --text-secondary: #5D4037;
+    --accent-literature: #8B4513;
+    --accent-secondary: #D2691E;
+    --border-color: #D7CCC8;
+    --radius-lg: 16px;
+    --radius-md: 12px;
+}
+
+[data-theme="dark"] {
+    --bg-main: #1a120b;
+    --bg-surface: #2d2419;
+    --text-primary: #EFEBE9;
+    --text-secondary: #BCAAA4;
+    --border-color: #4E342E;
+    --accent-literature: #CD853F;
+}
+
+body {
+    font-family: 'Source Serif 4', serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.8;
+    transition: all 0.3s ease;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+    color: white;
+    border-radius: var(--radius-lg);
+    margin-bottom: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin: 0;
+}
+
+.author-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    padding: 25px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--accent-literature);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-secondary);
+}
+
+.quote-box {
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.05) 0%, rgba(210, 105, 30, 0.05) 100%);
+    border-left: 4px solid var(--accent-literature);
+    padding: 20px;
+    border-radius: 4px;
+    margin: 15px 0;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+.info-box {
+    background: rgba(139, 69, 19, 0.05);
+    border-left: 4px solid var(--accent-literature);
+    padding: 15px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.character-box {
+    background: rgba(210, 105, 30, 0.05);
+    border-left: 4px solid var(--accent-secondary);
+    padding: 15px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background: var(--bg-surface);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--accent-literature);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.back-btn:hover {
+    background: var(--accent-secondary);
+    transform: translateY(-2px);
+}
+
+ul, ol {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+strong {
+    color: var(--accent-literature);
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 40px 15px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Theme Toggle Button -->
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">
+  <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+  </svg>
+</button>
+
+<div class="container">
+  <a href="vanck2.html" class="back-btn">← Quay lại trang chủ</a>
+
+  <header>
+    <h1>Người Gánh Nước Thuê</h1>
+    <div class="author-badge">Võ Thị Hảo</div>
+  </header>
+
+  <div class="card">
+    <div class="card-title">Giới thiệu tác giả</div>
+    <p><strong>Võ Thị Hảo</strong> là nhà văn Việt Nam nổi tiếng với các tác phẩm viết về cuộc sống người lao động nghèo khổ. Bà sinh năm 1958 tại Quảng Nam. Văn phong của bà giàu cảm xúc, sâu sắc và nhân văn, thường tập trung khắc họa cuộc sống của những người yếu thế trong xã hội.</p>
+    <div class="info-box">
+      <strong>Các tác phẩm tiêu biểu:</strong>
+      <ul>
+        <li>"Người gánh nước thuê" (2009)</li>
+        <li>"Những đứa trẻ trong thành phố"</li>
+        <li>"Mẹ tôi"</li>
+        <li>"Chuyện người con gái xa quê"</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Bối cảnh văn học</div>
+    <p>Truyện ngắn "Người gánh nước thuê" được viết trong bối cảnh xã hội Việt Nam thời kỳ đổi mới, khi sự phân hóa giàu nghèo trở nên rõ rệt. Tác phẩm phản ánh cuộc sống của những người lao động nghèo ở thành thị, những người bị bỏ lại phía sau trong quá trình phát triển kinh tế.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Tóm tắt nội dung</div>
+    <p>Truyện kể về nhân vật bà Diễm - một người phụ nữ già nua, gầy gò, chuyên gánh nước thuê cho các gia đình giàu có trong khu dân cư. Qua hình ảnh bà Diễm, tác giả khắc họa cuộc sống khổ cực của người lao động nghèo và sự bất công trong xã hội.</p>
+    <div class="quote-box">
+      "Dáng người bà Diễm bé loắt choắt, bộ mặt nhăn nheo, gầy sạm chỉ còn hai con mắt. Bà vừa đi vừa lắc lư cái lưng còng."
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Phân tích nhân vật bà Diễm</div>
+
+    <div class="character-box">
+      <strong>1. Ngoại hình:</strong>
+      <ul>
+        <li>Dáng người bé loắt choắt</li>
+        <li>Bộ mặt nhăn nheo, gầy sạm</li>
+        <li>Chỉ còn hai con mắt</li>
+        <li>Lưng còng</li>
+        <li>Luôn mang chiếc đòn gánh</li>
+      </ul>
+    </div>
+
+    <div class="character-box">
+      <strong>2. Hoàn cảnh sống:</strong>
+      <ul>
+        <li>Là người lao động nghèo khổ</li>
+        <li>Chuyên gánh nước thuê cho người giàu</li>
+        <li>Sống lặng lẽ, khổ sở</li>
+        <li>Bị coi thường trong xã hội</li>
+      </ul>
+    </div>
+
+    <div class="character-box">
+      <strong>3. Tính cách:</strong>
+      <ul>
+        <li>Cần cù, chịu thương chịu khó</li>
+        <li>Sống kiên cường, bền bỉ</li>
+        <li>Lặng lẽ, không phàn nàn</li>
+        <li>Giữ gìn phẩm giá dù nghèo khó</li>
+      </ul>
+    </div>
+
+    <div class="character-box">
+      <strong>4. Vị thế trong xã hội:</strong>
+      <ul>
+        <li>Người lao động nghèo khổ</li>
+        <li>Bị coi thường bởi người giàu</li>
+        <li>Biểu tượng của sự bất công xã hội</li>
+        <li>Đại diện cho người yếu thế</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Biện pháp nghệ thuật</div>
+
+    <div class="info-box">
+      <strong>1. Biện pháp so sánh:</strong>
+      <div class="quote-box">
+        "Cuối hai đầu đòn gánh là đôi thùng đầy nước lắc lư theo những bước chân không đều của bà Diễm và để lại những vệt nước rỏ ròng ròng như suối nước mắt cạnh đường đi."
+      </div>
+      <p><em>Tác dụng:</em> Tạo hình ảnh gợi cảm, thể hiện nỗi khổ tâm của nhân vật, tăng sức lay động cho câu văn. Hình ảnh "suối nước mắt" gợi lên sự đồng cảm sâu sắc.</p>
+    </div>
+
+    <div class="info-box">
+      <strong>2. Biện pháp nhân hóa:</strong>
+      <div class="quote-box">
+        "Chiếc đòn gánh không bao giờ rời khỏi đôi vai còm cõi của bà. Nó bám chặt lấy bà như một thứ nghiệp chướng."
+      </div>
+      <p><em>Tác dụng:</em> Làm cho vật trở nên sống động, thể hiện sự gắn bó khổ sở giữa người và công cụ lao động. Chiếc đòn gánh như một phần không thể tách rời của bà Diễm.</p>
+    </div>
+
+    <div class="info-box">
+      <strong>3. Hình ảnh tượng trưng:</strong>
+      <div class="quote-box">
+        "Vậy là bà Diễm hệt như con gà trụi lông giữa đàn công sặc sỡ."
+      </div>
+      <p><em>Tác dụng:</em> Tượng trưng cho sự nghèo khổ, bị bỏ lại phía sau trong xã hội giàu có. Hình ảnh đối lập giữa "gà trụi lông" và "đàn công sặc sỡ" nhấn mạnh sự bất công.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Ý nghĩa tác phẩm</div>
+    <ul>
+      <li><strong>Phản ánh hiện thực:</strong> Tác phẩm phản ánh chân thực cuộc sống khổ cực của người lao động nghèo trong xã hội hiện đại.</li>
+      <li><strong>Lên án bất công:</strong> Phơi bày sự bất công trong xã hội, sự phân hóa giàu nghèo.</li>
+      <li><strong>Tình thương nhân văn:</strong> Thể hiện tình thương sâu sắc với những người yếu thế, bị bỏ lại phía sau.</li>
+      <li><strong>Gợi suy nghĩ:</strong> Khơi gợi suy nghĩ về trách nhiệm xã hội và sự cần thiết của sự chia sẻ.</li>
+      <li><strong>Giá trị hiện thực:</strong> Tác phẩm có giá trị hiện thực sâu sắc, đặc biệt trong bối cảnh xã hội hiện đại.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Bài học nhận thức và hành động</div>
+    <div class="info-box">
+      <strong>Bài học nhận thức:</strong>
+      <ul>
+        <li>Hiểu và đồng cảm với cuộc sống của người lao động nghèo</li>
+        <li>Nhận thức được sự bất công trong xã hội</li>
+        <li>Trân trọng những giá trị nhân văn cơ bản</li>
+      </ul>
+    </div>
+    <div class="info-box">
+      <strong>Bài học hành động:</strong>
+      <ul>
+        <li>Sống có trách nhiệm với cộng đồng</li>
+        <li>Chia sẻ và giúp đỡ người nghèo khó</li>
+        <li>Phấn đấu cho một xã hội công bằng hơn</li>
+        <li>Giữ gìn phẩm giá con người trong mọi hoàn cảnh</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Bài tập đọc hiểu có đáp án</div>
+
+    <div class="info-box">
+      <strong>Câu 1:</strong> Xác định ngôi kể của đoạn trích.<br>
+      <em>Đáp án:</em> Ngôi kể thứ nhất (người kể chuyện xưng "tôi").
+    </div>
+
+    <div class="info-box">
+      <strong>Câu 2:</strong> Tìm những chi tiết miêu tả ngoại hình của nhân vật bà Diễm.<br>
+      <em>Đáp án:</em> Dáng người bé loắt choắt, bộ mặt nhăn nheo, gầy sạm chỉ còn hai con mắt, lưng còng.
+    </div>
+
+    <div class="info-box">
+      <strong>Câu 3:</strong> Chỉ ra và nêu tác dụng của biện pháp so sánh trong câu văn: "Cuối hai đầu đòn gánh là đôi thùng đầy nước lắc lư theo những bước chân không đều của bà Diễm và để lại những vệt nước rỏ ròng ròng như suối nước mắt cạnh đường đi."<br>
+      <em>Đáp án:</em> Biện pháp so sánh: "như suối nước mắt". Tác dụng: Tạo hình ảnh gợi cảm, thể hiện nỗi khổ tâm của nhân vật, tăng sức lay động cho câu văn.
+    </div>
+
+    <div class="info-box">
+      <strong>Câu 4:</strong> Nhận xét về đặc điểm của nhân vật bà Diễm trong đoạn trích trên.<br>
+      <em>Đáp án:</em> Bà Diễm là người lao động nghèo khổ, cần cù, chịu thương chịu khó, sống lặng lẽ và bị coi thường trong xã hội. Bà là biểu tượng của sự bất công xã hội.
+    </div>
+
+    <div class="info-box">
+      <strong>Câu 5:</strong> Từ truyện ngắn trên, em rút ra bài học gì cho bản thân.<br>
+      <em>Đáp án:</em> Bài học về sự đồng cảm, chia sẻ với người nghèo khó; bài học về trách nhiệm xã hội; bài học về giữ gìn phẩm giá con người.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Tài liệu tham khảo</div>
+    <ul>
+      <li>Võ Thị Hảo, "Người gánh nước thuê", trong 20 truyện ngắn chọn lọc, NXB Lao động, 2009</li>
+      <li>Giáo trình Ngữ văn 10, Bộ Giáo dục và Đào tạo</li>
+      <li>Tài liệu ôn tập Ngữ văn 10 HKII</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+// Theme Toggle Function
+function toggleTheme() {
+  const html = document.documentElement;
+  const currentTheme = html.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  updateThemeIcon(newTheme);
+}
+
+// Load saved theme
+function loadTheme() {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeIcon(savedTheme);
+}
+
+// Update theme icon
+function updateThemeIcon(theme) {
+  const icon = document.getElementById('theme-icon');
+  if (theme === 'dark') {
+    icon.innerHTML = '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>';
+  } else {
+    icon.innerHTML = '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>';
+  }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  loadTheme();
+});
+</script>
+</body>
+</html>

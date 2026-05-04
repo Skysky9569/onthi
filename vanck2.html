@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ngữ Văn 10 – Ôn Tập Cơ Bản</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg-main: #FFF8DC;
+    --bg-surface: #ffffff;
+    --text-primary: #2C1810;
+    --text-secondary: #5D4037;
+    --accent-literature: #8B4513;
+    --accent-secondary: #D2691E;
+    --accent-glow: rgba(139, 69, 19, 0.2);
+    --border-color: #D7CCC8;
+    --radius-lg: 16px;
+    --radius-md: 12px;
+}
+
+[data-theme="dark"] {
+    --bg-main: #1a120b;
+    --bg-surface: #2d2419;
+    --text-primary: #EFEBE9;
+    --text-secondary: #BCAAA4;
+    --border-color: #4E342E;
+    --accent-literature: #CD853F;
+}
+
+body {
+    font-family: 'Source Serif 4', serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.8;
+    transition: all 0.3s ease;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+    color: white;
+    border-radius: var(--radius-lg);
+    margin-bottom: 40px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin: 0;
+}
+
+.badge {
+    background: rgba(255,255,255,0.2);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.tabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+    justify-content: center;
+    position: sticky;
+    top: 20px;
+    z-index: 100;
+}
+
+.tab-btn {
+    padding: 10px 18px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.tab-btn.active {
+    background: var(--accent-literature);
+    color: white;
+    border-color: var(--accent-literature);
+    box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+.tab-panel {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    padding: 25px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.card-label {
+    font-weight: 700;
+    color: var(--accent-literature);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.quote-box {
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.05) 0%, rgba(210, 105, 30, 0.05) 100%);
+    border-left: 4px solid var(--accent-literature);
+    padding: 20px;
+    border-radius: 4px;
+    margin: 15px 0;
+    font-style: italic;
+}
+
+.note-box {
+    background: rgba(139, 69, 19, 0.05);
+    border-left: 4px solid var(--accent-literature);
+    padding: 15px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.warning-box {
+    background: rgba(183, 28, 28, 0.05);
+    border-left: 4px solid #B71C1C;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.example-box {
+    background: rgba(76, 175, 80, 0.05);
+    border-left: 4px solid #4CAF50;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 50px 15px 25px;
+    border-radius: 30px;
+    border: 2px solid var(--border-color);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.search-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    pointer-events: none;
+}
+
+.search-input:focus {
+    border-color: var(--accent-literature);
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background: var(--bg-surface);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--accent-literature);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--accent-secondary);
+}
+
+.author-name {
+    font-weight: 700;
+    color: var(--accent-literature);
+}
+
+.work-title {
+    font-style: italic;
+    color: var(--accent-secondary);
+}
+
+.grid2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+ul, ol {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+strong {
+    color: var(--accent-literature);
+}
+
+@media (max-width: 768px) {
+    .tabs-nav {
+        position: static;
+    }
+
+    header {
+        padding: 40px 15px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Theme Toggle Button -->
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">
+  <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+  </svg>
+</button>
+
+<!-- Search Bar -->
+<div class="search-container">
+  <input type="text" class="search-input" id="search-input" placeholder="Tìm kiếm nội dung (Ctrl/Cmd + K)..." oninput="searchContent()">
+  <span class="search-icon">🔍</span>
+</div>
+
+<div class="container">
+  <header>
+    <div class="badge">Ngữ Văn 10 – HKII</div>
+    <h1>Ôn Tập Ngữ Văn</h1>
+    <p class="subtitle">Hệ thống kiến thức chuẩn cho kỳ thi cuối học kỳ 2</p>
+  </header>
+
+  <!-- TAB NAV -->
+  <nav class="tabs-nav" role="tablist">
+    <button class="tab-btn active" onclick="switchTab('docHieuTruyen', this)">📖 Đọc hiểu - Truyện ngắn</button>
+    <button class="tab-btn" onclick="switchTab('docHieuTan', this)">📝 Đọc hiểu - Tản văn</button>
+    <button class="tab-btn" onclick="switchTab('vietNghiluanXH', this)">✍️ Viết - Nghị luận XH</button>
+    <button class="tab-btn" onclick="switchTab('vietNghiluanVH', this)">🎭 Viết - Nghị luận VH</button>
+    <button class="tab-btn" onclick="switchTab('kienThuc', this)">📚 Kiến thức nền</button>
+    <button class="tab-btn" onclick="switchTab('luyenTap', this)">🎯 Luyện tập & Đề thi</button>
+    <a href="index.html" class="tab-btn" target="_self">🏠HOME</a>
+  </nav>
+
+  <!-- TAB 1: ĐỌC HIỂU - TRUYỆN NGẮN -->
+  <div id="docHieuTruyen" class="tab-panel active">
+    <div class="section-title">Đọc hiểu - Truyện ngắn</div>
+
+    <div class="card">
+      <div class="card-label">Tác phẩm: "Người gánh nước thuê"</div>
+      <p><span class="author-name">Tác giả:</span> <span class="work-title">Võ Thị Hảo</span></p>
+      <p><span class="author-name">Thể loại:</span> Truyện ngắn hiện đại</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Giới thiệu tác giả</div>
+      <p><strong>Võ Thị Hảo</strong> là nhà văn Việt Nam nổi tiếng với các tác phẩm viết về cuộc sống người lao động nghèo khổ. Văn phong của bà giàu cảm xúc, sâu sắc và nhân văn. Các tác phẩm tiêu biểu: "Người gánh nước thuê", "Những đứa trẻ trong thành phố", v.v.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Tóm tắt nội dung</div>
+      <p>Truyện kể về nhân vật bà Diễm - một người phụ nữ già nua, gầy gò, chuyên gánh nước thuê cho các gia đình giàu có. Qua hình ảnh bà Diễm, tác giả khắc họa cuộc sống khổ cực của người lao động nghèo và sự bất công trong xã hội.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Phân tích nhân vật bà Diễm</div>
+      <div class="quote-box">
+        "Dáng người bà Diễm bé loắt choắt, bộ mặt nhăn nheo, gầy sạm chỉ còn hai con mắt. Bà vừa đi vừa lắc lư cái lưng còng."
+      </div>
+      <ul>
+        <li><strong>Ngoại hình:</strong> Gầy gò, già nua, lưng còng, khuôn mặt nhăn nheo</li>
+        <li><strong>Công việc:</strong> Gánh nước thuê cho các gia đình giàu có</li>
+        <li><strong>Tính cách:</strong> Cần cù, chịu thương chịu khó, sống lặng lẽ</li>
+        <li><strong>Vị thế:</strong> Người lao động nghèo khổ, bị coi thường</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Biện pháp nghệ thuật</div>
+      <div class="note-box">
+        <strong>1. Biện pháp so sánh:</strong><br>
+        "Cuối hai đầu đòn gánh là đôi thùng đầy nước lắc lư theo những bước chân không đều của bà Diễm và để lại những vệt nước rỏ ròng ròng như suối nước mắt cạnh đường đi."
+        <br><br>
+        <em>Tác dụng:</em> Tạo hình ảnh gợi cảm, thể hiện nỗi khổ tâm của nhân vật, tăng sức lay động cho câu văn.
+      </div>
+      <div class="note-box">
+        <strong>2. Biện pháp nhân hóa:</strong><br>
+        "Chiếc đòn gánh... bám chặt lấy bà như một thứ nghiệp chướng."
+        <br><br>
+        <em>Tác dụng:</em> Làm cho vật trở nên sống động, thể hiện sự gắn bó khổ sở giữa người và công cụ lao động.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Ý nghĩa tác phẩm</div>
+      <ul>
+        <li>Phản ánh cuộc sống khổ cực của người lao động nghèo</li>
+        <li>Lên án sự bất công trong xã hội</li>
+        <li>Thể hiện tình thương với những người yếu thế</li>
+        <li>Gợi suy nghĩ về trách nhiệm xã hội</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Bài tập đọc hiểu có đáp án</div>
+      <div class="example-box">
+        <strong>Câu 1:</strong> Xác định ngôi kể của đoạn trích.<br>
+        <em>Đáp án:</em> Ngôi kể thứ nhất (người kể chuyện xưng "tôi").
+      </div>
+      <div class="example-box">
+        <strong>Câu 2:</strong> Tìm những chi tiết miêu tả ngoại hình của nhân vật bà Diễm.<br>
+        <em>Đáp án:</em> Dáng người bé loắt choắt, bộ mặt nhăn nheo, gầy sạm chỉ còn hai con mắt, lưng còng.
+      </div>
+      <div class="example-box">
+        <strong>Câu 3:</strong> Nhận xét về đặc điểm của nhân vật bà Diễm.<br>
+        <em>Đáp án:</em> Bà Diễm là người lao động nghèo khổ, cần cù, chịu thương chịu khó, sống lặng lẽ và bị coi thường trong xã hội.
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: ĐỌC HIỂU - TẢN VĂN -->
+  <div id="docHieuTan" class="tab-panel">
+    <div class="section-title">Đọc hiểu - Tản văn</div>
+
+    <div class="card">
+      <div class="card-label">Tác phẩm: "Hoa trên đảo"</div>
+      <p><span class="author-name">Tác giả:</span> <span class="work-title">Lê Quang Trạng</span></p>
+      <p><span class="author-name">Thể loại:</span> Tản văn</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Giới thiệu tác giả</div>
+      <p><strong>Lê Quang Trạng</strong> là nhà văn Việt Nam với phong cách văn xuôi nhẹ nhàng, giàu hình ảnh và cảm xúc. Các tác phẩm của ông thường viết về cuộc sống con người và thiên nhiên.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Tóm tắt nội dung</div>
+      <p>Tản văn kể về chuyến đi của nhân vật "tôi" đến đảo Vọng gặp cô giáo Hiên - một người trẻ tình nguyện dạy học trên đảo xa. Qua hình ảnh Hiên, tác giả ca ngợi tinh thần dấn thân và tình yêu thương của người giáo viên vùng cao.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Phân tích nhân vật Hiên</div>
+      <div class="quote-box">
+        "Em vừa làm cô, vừa làm mẹ cho hơn chục đứa nhỏ rắn rỏi và mạnh mẽ như những cây dừa gầy khẳng khái trước sóng biển."
+      </div>
+      <ul>
+        <li><strong>Nghề nghiệp:</strong> Cô giáo dạy học trên đảo xa</li>
+        <li><strong>Tính cách:</strong> Tận tụy, yêu thương, hy sinh</li>
+        <li><strong>Sự dấn thân:</strong> Vừa làm cô, vừa làm mẹ cho học sinh</li>
+        <li><strong>Khát vọng:</strong> "ngoài này chẳng khát nước bằng khát sách"</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Biện pháp nghệ thuật</div>
+      <div class="note-box">
+        <strong>Biện pháp so sánh:</strong><br>
+        "hơn chục đứa nhỏ rắn rỏi và mạnh mẽ như những cây dừa gầy khẳng khái trước sóng biển"
+        <br><br>
+        <em>Tác dụng:</em> Nhấn mạnh sự khỏe khoắn, kiên cường của các em nhỏ, thể hiện tình yêu thương của Hiên.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Ý nghĩa chi tiết "gieo mồ hôi xuống Vọng là đảo sẽ trổ hoa"</div>
+      <div class="note-box">
+        <strong>Ý nghĩa:</strong>
+        <ul>
+          <li>Thể hiện niềm tin, hy vọng mãnh liệt vào tương lai tươi sáng</li>
+          <li>Khẳng định thông điệp: Cần cù, chịu khó sẽ mang lại thành quả</li>
+          <li>Ca ngợi tinh thần lạc quan và nghị lực của con người đảo Vọng</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Bài tập đọc hiểu có đáp án</div>
+      <div class="example-box">
+        <strong>Câu 1:</strong> Xác định ngôi kể của đoạn trích.<br>
+        <em>Đáp án:</em> Ngôi kể thứ nhất (người kể chuyện xưng "tôi").
+      </div>
+      <div class="example-box">
+        <strong>Câu 2:</strong> Xác định lời của người kể chuyện và lời của nhân vật.<br>
+        <em>Đáp án:</em> Lời người kể: "Tôi hỏi Hiên rằng", "Hiên cười"; Lời nhân vật: "em sẽ ở lại đảo đến khi nào?", "cháu cũng không biết nữa...".
+      </div>
+      <div class="example-box">
+        <strong>Câu 3:</strong> Nêu tác dụng của biện pháp so sánh.<br>
+        <em>Đáp án:</em> Tạo hình ảnh gợi cảm, sinh động, tăng giá trị biểu đạt và sức lay động cho câu văn.
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: VIẾT - NGHỊ LUẬN XÃ HỘI -->
+  <div id="vietNghiluanXH" class="tab-panel">
+    <div class="section-title">Viết - Nghị luận Xã hội</div>
+
+    <div class="card">
+      <div class="card-label">Đề bài</div>
+      <div class="quote-box">
+        "Dấn thân là một phẩm chất của người trẻ - dấn thân để khẳng định mình, để bơi ra biển lớn, dám đối đầu, vượt qua mọi thách thức, trở ngại, để trở thành phiên bản tốt hơn chính mình ngày hôm qua" (TS. Đỗ Thị Thu Hằng).
+        <br><br>
+        Từ góc nhìn của người trẻ, anh/chị hãy viết bài văn nghị luận (khoảng 600 chữ) trình bày suy nghĩ về sứ mệnh "dấn thân" của thế hệ trẻ trong kỷ nguyên đất nước vươn mình.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Dàn ý chi tiết</div>
+
+      <div class="note-box">
+        <strong>1. Mở bài:</strong>
+        <ul>
+          <li>Giới thiệu vấn đề: Dấn thân là phẩm chất quan trọng của người trẻ</li>
+          <li>Nêu dẫn chứng: Câu nói của TS. Đỗ Thị Thu Hằng</li>
+          <li>Đặt vấn đề: Sứ mệnh dấn thân của thế hệ trẻ trong kỷ nguyên đất nước vươn mình</li>
+        </ul>
+      </div>
+
+      <div class="note-box">
+        <strong>2. Thân bài:</strong>
+        <br>
+        <strong>2.1. Giải thích:</strong>
+        <ul>
+          <li>"Dấn thân": Chủ động bước ra khỏi vùng an toàn, sẵn sàng đối diện thử thách</li>
+          <li>"Kỷ nguyên đất nước vươn mình": Giai đoạn phát triển mạnh mẽ của Việt Nam</li>
+        </ul>
+        <br>
+        <strong>2.2. Bàn luận:</strong>
+        <ul>
+          <li>Ý nghĩa của dấn thân với cá nhân: Phát triển bản thân, khẳng định giá trị</li>
+          <li>Ý nghĩa với xã hội: Đóng góp vào sự phát triển của đất nước</li>
+          <li>Dẫn chứng thực tế: Các người trẻ dấn thân trong nhiều lĩnh vực</li>
+        </ul>
+        <br>
+        <strong>2.3. Mở rộng:</strong>
+        <ul>
+          <li>Thế hệ trẻ cần làm gì để dấn thân?</li>
+          <li>Phê phán những người trẻ sống thụ động</li>
+        </ul>
+      </div>
+
+      <div class="note-box">
+        <strong>3. Kết bài:</strong>
+        <ul>
+          <li>Khẳng định lại vấn đề</li>
+          <li>Rút ra bài học cho bản thân</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Ví dụ bài viết mẫu</div>
+      <div class="example-box">
+        <strong>Mở bài:</strong><br>
+        Trong bối cảnh đất nước đang vươn mình mạnh mẽ, thế hệ trẻ đứng trước sứ mệnh lịch sử phải dấn thân để khẳng định vị thế của mình. Như TS. Đỗ Thị Thu Hằng đã nói: "Dấn thân là một phẩm chất của người trẻ - dấn thân để khẳng định mình, để bơi ra biển lớn, dám đối đầu, vượt qua mọi thách thức, trở ngại, để trở thành phiên bản tốt hơn chính mình ngày hôm qua". Câu nói này không chỉ là lời khuyên mà còn là sứ mệnh mà thế hệ trẻ cần thực hiện.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Mẹo viết hay</div>
+      <ul>
+        <li>Mở bài cần hấp dẫn, dẫn dắt tự nhiên vào vấn đề</li>
+        <li>Thân bài cần lập luận chặt chẽ, dẫn chứng thuyết phục</li>
+        <li>Sử dụng ngôn ngữ giàu hình ảnh, cảm xúc</li>
+        <li>Kết bài cần khẳng định lại vấn đề và rút ra bài học</li>
+        <li>Chú ý chính tả và diễn đạt</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TAB 4: VIẾT - NGHỊ LUẬN VĂN HỌC -->
+  <div id="vietNghiluanVH" class="tab-panel">
+    <div class="section-title">Viết - Nghị luận Văn học</div>
+
+    <div class="card">
+      <div class="card-label">Đề bài</div>
+      <div class="quote-box">
+        "Khi con người ở trong sa mạc, sẽ hiểu được nước và thực phẩm quý giá hơn vàng, bạc và kim cương rất nhiều. Khi gặp động đất và sóng thần, người ta sẽ hiểu, cho dù có bao nhiêu biệt thự hào hoa, khách sạn sang trọng, thì trong bàn tay vĩ đại của tự nhiên cũng chỉ là một đống bùn đất..." (Mạc Ngôn).
+        <br><br>
+        Từ vai trò và hiểm họa của thiên nhiên mà nhà văn Mạc Ngôn đề cập, em hãy viết bài văn nghị luận bàn về giải pháp hạn chế biến đổi khí hậu ở Việt Nam hiện nay.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Dàn ý chi tiết</div>
+
+      <div class="note-box">
+        <strong>1. Mở bài:</strong>
+        <ul>
+          <li>Giới thiệu vấn đề: Biến đổi khí hậu là vấn đề cấp bách</li>
+          <li>Nêu dẫn chứng: Câu nói của Mạc Ngôn</li>
+          <li>Đặt vấn đề: Giải pháp hạn chế biến đổi khí hậu ở Việt Nam</li>
+        </ul>
+      </div>
+
+      <div class="note-box">
+        <strong>2. Thân bài:</strong>
+        <br>
+        <strong>2.1. Giải thích:</strong>
+        <ul>
+          <li>Biến đổi khí hậu là gì?</li>
+          <li>Tại sao cần hạn chế biến đổi khí hậu?</li>
+        </ul>
+        <br>
+        <strong>2.2. Giải pháp:</strong>
+        <ul>
+          <li>Giải pháp về chính sách: Luật bảo vệ môi trường</li>
+          <li>Giải pháp về kinh tế: Phát triển năng lượng sạch</li>
+          <li>Giải pháp về xã hội: Nâng cao nhận thức cộng đồng</li>
+          <li>Giải pháp về giáo dục: Giáo dục môi trường trong nhà trường</li>
+        </ul>
+        <br>
+        <strong>2.3. Mở rộng:</strong>
+        <ul>
+          <li>Vai trò của mỗi cá nhân trong bảo vệ môi trường</li>
+          <li>Phê phán những hành động gây hại môi trường</li>
+        </ul>
+      </div>
+
+      <div class="note-box">
+        <strong>3. Kết bài:</strong>
+        <ul>
+          <li>Khẳng định lại tầm quan trọng của vấn đề</li>
+          <li>Kêu gọi hành động bảo vệ môi trường</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Mẹo phân tích văn học</div>
+      <ul>
+        <li>Hiểu rõ đề bài và yêu cầu</li>
+        <li>Xác định vấn đề cần nghị luận</li>
+        <li>Lập luận chặt chẽ, logic</li>
+        <li>Sử dụng dẫn chứng thuyết phục</li>
+        <li>Diễn đạt mạch lạc, giàu hình ảnh</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TAB 5: KIẾN THỨC NỀN TẢNG -->
+  <div id="kienThuc" class="tab-panel">
+    <div class="section-title">Kiến thức Nền tảng</div>
+
+    <div class="card">
+      <div class="card-label">Các biện pháp tu từ</div>
+      <div class="grid2">
+        <div class="note-box">
+          <strong>1. So sánh:</strong><br>
+          So sánh sự vật, hiện tượng này với sự vật, hiện tượng khác để làm nổi bật đặc điểm.<br>
+          <em>Ví dụ:</em> "như những cây dừa gầy khẳng khái trước sóng biển"
+        </div>
+        <div class="note-box">
+          <strong>2. Nhân hóa:</strong><br>
+          Gán cho vật những đặc điểm, hoạt động của con người.<br>
+          <em>Ví dụ:</em> "Chiếc đòn gánh... bám chặt lấy bà như một thứ nghiệp chướng"
+        </div>
+        <div class="note-box">
+          <strong>3. Ẩn dụ:</strong><br>
+          Gọi tên sự vật, hiện tượng này bằng tên sự vật, hiện tượng khác có nét tương đồng.<br>
+          <em>Ví dụ:</em> "gieo mồ hôi xuống Vọng là đảo sẽ trổ hoa"
+        </div>
+        <div class="note-box">
+          <strong>4. Câu hỏi tu từ:</strong><br>
+          Câu hỏi không cần câu trả lời, dùng để nhấn mạnh.<br>
+          <em>Ví dụ:</em> "đâu phải đất giàu mới là nơi đáng đến?"
+        </div>
+        <div class="note-box">
+          <strong>5. Lặp lại:</strong><br>
+          Lặp lại từ, cụm từ để nhấn mạnh ý.<br>
+          <em>Ví dụ:</em> "gieo mồ hôi xuống Vọng là đảo sẽ trổ hoa"
+        </div>
+        <div class="note-box">
+          <strong>6. Phóng đại:</strong><br>
+          Phóng đại sự vật, hiện tượng để tạo ấn tượng.<br>
+          <em>Ví dụ:</em> "trăm ngàn cánh hoa nở trên mặt đại dương xanh"
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Các thể loại văn học</div>
+      <div class="grid2">
+        <div class="note-box">
+          <strong>1. Truyện ngắn:</strong><br>
+          - Tập trung vào một sự kiện, một nhân vật<br>
+          - Cốt truyện ngắn gọn, cô đọng<br>
+          - Kết thúc bất ngờ
+        </div>
+        <div class="note-box">
+          <strong>2. Tản văn:</strong><br>
+          - Kết hợp giữa văn xuôi và thơ<br>
+          - Giàu hình ảnh và cảm xúc<br>
+          - Tự do trong cấu trúc
+        </div>
+        <div class="note-box">
+          <strong>3. Thơ:</strong><br>
+          - Ngôn ngữ cô đọng, giàu nhạc điệu<br>
+          - Hình ảnh gợi cảm, giàu trí tưởng tượng<br>
+          - Cảm xúc chủ đạo
+        </div>
+        <div class="note-box">
+          <strong>4. Kịch:</strong><br>
+          - Dùng đối thoại để phát triển cốt truyện<br>
+          - Xung đột kịch tính<br>
+          - Dành cho diễn xuất
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Kỹ năng đọc hiểu</div>
+      <div class="note-box">
+        <strong>1. Xác định ngôi kể:</strong>
+        <ul>
+          <li>Ngôi thứ nhất: "tôi", "chúng ta"</li>
+          <li>Ngôi thứ ba: "ông", "bà", "cô", "chú"</li>
+        </ul>
+      </div>
+      <div class="note-box">
+        <strong>2. Phân tích nhân vật:</strong>
+        <ul>
+          <li>Ngoại hình: Tướng mạo, trang phục</li>
+          <li>Tính cách: Tâm lý, hành động</li>
+          <li>Vị trí: Vai trò trong tác phẩm</li>
+        </ul>
+      </div>
+      <div class="note-box">
+        <strong>3. Nhận diện biện pháp nghệ thuật:</strong>
+        <ul>
+          <li>Tìm các từ ngữ, hình ảnh đặc trưng</li>
+          <li>Xác định loại biện pháp</li>
+          <li>Phân tích tác dụng</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 6: LUYỆN TẬP & ĐỀ THI -->
+  <div id="luyenTap" class="tab-panel">
+    <div class="section-title">Luyện tập & Đề thi</div>
+
+    <div class="card">
+      <div class="card-label">Đề luyện tập số 1</div>
+      <div class="note-box">
+        <strong>Phần I: Đọc hiểu (4.0 điểm)</strong><br>
+        - Đọc đoạn trích "Hoa trên đảo" (Lê Quang Trạng)<br>
+        - 5 câu hỏi đọc hiểu có đáp án
+      </div>
+      <div class="note-box">
+        <strong>Phần II: Viết (6.0 điểm)</strong><br>
+        - Đề bài: Nghị luận về "dấn thân" của thế hệ trẻ<br>
+        - Yêu cầu: Khoảng 600 chữ
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Đề luyện tập số 2</div>
+      <div class="note-box">
+        <strong>Phần I: Đọc hiểu (4.0 điểm)</strong><br>
+        - Đọc đoạn trích "Người gánh nước thuê" (Võ Thị Hảo)<br>
+        - 5 câu hỏi đọc hiểu có đáp án
+      </div>
+      <div class="note-box">
+        <strong>Phần II: Viết (6.0 điểm)</strong><br>
+        - Đề bài: Nghị luận về giải pháp hạn chế biến đổi khí hậu<br>
+        - Yêu cầu: Khoảng 600 chữ
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Ma trận đề thi</div>
+      <div class="warning-box">
+        <strong>Cấu trúc đề thi:</strong>
+        <ul>
+          <li>Phần Đọc hiểu: 4.0 điểm (40%)</li>
+          <li>Phần Viết: 6.0 điểm (60%)</li>
+          <li>Tổng: 10.0 điểm</li>
+        </ul>
+      </div>
+      <div class="note-box">
+        <strong>Phân bố điểm:</strong>
+        <ul>
+          <li>Câu 1: 0.5 điểm</li>
+          <li>Câu 2: 0.5 điểm</li>
+          <li>Câu 3: 1.0 điểm</li>
+          <li>Câu 4: 1.0 điểm</li>
+          <li>Câu 5: 1.0 điểm</li>
+          <li>Phần Viết: 6.0 điểm</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Hướng dẫn chấm</div>
+      <div class="example-box">
+        <strong>Đọc hiểu:</strong>
+        <ul>
+          <li>Trả lời đúng như đáp án: Điểm tối đa</li>
+          <li>Trả lời được 1/2 ý: Một nửa điểm</li>
+          <li>Diễn đạt tương đương: Điểm tối đa</li>
+        </ul>
+      </div>
+      <div class="example-box">
+        <strong>Viết:</strong>
+        <ul>
+          <li>Hình thức: 0.25 điểm</li>
+          <li>Xác định đúng vấn đề: 0.25 điểm</li>
+          <li>Nội dung: 3.5 điểm</li>
+          <li>Diễn đạt hay: 0.5 điểm</li>
+          <li>Trừ điểm lỗi: 0.5-1.0 điểm</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Mẹo làm bài thi</div>
+      <ul>
+        <li><strong>Đọc hiểu:</strong> Đọc kỹ đề, xác định yêu cầu, trả lời ngắn gọn</li>
+        <li><strong>Viết:</strong> Lập dàn ý trước, viết mạch lạc, chú ý thời gian</li>
+        <li><strong>Chung:</strong> Cẩn thận, tỉ mỉ, kiểm tra lại bài</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+// Theme Toggle Function
+function toggleTheme() {
+  const html = document.documentElement;
+  const currentTheme = html.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  updateThemeIcon(newTheme);
+}
+
+// Load saved theme
+function loadTheme() {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeIcon(savedTheme);
+}
+
+// Update theme icon
+function updateThemeIcon(theme) {
+  const icon = document.getElementById('theme-icon');
+  if (theme === 'dark') {
+    icon.innerHTML = '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>';
+  } else {
+    icon.innerHTML = '<path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>';
+  }
+}
+
+// Search Function
+function searchContent() {
+  const query = document.getElementById('search-input').value.toLowerCase();
+  const cards = document.querySelectorAll('.card');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+  const tabButtons = document.querySelectorAll('.tab-btn');
+
+  // Reset to initial state if query is empty
+  if (query === '') {
+    tabPanels.forEach(panel => {
+      panel.classList.remove('active');
+      panel.style.display = 'none';
+    });
+    tabButtons.forEach(btn => btn.classList.remove('active'));
+
+    // Show only the first tab (docHieuTruyen) as default
+    document.getElementById('docHieuTruyen').classList.add('active');
+    document.querySelector('.tab-btn[onclick*="\'docHieuTruyen\'"]').classList.add('active');
+
+    // Reset all cards
+    cards.forEach(card => {
+      card.style.display = 'block';
+      removeHighlight(card);
+    });
+    return;
+  }
+
+  // Search across all tabs
+  let hasResults = false;
+  const tabsWithResults = new Set();
+
+  cards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+    if (text.includes(query)) {
+      card.style.display = 'block';
+      highlightText(card, query);
+      hasResults = true;
+
+      // Find which tab this card belongs to
+      const panel = card.closest('.tab-panel');
+      if (panel) {
+        tabsWithResults.add(panel.id);
+      }
+    } else {
+      card.style.display = 'none';
+      removeHighlight(card);
+    }
+  });
+
+  // Show all tabs that have results
+  tabPanels.forEach(panel => {
+    if (tabsWithResults.has(panel.id)) {
+      panel.style.display = 'block';
+      panel.classList.add('active');
+    } else {
+      panel.style.display = 'none';
+      panel.classList.remove('active');
+    }
+  });
+
+  // Highlight tabs that have results
+  tabButtons.forEach(btn => {
+    const tabId = btn.getAttribute('onclick')?.match(/'([^']+)'/)?.[1];
+    if (tabId && tabsWithResults.has(tabId)) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+}
+
+// Highlight matching text
+function highlightText(element, query) {
+  removeHighlight(element);
+  if (!query) return;
+
+  const walker = document.createTreeWalker(
+    element,
+    NodeFilter.SHOW_TEXT,
+    null,
+    false
+  );
+
+  const nodesToReplace = [];
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    if (node.textContent.toLowerCase().includes(query)) {
+      nodesToReplace.push(node);
+    }
+  }
+
+  nodesToReplace.forEach(node => {
+    const span = document.createElement('span');
+    const regex = new RegExp(`(${query})`, 'gi');
+    span.innerHTML = node.textContent.replace(regex, '<mark style="background: yellow; padding: 2px;">$1</mark>');
+    node.parentNode.replaceChild(span, node);
+  });
+}
+
+// Remove highlight
+function removeHighlight(element) {
+  const marks = element.querySelectorAll('mark');
+  marks.forEach(mark => {
+    const parent = mark.parentNode;
+    parent.replaceChild(document.createTextNode(mark.textContent), mark);
+    parent.normalize();
+  });
+}
+
+// Keyboard shortcut for search
+document.addEventListener('keydown', function(e) {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+    e.preventDefault();
+    document.getElementById('search-input').focus();
+  }
+});
+
+// Tab switching function
+function switchTab(id, btn) {
+  const tabPanels = document.querySelectorAll('.tab-panel');
+  const tabButtons = document.querySelectorAll('.tab-btn');
+
+  // Hide all panels and remove active class
+  tabPanels.forEach(panel => {
+    panel.classList.remove('active');
+    panel.style.display = 'none';
+  });
+
+  // Remove active class from all buttons
+  tabButtons.forEach(b => b.classList.remove('active'));
+
+  // Show selected panel and add active class
+  const selectedPanel = document.getElementById(id);
+  if (selectedPanel) {
+    selectedPanel.classList.add('active');
+    selectedPanel.style.display = 'block';
+  }
+
+  // Add active class to clicked button
+  if (btn) {
+    btn.classList.add('active');
+  }
+
+  // Reset all cards to visible when switching tabs
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.style.display = 'block';
+    removeHighlight(card);
+  });
+
+  // Clear search input
+  const searchInput = document.getElementById('search-input');
+  if (searchInput) {
+    searchInput.value = '';
+  }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  loadTheme();
+
+  // Ensure only the first tab is visible on load
+  const tabPanels = document.querySelectorAll('.tab-panel');
+  const tabButtons = document.querySelectorAll('.tab-btn');
+
+  tabPanels.forEach((panel, index) => {
+    if (index === 0) {
+      panel.classList.add('active');
+      panel.style.display = 'block';
+    } else {
+      panel.classList.remove('active');
+      panel.style.display = 'none';
+    }
+  });
+
+  tabButtons.forEach((btn, index) => {
+    if (index === 0) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+});
+</script>
+</body>
+</html>
