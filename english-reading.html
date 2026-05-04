@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đọc Hiểu Tiếng Anh – Ôn Thi Cuối Kỳ</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* CSS Variables */
+    :root {
+      --spacing-sm: 8px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+
+      /* Colors */
+      --text-primary: #333333;
+      --text-secondary: #666666;
+      --bg-main: #f9f9f9;
+      --bg-surface: #ffffff;
+      --bg-surface2: #f5f5f5;
+      --border-primary: #e0e0e0;
+
+      /* English Theme Colors */
+      --accent-grammar: #03A9F4;
+      --accent-vocabulary: #4CAF50;
+      --accent-reading: #7c6af7;
+      --accent-practice: #FF5722;
+      --accent-yellow: #ffeeba;
+    }
+
+    [data-theme="dark"] {
+      --text-primary: #f0f0f0;
+      --text-secondary: #aaaaaa;
+      --bg-main: #121212;
+      --bg-surface: #1e1e1e;
+      --bg-surface2: #2d2d2d;
+      --border-primary: #444444;
+    }
+
+    /* Basic layout */
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      line-height: 1.6;
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      box-sizing: border-box;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: clamp(20px, 4vw, 40px);
+      padding: clamp(20px, 4vw, 40px) clamp(16px, 4vw, 32px);
+      background: linear-gradient(135deg, #7c6af7 0%, #6200EA 100%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-xl);
+      position: relative;
+      overflow: hidden;
+      color: white;
+    }
+
+    header h1 {
+      color: white;
+      margin-bottom: var(--spacing-sm);
+      font-family: 'Playfair Display', serif;
+    }
+
+    header .subtitle {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: clamp(14px, 2vw, 16px);
+      margin: 0;
+    }
+
+    /* Navigation */
+    .back-button {
+      display: inline-block;
+      margin-bottom: var(--spacing-lg);
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: var(--bg-surface2);
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-lg);
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Source Serif 4', serif;
+    }
+
+    .tab:hover {
+      background: var(--bg-surface2);
+    }
+
+    .tab.active {
+      background: var(--accent-reading);
+      color: white;
+      border-color: var(--accent-reading);
+    }
+
+    /* Content Sections */
+    .content-section {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Reading Passage */
+    .reading-passage {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .reading-passage h2 {
+      color: var(--accent-reading);
+      margin-top: 0;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .reading-passage .meta {
+      color: var(--text-secondary);
+      font-size: clamp(14px, 2vw, 16px);
+      margin-bottom: var(--spacing-md);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 1px solid var(--border-primary);
+    }
+
+    .reading-passage .content {
+      font-size: clamp(16px, 2.5vw, 18px);
+      line-height: 1.8;
+      text-align: justify;
+    }
+
+    .reading-passage .highlight {
+      background: rgba(124, 106, 247, 0.2);
+      padding: 2px 4px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .reading-passage .highlight:hover {
+      background: rgba(124, 106, 247, 0.4);
+    }
+
+    /* Timer */
+    .timer-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .timer {
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 600;
+      color: var(--accent-reading);
+    }
+
+    .timer-controls button {
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--accent-reading);
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-left: var(--spacing-sm);
+    }
+
+    .timer-controls button:hover {
+      background: #6200EA;
+    }
+
+    /* Questions Section */
+    .questions-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+    }
+
+    .questions-section h3 {
+      color: var(--accent-reading);
+      margin-top: 0;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .question {
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-lg);
+      border-bottom: 1px solid var(--border-primary);
+    }
+
+    .question:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .question .number {
+      font-weight: 600;
+      color: var(--accent-reading);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .question .text {
+      font-size: clamp(16px, 2.5vw, 18px);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .question .options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .question .option {
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--bg-surface2);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .question .option:hover {
+      background: var(--accent-reading);
+      color: white;
+    }
+
+    .question .option.correct {
+      background: var(--accent-vocabulary);
+      color: white;
+      border-color: var(--accent-vocabulary);
+    }
+
+    .question .option.incorrect {
+      background: #F44336;
+      color: white;
+      border-color: #F44336;
+    }
+
+    .question .explanation {
+      margin-top: var(--spacing-md);
+      padding: var(--spacing-md);
+      background: rgba(124, 106, 247, 0.1);
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--accent-reading);
+      display: none;
+    }
+
+    .question .explanation.show {
+      display: block;
+    }
+
+    /* Score Section */
+    .score-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+      text-align: center;
+    }
+
+    .score-section h3 {
+      color: var(--accent-reading);
+      margin-top: 0;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .score-section .score {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 600;
+      color: var(--accent-reading);
+      margin: var(--spacing-md) 0;
+    }
+
+    .score-section .message {
+      color: var(--text-secondary);
+      font-size: clamp(14px, 2vw, 16px);
+    }
+
+    /* Tips Section */
+    .tips-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .tips-section h3 {
+      color: var(--accent-reading);
+      margin-top: 0;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .tips-section .tip {
+      padding: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+      background: var(--bg-surface2);
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--accent-reading);
+    }
+
+    .tips-section .tip:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .tabs {
+        flex-direction: column;
+      }
+
+      .timer-container {
+        flex-direction: column;
+        gap: var(--spacing-md);
+      }
+
+      .timer-controls {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .theme-toggle {
+        top: 10px;
+        right: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      🌙
+    </button>
+
+    <!-- Back Button -->
+    <a href="english.html" class="back-button">← Quay lại Tiếng Anh</a>
+
+    <!-- Header -->
+    <header>
+      <h1>📰 Đọc Hiểu Tiếng Anh</h1>
+      <p class="subtitle">Bài đọc hiểu với các dạng câu hỏi thi phổ biến</p>
+    </header>
+
+    <!-- Tips Section -->
+    <div class="tips-section" id="tips">
+      <h3>💡 Mẹo Làm Bài Đọc Hiểu</h3>
+
+      <div class="tip">
+        <strong>1. Đọc câu hỏi trước:</strong> Đọc các câu hỏi trước khi đọc bài để biết thông tin cần tìm.
+      </div>
+
+      <div class="tip">
+        <strong>2. Skim bài đọc:</strong> Đọc nhanh toàn bộ bài để nắm ý chính trước khi trả lời chi tiết.
+      </div>
+
+      <div class="tip">
+        <strong>3. Tìm từ khóa:</strong> Tìm từ khóa trong câu hỏi và định vị chúng trong bài đọc.
+      </div>
+
+      <div class="tip">
+        <strong>4. Hiểu ngữ cảnh:</strong> Đọc các câu xung quanh từ khóa để hiểu nghĩa trong ngữ cảnh.
+      </div>
+
+      <div class="tip">
+        <strong>5. Quản lý thời gian:</strong> Không dành quá nhiều thời gian cho một câu khó.
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active" data-tab="passage1">Bài Đọc 1</div>
+      <div class="tab" data-tab="passage2">Bài Đọc 2</div>
+      <div class="tab" data-tab="passage3">Bài Đọc 3</div>
+    </div>
+
+    <!-- Passage 1 -->
+    <div class="content-section active" id="passage1">
+      <!-- Timer -->
+      <div class="timer-container">
+        <div class="timer" id="timer1">10:00</div>
+        <div class="timer-controls">
+          <button onclick="startTimer(1)">Bắt đầu</button>
+          <button onclick="pauseTimer(1)">Tạm dừng</button>
+          <button onclick="resetTimer(1)">Đặt lại</button>
+        </div>
+      </div>
+
+      <!-- Reading Passage -->
+      <div class="reading-passage">
+        <h2>The Importance of Education</h2>
+        <div class="meta">
+          <strong>Độ khó:</strong> Trung bình | <strong>Số từ:</strong> ~350 từ | <strong>Thời gian gợi ý:</strong> 10 phút
+        </div>
+        <div class="content">
+          <p>Education is one of the most powerful tools for personal and societal development. It provides individuals with the knowledge, skills, and values necessary to navigate the complexities of modern life. Beyond basic literacy and numeracy, education fosters critical thinking, creativity, and problem-solving abilities that are essential in today's rapidly changing world.</p>
+
+          <p>The benefits of education extend far beyond individual achievement. Educated communities tend to be healthier, more prosperous, and more socially stable. Research has consistently shown that higher levels of education correlate with better health outcomes, higher incomes, and greater civic participation. Moreover, education plays a crucial role in promoting gender equality and empowering marginalized groups.</p>
+
+          <p>In the digital age, the nature of education is evolving. Traditional classroom settings are being complemented by online learning platforms, educational apps, and virtual reality experiences. These technological innovations have made education more accessible and personalized than ever before. However, they also present new challenges, such as ensuring digital literacy and maintaining the human element of teaching.</p>
+
+          <p>Despite these changes, the fundamental purpose of education remains unchanged: to prepare individuals to lead fulfilling lives and contribute positively to society. Whether through formal schooling or informal learning, education continues to be a cornerstone of human progress and a key driver of social and economic development.</p>
+        </div>
+      </div>
+
+      <!-- Questions -->
+      <div class="questions-section">
+        <h3>Câu Hỏi</h3>
+
+        <div class="question">
+          <div class="number">Câu 1:</div>
+          <div class="text">What is the main purpose of education according to the passage?</div>
+          <div class="options">
+            <div class="option" data-correct="false">To teach basic literacy only</div>
+            <div class="option" data-correct="true">To provide knowledge, skills, and values for modern life</div>
+            <div class="option" data-correct="false">To prepare students for digital technology</div>
+            <div class="option" data-correct="false">To promote traditional classroom settings</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Đoạn đầu tiên nêu rõ rằng giáo dục cung cấp "knowledge, skills, and values necessary to navigate the complexities of modern life."
+          </div>
+        </div>
+
+        <div class="question">
+          <div class="number">Câu 2:</div>
+          <div class="text">According to the passage, what are the benefits of educated communities?</div>
+          <div class="options">
+            <div class="option" data-correct="false">They are more traditional and conservative</div>
+            <div class="option" data-correct="false">They have fewer technological challenges</div>
+            <div class="option" data-correct="true">They tend to be healthier, more prosperous, and more stable</div>
+            <div class="option" data-correct="false">They rely less on formal education</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Đoạn hai nêu rõ: "Educated communities tend to be healthier, more prosperous, and more socially stable."
+          </div>
+        </div>
+
+        <div class="question">
+          <div class="number">Câu 3:</div>
+          <div class="text">How has technology changed education according to the passage?</div>
+          <div class="options">
+            <div class="option" data-correct="false">It has made education less accessible</div>
+            <div class="option" data-correct="false">It has eliminated the need for teachers</div>
+            <div class="option" data-correct="false">It has made education more expensive</div>
+            <div class="option" data-correct="true">It has made education more accessible and personalized</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Đoạn ba nêu rõ: "These technological innovations have made education more accessible and personalized than ever before."
+          </div>
+        </div>
+
+        <div class="question">
+          <div class="number">Câu 4:</div>
+          <div class="text">What remains unchanged about education despite technological changes?</div>
+          <div class="options">
+            <div class="option" data-correct="false">The methods of teaching</div>
+            <div class="option" data-correct="false">The cost of education</div>
+            <div class="option" data-correct="true">The fundamental purpose of education</div>
+            <div class="option" data-correct="false">The role of traditional classrooms</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Đoạn cuối nêu rõ: "the fundamental purpose of education remains unchanged."
+          </div>
+        </div>
+
+        <div class="question">
+          <div class="number">Câu 5:</div>
+          <div class="text">What does the word "cornerstone" mean in the context of the passage?</div>
+          <div class="options">
+            <div class="option" data-correct="false">An obstacle</div>
+            <div class="option" data-correct="true">A fundamental element</div>
+            <div class="option" data-correct="false">A temporary solution</div>
+            <div class="option" data-correct="false">A modern innovation</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> "Cornerstone" có nghĩa là một phần cơ bản, quan trọng nhất của một cái gì đó. Trong ngữ cảnh này, giáo dục là yếu tố cơ bản của sự tiến bộ con người.
+          </div>
+        </div>
+      </div>
+
+      <!-- Score -->
+      <div class="score-section">
+        <h3>Điểm Số</h3>
+        <div class="score" id="score1">0/5</div>
+        <div class="message" id="message1">Hoàn thành tất cả câu hỏi để xem điểm số</div>
+      </div>
+    </div>
+
+    <!-- Passage 2 -->
+    <div class="content-section" id="passage2">
+      <!-- Timer -->
+      <div class="timer-container">
+        <div class="timer" id="timer2">15:00</div>
+        <div class="timer-controls">
+          <button onclick="startTimer(2)">Bắt đầu</button>
+          <button onclick="pauseTimer(2)">Tạm dừng</button>
+          <button onclick="resetTimer(2)">Đặt lại</button>
+        </div>
+      </div>
+
+      <!-- Reading Passage -->
+      <div class="reading-passage">
+        <h2>Climate Change and Its Impact</h2>
+        <div class="meta">
+          <strong>Độ khó:</strong> Khó | <strong>Số từ:</strong> ~400 từ | <strong>Thời gian gợi ý:</strong> 15 phút
+        </div>
+        <div class="content">
+          <p>Climate change represents one of the most pressing challenges of our time. Rising global temperatures, melting ice caps, and extreme weather events are becoming increasingly common. The scientific consensus is clear: human activities, particularly the burning of fossil fuels, are the primary driver of these changes.</p>
+
+          <p>The consequences of climate change are far-reaching and affect every aspect of life on Earth. Coastal communities face the threat of rising sea levels, while agricultural regions struggle with unpredictable weather patterns that impact food production. Biodiversity is declining as habitats change faster than species can adapt, leading to increased extinction rates.</p>
+
+          <p>However, there is hope. Renewable energy sources such as solar, wind, and hydroelectric power are becoming more efficient and affordable. Many countries are investing in green technologies and implementing policies to reduce carbon emissions. Individual actions, from reducing energy consumption to supporting sustainable businesses, also play a crucial role in addressing this global challenge.</p>
+
+          <p>Education and awareness are key to driving change. By understanding the science behind climate change and its impacts, individuals and communities can make informed decisions and take meaningful action. The transition to a sustainable future requires collective effort and commitment from all sectors of society.</p>
+        </div>
+      </div>
+
+      <!-- Questions -->
+      <div class="questions-section">
+        <h3>Câu Hỏi</h3>
+
+        <div class="question">
+          <div class="number">Câu 1:</div>
+          <div class="text">What is the primary cause of climate change according to the passage?</div>
+          <div class="options">
+            <div class="option" data-correct="false">Natural weather patterns</div>
+            <div class="option" data-correct="true">Human activities, especially burning fossil fuels</div>
+            <div class="option" data-correct="false">Solar energy production</div>
+            <div class="option" data-correct="false">Biodiversity decline</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Đoạn đầu nêu rõ: "human activities, particularly the burning of fossil fuels, are the primary driver of these changes."
+          </div>
+        </div>
+
+        <div class="question">
+          <div class="number">Câu 2:</div>
+          <div class="text">How does climate change affect agricultural regions?</div>
+          <div class="options">
+            <div class="option" data-correct="false">They benefit from longer growing seasons</div>
+            <div class="option" data-correct="false">They face rising sea levels</div>
+            <div class="option" data-correct="true">They struggle with unpredictable weather patterns</div>
+            <div class="option" data-correct="false">They experience increased biodiversity</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Đoạn hai nêu rõ: "agricultural regions struggle with unpredictable weather patterns that impact food production."
+          </div>
+        </div>
+
+        <div class="question">
+          <div class="number">Câu 3:</div>
+          <div class="text">What renewable energy sources are mentioned in the passage?</div>
+          <div class="options">
+            <div class="option" data-correct="false">Coal and natural gas</div>
+            <div class="option" data-correct="false">Nuclear and biomass</div>
+            <div class="option" data-correct="true">Solar, wind, and hydroelectric power</div>
+            <div class="option" data-correct="false">Oil and petroleum</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Đoạn ba nêu rõ: "Renewable energy sources such as solar, wind, and hydroelectric power..."
+          </div>
+        </div>
+
+        <div class="question">
+          <div class="number">Câu 4:</div>
+          <div class="text">What role does education play in addressing climate change?</div>
+          <div class="options">
+            <div class="option" data-correct="false">It is not related to climate change</div>
+            <div class="option" data-correct="false">It causes more climate change</div>
+            <div class="option" data-correct="false">It is only for scientists</div>
+            <div class="option" data-correct="true">It helps people understand and take action on climate change</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Đoạn cuối nêu rõ: "By understanding the science behind climate change and its impacts, individuals and communities can make informed decisions and take meaningful action."
+          </div>
+        </div>
+      </div>
+
+      <!-- Score -->
+      <div class="score-section">
+        <h3>Điểm Số</h3>
+        <div class="score" id="score2">0/4</div>
+        <div class="message" id="message2">Hoàn thành tất cả câu hỏi để xem điểm số</div>
+      </div>
+    </div>
+
+    <!-- Passage 3 -->
+    <div class="content-section" id="passage3">
+      <!-- Timer -->
+      <div class="timer-container">
+        <div class="timer" id="timer3">12:00</div>
+        <div class="timer-controls">
+          <button onclick="startTimer(3)">Bắt đầu</button>
+          <button onclick="pauseTimer(3)">Tạm dừng</button>
+          <button onclick="resetTimer(3)">Đặt lại</button>
+        </div>
+      </div>
+
+      <!-- Reading Passage -->
+      <div class="reading-passage">
+        <h2>The Benefits of Regular Exercise</h2>
+        <div class="meta">
+          <strong>Độ khó:</strong> Dễ | <strong>Số từ:</strong> ~300 từ | <strong>Thời gian gợi ý:</strong> 12 phút
+        </div>
+        <div class="content">
+          <p>Regular exercise is one of the most important things you can do for your health. It can help you control your weight, combat health conditions and diseases, improve your mood, and boost your energy. Despite these well-known benefits, many people struggle to maintain a consistent exercise routine.</p>
+
+          <p>Physical activity stimulates various brain chemicals that may leave you feeling happier, more relaxed, and less anxious. It can also boost your confidence and improve your self-esteem. Regular exercise can help you fall asleep faster and deepen your sleep, leading to better rest and more energy during the day.</p>
+
+          <p>The key to making exercise a habit is to start small and gradually increase your activity level. Choose activities that you enjoy and that fit your schedule. Even short bursts of activity throughout the day can add up to significant health benefits over time.</p>
+
+          <p>Remember that any amount of exercise is better than none. Whether it's a 30-minute walk, a yoga session, or a gym workout, finding time for physical activity is an investment in your long-term health and well-being.</p>
+        </div>
+      </div>
+
+      <!-- Questions -->
+      <div class="questions-section">
+        <h3>Câu Hỏi</h3>
+
+        <div class="question">
+          <div class="number">Câu 1:</div>
+          <div class="text">What are the benefits of regular exercise mentioned in the passage?</div>
+          <div class="options">
+            <div class="option" data-correct="false">It makes you tired and anxious</div>
+            <div class="option" data-correct="true">It helps control weight, improves mood, and boosts energy</div>
+            <div class="option" data-correct="false">It increases stress and reduces sleep</div>
+            <div class="option" data-correct="false">It has no effect on health</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Đoạn đầu nêu rõ: "It can help you control your weight, combat health conditions and diseases, improve your mood, and boost your energy."
+          </div>
+        </div>
+
+        <div class="question">
+          <div class="number">Câu 2:</div>
+          <div class="text">How does exercise affect sleep according to the passage?</div>
+          <div class="options">
+            <div class="option" data-correct="false">It makes it harder to fall asleep</div>
+            <div class="option" data-correct="false">It has no effect on sleep</div>
+            <div class="option" data-correct="false">It reduces the quality of sleep</div>
+            <div class="option" data-correct="true">It helps you fall asleep faster and deepen your sleep</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Đoạn hai nêu rõ: "Regular exercise can help you fall asleep faster and deepen your sleep."
+          </div>
+        </div>
+
+        <div class="question">
+          <div class="number">Câu 3:</div>
+          <div class="text">What is the key to making exercise a habit according to the passage?</div>
+          <div class="options">
+            <div class="option" data-correct="false">Start with intense workouts immediately</div>
+            <div class="option" data-correct="false">Only exercise at the gym</div>
+            <div class="option" data-correct="true">Start small and gradually increase activity level</div>
+            <div class="option" data-correct="false">Exercise for hours every day</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Đoạn ba nêu rõ: "The key to making exercise a habit is to start small and gradually increase your activity level."
+          </div>
+        </div>
+      </div>
+
+      <!-- Score -->
+      <div class="score-section">
+        <h3>Điểm Số</h3>
+        <div class="score" id="score3">0/3</div>
+        <div class="message" id="message3">Hoàn thành tất cả câu hỏi để xem điểm số</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Theme Toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+
+      const toggle = document.querySelector('.theme-toggle');
+      toggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    }
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      const toggle = document.querySelector('.theme-toggle');
+      toggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    }
+
+    // Tab Switching
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('.content-section');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+
+        tab.classList.add('active');
+        const tabId = tab.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    // Timer Functionality
+    const timers = {
+      1: { time: 600, interval: null, running: false },
+      2: { time: 900, interval: null, running: false },
+      3: { time: 720, interval: null, running: false }
+    };
+
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function updateTimerDisplay(id) {
+      document.getElementById(`timer${id}`).textContent = formatTime(timers[id].time);
+    }
+
+    function startTimer(id) {
+      if (timers[id].running) return;
+
+      timers[id].running = true;
+      timers[id].interval = setInterval(() => {
+        if (timers[id].time > 0) {
+          timers[id].time--;
+          updateTimerDisplay(id);
+        } else {
+          pauseTimer(id);
+          alert('Hết thời gian!');
+        }
+      }, 1000);
+    }
+
+    function pauseTimer(id) {
+      timers[id].running = false;
+      if (timers[id].interval) {
+        clearInterval(timers[id].interval);
+        timers[id].interval = null;
+      }
+    }
+
+    function resetTimer(id) {
+      pauseTimer(id);
+      const defaultTimes = { 1: 600, 2: 900, 3: 720 };
+      timers[id].time = defaultTimes[id];
+      updateTimerDisplay(id);
+    }
+
+    // Quiz Functionality
+    const scores = { 1: { correct: 0, total: 5 }, 2: { correct: 0, total: 4 }, 3: { correct: 0, total: 3 } };
+
+    document.querySelectorAll('.question').forEach((question, index) => {
+      const options = question.querySelectorAll('.option');
+      const explanation = question.querySelector('.explanation');
+
+      options.forEach(option => {
+        option.addEventListener('click', function() {
+          const passageId = this.closest('.content-section').id.replace('passage', '');
+          const isCorrect = this.getAttribute('data-correct') === 'true';
+
+          // Disable all options
+          options.forEach(opt => opt.style.pointerEvents = 'none');
+
+          // Show correct/incorrect
+          if (isCorrect) {
+            this.classList.add('correct');
+            scores[passageId].correct++;
+          } else {
+            this.classList.add('incorrect');
+            // Show correct answer
+            options.forEach(opt => {
+              if (opt.getAttribute('data-correct') === 'true') {
+                opt.classList.add('correct');
+              }
+            });
+          }
+
+          // Show explanation
+          explanation.classList.add('show');
+
+          // Update score
+          updateScore(passageId);
+        });
+      });
+    });
+
+    function updateScore(passageId) {
+      const score = scores[passageId];
+      document.getElementById(`score${passageId}`).textContent = `${score.correct}/${score.total}`;
+
+      const percentage = (score.correct / score.total) * 100;
+      let message = '';
+
+      if (percentage === 100) {
+        message = 'Tuyệt vời! Bạn đã trả lời đúng tất cả câu hỏi!';
+      } else if (percentage >= 80) {
+        message = 'Rất tốt! Cố gắng thêm một chút nữa!';
+      } else if (percentage >= 60) {
+        message = 'Khá! Hãy thử lại để đạt điểm cao hơn!';
+      } else if (percentage >= 40) {
+        message = 'Cần cố gắng nhiều hơn! Đọc lại bài và thử lại!';
+      } else {
+        message = 'Hãy đọc kỹ bài và thử lại!';
+      }
+
+      document.getElementById(`message${passageId}`).textContent = message;
+
+      // Update progress
+      const progress = JSON.parse(localStorage.getItem('englishProgress')) || {
+        grammar: 0,
+        vocabulary: 0,
+        reading: 0,
+        practice: 0
+      };
+      progress.reading = Math.round(percentage);
+      localStorage.setItem('englishProgress', JSON.stringify(progress));
+    }
+  </script>
+</body>
+
+</html>

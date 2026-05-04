@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luyện Tập Tiếng Anh – Ôn Thi Cuối Kỳ</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* CSS Variables */
+    :root {
+      --spacing-sm: 8px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+
+      /* Colors */
+      --text-primary: #333333;
+      --text-secondary: #666666;
+      --bg-main: #f9f9f9;
+      --bg-surface: #ffffff;
+      --bg-surface2: #f5f5f5;
+      --border-primary: #e0e0e0;
+
+      /* English Theme Colors */
+      --accent-grammar: #03A9F4;
+      --accent-vocabulary: #4CAF50;
+      --accent-reading: #7c6af7;
+      --accent-practice: #FF5722;
+      --accent-yellow: #ffeeba;
+    }
+
+    [data-theme="dark"] {
+      --text-primary: #f0f0f0;
+      --text-secondary: #aaaaaa;
+      --bg-main: #121212;
+      --bg-surface: #1e1e1e;
+      --bg-surface2: #2d2d2d;
+      --border-primary: #444444;
+    }
+
+    /* Basic layout */
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      line-height: 1.6;
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      box-sizing: border-box;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: clamp(20px, 4vw, 40px);
+      padding: clamp(20px, 4vw, 40px) clamp(16px, 4vw, 32px);
+      background: linear-gradient(135deg, #FF5722 0%, #E64A19 100%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-xl);
+      position: relative;
+      overflow: hidden;
+      color: white;
+    }
+
+    header h1 {
+      color: white;
+      margin-bottom: var(--spacing-sm);
+      font-family: 'Playfair Display', serif;
+    }
+
+    header .subtitle {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: clamp(14px, 2vw, 16px);
+      margin: 0;
+    }
+
+    /* Navigation */
+    .back-button {
+      display: inline-block;
+      margin-bottom: var(--spacing-lg);
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: var(--bg-surface2);
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-lg);
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Source Serif 4', serif;
+    }
+
+    .tab:hover {
+      background: var(--bg-surface2);
+    }
+
+    .tab.active {
+      background: var(--accent-practice);
+      color: white;
+      border-color: var(--accent-practice);
+    }
+
+    /* Content Sections */
+    .content-section {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Quiz Container */
+    .quiz-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .quiz-container h3 {
+      color: var(--accent-practice);
+      margin-top: 0;
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Quiz Question */
+    .quiz-question {
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-lg);
+      border-bottom: 1px solid var(--border-primary);
+    }
+
+    .quiz-question:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .quiz-question .number {
+      font-weight: 600;
+      color: var(--accent-practice);
+      margin-bottom: var(--spacing-sm);
+      font-size: clamp(16px, 2.5vw, 18px);
+    }
+
+    .quiz-question .text {
+      font-size: clamp(16px, 2.5vw, 18px);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .quiz-question .options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .quiz-question .option {
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--bg-surface2);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .quiz-question .option:hover {
+      background: var(--accent-practice);
+      color: white;
+    }
+
+    .quiz-question .option.correct {
+      background: var(--accent-vocabulary);
+      color: white;
+      border-color: var(--accent-vocabulary);
+    }
+
+    .quiz-question .option.incorrect {
+      background: #F44336;
+      color: white;
+      border-color: #F44336;
+    }
+
+    .quiz-question .explanation {
+      margin-top: var(--spacing-md);
+      padding: var(--spacing-md);
+      background: rgba(255, 87, 34, 0.1);
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--accent-practice);
+      display: none;
+    }
+
+    .quiz-question .explanation.show {
+      display: block;
+    }
+
+    /* Score Section */
+    .score-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+      text-align: center;
+    }
+
+    .score-section h3 {
+      color: var(--accent-practice);
+      margin-top: 0;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .score-section .score {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 600;
+      color: var(--accent-practice);
+      margin: var(--spacing-md) 0;
+    }
+
+    .score-section .message {
+      color: var(--text-secondary);
+      font-size: clamp(14px, 2vw, 16px);
+    }
+
+    .score-section .details {
+      margin-top: var(--spacing-md);
+      padding-top: var(--spacing-md);
+      border-top: 1px solid var(--border-primary);
+      text-align: left;
+    }
+
+    .score-section .detail-item {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--spacing-sm) 0;
+      border-bottom: 1px solid var(--border-primary);
+    }
+
+    .score-section .detail-item:last-child {
+      border-bottom: none;
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: var(--bg-surface2);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: var(--spacing-sm);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-practice), #E64A19);
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+
+    /* Timer */
+    .timer-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .timer {
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 600;
+      color: var(--accent-practice);
+    }
+
+    .timer-controls button {
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--accent-practice);
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-left: var(--spacing-sm);
+    }
+
+    .timer-controls button:hover {
+      background: #E64A19;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .tabs {
+        flex-direction: column;
+      }
+
+      .timer-container {
+        flex-direction: column;
+        gap: var(--spacing-md);
+      }
+
+      .timer-controls {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .theme-toggle {
+        top: 10px;
+        right: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      🌙
+    </button>
+
+    <!-- Back Button -->
+    <a href="english.html" class="back-button">← Quay lại Tiếng Anh</a>
+
+    <!-- Header -->
+    <header>
+      <h1>✍️ Luyện Tập Tiếng Anh</h1>
+      <p class="subtitle">Hệ thống bài tập và quiz kiểm tra kiến thức</p>
+    </header>
+
+    <!-- Progress -->
+    <div class="progress-container">
+      <h3>📊 Tổng Tiến Độ</h3>
+      <div class="progress-bar">
+        <div class="progress-fill" id="total-progress" style="width: 0%"></div>
+      </div>
+      <p id="total-progress-text">0/100 điểm</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active" data-tab="grammar-quiz">Quiz Ngữ Pháp</div>
+      <div class="tab" data-tab="vocabulary-quiz">Quiz Từ Vựng</div>
+      <div class="tab" data-tab="mixed-quiz">Quiz Tổng Hợp</div>
+      <div class="tab" data-tab="mock-test">Đề Thi Thử</div>
+    </div>
+
+    <!-- Grammar Quiz -->
+    <div class="content-section active" id="grammar-quiz">
+      <div class="quiz-container">
+        <h3>🎯 Quiz Ngữ Pháp (20 câu)</h3>
+
+        <div class="quiz-question">
+          <div class="number">Câu 1:</div>
+          <div class="text">She _____ to the gym every morning.</div>
+          <div class="options">
+            <div class="option" data-correct="false">go</div>
+            <div class="option" data-correct="true">goes</div>
+            <div class="option" data-correct="false">going</div>
+            <div class="option" data-correct="false">went</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Present Simple với chủ ngữ "she" (động từ thêm "s").
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="number">Câu 2:</div>
+          <div class="text">If I _____ you, I would accept the offer.</div>
+          <div class="options">
+            <div class="option" data-correct="false">am</div>
+            <div class="option" data-correct="true">were</div>
+            <div class="option" data-correct="false">was</div>
+            <div class="option" data-correct="false">be</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Câu điều kiện Type 2, luôn dùng "were" cho tất cả chủ ngữ.
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="number">Câu 3:</div>
+          <div class="text">This book _____ by many students.</div>
+          <div class="options">
+            <div class="option" data-correct="false">reads</div>
+            <div class="option" data-correct="true">is read</div>
+            <div class="option" data-correct="false">is reading</div>
+            <div class="option" data-correct="false">read</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Câu bị động Present Simple: "is read".
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="number">Câu 4:</div>
+          <div class="text">She asked me _____ I liked coffee.</div>
+          <div class="options">
+            <div class="option" data-correct="true">if</div>
+            <div class="option" data-correct="false">that</div>
+            <div class="option" data-correct="false">do</div>
+            <div class="option" data-correct="false">did</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Câu gián tiếp Yes/No question dùng "if".
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="number">Câu 5:</div>
+          <div class="text">The man _____ called you is my teacher.</div>
+          <div class="options">
+            <div class="option" data-correct="true">who</div>
+            <div class="option" data-correct="false">whom</div>
+            <div class="option" data-correct="false">which</div>
+            <div class="option" data-correct="false">whose</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Mệnh đề quan hệ chỉ người làm chủ ngữ dùng "who".
+          </div>
+        </div>
+      </div>
+
+      <!-- Score -->
+      <div class="score-section">
+        <h3>Điểm Số</h3>
+        <div class="score" id="grammar-score">0/5</div>
+        <div class="message" id="grammar-message">Hoàn thành tất cả câu hỏi để xem điểm số</div>
+      </div>
+    </div>
+
+    <!-- Vocabulary Quiz -->
+    <div class="content-section" id="vocabulary-quiz">
+      <div class="quiz-container">
+        <h3>🎯 Quiz Từ Vựng (20 câu)</h3>
+
+        <div class="quiz-question">
+          <div class="number">Câu 1:</div>
+          <div class="text">What does "analyze" mean?</div>
+          <div class="options">
+            <div class="option" data-correct="false">To create something new</div>
+            <div class="option" data-correct="true">To examine something in detail</div>
+            <div class="option" data-correct="false">To ignore something</div>
+            <div class="option" data-correct="false">To destroy something</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> "Analyze" có nghĩa là phân tích, nghiên cứu chi tiết.
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="number">Câu 2:</div>
+          <div class="text">Choose the correct collocation: "_____ a decision"</div>
+          <div class="options">
+            <div class="option" data-correct="false">Do</div>
+            <div class="option" data-correct="true">Make</div>
+            <div class="option" data-correct="false">Take</div>
+            <div class="option" data-correct="false">Get</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Collocation đúng là "make a decision".
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="number">Câu 3:</div>
+          <div class="text">What does "burn the midnight oil" mean?</div>
+          <div class="options">
+            <div class="option" data-correct="false">To waste oil</div>
+            <div class="option" data-correct="true">To work or study late into the night</div>
+            <div class="option" data-correct="false">To start a fire</div>
+            <div class="option" data-correct="false">To go to sleep early</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> "Burn the midnight oil" là idiom có nghĩa là làm việc/học tập khuya.
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="number">Câu 4:</div>
+          <div class="text">What is the noun form of "create"?</div>
+          <div class="options">
+            <div class="option" data-correct="false">creative</div>
+            <div class="option" data-correct="true">creation</div>
+            <div class="option" data-correct="false">creatively</div>
+            <div class="option" data-correct="false">creating</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Danh từ của "create" là "creation".
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="number">Câu 5:</div>
+          <div class="text">What is a "scholarship"?</div>
+          <div class="options">
+            <div class="option" data-correct="false">A type of exam</div>
+            <div class="option" data-correct="true">Financial aid for education</div>
+            <div class="option" data-correct="false">A school subject</div>
+            <div class="option" data-correct="false">A graduation ceremony</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> "Scholarship" là học bổng, hỗ trợ tài chính cho giáo dục.
+          </div>
+        </div>
+      </div>
+
+      <!-- Score -->
+      <div class="score-section">
+        <h3>Điểm Số</h3>
+        <div class="score" id="vocabulary-score">0/5</div>
+        <div class="message" id="vocabulary-message">Hoàn thành tất cả câu hỏi để xem điểm số</div>
+      </div>
+    </div>
+
+    <!-- Mixed Quiz -->
+    <div class="content-section" id="mixed-quiz">
+      <!-- Timer -->
+      <div class="timer-container">
+        <div class="timer" id="mixed-timer">15:00</div>
+        <div class="timer-controls">
+          <button onclick="startTimer('mixed')">Bắt đầu</button>
+          <button onclick="pauseTimer('mixed')">Tạm dừng</button>
+          <button onclick="resetTimer('mixed')">Đặt lại</button>
+        </div>
+      </div>
+
+      <div class="quiz-container">
+        <h3>🎯 Quiz Tổng Hợp (30 câu)</h3>
+
+        <div class="quiz-question">
+          <div class="number">Câu 1:</div>
+          <div class="text">She _____ English for five years.</div>
+          <div class="options">
+            <div class="option" data-correct="false">studies</div>
+            <div class="option" data-correct="false">studied</div>
+            <div class="option" data-correct="true">has been studying</div>
+            <div class="option" data-correct="false">is studying</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Present Perfect Continuous cho hành động kéo dài từ quá khứ đến hiện tại.
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="number">Câu 2:</div>
+          <div class="text">The book _____ I bought yesterday is very interesting.</div>
+          <div class="options">
+            <div class="option" data-correct="false">who</div>
+            <div class="option" data-correct="false">whom</div>
+            <div class="option" data-correct="true">which</div>
+            <div class="option" data-correct="false">whose</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Mệnh đề quan hệ chỉ vật dùng "which".
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="number">Câu 3:</div>
+          <div class="text">What does "evaluate" mean?</div>
+          <div class="options">
+            <div class="option" data-correct="false">To create</div>
+            <div class="option" data-correct="true">To assess or judge</div>
+            <div class="option" data-correct="false">To ignore</div>
+            <div class="option" data-correct="false">To destroy</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> "Evaluate" có nghĩa là đánh giá, thẩm định.
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="number">Câu 4:</div>
+          <div class="text">If I had known, I _____ you.</div>
+          <div class="options">
+            <div class="option" data-correct="false">will help</div>
+            <div class="option" data-correct="false">would help</div>
+            <div class="option" data-correct="true">would have helped</div>
+            <div class="option" data-correct="false">had helped</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Câu điều kiện Type 3: "would have + V3/ed".
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="number">Câu 5:</div>
+          <div class="text">Choose the correct word: "She is good _____ playing the piano."</div>
+          <div class="options">
+            <div class="option" data-correct="false">in</div>
+            <div class="option" data-correct="false">on</div>
+            <div class="option" data-correct="false">with</div>
+            <div class="option" data-correct="true">at</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> "Good at" là cấu trúc đúng.
+          </div>
+        </div>
+      </div>
+
+      <!-- Score -->
+      <div class="score-section">
+        <h3>Điểm Số</h3>
+        <div class="score" id="mixed-score">0/5</div>
+        <div class="message" id="mixed-message">Hoàn thành tất cả câu hỏi để xem điểm số</div>
+      </div>
+    </div>
+
+    <!-- Mock Test -->
+    <div class="content-section" id="mock-test">
+      <!-- Timer -->
+      <div class="timer-container">
+        <div class="timer" id="mock-timer">30:00</div>
+        <div class="timer-controls">
+          <button onclick="startTimer('mock')">Bắt đầu</button>
+          <button onclick="pauseTimer('mock')">Tạm dừng</button>
+          <button onclick="resetTimer('mock')">Đặt lại</button>
+        </div>
+      </div>
+
+      <div class="quiz-container">
+        <h3>📝 Đề Thi Thử (30 câu)</h3>
+
+        <div class="quiz-question">
+          <div class="number">Câu 1:</div>
+          <div class="text">Mathematics _____ my favorite subject.</div>
+          <div class="options">
+            <div class="option" data-correct="false">are</div>
+            <div class="option" data-correct="true">is</div>
+            <div class="option" data-correct="false">were</div>
+            <div class="option" data-correct="false">be</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> "Mathematics" là môn học, luôn dùng động từ số ít.
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="number">Câu 2:</div>
+          <div class="text">The house _____ I was born is very old.</div>
+          <div class="options">
+            <div class="option" data-correct="false">which</div>
+            <div class="option" data-correct="false">who</div>
+            <div class="option" data-correct="false">that</div>
+            <div class="option" data-correct="true">where</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Mệnh đề quan hệ chỉ nơi chốn dùng "where".
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="number">Câu 3:</div>
+          <div class="text">What does "significant" mean?</div>
+          <div class="options">
+            <div class="option" data-correct="false">Small</div>
+            <div class="option" data-correct="false">Unimportant</div>
+            <div class="option" data-correct="true">Important or meaningful</div>
+            <div class="option" data-correct="false">Temporary</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> "Significant" có nghĩa là quan trọng, có ý nghĩa.
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="number">Câu 4:</div>
+          <div class="text">Look at the sky! It _____ rain soon.</div>
+          <div class="options">
+            <div class="option" data-correct="false">will</div>
+            <div class="option" data-correct="true">is going to</div>
+            <div class="option" data-correct="false">shall</div>
+            <div class="option" data-correct="false">is to</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> "Be going to" dùng cho dự đoán dựa trên bằng chứng rõ ràng.
+          </div>
+        </div>
+
+        <div class="quiz-question">
+          <div class="number">Câu 5:</div>
+          <div class="text">He told me _____ late again.</div>
+          <div class="options">
+            <div class="option" data-correct="false">not be</div>
+            <div class="option" data-correct="false">don't be</div>
+            <div class="option" data-correct="true">not to be</div>
+            <div class="option" data-correct="false">not to be</div>
+          </div>
+          <div class="explanation">
+            <strong>Giải thích:</strong> Câu gián tiếp mệnh lệnh: "told someone not to V".
+          </div>
+        </div>
+      </div>
+
+      <!-- Score -->
+      <div class="score-section">
+        <h3>Điểm Số</h3>
+        <div class="score" id="mock-score">0/5</div>
+        <div class="message" id="mock-message">Hoàn thành tất cả câu hỏi để xem điểm số</div>
+        <div class="details">
+          <div class="detail-item">
+            <span>Ngữ pháp:</span>
+            <span id="mock-grammar">0/3</span>
+          </div>
+          <div class="detail-item">
+            <span>Từ vựng:</span>
+            <span id="mock-vocabulary">0/1</span>
+          </div>
+          <div class="detail-item">
+            <span>Mệnh đề quan hệ:</span>
+            <span id="mock-relative">0/1</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Theme Toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+
+      const toggle = document.querySelector('.theme-toggle');
+      toggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    }
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      const toggle = document.querySelector('.theme-toggle');
+      toggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    }
+
+    // Tab Switching
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('.content-section');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+
+        tab.classList.add('active');
+        const tabId = tab.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    // Timer Functionality
+    const timers = {
+      mixed: { time: 900, interval: null, running: false },
+      mock: { time: 1800, interval: null, running: false }
+    };
+
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function updateTimerDisplay(id) {
+      document.getElementById(`${id}-timer`).textContent = formatTime(timers[id].time);
+    }
+
+    function startTimer(id) {
+      if (timers[id].running) return;
+
+      timers[id].running = true;
+      timers[id].interval = setInterval(() => {
+        if (timers[id].time > 0) {
+          timers[id].time--;
+          updateTimerDisplay(id);
+        } else {
+          pauseTimer(id);
+          alert('Hết thời gian!');
+        }
+      }, 1000);
+    }
+
+    function pauseTimer(id) {
+      timers[id].running = false;
+      if (timers[id].interval) {
+        clearInterval(timers[id].interval);
+        timers[id].interval = null;
+      }
+    }
+
+    function resetTimer(id) {
+      pauseTimer(id);
+      const defaultTimes = { mixed: 900, mock: 1800 };
+      timers[id].time = defaultTimes[id];
+      updateTimerDisplay(id);
+    }
+
+    // Quiz Functionality
+    const scores = {
+      grammar: { correct: 0, total: 5 },
+      vocabulary: { correct: 0, total: 5 },
+      mixed: { correct: 0, total: 5 },
+      mock: { correct: 0, total: 5, grammar: 0, vocabulary: 0, relative: 0 }
+    };
+
+    document.querySelectorAll('.quiz-question').forEach((question, index) => {
+      const options = question.querySelectorAll('.option');
+      const explanation = question.querySelector('.explanation');
+      const sectionId = question.closest('.content-section').id;
+
+      options.forEach(option => {
+        option.addEventListener('click', function() {
+          const isCorrect = this.getAttribute('data-correct') === 'true';
+
+          // Disable all options
+          options.forEach(opt => opt.style.pointerEvents = 'none');
+
+          // Show correct/incorrect
+          if (isCorrect) {
+            this.classList.add('correct');
+            if (sectionId === 'mock-test') {
+              scores.mock.correct++;
+              // Categorize by question type
+              if (index === 0 || index === 3 || index === 4) scores.mock.grammar++;
+              else if (index === 2) scores.mock.vocabulary++;
+              else if (index === 1) scores.mock.relative++;
+            } else if (sectionId === 'grammar-quiz') {
+              scores.grammar.correct++;
+            } else if (sectionId === 'vocabulary-quiz') {
+              scores.vocabulary.correct++;
+            } else if (sectionId === 'mixed-quiz') {
+              scores.mixed.correct++;
+            }
+          } else {
+            this.classList.add('incorrect');
+            // Show correct answer
+            options.forEach(opt => {
+              if (opt.getAttribute('data-correct') === 'true') {
+                opt.classList.add('correct');
+              }
+            });
+          }
+
+          // Show explanation
+          explanation.classList.add('show');
+
+          // Update score
+          updateScore(sectionId);
+        });
+      });
+    });
+
+    function updateScore(sectionId) {
+      let score, scoreElement, messageElement;
+
+      if (sectionId === 'grammar-quiz') {
+        score = scores.grammar;
+        scoreElement = document.getElementById('grammar-score');
+        messageElement = document.getElementById('grammar-message');
+      } else if (sectionId === 'vocabulary-quiz') {
+        score = scores.vocabulary;
+        scoreElement = document.getElementById('vocabulary-score');
+        messageElement = document.getElementById('vocabulary-message');
+      } else if (sectionId === 'mixed-quiz') {
+        score = scores.mixed;
+        scoreElement = document.getElementById('mixed-score');
+        messageElement = document.getElementById('mixed-message');
+      } else if (sectionId === 'mock-test') {
+        score = scores.mock;
+        scoreElement = document.getElementById('mock-score');
+        messageElement = document.getElementById('mock-message');
+
+        // Update details
+        document.getElementById('mock-grammar').textContent = `${score.grammar}/3`;
+        document.getElementById('mock-vocabulary').textContent = `${score.vocabulary}/1`;
+        document.getElementById('mock-relative').textContent = `${score.relative}/1`;
+      }
+
+      scoreElement.textContent = `${score.correct}/${score.total}`;
+
+      const percentage = (score.correct / score.total) * 100;
+      let message = '';
+
+      if (percentage === 100) {
+        message = 'Tuyệt vời! Bạn đã trả lời đúng tất cả câu hỏi!';
+      } else if (percentage >= 80) {
+        message = 'Rất tốt! Cố gắng thêm một chút nữa!';
+      } else if (percentage >= 60) {
+        message = 'Khá! Hãy thử lại để đạt điểm cao hơn!';
+      } else if (percentage >= 40) {
+        message = 'Cần cố gắng nhiều hơn! Ôn lại kiến thức và thử lại!';
+      } else {
+        message = 'Hãy ôn lại kỹ kiến thức và thử lại!';
+      }
+
+      messageElement.textContent = message;
+
+      // Update total progress
+      updateTotalProgress();
+    }
+
+    function updateTotalProgress() {
+      const totalCorrect = scores.grammar.correct + scores.vocabulary.correct + scores.mixed.correct + scores.mock.correct;
+      const totalQuestions = scores.grammar.total + scores.vocabulary.total + scores.mixed.total + scores.mock.total;
+      const percentage = (totalCorrect / totalQuestions) * 100;
+
+      document.getElementById('total-progress').style.width = percentage + '%';
+      document.getElementById('total-progress-text').textContent = `${totalCorrect}/${totalQuestions} điểm`;
+
+      // Update practice progress
+      const progress = JSON.parse(localStorage.getItem('englishProgress')) || {
+        grammar: 0,
+        vocabulary: 0,
+        reading: 0,
+        practice: 0
+      };
+      progress.practice = Math.round(percentage);
+      localStorage.setItem('englishProgress', JSON.stringify(progress));
+    }
+
+    // Load saved progress
+    function loadProgress() {
+      const progress = JSON.parse(localStorage.getItem('englishProgress')) || {
+        grammar: 0,
+        vocabulary: 0,
+        reading: 0,
+        practice: 0
+      };
+
+      const totalProgress = (progress.grammar + progress.vocabulary + progress.reading + progress.practice) / 4;
+      document.getElementById('total-progress').style.width = totalProgress + '%';
+      document.getElementById('total-progress-text').textContent = `${Math.round(totalProgress)}/100 điểm`;
+    }
+
+    loadProgress();
+  </script>
+</body>
+
+</html>

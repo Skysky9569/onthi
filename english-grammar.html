@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ngữ Pháp Tiếng Anh – Ôn Thi Cuối Kỳ</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* CSS Variables */
+    :root {
+      --spacing-sm: 8px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+
+      /* Colors */
+      --text-primary: #333333;
+      --text-secondary: #666666;
+      --bg-main: #f9f9f9;
+      --bg-surface: #ffffff;
+      --bg-surface2: #f5f5f5;
+      --border-primary: #e0e0e0;
+
+      /* English Theme Colors */
+      --accent-grammar: #03A9F4;
+      --accent-vocabulary: #4CAF50;
+      --accent-reading: #7c6af7;
+      --accent-practice: #FF5722;
+      --accent-yellow: #ffeeba;
+    }
+
+    [data-theme="dark"] {
+      --text-primary: #f0f0f0;
+      --text-secondary: #aaaaaa;
+      --bg-main: #121212;
+      --bg-surface: #1e1e1e;
+      --bg-surface2: #2d2d2d;
+      --border-primary: #444444;
+    }
+
+    /* Basic layout */
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      line-height: 1.6;
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      box-sizing: border-box;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: clamp(20px, 4vw, 40px);
+      padding: clamp(20px, 4vw, 40px) clamp(16px, 4vw, 32px);
+      background: linear-gradient(135deg, #03A9F4 0%, #0288D1 100%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-xl);
+      position: relative;
+      overflow: hidden;
+      color: white;
+    }
+
+    header h1 {
+      color: white;
+      margin-bottom: var(--spacing-sm);
+      font-family: 'Playfair Display', serif;
+    }
+
+    header .subtitle {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: clamp(14px, 2vw, 16px);
+      margin: 0;
+    }
+
+    /* Navigation */
+    .back-button {
+      display: inline-block;
+      margin-bottom: var(--spacing-lg);
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: var(--bg-surface2);
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-lg);
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Source Serif 4', serif;
+    }
+
+    .tab:hover {
+      background: var(--bg-surface2);
+    }
+
+    .tab.active {
+      background: var(--accent-grammar);
+      color: white;
+      border-color: var(--accent-grammar);
+    }
+
+    /* Content Sections */
+    .content-section {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Grammar Cards */
+    .grammar-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .grammar-card h3 {
+      color: var(--accent-grammar);
+      margin-top: 0;
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Note Boxes */
+    .note-box {
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      margin: var(--spacing-md) 0;
+      border-left: 4px solid;
+    }
+
+    .note-box.info {
+      background: rgba(3, 169, 244, 0.1);
+      border-color: var(--accent-grammar);
+    }
+
+    .note-box.warning {
+      background: rgba(255, 152, 0, 0.1);
+      border-color: #FF9800;
+    }
+
+    .note-box.success {
+      background: rgba(76, 175, 80, 0.1);
+      border-color: var(--accent-vocabulary);
+    }
+
+    .note-box.error {
+      background: rgba(244, 67, 54, 0.1);
+      border-color: #F44336;
+    }
+
+    /* Formula Boxes */
+    .formula-box {
+      background: var(--bg-surface2);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* Tables */
+    .grammar-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: var(--spacing-md) 0;
+      background: var(--bg-surface);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .grammar-table th,
+    .grammar-table td {
+      padding: var(--spacing-sm) var(--spacing-md);
+      text-align: left;
+      border-bottom: 1px solid var(--border-primary);
+    }
+
+    .grammar-table th {
+      background: var(--bg-surface2);
+      font-weight: 600;
+    }
+
+    .grammar-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Quiz Section */
+    .quiz-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+    }
+
+    .quiz-question {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .quiz-option {
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--bg-surface2);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .quiz-option:hover {
+      background: var(--accent-grammar);
+      color: white;
+    }
+
+    .quiz-option.correct {
+      background: var(--accent-vocabulary);
+      color: white;
+      border-color: var(--accent-vocabulary);
+    }
+
+    .quiz-option.incorrect {
+      background: #F44336;
+      color: white;
+      border-color: #F44336;
+    }
+
+    .quiz-feedback {
+      margin-top: var(--spacing-sm);
+      padding: var(--spacing-sm);
+      border-radius: var(--radius-md);
+      display: none;
+    }
+
+    .quiz-feedback.show {
+      display: block;
+    }
+
+    .quiz-feedback.correct {
+      background: rgba(76, 175, 80, 0.1);
+      color: var(--accent-vocabulary);
+    }
+
+    .quiz-feedback.incorrect {
+      background: rgba(244, 67, 54, 0.1);
+      color: #F44336;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .tabs {
+        flex-direction: column;
+      }
+
+      .theme-toggle {
+        top: 10px;
+        right: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      🌙
+    </button>
+
+    <!-- Back Button -->
+    <a href="english.html" class="back-button">← Quay lại Tiếng Anh</a>
+
+    <!-- Header -->
+    <header>
+      <h1>📚 Ngữ Pháp Tiếng Anh</h1>
+      <p class="subtitle">Tổng hợp kiến thức ngữ pháp cho ôn thi cuối kỳ</p>
+    </header>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active" data-tab="tenses">Các Thì</div>
+      <div class="tab" data-tab="conditionals">Câu Điều Kiện</div>
+      <div class="tab" data-tab="passive">Câu Bị Động</div>
+      <div class="tab" data-tab="reported">Câu Gián Tiếp</div>
+      <div class="tab" data-tab="relative">Mệnh Đề Quan Hệ</div>
+      <div class="tab" data-tab="mistakes">Lỗi Thường Gặp</div>
+    </div>
+
+    <!-- Tenses Section -->
+    <div class="content-section active" id="tenses">
+      <div class="grammar-card">
+        <h3>📖 Present Tenses (Thì Hiện Tại)</h3>
+
+        <div class="note-box info">
+          <strong>Present Simple:</strong> Diễn tả sự thật hiển nhiên, thói quen, hoặc sự thật chung.
+        </div>
+
+        <div class="formula-box">
+          S + V(s/es) + O
+        </div>
+
+        <div class="note-box success">
+          <strong>Ví dụ:</strong><br>
+          • I study English every day.<br>
+          • She works at a bank.<br>
+          • The sun rises in the east.
+        </div>
+
+        <div class="note-box warning">
+          <strong>Lưu ý:</strong> Thêm "s" hoặc "es" cho động từ khi chủ ngữ là he/she/it/singular noun.
+        </div>
+      </div>
+
+      <div class="grammar-card">
+        <h3>📖 Past Tenses (Thì Quá Khứ)</h3>
+
+        <div class="note-box info">
+          <strong>Past Simple:</strong> Diễn tả hành động xảy ra và kết thúc trong quá khứ.
+        </div>
+
+        <div class="formula-box">
+          S + V2/ed + O
+        </div>
+
+        <div class="note-box success">
+          <strong>Ví dụ:</strong><br>
+          • I visited my grandmother yesterday.<br>
+          • She graduated from university in 2020.<br>
+          • They lived in Paris for five years.
+        </div>
+      </div>
+
+      <div class="grammar-card">
+        <h3>📖 Future Tenses (Thì Tương Lai)</h3>
+
+        <div class="note-box info">
+          <strong>Will + V:</strong> Diễn tả quyết định tức thời hoặc dự đoán.
+        </div>
+
+        <div class="formula-box">
+          S + will + V + O
+        </div>
+
+        <div class="note-box success">
+          <strong>Ví dụ:</strong><br>
+          • I will help you with your homework.<br>
+          • It will probably rain tomorrow.<br>
+          • She will arrive at 8 PM.
+        </div>
+
+        <div class="note-box info">
+          <strong>Be going to + V:</strong> Diễn tả kế hoạch đã định hoặc dự đoán dựa trên bằng chứng.
+        </div>
+
+        <div class="formula-box">
+          S + am/is/are + going to + V + O
+        </div>
+
+        <div class="note-box success">
+          <strong>Ví dụ:</strong><br>
+          • I am going to study medicine next year.<br>
+          • Look at those clouds! It's going to rain.<br>
+          • They are going to get married next month.
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-section">
+        <h3>🎯 Quiz: Các Thì</h3>
+
+        <div class="quiz-question">
+          <p><strong>1. She _____ to the gym every morning.</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">go</div>
+            <div class="quiz-option" data-correct="true">goes</div>
+            <div class="quiz-option" data-correct="false">going</div>
+            <div class="quiz-option" data-correct="false">went</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+          <p><strong>2. I _____ my homework last night.</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">do</div>
+            <div class="quiz-option" data-correct="false">am doing</div>
+            <div class="quiz-option" data-correct="true">did</div>
+            <div class="quiz-option" data-correct="false">have done</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+          <p><strong>3. Look at the sky! It _____ rain soon.</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">will</div>
+            <div class="quiz-option" data-correct="true">is going to</div>
+            <div class="quiz-option" data-correct="false">shall</div>
+            <div class="quiz-option" data-correct="false">is to</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conditionals Section -->
+    <div class="content-section" id="conditionals">
+      <div class="grammar-card">
+        <h3>📖 Conditional Sentences (Câu Điều Kiện)</h3>
+
+        <table class="grammar-table">
+          <thead>
+            <tr>
+              <th>Loại</th>
+              <th>Cấu Trúc</th>
+              <th>Công Dụng</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Type 0</td>
+              <td>If + S + V(present), S + V(present)</td>
+              <td>Sự thật hiển nhiên</td>
+            </tr>
+            <tr>
+              <td>Type 1</td>
+              <td>If + S + V(present), S + will + V</td>
+              <td>Khả năng xảy ra trong tương lai</td>
+            </tr>
+            <tr>
+              <td>Type 2</td>
+              <td>If + S + V2/ed, S + would + V</td>
+              <td>Giả định không có thật ở hiện tại</td>
+            </tr>
+            <tr>
+              <td>Type 3</td>
+              <td>If + S + had + V3/ed, S + would have + V3/ed</td>
+              <td>Giả định không có thật ở quá khứ</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="note-box success">
+          <strong>Ví dụ:</strong><br>
+          • Type 0: If you heat water, it boils.<br>
+          • Type 1: If it rains, I will stay at home.<br>
+          • Type 2: If I were you, I would accept the offer.<br>
+          • Type 3: If I had studied harder, I would have passed the exam.
+        </div>
+      </div>
+
+      <div class="grammar-card">
+        <h3>⚠️ Lưu Quan Trọng</h3>
+
+        <div class="note-box warning">
+          <strong>Trong câu điều kiện Type 2:</strong> Luôn dùng "were" thay vì "was" cho tất cả các chủ ngữ.
+        </div>
+
+        <div class="note-box error">
+          <strong>Sai:</strong> If I was you, I would do that.<br>
+          <strong>Đúng:</strong> If I were you, I would do that.
+        </div>
+
+        <div class="note-box warning">
+          <strong>Inversion (Đảo ngữ):</strong> Có thể đảo "If" bằng cách đưa were/had/should lên đầu câu.
+        </div>
+
+        <div class="note-box success">
+          <strong>Ví dụ:</strong><br>
+          • Were I you, I would accept the offer.<br>
+          • Had I known, I would have helped you.<br>
+          • Should you need any help, call me.
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-section">
+        <h3>🎯 Quiz: Câu Điều Kiện</h3>
+
+        <div class="quiz-question">
+          <p><strong>1. If I _____ you, I would accept the job offer.</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">am</div>
+            <div class="quiz-option" data-correct="true">were</div>
+            <div class="quiz-option" data-correct="false">was</div>
+            <div class="quiz-option" data-correct="false">be</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+          <p><strong>2. If I had known about the party, I _____ to it.</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">would go</div>
+            <div class="quiz-option" data-correct="false">will go</div>
+            <div class="quiz-option" data-correct="true">would have gone</div>
+            <div class="quiz-option" data-correct="false">had gone</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Passive Voice Section -->
+    <div class="content-section" id="passive">
+      <div class="grammar-card">
+        <h3>📖 Passive Voice (Câu Bị Động)</h3>
+
+        <div class="note-box info">
+          <strong>Công thức chung:</strong> Subject (bị động) + to be + V3/ed + by Agent (chủ động)
+        </div>
+
+        <table class="grammar-table">
+          <thead>
+            <tr>
+              <th>Thì</th>
+              <th>Câu Chủ Động</th>
+              <th>Câu Bị Động</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Present Simple</td>
+              <td>S + V(s/es) + O</td>
+              <td>S + am/is/are + V3/ed + by O</td>
+            </tr>
+            <tr>
+              <td>Past Simple</td>
+              <td>S + V2/ed + O</td>
+              <td>S + was/were + V3/ed + by O</td>
+            </tr>
+            <tr>
+              <td>Present Perfect</td>
+              <td>S + have/has + V3/ed + O</td>
+              <td>S + have/has + been + V3/ed + by O</td>
+            </tr>
+            <tr>
+              <td>Future Simple</td>
+              <td>S + will + V + O</td>
+              <td>S + will be + V3/ed + by O</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="note-box success">
+          <strong>Ví dụ:</strong><br>
+          • Active: She writes this letter.<br>
+          • Passive: This letter is written by her.<br><br>
+          • Active: They built this house last year.<br>
+          • Passive: This house was built by them last year.
+        </div>
+      </div>
+
+      <div class="grammar-card">
+        <h3>⚠️ Các Trường Hợp Đặc Biệt</h3>
+
+        <div class="note-box warning">
+          <strong>1. Câu có hai tân ngữ:</strong> Có thể chuyển một trong hai tân ngữ làm chủ ngữ.
+        </div>
+
+        <div class="note-box success">
+          <strong>Ví dụ:</strong><br>
+          • Active: He gave me a book.<br>
+          • Passive 1: I was given a book by him.<br>
+          • Passive 2: A book was given to me by him.
+        </div>
+
+        <div class="note-box warning">
+          <strong>2. Câu hỏi:</strong> Chuyển trợ động từ lên đầu và dùng to be + V3/ed.
+        </div>
+
+        <div class="note-box success">
+          <strong>Ví dụ:</strong><br>
+          • Active: Do they speak English?<br>
+          • Passive: Is English spoken by them?
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-section">
+        <h3>🎯 Quiz: Câu Bị Động</h3>
+
+        <div class="quiz-question">
+          <p><strong>1. This book _____ by many students.</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">reads</div>
+            <div class="quiz-option" data-correct="true">is read</div>
+            <div class="quiz-option" data-correct="false">is reading</div>
+            <div class="quiz-option" data-correct="false">read</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+          <p><strong>2. The house _____ by my grandfather last year.</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">builds</div>
+            <div class="quiz-option" data-correct="false">built</div>
+            <div class="quiz-option" data-correct="false">is built</div>
+            <div class="quiz-option" data-correct="true">was built</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reported Speech Section -->
+    <div class="content-section" id="reported">
+      <div class="grammar-card">
+        <h3>📖 Reported Speech (Câu Gián Tiếp)</h3>
+
+        <div class="note-box info">
+          <strong>Quy tắc cơ bản:</strong> Thay đổi đại từ, thời, và địa điểm khi chuyển từ câu trực tiếp sang gián tiếp.
+        </div>
+
+        <table class="grammar-table">
+          <thead>
+            <tr>
+              <th>Loại Câu</th>
+              <th>Câu Trực Tiếp</th>
+              <th>Câu Gián Tiếp</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Affirmative</td>
+              <td>S + V + that + S + V...</td>
+              <td>S + said/told + that + S + V...</td>
+            </tr>
+            <tr>
+              <td>Yes/No Question</td>
+              <td>If/whether + S + V...</td>
+              <td>S + asked + if/whether + S + V...</td>
+            </tr>
+            <tr>
+              <td>Wh- Question</td>
+              <td>Wh-word + S + V...</td>
+              <td>S + asked + wh-word + S + V...</td>
+            </tr>
+            <tr>
+              <td>Imperative</td>
+              <td>V + O</td>
+              <td>S + told/asked + O + to V / not to V</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="note-box success">
+          <strong>Ví dụ:</strong><br>
+          • Direct: "I am studying English," she said.<br>
+          • Indirect: She said that she was studying English.<br><br>
+          • Direct: "Do you like coffee?" he asked.<br>
+          • Indirect: He asked if I liked coffee.<br><br>
+          • Direct: "Where do you live?" she asked.<br>
+          • Indirect: She asked where I lived.
+        </div>
+      </div>
+
+      <div class="grammar-card">
+        <h3>⚠️ Thay Đổi Thời (Tense Changes)</h3>
+
+        <table class="grammar-table">
+          <thead>
+            <tr>
+              <th>Trực Tiếp</th>
+              <th>Gián Tiếp</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Present Simple → Past Simple</td>
+              <td>do/does → did</td>
+            </tr>
+            <tr>
+              <td>Present Continuous → Past Continuous</td>
+              <td>am/is/are V-ing → was/were V-ing</td>
+            </tr>
+            <tr>
+              <td>Present Perfect → Past Perfect</td>
+              <td>have/has V3 → had V3</td>
+            </tr>
+            <tr>
+              <td>Past Simple → Past Perfect</td>
+              <td>V2/ed → had V3</td>
+            </tr>
+            <tr>
+              <td>Will → Would</td>
+              <td>will V → would V</td>
+            </tr>
+            <tr>
+              <td>Can → Could</td>
+              <td>can V → could V</td>
+            </tr>
+            <tr>
+              <td>Must → Had to</td>
+              <td>must V → had to V</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-section">
+        <h3>🎯 Quiz: Câu Gián Tiếp</h3>
+
+        <div class="quiz-question">
+          <p><strong>1. She asked me _____ I liked coffee.</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="true">if</div>
+            <div class="quiz-option" data-correct="false">that</div>
+            <div class="quiz-option" data-correct="false">do</div>
+            <div class="quiz-option" data-correct="false">did</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+          <p><strong>2. He told me _____ late again.</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">not be</div>
+            <div class="quiz-option" data-correct="false">don't be</div>
+            <div class="quiz-option" data-correct="false">not to be</div>
+            <div class="quiz-option" data-correct="true">not to be</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Relative Clauses Section -->
+    <div class="content-section" id="relative">
+      <div class="grammar-card">
+        <h3>📖 Relative Clauses (Mệnh Đề Quan Hệ)</h3>
+
+        <div class="note-box info">
+          <strong>Đại từ quan hệ (Relative Pronouns):</strong> who, whom, which, that, whose, where, when, why
+        </div>
+
+        <table class="grammar-table">
+          <thead>
+            <tr>
+              <th>Đại Từ</th>
+              <th>Chức Năng</th>
+              <th>Ví Dụ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Who</td>
+              <td>Chỉ người (làm chủ ngữ)</td>
+              <td>The man who called you is my teacher.</td>
+            </tr>
+            <tr>
+              <td>Whom</td>
+              <td>Chỉ người (làm tân ngữ)</td>
+              <td>The girl whom I met is very nice.</td>
+            </tr>
+            <tr>
+              <td>Which</td>
+              <td>Chỉ vật/sự việc</td>
+              <td>The book which I bought is interesting.</td>
+            </tr>
+            <tr>
+              <td>That</td>
+              <td>Chỉ người hoặc vật</td>
+              <td>The car that I bought is red.</td>
+            </tr>
+            <tr>
+              <td>Whose</td>
+              <td>Sở hữu (của ai/cái gì)</td>
+              <td>The man whose car was stolen called the police.</td>
+            </tr>
+            <tr>
+              <td>Where</td>
+              <td>Chỉ nơi chốn</td>
+              <td>This is the house where I was born.</td>
+            </tr>
+            <tr>
+              <td>When</td>
+              <td>Chỉ thời gian</td>
+              <td>I remember the day when we first met.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grammar-card">
+        <h3>⚠️ Lưu Quan Trọng</h3>
+
+        <div class="note-box warning">
+          <strong>1. Defining vs Non-defining:</strong> Mệnh đề quan hệ xác định (không có dấu phẩy) và không xác định (có dấu phẩy).
+        </div>
+
+        <div class="note-box success">
+          <strong>Defining:</strong> The man who called you is my teacher. (cần thiết để xác định người nào)<br>
+          <strong>Non-defining:</strong> My father, who is a doctor, lives in Hanoi. (thông tin bổ sung)
+        </div>
+
+        <div class="note-box warning">
+          <strong>2. Không dùng "that" trong mệnh đề quan hệ không xác định:</strong>
+        </div>
+
+        <div class="note-box error">
+          <strong>Sai:</strong> My father, that is a doctor, lives in Hanoi.<br>
+          <strong>Đúng:</strong> My father, who is a doctor, lives in Hanoi.
+        </div>
+
+        <div class="note-box warning">
+          <strong>3. Reduction of Relative Clauses:</strong> Có thể rút gọn mệnh đề quan hệ bằng V-ing hoặc V3.
+        </div>
+
+        <div class="note-box success">
+          <strong>Ví dụ:</strong><br>
+          • The man who is standing there is my teacher.<br>
+          • The man standing there is my teacher.<br><br>
+          • The book which was written by Hemingway is famous.<br>
+          • The book written by Hemingway is famous.
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-section">
+        <h3>🎯 Quiz: Mệnh Đề Quan Hệ</h3>
+
+        <div class="quiz-question">
+          <p><strong>1. The man _____ called you is my teacher.</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="true">who</div>
+            <div class="quiz-option" data-correct="false">whom</div>
+            <div class="quiz-option" data-correct="false">which</div>
+            <div class="quiz-option" data-correct="false">whose</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+          <p><strong>2. This is the house _____ I was born.</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">which</div>
+            <div class="quiz-option" data-correct="false">who</div>
+            <div class="quiz-option" data-correct="false">that</div>
+            <div class="quiz-option" data-correct="true">where</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Common Mistakes Section -->
+    <div class="content-section" id="mistakes">
+      <div class="grammar-card">
+        <h3>⚠️ Các Lỗi Thường Gặp Trong Thi</h3>
+
+        <div class="note-box error">
+          <strong>1. Subject-Verb Agreement:</strong> Sai lầm phổ biến nhất là không khớp giữa chủ ngữ và động từ.
+        </div>
+
+        <div class="note-box success">
+          <strong>Đúng:</strong><br>
+          • He studies English every day.<br>
+          • They study English every day.<br>
+          • The news is good.<br>
+          • Mathematics is my favorite subject.
+        </div>
+
+        <div class="note-box error">
+          <strong>2. Articles (A/An/The):</strong> Sử dụng sai mạo từ.
+        </div>
+
+        <div class="note-box success">
+          <strong>Đúng:</strong><br>
+          • I saw a cat. (lần đầu tiên)<br>
+          • The cat was black. (đã xác định)<br>
+          • She is an engineer.<br>
+          • The sun rises in the east. (sự thật chung)
+        </div>
+
+        <div class="note-box error">
+          <strong>3. Prepositions:</strong> Sử dụng sai giới từ.
+        </div>
+
+        <div class="note-box success">
+          <strong>Đúng:</strong><br>
+          • I am good at English.<br>
+          • She is interested in music.<br>
+          • He is afraid of spiders.<br>
+          • We are proud of our country.
+        </div>
+
+        <div class="note-box error">
+          <strong>4. Word Order:</strong> Sai thứ tự từ trong câu.
+        </div>
+
+        <div class="note-box success">
+          <strong>Đúng:</strong><br>
+          • I go to school every day.<br>
+          • She speaks English well.<br>
+          • They arrived at the station on time.
+        </div>
+
+        <div class="note-box error">
+          <strong>5. Confusing Words:</strong> Nhầm lẫn các từ giống nhau.
+        </div>
+
+        <div class="note-box success">
+          <strong>Đúng:</strong><br>
+          • Their house is big. (sở hữu)<br>
+          • They are students. (chủ ngữ)<br>
+          • There is a book on the table. (chỉ sự tồn tại)<br><br>
+          • It's raining. (viết tắt của "it is")<br>
+          • Its color is red. (sở hữu)
+        </div>
+      </div>
+
+      <div class="grammar-card">
+        <h3>💡 Mẹo Làm Bài Thi</h3>
+
+        <div class="note-box info">
+          <strong>1. Đọc kỹ đề bài:</strong> Hiểu rõ yêu cầu trước khi trả lời.
+        </div>
+
+        <div class="note-box info">
+          <strong>2. Quét toàn bộ đề:</strong> Đọc nhanh tất cả câu hỏi để phân bổ thời gian.
+        </div>
+
+        <div class="note-box info">
+          <strong>3. Bắt đầu với câu dễ:</strong> Làm câu dễ trước để tăng tự tin.
+        </div>
+
+        <div class="note-box info">
+          <strong>4. Quản lý thời gian:</strong> Không dành quá nhiều thời gian cho một câu.
+        </div>
+
+        <div class="note-box info">
+          <strong>5. Kiểm tra lại:</strong> Dành 5-10 phút cuối để review bài.
+        </div>
+
+        <div class="note-box warning">
+          <strong>6. Đừng để trống:</strong> Hãy đoán nếu không biết, có thể đúng!
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-section">
+        <h3>🎯 Quiz: Lỗi Thường Gặp</h3>
+
+        <div class="quiz-question">
+          <p><strong>1. Mathematics _____ my favorite subject.</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">are</div>
+            <div class="quiz-option" data-correct="true">is</div>
+            <div class="quiz-option" data-correct="false">were</div>
+            <div class="quiz-option" data-correct="false">be</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+          <p><strong>2. She is good _____ playing the piano.</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">in</div>
+            <div class="quiz-option" data-correct="false">on</div>
+            <div class="quiz-option" data-correct="false">with</div>
+            <div class="quiz-option" data-correct="true">at</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Theme Toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+
+      const toggle = document.querySelector('.theme-toggle');
+      toggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    }
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      const toggle = document.querySelector('.theme-toggle');
+      toggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    }
+
+    // Tab Switching
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('.content-section');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs and sections
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+
+        // Add active class to clicked tab and corresponding section
+        tab.classList.add('active');
+        const tabId = tab.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    // Quiz Functionality
+    document.querySelectorAll('.quiz-option').forEach(option => {
+      option.addEventListener('click', function() {
+        const question = this.closest('.quiz-question');
+        const options = question.querySelectorAll('.quiz-option');
+        const feedback = question.querySelector('.quiz-feedback');
+        const isCorrect = this.getAttribute('data-correct') === 'true';
+
+        // Disable all options
+        options.forEach(opt => opt.style.pointerEvents = 'none');
+
+        // Show correct/incorrect
+        if (isCorrect) {
+          this.classList.add('correct');
+          feedback.textContent = '✅ Chính xác!';
+          feedback.className = 'quiz-feedback show correct';
+        } else {
+          this.classList.add('incorrect');
+          // Show correct answer
+          options.forEach(opt => {
+            if (opt.getAttribute('data-correct') === 'true') {
+              opt.classList.add('correct');
+            }
+          });
+          feedback.textContent = '❌ Sai rồi! Đáp án đúng đã được highlight.';
+          feedback.className = 'quiz-feedback show incorrect';
+        }
+      });
+    });
+
+    // Update progress
+    function updateProgress() {
+      const progress = JSON.parse(localStorage.getItem('englishProgress')) || {
+        grammar: 0,
+        vocabulary: 0,
+        reading: 0,
+        practice: 0
+      };
+
+      // Update grammar progress (demo: 25% for completing quiz)
+      progress.grammar = Math.min(100, progress.grammar + 25);
+      localStorage.setItem('englishProgress', JSON.stringify(progress));
+    }
+
+    // Call updateProgress when quiz is completed
+    let quizCompleted = false;
+    document.querySelectorAll('.quiz-option').forEach(option => {
+      option.addEventListener('click', () => {
+        if (!quizCompleted) {
+          updateProgress();
+          quizCompleted = true;
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

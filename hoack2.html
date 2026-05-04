@@ -30,51 +30,34 @@
     rel="stylesheet">
   
   <style>
-    /* CSS Variables (Added missing variables to ensure proper styling) */
     :root {
-      --spacing-sm: 8px;
-      --spacing-md: 16px;
-      --spacing-lg: 24px;
-      --radius-md: 8px;
-      --radius-lg: 12px;
-      --radius-xl: 16px;
-      
-      /* Colors */
-      --text-primary: #333333;
-      --text-secondary: #666666;
-      --bg-main: #f9f9f9;
+      --bg-main: #f1f8f6;
       --bg-surface: #ffffff;
-      --bg-surface2: #f5f5f5;
-      --border-primary: #e0e0e0;
-      
-      /* Theme colors */
-      --accent-chemistry: #00897B;      /* Teal - Màu chính cho Hóa học */
-      --accent-reaction: #FF7043;       /* Orange - Màu cho phản ứng */
-      --accent-formula: #CDDC39;        /* Lime - Màu cho công thức */
-      --accent-organic: #9C27B0;        /* Purple - Màu cho hữu cơ */
-      --accent-analysis: #2196F3;       /* Blue - Màu cho phân tích */
-      --accent-redox: #FF5722;          /* Deep Orange - Màu cho oxi hóa khử */
-      --accent-yellow: #ffeeba;
+      --text-primary: #1a3a34;
+      --text-secondary: #4a5d5a;
+      --accent-chemistry: #00897b;
+      --accent-glow: rgba(0, 137, 123, 0.2);
+      --border-color: #d1dbd9;
+      --radius-lg: 16px;
+      --radius-md: 12px;
     }
 
     [data-theme="dark"] {
-      --text-primary: #f0f0f0;
-      --text-secondary: #aaaaaa;
-      --bg-main: #121212;
-      --bg-surface: #1e1e1e;
-      --bg-surface2: #2d2d2d;
-      --border-primary: #444444;
+      --bg-main: #0a1a17;
+      --bg-surface: #122622;
+      --text-primary: #e1edea;
+      --text-secondary: #94a3a0;
+      --border-color: #2a3d3a;
+      --accent-chemistry: #4db6ac;
     }
 
-    /* Basic layout */
     body {
-      font-family: 'Source Serif 4', Georgia, serif;
-      line-height: 1.6;
+      font-family: 'Source Serif 4', serif;
       background-color: var(--bg-main);
       color: var(--text-primary);
       margin: 0;
-      padding: 0;
-      transition: background-color 0.3s, color 0.3s;
+      line-height: 1.7;
+      transition: all 0.3s ease;
     }
 
     .container {
@@ -83,364 +66,66 @@
       padding: 20px;
     }
 
-    /* Ensure proper font rendering for Vietnamese */
-    * {
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      box-sizing: border-box;
-    }
-
-    /* Header for chemistry */
     header {
       text-align: center;
-      margin-bottom: clamp(20px, 4vw, 40px);
-      padding: clamp(20px, 4vw, 40px) clamp(16px, 4vw, 32px);
-      background: linear-gradient(135deg, #00897B 0%, #00695C 100%);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: var(--radius-xl);
-      position: relative;
-      overflow: hidden;
+      padding: 50px 20px;
+      background: linear-gradient(135deg, #004d40 0%, #00897b 100%);
       color: white;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: -60px;
-      right: -60px;
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    header::after {
-      content: '';
-      position: absolute;
-      bottom: -40px;
-      left: -40px;
-      width: 160px;
-      height: 160px;
-      background: radial-gradient(circle, rgba(255, 193, 7, 0.12) 0%, transparent 70%);
-      pointer-events: none;
+      border-radius: var(--radius-lg);
+      margin-bottom: 40px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
 
     header h1 {
-      color: white;
-      margin-bottom: var(--spacing-sm);
       font-family: 'Playfair Display', serif;
-    }
-
-    header .subtitle {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: clamp(14px, 2vw, 16px);
+      font-size: clamp(2rem, 5vw, 3.5rem);
       margin: 0;
     }
 
-    header .badge {
-      display: inline-block;
-      padding: 4px 12px;
+    .badge {
+      background: rgba(255,255,255,0.2);
+      padding: 6px 16px;
       border-radius: 20px;
-      font-size: 12px;
+      font-size: 0.9rem;
       font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       margin-bottom: 15px;
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      display: inline-block;
     }
 
-    /* Tabs Navigation */
     .tabs-nav {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       justify-content: center;
+      position: sticky;
+      top: 20px;
+      z-index: 100;
     }
 
     .tab-btn {
-      padding: 10px 16px;
-      border: 1px solid var(--border-primary);
-      background-color: var(--bg-surface);
-      color: var(--text-primary);
-      border-radius: 20px;
+      padding: 10px 18px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 25px;
+      color: var(--text-secondary);
       cursor: pointer;
       font-weight: 600;
-      transition: all 0.2s ease;
-      text-decoration: none;
-      font-family: inherit;
-    }
-
-    .tab-btn:hover {
-      background-color: var(--bg-surface2);
-      transform: translateY(-2px);
-    }
-
-    /* Tab button active state */
-    .tab-btn.active {
-      color: white;
-      border-color: transparent;
-    }
-
-    .tab-btn.active.chemistry { background: var(--accent-chemistry); }
-    .tab-btn.active.organic { background: var(--accent-organic); }
-    .tab-btn.active.analysis { background: var(--accent-analysis); }
-    .tab-btn.active.redox { background: var(--accent-redox); }
-    .tab-btn.active.formula { background: var(--accent-formula); color: #333;}
-    .tab-btn.active.warning { background: #FFC107; color: #333;}
-    .tab-btn.active.success { background: #4CAF50; }
-    .tab-btn.active.info { background: #00BCD4; }
-
-    /* Search Bar */
-    .search-container {
-      position: relative;
-      margin-bottom: 20px;
-      max-width: 500px;
-      margin: 0 auto 30px auto;
-    }
-
-    .search-input {
-      width: 100%;
-      padding: 12px 20px 12px 40px;
-      border-radius: 25px;
-      border: 1px solid var(--border-primary);
-      background-color: var(--bg-surface);
-      color: var(--text-primary);
-      font-size: 16px;
-      font-family: inherit;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
       transition: all 0.3s;
     }
 
-    .search-input:focus {
-      outline: none;
-      border-color: var(--accent-chemistry);
-      box-shadow: 0 4px 12px rgba(0, 137, 123, 0.2);
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    /* Icon backgrounds for chemistry */
-    .icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      margin-right: 8px;
-    }
-
-    .icon-chemistry { background: rgba(0, 137, 123, 0.15); color: #00897B; }
-    .icon-organic { background: rgba(156, 39, 176, 0.15); color: #9C27B0; }
-    .icon-analysis { background: rgba(33, 150, 243, 0.15); color: #2196F3; }
-    .icon-redox { background: rgba(255, 87, 34, 0.15); color: #FF5722; }
-    .icon-formula { background: rgba(205, 220, 57, 0.15); color: #CDDC39; }
-
-    /* Section & Subsection styling */
-    .section {
-      background-color: var(--bg-surface);
-      border-radius: var(--radius-xl);
-      padding: var(--spacing-lg);
-      margin-bottom: 30px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-      border: 1px solid var(--border-primary);
-    }
-
-    .section-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      padding-bottom: 10px;
-      border-bottom: 2px solid var(--border-primary);
-      font-family: 'Playfair Display', serif;
-    }
-
-    .subsection { margin-bottom: 25px; }
-    .subsection-title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 15px;
-      color: var(--text-primary);
-    }
-
-    /* Section title colors */
-    .section-title.chemistry { color: var(--accent-chemistry); border-bottom-color: var(--accent-chemistry); }
-    .section-title.organic { color: var(--accent-organic); border-bottom-color: var(--accent-organic); }
-    .section-title.analysis { color: var(--accent-analysis); border-bottom-color: var(--accent-analysis); }
-    .section-title.redox { color: var(--accent-redox); border-bottom-color: var(--accent-redox); }
-
-    /* Card small variants */
-    .card-small {
-      background-color: var(--bg-main);
-      border-radius: var(--radius-md);
-      padding: 15px;
-      margin-bottom: 15px;
-      border: 1px solid var(--border-primary);
-    }
-
-    .card-small-title {
-      font-weight: 600;
-      margin-bottom: 10px;
-      font-size: 1.05rem;
-    }
-
-    .card-small.chemistry { border-left: 4px solid var(--accent-chemistry); }
-    .card-small.organic { border-left: 4px solid var(--accent-organic); }
-    .card-small.analysis { border-left: 4px solid var(--accent-analysis); }
-    .card-small.redox { border-left: 4px solid var(--accent-redox); }
-
-    /* Formula box variants for chemistry */
-    .formula-box {
-      border: 1px solid var(--border-primary);
-      border-radius: var(--radius-md);
-      padding: 12px 15px;
-      margin: 10px 0;
-      overflow-x: auto;
-      text-align: center;
-    }
-
-    .formula-box p {
-      margin-top: 0;
-      text-align: left;
-    }
-
-    .formula-box.chemistry {
-      border-color: var(--accent-chemistry);
-      background: linear-gradient(135deg, rgba(0, 137, 123, 0.05) 0%, rgba(0, 137, 123, 0.1) 100%);
-    }
-
-    .formula-box.reaction {
-      border-color: var(--accent-reaction);
-      background: linear-gradient(135deg, rgba(255, 112, 67, 0.05) 0%, rgba(255, 112, 67, 0.1) 100%);
-    }
-
-    .formula-box.redox {
-      border-color: var(--accent-redox);
-      background: linear-gradient(135deg, rgba(255, 87, 34, 0.05) 0%, rgba(255, 87, 34, 0.1) 100%);
-    }
-
-    .formula-box.organic {
-      border-color: var(--accent-organic);
-      background: linear-gradient(135deg, rgba(156, 39, 176, 0.05) 0%, rgba(156, 39, 176, 0.1) 100%);
-    }
-
-    .formula-box.analysis {
-      border-color: var(--accent-analysis);
-      background: linear-gradient(135deg, rgba(33, 150, 243, 0.05) 0%, rgba(33, 150, 243, 0.1) 100%);
-    }
-
-    /* Note box variants for chemistry */
-    .note-box {
-      border: 1px solid var(--border-primary);
-      border-radius: var(--radius-md);
-      padding: 15px;
-      margin: 15px 0;
-      background-color: var(--bg-surface2);
-    }
-
-    .note-box.chemistry {
-      border-color: var(--accent-chemistry);
-      background: linear-gradient(135deg, rgba(0, 137, 123, 0.05) 0%, rgba(0, 137, 123, 0.1) 100%);
-    }
-
-    .note-box.reaction {
-      border-color: var(--accent-reaction);
-      background: linear-gradient(135deg, rgba(255, 112, 67, 0.05) 0%, rgba(255, 112, 67, 0.1) 100%);
-    }
-    
-    .note-box.redox {
-      border-color: var(--accent-redox);
-      background: linear-gradient(135deg, rgba(255, 87, 34, 0.05) 0%, rgba(255, 87, 34, 0.1) 100%);
-    }
-
-    /* Table enhancements */
-    .table-wrap {
-      overflow-x: auto;
-      margin: 12px 0;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-primary);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: clamp(12px, 1.6vw, 14px);
-      min-width: 300px;
-    }
-
-    th {
+    .tab-btn.active {
       background: var(--accent-chemistry);
-      color: #fff;
-      padding: 10px 14px;
-      text-align: left;
-      font-family: 'Source Serif 4', serif;
-      font-weight: 600;
+      color: white;
+      border-color: var(--accent-chemistry);
+      box-shadow: 0 4px 12px var(--accent-glow);
     }
 
-    td {
-      padding: 9px 14px;
-      border-bottom: 1px solid var(--border-primary);
-      vertical-align: middle;
-    }
-
-    tr:nth-child(even) {
-      background: var(--bg-surface2);
-    }
-
-    tr:hover {
-      background: rgba(0, 137, 123, 0.05);
-    }
-
-    /* Dark mode adjustments */
-    [data-theme="dark"] .formula-box.chemistry { background: linear-gradient(135deg, rgba(0, 137, 123, 0.1) 0%, rgba(0, 137, 123, 0.2) 100%); }
-    [data-theme="dark"] .formula-box.reaction { background: linear-gradient(135deg, rgba(255, 112, 67, 0.1) 0%, rgba(255, 112, 67, 0.2) 100%); }
-    [data-theme="dark"] .formula-box.redox { background: linear-gradient(135deg, rgba(255, 87, 34, 0.1) 0%, rgba(255, 87, 34, 0.2) 100%); }
-    [data-theme="dark"] .formula-box.organic { background: linear-gradient(135deg, rgba(156, 39, 176, 0.1) 0%, rgba(156, 39, 176, 0.2) 100%); }
-    [data-theme="dark"] .formula-box.analysis { background: linear-gradient(135deg, rgba(33, 150, 243, 0.1) 0%, rgba(33, 150, 243, 0.2) 100%); }
-    [data-theme="dark"] th { background: var(--accent-chemistry); }
-    [data-theme="dark"] tr:nth-child(even) { background: var(--bg-surface2); }
-    [data-theme="dark"] tr:hover { background: rgba(0, 137, 123, 0.1); }
-    
-    [data-theme="dark"] .note-box.chemistry { background: linear-gradient(135deg, rgba(0, 137, 123, 0.1) 0%, rgba(0, 137, 123, 0.2) 100%); }
-    [data-theme="dark"] .note-box.reaction { background: linear-gradient(135deg, rgba(255, 112, 67, 0.1) 0%, rgba(255, 112, 67, 0.2) 100%); }
-    [data-theme="dark"] .note-box.redox { background: linear-gradient(135deg, rgba(255, 87, 34, 0.1) 0%, rgba(255, 87, 34, 0.2) 100%); }
-
-    /* Halogen reaction styling */
-    .halogen-reaction {
-      margin: var(--spacing-md) 0;
-      padding: var(--spacing-md);
-      border-radius: var(--radius-lg);
-      background: linear-gradient(135deg, rgba(255, 87, 34, 0.05) 0%, rgba(255, 87, 34, 0.1) 100%);
-      border-left: 4px solid var(--accent-redox);
-    }
-
-    .halogen-reaction-title {
-      font-weight: 600;
-      color: var(--accent-redox);
-      margin-bottom: var(--spacing-sm);
-    }
-
-    .halogen-reaction-note {
-      font-size: 13px;
-      color: var(--text-secondary);
-      margin-top: var(--spacing-sm);
-      line-height: 1.6;
-    }
-
-    /* Tab panel styling */
     .tab-panel {
       display: none;
-      animation: fadeIn 0.3s ease;
-      margin-top: 20px;
-      margin-bottom: 20px;
+      animation: fadeIn 0.4s ease;
     }
 
     .tab-panel.active {
@@ -448,152 +133,86 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
     }
 
-    /* Home Button */
-    .home-btn {
-      position: fixed;
-      bottom: 140px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: var(--btn-primary);
-      color: var(--btn-text);
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      transition: all 0.3s;
-      z-index: 1000;
-    }
-
-    .home-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .home-btn svg {
-      width: 24px;
-      height: 24px;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    /* Scroll to Top Button */
-    .scroll-to-top {
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
+    .card, .section, .card-small {
       background: var(--bg-surface);
-      border: 1px solid var(--border-primary);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
+      border-radius: var(--radius-md);
+      padding: 25px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 25px;
+    }
+
+    .section-title, .subsection-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--accent-chemistry);
+      border-bottom: 2px solid var(--accent-glow);
+      padding-bottom: 5px;
+    }
+
+    .formula-box {
+      background: var(--bg-main);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      margin: 15px 0;
+      text-align: center;
+      border: 1px dashed var(--accent-chemistry);
+    }
+
+    .note-box {
+      background: rgba(0, 137, 123, 0.05);
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent-chemistry);
+      margin-top: 15px;
+    }
+
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 15px 25px;
+      border-radius: 30px;
+      border: 2px solid var(--border-color);
+      background: var(--bg-surface);
       color: var(--text-primary);
-      transition: all 0.3s;
-      opacity: 0;
-      visibility: hidden;
+      font-size: 1rem;
+      outline: none;
     }
 
-    .scroll-to-top.visible {
-      opacity: 1;
-      visibility: visible;
+    .search-input:focus {
+      border-color: var(--accent-chemistry);
     }
 
-    .scroll-to-top:hover {
-      transform: scale(1.1);
-    }
-
-    .scroll-to-top svg {
-      width: 24px;
-      height: 24px;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    /* Theme Toggle Button */
     .theme-toggle {
       position: fixed;
-      bottom: 20px;
+      top: 20px;
       right: 20px;
-      width: 50px;
-      height: 50px;
+      z-index: 1000;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
+      border: none;
       background: var(--bg-surface);
-      border: 1px solid var(--border-primary);
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 100;
       color: var(--text-primary);
-      transition: all 0.3s;
     }
 
-    .theme-toggle:hover {
-      transform: scale(1.1);
-    }
-
-    .theme-toggle svg {
-      width: 24px;
-      height: 24px;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      fill: none;
-    }
-
-    /* Typography fixes */
-    ul, ol {
-      margin-top: 0.5em;
-      padding-left: 1.5rem;
-    }
-
-    li {
-      margin-bottom: 0.3em;
-    }
-
-    /* MathJax styling fixes */
-    .formula-box mjx-container {
-      overflow-x: auto;
-      overflow-y: hidden;
-      max-width: 100%;
-    }
-
-    /* List item fixes for dark mode */
-    [data-theme="dark"] mark {
-      background: #856404;
-      color: #fff;
-    }
   </style>
 </head>
 
 <body>
-  <!-- Home Button -->
-  <a href="index.html" class="home-btn" aria-label="Home" target="_self">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-      <polyline points="9,22 9,12 15,12 15,22"/>
-    </svg>
-  </a>
-
   <!-- Scroll to Top Button -->
   <button class="scroll-to-top" onclick="scrollToTop()" aria-label="Scroll to top">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -635,7 +254,8 @@
       <button class="tab-btn analysis" onclick="switchTab('phuongphap', this)">📝 Phương pháp</button>
       <button class="tab-btn warning" onclick="switchTab('luuy', this)">⚠️ Lưu ý</button>
       <button class="tab-btn success" onclick="switchTab('baitap', this)">🎯 Bài tập</button>
-      <button class="tab-btn info" onclick="switchTab('meo', this)">💡 Mẹo</button>
+      <button class="tab-btn" onclick="switchTab('meo', this)">💡 Mẹo</button>
+      <a href="index.html" class="tab-btn" target="_self">🏠 HOME</a>
     </nav>
 
     <!-- Tab Panels -->
@@ -1819,8 +1439,8 @@
           <div class="card-small redox">
             <div class="card-small-title">Biểu thức tốc độ:</div>
             <div class="formula-box redox">
-              <p>v = k·[H₂O₂]²·[O₂]</p>
-              $$v = k \cdot [H_2O_2]^2 \cdot [O_2]$$
+              <p>v = k·[H₂O₂]</p>
+              $$v = k \cdot [H_2O_2]$$
             </div>
           </div>
         </div>
@@ -1979,6 +1599,29 @@
                 </tbody>
               </table>
             </div>
+          </div>
+        </div>
+
+        <!-- Công thức tính biến thiên Enthalpy chuẩn -->
+        <div class="subsection">
+          <div class="subsection-title">4. Công thức tính biến thiên Enthalpy chuẩn (\(\Delta_r H^o_{298}\))</div>
+          
+          <div class="card-small redox">
+            <div class="card-small-title">Cách 1: Tính theo nhiệt tạo thành (\(\Delta_f H^o_{298}\))</div>
+            <p>Dùng khi đề bài cho giá trị nhiệt tạo thành của các chất.</p>
+            <div class="formula-box redox">
+              $$\Delta_r H^o_{298} = \sum \Delta_f H^o_{298} (\text{sản phẩm}) - \sum \Delta_f H^o_{298} (\text{chất đầu})$$
+            </div>
+            <p><em>Quy tắc:</em> <strong>Sau trừ Trước</strong> (Nhân với hệ số tỉ lượng tương ứng).</p>
+          </div>
+
+          <div class="card-small redox">
+            <div class="card-small-title">Cách 2: Tính theo năng lượng liên kết (\(E_b\))</div>
+            <p>Dùng cho phản ứng giữa các chất khí, khi đề bài cho năng lượng liên kết.</p>
+            <div class="formula-box redox">
+              $$\Delta_r H^o_{298} = \sum E_b (\text{chất đầu}) - \sum E_b (\text{sản phẩm})$$
+            </div>
+            <p><em>Quy tắc:</em> <strong>Trước trừ Sau</strong> (Ngược lại với nhiệt tạo thành).</p>
           </div>
         </div>
 
@@ -2265,6 +1908,21 @@
             </div>
             <div class="formula-box">
               <p><strong>Tỷ lệ mol:</strong> $$\frac{n_A}{n_B} = \frac{a}{b} \quad \text{(theo phương trình: } aA + bB \rightarrow cC + dD)$$</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">8. Công thức nhiệt hóa học</div>
+          <div class="card-small">
+            <div class="formula-box">
+              <p><strong>Tính theo nhiệt tạo thành:</strong> $$\Delta_r H^o_{298} = \sum \Delta_f H^o_{298} (sp) - \sum \Delta_f H^o_{298} (cd)$$</p>
+            </div>
+            <div class="formula-box">
+              <p><strong>Tính theo năng lượng liên kết:</strong> $$\Delta_r H^o_{298} = \sum E_b (cd) - \sum E_b (sp)$$</p>
+            </div>
+            <div class="formula-box">
+              <p><strong>Hệ số nhiệt độ:</strong> $$\frac{v_2}{v_1} = \gamma^{\frac{T_2 - T_1}{10}}$$</p>
             </div>
           </div>
         </div>

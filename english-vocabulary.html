@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Từ Vựng Tiếng Anh – Ôn Thi Cuối Kỳ</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* CSS Variables */
+    :root {
+      --spacing-sm: 8px;
+      --spacing-md: 16px;
+      --spacing-lg: 24px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+
+      /* Colors */
+      --text-primary: #333333;
+      --text-secondary: #666666;
+      --bg-main: #f9f9f9;
+      --bg-surface: #ffffff;
+      --bg-surface2: #f5f5f5;
+      --border-primary: #e0e0e0;
+
+      /* English Theme Colors */
+      --accent-grammar: #03A9F4;
+      --accent-vocabulary: #4CAF50;
+      --accent-reading: #7c6af7;
+      --accent-practice: #FF5722;
+      --accent-yellow: #ffeeba;
+    }
+
+    [data-theme="dark"] {
+      --text-primary: #f0f0f0;
+      --text-secondary: #aaaaaa;
+      --bg-main: #121212;
+      --bg-surface: #1e1e1e;
+      --bg-surface2: #2d2d2d;
+      --border-primary: #444444;
+    }
+
+    /* Basic layout */
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      line-height: 1.6;
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      box-sizing: border-box;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: clamp(20px, 4vw, 40px);
+      padding: clamp(20px, 4vw, 40px) clamp(16px, 4vw, 32px);
+      background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-xl);
+      position: relative;
+      overflow: hidden;
+      color: white;
+    }
+
+    header h1 {
+      color: white;
+      margin-bottom: var(--spacing-sm);
+      font-family: 'Playfair Display', serif;
+    }
+
+    header .subtitle {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: clamp(14px, 2vw, 16px);
+      margin: 0;
+    }
+
+    /* Navigation */
+    .back-button {
+      display: inline-block;
+      margin-bottom: var(--spacing-lg);
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: var(--bg-surface2);
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-lg);
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Source Serif 4', serif;
+    }
+
+    .tab:hover {
+      background: var(--bg-surface2);
+    }
+
+    .tab.active {
+      background: var(--accent-vocabulary);
+      color: white;
+      border-color: var(--accent-vocabulary);
+    }
+
+    /* Content Sections */
+    .content-section {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Flashcard System */
+    .flashcard-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .flashcard {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .flashcard:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .flashcard.flipped {
+      background: linear-gradient(135deg, var(--accent-vocabulary), #388E3C);
+      color: white;
+    }
+
+    .flashcard .word {
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .flashcard .phonetic {
+      font-size: clamp(14px, 2vw, 16px);
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-sm);
+      font-style: italic;
+    }
+
+    .flashcard.flipped .phonetic {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .flashcard .definition {
+      font-size: clamp(14px, 2vw, 16px);
+      color: var(--text-secondary);
+    }
+
+    .flashcard.flipped .definition {
+      color: white;
+    }
+
+    .flashcard .example {
+      font-size: clamp(12px, 2vw, 14px);
+      color: var(--text-secondary);
+      margin-top: var(--spacing-sm);
+      font-style: italic;
+    }
+
+    .flashcard.flipped .example {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .flashcard .hint {
+      position: absolute;
+      bottom: var(--spacing-sm);
+      right: var(--spacing-sm);
+      font-size: 12px;
+      color: var(--text-secondary);
+      opacity: 0.5;
+    }
+
+    /* Vocabulary List */
+    .vocabulary-list {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .vocabulary-item {
+      padding: var(--spacing-md);
+      border-bottom: 1px solid var(--border-primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .vocabulary-item:last-child {
+      border-bottom: none;
+    }
+
+    .vocabulary-item:hover {
+      background: var(--bg-surface2);
+    }
+
+    .vocabulary-word {
+      font-weight: 600;
+      color: var(--accent-vocabulary);
+    }
+
+    .vocabulary-definition {
+      color: var(--text-secondary);
+      font-size: clamp(14px, 2vw, 16px);
+    }
+
+    /* Word Cards */
+    .word-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .word-card h3 {
+      color: var(--accent-vocabulary);
+      margin-top: 0;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .word-card .word {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 600;
+      color: var(--accent-vocabulary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .word-card .phonetic {
+      font-size: clamp(14px, 2vw, 16px);
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-md);
+      font-style: italic;
+    }
+
+    .word-card .part-of-speech {
+      display: inline-block;
+      padding: 4px 8px;
+      background: var(--accent-vocabulary);
+      color: white;
+      border-radius: 4px;
+      font-size: 12px;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .word-card .definition {
+      font-size: clamp(14px, 2vw, 16px);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .word-card .example {
+      background: var(--bg-surface2);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--accent-vocabulary);
+      font-style: italic;
+    }
+
+    /* Quiz Section */
+    .quiz-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+    }
+
+    .quiz-question {
+      margin-bottom: var(--spacing-md);
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .quiz-option {
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--bg-surface2);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .quiz-option:hover {
+      background: var(--accent-vocabulary);
+      color: white;
+    }
+
+    .quiz-option.correct {
+      background: var(--accent-vocabulary);
+      color: white;
+      border-color: var(--accent-vocabulary);
+    }
+
+    .quiz-option.incorrect {
+      background: #F44336;
+      color: white;
+      border-color: #F44336;
+    }
+
+    .quiz-feedback {
+      margin-top: var(--spacing-sm);
+      padding: var(--spacing-sm);
+      border-radius: var(--radius-md);
+      display: none;
+    }
+
+    .quiz-feedback.show {
+      display: block;
+    }
+
+    .quiz-feedback.correct {
+      background: rgba(76, 175, 80, 0.1);
+      color: var(--accent-vocabulary);
+    }
+
+    .quiz-feedback.incorrect {
+      background: rgba(244, 67, 54, 0.1);
+      color: #F44336;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: var(--bg-surface2);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: var(--spacing-sm);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-vocabulary), #388E3C);
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .tabs {
+        flex-direction: column;
+      }
+
+      .flashcard-container {
+        grid-template-columns: 1fr;
+      }
+
+      .theme-toggle {
+        top: 10px;
+        right: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      🌙
+    </button>
+
+    <!-- Back Button -->
+    <a href="english.html" class="back-button">← Quay lại Tiếng Anh</a>
+
+    <!-- Header -->
+    <header>
+      <h1>📖 Từ Vựng Tiếng Anh</h1>
+      <p class="subtitle">Hệ thống từ vựng theo chủ đề và flashcard thông minh</p>
+    </header>
+
+    <!-- Progress -->
+    <div class="progress-container">
+      <h3>📊 Tiến độ học từ vựng</h3>
+      <div class="progress-bar">
+        <div class="progress-fill" id="vocab-progress" style="width: 0%"></div>
+      </div>
+      <p id="vocab-progress-text">0/50 từ</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active" data-tab="academic">Từ Vựng Học Thuật</div>
+      <div class="tab" data-tab="exam">Từ Vựng Thi Cử</div>
+      <div class="tab" data-tab="collocations">Collocations</div>
+      <div class="tab" data-tab="idioms">Idioms & Phrases</div>
+      <div class="tab" data-tab="formation">Word Formation</div>
+    </div>
+
+    <!-- Academic Vocabulary Section -->
+    <div class="content-section active" id="academic">
+      <h3>📚 Từ Vựng Học Thuật</h3>
+
+      <div class="flashcard-container">
+        <div class="flashcard" onclick="flipCard(this)">
+          <div class="word">Analyze</div>
+          <div class="phonetic">/ˈænəlaɪz/</div>
+          <div class="definition">Phân tích</div>
+          <div class="example">"We need to analyze the data carefully."</div>
+          <div class="hint">Click để xem nghĩa tiếng Việt</div>
+        </div>
+
+        <div class="flashcard" onclick="flipCard(this)">
+          <div class="word">Evaluate</div>
+          <div class="phonetic">/ɪˈvæljueɪt/</div>
+          <div class="definition">Đánh giá</div>
+          <div class="example">"The teacher will evaluate your performance."</div>
+          <div class="hint">Click để xem nghĩa tiếng Việt</div>
+        </div>
+
+        <div class="flashcard" onclick="flipCard(this)">
+          <div class="word">Demonstrate</div>
+          <div class="phonetic">/ˈdemənstreɪt/</div>
+          <div class="definition">Chứng minh</div>
+          <div class="example">"She demonstrated her skills in the competition."</div>
+          <div class="hint">Click để xem nghĩa tiếng Việt</div>
+        </div>
+
+        <div class="flashcard" onclick="flipCard(this)">
+          <div class="word">Significant</div>
+          <div class="phonetic">/sɪɡˈnɪfɪkənt/</div>
+          <div class="definition">Quan trọng</div>
+          <div class="example">"This is a significant improvement."</div>
+          <div class="hint">Click để xem nghĩa tiếng Việt</div>
+        </div>
+
+        <div class="flashcard" onclick="flipCard(this)">
+          <div class="word">Establish</div>
+          <div class="phonetic">/ɪˈstæblɪʃ/</div>
+          <div class="definition">Thiết lập</div>
+          <div class="example">"The company was established in 2010."</div>
+          <div class="hint">Click để xem nghĩa tiếng Việt</div>
+        </div>
+
+        <div class="flashcard" onclick="flipCard(this)">
+          <div class="word">Consequently</div>
+          <div class="phonetic">/ˈkɒnsɪkwəntli/</div>
+          <div class="definition">Hậu quả là</div>
+          <div class="example">"He didn't study, consequently he failed."</div>
+          <div class="hint">Click để xem nghĩa tiếng Việt</div>
+        </div>
+      </div>
+
+      <!-- Word Cards Detail -->
+      <div class="word-card">
+        <h3>Analyze</h3>
+        <div class="word">Analyze</div>
+        <div class="phonetic">/ˈænəlaɪz/</div>
+        <span class="part-of-speech">Verb</span>
+        <div class="definition">
+          <strong>Nghĩa:</strong> Phân tích, nghiên cứu chi tiết<br>
+          <strong>Từ liên quan:</strong> Analysis (noun), Analytical (adj)
+        </div>
+        <div class="example">
+          "We need to analyze the data carefully before making a decision."<br>
+          "The scientist analyzed the results of the experiment."
+        </div>
+      </div>
+
+      <div class="word-card">
+        <h3>Evaluate</h3>
+        <div class="word">Evaluate</div>
+        <div class="phonetic">/ɪˈvæljueɪt/</div>
+        <span class="part-of-speech">Verb</span>
+        <div class="definition">
+          <strong>Nghĩa:</strong> Đánh giá, thẩm định<br>
+          <strong>Từ liên quan:</strong> Evaluation (noun), Evaluative (adj)
+        </div>
+        <div class="example">
+          "The teacher will evaluate your performance based on several criteria."<br>
+          "We need to evaluate the effectiveness of this new method."
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-section">
+        <h3>🎯 Quiz: Từ Vựng Học Thuật</h3>
+
+        <div class="quiz-question">
+          <p><strong>1. What does "analyze" mean?</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">To create something new</div>
+            <div class="quiz-option" data-correct="true">To examine something in detail</div>
+            <div class="quiz-option" data-correct="false">To ignore something</div>
+            <div class="quiz-option" data-correct="false">To destroy something</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+          <p><strong>2. Choose the correct word: "The teacher will _____ your performance."</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">analyze</div>
+            <div class="quiz-option" data-correct="true">evaluate</div>
+            <div class="quiz-option" data-correct="false">demonstrate</div>
+            <div class="quiz-option" data-correct="false">establish</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exam Vocabulary Section -->
+    <div class="content-section" id="exam">
+      <h3>📝 Từ Vựng Thi Cử</h3>
+
+      <div class="vocabulary-list">
+        <div class="vocabulary-item">
+          <div>
+            <div class="vocabulary-word">Assessment</div>
+            <div class="vocabulary-definition">Đánh giá, kiểm tra</div>
+          </div>
+        </div>
+        <div class="vocabulary-item">
+          <div>
+            <div class="vocabulary-word">Criterion</div>
+            <div class="vocabulary-definition">Tiêu chuẩn</div>
+          </div>
+        </div>
+        <div class="vocabulary-item">
+          <div>
+            <div class="vocabulary-word">Curriculum</div>
+            <div class="vocabulary-definition">Chương trình học</div>
+          </div>
+        </div>
+        <div class="vocabulary-item">
+          <div>
+            <div class="vocabulary-word">Diploma</div>
+            <div class="vocabulary-definition">Bằng cấp</div>
+          </div>
+        </div>
+        <div class="vocabulary-item">
+          <div>
+            <div class="vocabulary-word">Enrollment</div>
+            <div class="vocabulary-definition">Ghi danh, đăng ký</div>
+          </div>
+        </div>
+        <div class="vocabulary-item">
+          <div>
+            <div class="vocabulary-word">Examination</div>
+            <div class="vocabulary-definition">Kỳ thi</div>
+          </div>
+        </div>
+        <div class="vocabulary-item">
+          <div>
+            <div class="vocabulary-word">Graduation</div>
+            <div class="vocabulary-definition">Tốt nghiệp</div>
+          </div>
+        </div>
+        <div class="vocabulary-item">
+          <div>
+            <div class="vocabulary-word">Instruction</div>
+            <div class="vocabulary-definition">Giảng dạy, hướng dẫn</div>
+          </div>
+        </div>
+        <div class="vocabulary-item">
+          <div>
+            <div class="vocabulary-word">Qualification</div>
+            <div class="vocabulary-definition">Bằng cấp, chứng chỉ</div>
+          </div>
+        </div>
+        <div class="vocabulary-item">
+          <div>
+            <div class="vocabulary-word">Scholarship</div>
+            <div class="vocabulary-definition">Học bổng</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-section">
+        <h3>🎯 Quiz: Từ Vựng Thi Cử</h3>
+
+        <div class="quiz-question">
+          <p><strong>1. What is a "scholarship"?</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">A type of exam</div>
+            <div class="quiz-option" data-correct="true">Financial aid for education</div>
+            <div class="quiz-option" data-correct="false">A school subject</div>
+            <div class="quiz-option" data-correct="false">A graduation ceremony</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+          <p><strong>2. What does "curriculum" refer to?</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">School building</div>
+            <div class="quiz-option" data-correct="false">Student grades</div>
+            <div class="quiz-option" data-correct="true">Course of study</div>
+            <div class="quiz-option" data-correct="false">Teacher's salary</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Collocations Section -->
+    <div class="content-section" id="collocations">
+      <h3>🔗 Common Collocations</h3>
+
+      <div class="word-card">
+        <h3>Make vs Do</h3>
+        <div class="definition">
+          <strong>MAKE:</strong><br>
+          • Make a decision<br>
+          • Make a mistake<br>
+          • Make progress<br>
+          • Make an effort<br>
+          • Make a difference<br><br>
+          <strong>DO:</strong><br>
+          • Do homework<br>
+          • Do exercise<br>
+          • Do business<br>
+          • Do research<br>
+          • Do your best
+        </div>
+      </div>
+
+      <div class="word-card">
+        <h3>Have vs Take</h3>
+        <div class="definition">
+          <strong>HAVE:</strong><br>
+          • Have breakfast<br>
+          • Have a shower<br>
+          • Have fun<br>
+          • Have a good time<br>
+          • Have a break<br><br>
+          <strong>TAKE:</strong><br>
+          • Take a break<br>
+          • Take a photo<br>
+          • Take an exam<br>
+          • Take notes<br>
+          • Take place
+        </div>
+      </div>
+
+      <div class="word-card">
+        <h3>Get vs Go</h3>
+        <div class="definition">
+          <strong>GET:</strong><br>
+          • Get married<br>
+          • Get divorced<br>
+          • Get lost<br>
+          • Get angry<br>
+          • Get home<br><br>
+          <strong>GO:</strong><br>
+          • Go shopping<br>
+          • Go home<br>
+          • Go to work<br>
+          • Go on vacation<br>
+          • Go out
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-section">
+        <h3>🎯 Quiz: Collocations</h3>
+
+        <div class="quiz-question">
+          <p><strong>1. Choose the correct collocation: "_____ a decision"</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">Do</div>
+            <div class="quiz-option" data-correct="true">Make</div>
+            <div class="quiz-option" data-correct="false">Take</div>
+            <div class="quiz-option" data-correct="false">Get</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+          <p><strong>2. Choose the correct collocation: "_____ homework"</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="true">Do</div>
+            <div class="quiz-option" data-correct="false">Make</div>
+            <div class="quiz-option" data-correct="false">Take</div>
+            <div class="quiz-option" data-correct="false">Get</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Idioms Section -->
+    <div class="content-section" id="idioms">
+      <h3>💬 Common Idioms & Phrases</h3>
+
+      <div class="word-card">
+        <h3>Time-related Idioms</h3>
+        <div class="definition">
+          <strong>• Kill two birds with one stone:</strong> Làm được hai việc cùng lúc<br>
+          <strong>• Better late than never:</strong> Muộn còn hơn không<br>
+          <strong>• Time flies:</strong> Thời gian trôi nhanh<br>
+          <strong>• In the nick of time:</strong> Vừa kịp lúc<br>
+          <strong>• Once in a blue moon:</strong> Rất hiếm khi
+        </div>
+      </div>
+
+      <div class="word-card">
+        <h3>Work & Study Idioms</h3>
+        <div class="definition">
+          <strong>• Burn the midnight oil:</strong> Làm việc/ học tập khuya<br>
+          <strong>• Hit the books:</strong> Bắt đầu học nghiêm túc<br>
+          <strong>• Pass with flying colors:</strong> Thi đỗ với điểm cao<br>
+          <strong>• Pull an all-nighter:</strong> Thức cả đêm<br>
+          <strong>• Cut corners:</strong> Làm việc qua loa
+        </div>
+      </div>
+
+      <div class="word-card">
+        <h3>Common Phrases</h3>
+        <div class="definition">
+          <strong>• A piece of cake:</strong> Dễ dàng<br>
+          <strong>• Break a leg:</strong> Chúc may mắn<br>
+          <strong>• Cost an arm and a leg:</strong> Rất đắt tiền<br>
+          <strong>• Under the weather:</strong> Không khỏe<br>
+          <strong>• Call it a day:</strong> Nghỉ làm việc
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-section">
+        <h3>🎯 Quiz: Idioms</h3>
+
+        <div class="quiz-question">
+          <p><strong>1. What does "burn the midnight oil" mean?</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">To waste oil</div>
+            <div class="quiz-option" data-correct="true">To work or study late into the night</div>
+            <div class="quiz-option" data-correct="false">To start a fire</div>
+            <div class="quiz-option" data-correct="false">To go to sleep early</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+          <p><strong>2. What does "a piece of cake" mean?</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">Something expensive</div>
+            <div class="quiz-option" data-correct="false">Something difficult</div>
+            <div class="quiz-option" data-correct="true">Something very easy</div>
+            <div class="quiz-option" data-correct="false">Something sweet</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Word Formation Section -->
+    <div class="content-section" id="formation">
+      <h3>🔤 Word Formation</h3>
+
+      <div class="word-card">
+        <h3>Common Suffixes</h3>
+        <table class="grammar-table">
+          <thead>
+            <tr>
+              <th>Suffix</th>
+              <th>Meaning</th>
+              <th>Examples</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>-tion / -sion</td>
+              <td>Action/state</td>
+              <td>action, decision, discussion</td>
+            </tr>
+            <tr>
+              <td>-ment</td>
+              <td>Action/process</td>
+              <td>development, improvement, movement</td>
+            </tr>
+            <tr>
+              <td>-ness</td>
+              <td>Quality/state</td>
+              <td>happiness, kindness, darkness</td>
+            </tr>
+            <tr>
+              <td>-ity / -ty</td>
+              <td>Quality/state</td>
+              <td>ability, reality, certainty</td>
+            </tr>
+            <tr>
+              <td>-ful</td>
+              <td>Full of</td>
+              <td>beautiful, helpful, careful</td>
+            </tr>
+            <tr>
+              <td>-less</td>
+              <td>Without</td>
+              <td>hopeless, careless, useless</td>
+            </tr>
+            <tr>
+              <td>-able / -ible</td>
+              <td>Capable of</td>
+              <td>readable, possible, flexible</td>
+            </tr>
+            <tr>
+              <td>-al</td>
+              <td>Related to</td>
+              <td>professional, emotional, traditional</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="word-card">
+        <h3>Word Families</h3>
+        <div class="definition">
+          <strong>CREATE:</strong><br>
+          • Verb: create<br>
+          • Noun: creation, creativity<br>
+          • Adjective: creative<br>
+          • Adverb: creatively<br><br>
+          <strong>SUCCESS:</strong><br>
+          • Noun: success<br>
+          • Verb: succeed<br>
+          • Adjective: successful<br>
+          • Adverb: successfully<br><br>
+          <strong>DECIDE:</strong><br>
+          • Verb: decide<br>
+          • Noun: decision<br>
+          • Adjective: decisive<br>
+          • Adverb: decisively
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-section">
+        <h3>🎯 Quiz: Word Formation</h3>
+
+        <div class="quiz-question">
+          <p><strong>1. What is the noun form of "create"?</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">creative</div>
+            <div class="quiz-option" data-correct="true">creation</div>
+            <div class="quiz-option" data-correct="false">creatively</div>
+            <div class="quiz-option" data-correct="false">creating</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <div class="quiz-question">
+          <p><strong>2. What is the adjective form of "success"?</strong></p>
+          <div class="quiz-options">
+            <div class="quiz-option" data-correct="false">success</div>
+            <div class="quiz-option" data-correct="false">succeed</div>
+            <div class="quiz-option" data-correct="true">successful</div>
+            <div class="quiz-option" data-correct="false">successfully</div>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Theme Toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+
+      const toggle = document.querySelector('.theme-toggle');
+      toggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    }
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      const toggle = document.querySelector('.theme-toggle');
+      toggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    }
+
+    // Tab Switching
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('.content-section');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+
+        tab.classList.add('active');
+        const tabId = tab.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    // Flashcard Flip
+    function flipCard(card) {
+      card.classList.toggle('flipped');
+    }
+
+    // Quiz Functionality
+    document.querySelectorAll('.quiz-option').forEach(option => {
+      option.addEventListener('click', function() {
+        const question = this.closest('.quiz-question');
+        const options = question.querySelectorAll('.quiz-option');
+        const feedback = question.querySelector('.quiz-feedback');
+        const isCorrect = this.getAttribute('data-correct') === 'true';
+
+        options.forEach(opt => opt.style.pointerEvents = 'none');
+
+        if (isCorrect) {
+          this.classList.add('correct');
+          feedback.textContent = '✅ Chính xác!';
+          feedback.className = 'quiz-feedback show correct';
+        } else {
+          this.classList.add('incorrect');
+          options.forEach(opt => {
+            if (opt.getAttribute('data-correct') === 'true') {
+              opt.classList.add('correct');
+            }
+          });
+          feedback.textContent = '❌ Sai rồi! Đáp án đúng đã được highlight.';
+          feedback.className = 'quiz-feedback show incorrect';
+        }
+      });
+    });
+
+    // Progress Tracking
+    let wordsLearned = 0;
+    const totalWords = 50;
+
+    function updateProgress() {
+      wordsLearned++;
+      const percentage = (wordsLearned / totalWords) * 100;
+      document.getElementById('vocab-progress').style.width = percentage + '%';
+      document.getElementById('vocab-progress-text').textContent = `${wordsLearned}/${totalWords} từ`;
+
+      // Save to localStorage
+      const progress = JSON.parse(localStorage.getItem('englishProgress')) || {
+        grammar: 0,
+        vocabulary: 0,
+        reading: 0,
+        practice: 0
+      };
+      progress.vocabulary = Math.round(percentage);
+      localStorage.setItem('englishProgress', JSON.stringify(progress));
+    }
+
+    // Track flashcard flips
+    let flipCount = 0;
+    document.querySelectorAll('.flashcard').forEach(card => {
+      card.addEventListener('click', () => {
+        flipCount++;
+        if (flipCount % 2 === 0) { // Count every complete flip (front to back to front)
+          updateProgress();
+        }
+      });
+    });
+
+    // Load saved progress
+    function loadProgress() {
+      const progress = JSON.parse(localStorage.getItem('englishProgress')) || {
+        grammar: 0,
+        vocabulary: 0,
+        reading: 0,
+        practice: 0
+      };
+
+      document.getElementById('vocab-progress').style.width = progress.vocabulary + '%';
+      document.getElementById('vocab-progress-text').textContent = `${Math.round(progress.vocabulary / 100 * totalWords)}/${totalWords} từ`;
+    }
+
+    loadProgress();
+  </script>
+</body>
+
+</html>

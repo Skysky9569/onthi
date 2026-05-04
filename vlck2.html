@@ -6,8 +6,184 @@
 <title>Vật Lý 10 – Ôn Tập Cơ Bản</title>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="components.css">
+<style>
+:root {
+    --bg-main: #f0f4f8;
+    --bg-surface: #ffffff;
+    --text-primary: #1a365d;
+    --text-secondary: #4a5568;
+    --accent-physics: #3182ce;
+    --accent-glow: rgba(49, 130, 206, 0.2);
+    --border-color: #e2e8f0;
+    --radius-lg: 16px;
+    --radius-md: 12px;
+}
+
+[data-theme="dark"] {
+    --bg-main: #0f172a;
+    --bg-surface: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border-color: #334155;
+    --accent-physics: #60a5fa;
+}
+
+body {
+    font-family: 'Source Serif 4', serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #2c5282 0%, #3182ce 100%);
+    color: white;
+    border-radius: var(--radius-lg);
+    margin-bottom: 40px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin: 0;
+}
+
+.badge {
+    background: rgba(255,255,255,0.2);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.tabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+    justify-content: center;
+    position: sticky;
+    top: 20px;
+    z-index: 100;
+}
+
+.tab-btn {
+    padding: 10px 18px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.tab-btn.active {
+    background: var(--accent-physics);
+    color: white;
+    border-color: var(--accent-physics);
+    box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+.tab-panel {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    padding: 25px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.card-label {
+    font-weight: 700;
+    color: var(--accent-physics);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.formula-box, .formula {
+    background: var(--bg-main);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    margin: 10px 0;
+    border-left: 4px solid var(--accent-physics);
+}
+
+.note-box { background: rgba(49, 130, 206, 0.05); border-left: 4px solid var(--accent-physics); padding: 15px; border-radius: 4px; margin: 10px 0; }
+.warning-box { background: rgba(231, 76, 60, 0.05); border-left: 4px solid #e74c3c; padding: 15px; border-radius: 4px; margin: 10px 0; }
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 25px;
+    border-radius: 30px;
+    border: 2px solid var(--border-color);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+}
+
+.search-input:focus {
+    border-color: var(--accent-physics);
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background: var(--bg-surface);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+}
+</style>
 </head>
 <body>
 
@@ -26,9 +202,9 @@
 
 <div class="container">
   <header>
-    <div class="badge">Vật Lý 10</div>
-    <h1>Ôn Tập Cơ Bản</h1>
-    <p class="subtitle">Năng lượng · Công · Động lượng · Bảo toàn · Chuyển động tròn</p>
+    <div class="badge">Vật Lý 10 – HKII</div>
+    <h1>Cơ Học & Năng Lượng</h1>
+    <p class="subtitle">Hệ thống kiến thức chuẩn cho kỳ thi cuối học kỳ 2</p>
   </header>
 
   <!-- TAB NAV -->
@@ -157,13 +333,13 @@
   </div>
   <div class="card">
     <div class="card-label">Xung lực & biến thiên động lượng</div>
-    <div class="formula"> \( \vec{p} \cdot \Delta t = \Delta \vec{p} = \vec{p_2} - \vec{p_1} \)</div>
-    <p>Xung lực của F trong thời gian Δt bằng độ biến thiên động lượng.</p>
-    <div class="note-box">Đây là dạng khác của Định luật II Newton: \(\vec{F} = \frac{\Delta \vec{p}}{\Delta t}  \)</div>
+    <div class="formula"> \( \vec{F} \cdot \Delta t = \Delta \vec{p} = \vec{p_2} - \vec{p_1} \)</div>
+    <p>Xung lượng của lực F trong thời gian Δt bằng độ biến thiên động lượng.</p>
+    <div class="note-box">Đây là dạng khác của Định luật II Newton: \(\vec{F} = \frac{\Delta \vec{p}}{\Delta t}\)</div>
   </div>
   <div class="card">
     <div class="card-label">Mối quan hệ động lượng – động năng</div>
-    <div class="formula"> \(p = \sqrt{2m*Wđ} \)</div>
+    <div class="formula"> \(p = \sqrt{2m \cdot W_đ} \)</div>
   </div>
   <div class="card">
     <div class="card-label">Trường hợp đặc biệt – tổng động lượng hai vật</div>
@@ -192,17 +368,17 @@
       <div class="card-label">Va chạm mềm (dính lại)</div>
       <div class="formula"> \(m_1v_1 + m_2v_2 = (m_1 + m_2)V \) </div>
       <div class="formula"> Nhiệt tỏa ra: \(Q = Wđtrước - Wđsau \) </div>
-      <div class="note-box">Động lượng bảo toàn. Động năng KHÔNG BẢO TUÀN (biến thành nhiệt, biến dạng).</div>
+      <div class="note-box">Động lượng bảo toàn. Động năng KHÔNG BẢO TOÀN (biến thành nhiệt, biến dạng).</div>
     </div>
     <div class="card">
       <div class="card-label">Va chạm đàn hồi</div>
-      <div class="formula"> \(v_1' = \frac{m_1 - m_2}{m_1 + m_2} \) ; \(v_2' = \frac{2m_1}{m_1 + m_2} \)</div>
+      <div class="formula"> \(v_1' = \frac{(m_1 - m_2)v_1 + 2m_2v_2}{m_1 + m_2} \) ; \(v_2' = \frac{2m_1v_1 + (m_2 - m_1)v_2}{m_1 + m_2} \)</div>
       <div class="note-box">Sau va chạm hai vật tách rời nhau. Động lượng bảo toàn. Động năng cũng bảo toàn.</div>
     </div>
   </div>
   <div class="card">
     <div class="card-label">Vật tách ra từ trạng thái đứng yên</div>
-    <div class="formula"> \(m_1v_1 + m_2v_2 = (m_1 + m_2)V \)</div>
+    <div class="formula"> \( \vec{0} = m_1\vec{v_1} + m_2\vec{v_2} \Rightarrow m_1v_1 = m_2v_2 \) (về độ lớn)</div>
     <div class="note-box">Hai phần chuyển động ngược chiều nhau. Tích m·v của mỗi phần có độ lớn bằng nhau (độ lớn động lượng bằng nhau). Vật nhẹ hơn → vận tốc lớn hơn.</div>
   </div>
   <div class="card">
@@ -220,8 +396,8 @@
   </div>
   <div class="card">
     <div class="card-label">Bảo toàn cơ năng</div>
-    <div class="formula">\(W_1 + W_2 = \frac{1}{2} mv_1^2 + mgh_1 = \frac{1}{2} mv_2^2 + mgh_2 \)</div>
-    <div class="note-box">Rơi tự do: cơ năng bảo toàn. Khi \(Wđ = Wt => \frac{1}{2}mv^2 = mgh \)</div>
+    <div class="formula">\(W_1 = W_2 \Leftrightarrow \frac{1}{2} mv_1^2 + mgh_1 = \frac{1}{2} mv_2^2 + mgh_2 \)</div>
+    <div class="note-box">Rơi tự do: cơ năng bảo toàn. Tại vị trí \(W_đ = W_t \Rightarrow W = 2W_t = 2mgh\)</div>
     <div class="warning-box">Chuyển động có ma sát, trong chất lỏng → cơ năng GIẢM.</div>
   </div>
   <div class="card">
@@ -347,7 +523,7 @@ function searchContent() {
 
     // Show only the first tab (cong) as default
     document.getElementById('cong').classList.add('active');
-    document.querySelector('.tab-btn[onclick="show(\'cong\')"]').classList.add('active');
+    document.querySelector('.tab-btn[onclick*="\'cong\'"]').classList.add('active');
 
     // Reset all cards
     cards.forEach(card => {
