@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,132 +13,175 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f3f4f6; }
-        .smooth-transition { transition: all 0.2s ease-in-out; }
-        .fade-in { animation: fadeIn 0.3s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3f4f6;
+        }
+
+        .smooth-transition {
+            transition: all 0.2s ease-in-out;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
+
 <body>
     <div id="root"></div>
 
     <script type="text/babel">
-        // Data: 40 Câu hỏi trắc nghiệm
+        // Data: 40 Câu hỏi trắc nghiệm (Cập nhật có giải thích)
         const questionsData = [
-            { id: 1, text: "Dựa vào thành phần cấu tạo, có thể chia vi sinh vật thành:", options: ["A. VSV nhân sơ và VSV nhân thực.", "B. VSV đa bào và VSV đơn bào.", "C. VSV nhân sơ và VSV đơn bào.", "D. VSV nhân thực và VSV đa bào."], correct: 0 },
-            { id: 2, text: "Đặc điểm có ở hầu hết các loài vi sinh vật là gì?", options: ["A. Chuyển hoá chất dinh dưỡng nhanh.", "B. Thuộc các giới: Nguyên sinh, Nấm, Động vật.", "C. Kích thước siêu hiển vi (được đo bằng nanomet).", "D. Chỉ phân bố ở nơi có điều kiện khắc nghiệt."], correct: 0 },
-            { id: 3, text: "Các VSV nào sau đây là VSV nhân thực?", options: ["A. Nấm đơn bào, động vật nguyên sinh.", "B. Archaea, vi khuẩn.", "C. Vi nấm, vi khuẩn.", "D. Động vật nguyên sinh, vi khuẩn."], correct: 0 },
-            { id: 4, text: "Điều nào sau đây là sai khi nói về đặc điểm của vi sinh vật?", options: ["A. Thích ứng cao với môi trường.", "B. Trao đổi chất nhanh.", "C. Hấp thụ dinh dưỡng chậm.", "D. Phân bố rất rộng."], correct: 2 },
-            { id: 5, text: "Nhóm vi sinh vật có hình thức quang dị dưỡng là:", options: ["A. Nấm, động vật nguyên sinh.", "B. Vi khuẩn không chứa lưu huỳnh màu lục và màu tía.", "C. Vi tảo, vi khuẩn lam.", "D. Vi khuẩn nitrit hoá, vi khuẩn sắt."], correct: 1 },
-            { id: 6, text: "Hình thức dinh dưỡng đều dùng nguồn năng lượng và nguồn carbon từ chất hữu cơ được gọi là:", options: ["A. Quang tự dưỡng.", "B. Hóa dị dưỡng.", "C. Hóa tự dưỡng.", "D. Quang dị dưỡng."], correct: 1 },
-            { id: 7, text: "Các vi sinh vật nào sau đây có hình thức dinh dưỡng theo kiểu quang tự dưỡng?", options: ["A. Tảo đơn bào, các vi khuẩn chứa diệp lục.", "B. Nấm và tất cả vi khuẩn.", "C. Vi khuẩn lưu huỳnh, động vật nguyên sinh.", "D. Vi khuẩn lam, vi khuẩn nitrate hóa."], correct: 0 },
-            { id: 8, text: "Các hình thức dinh dưỡng của vi sinh vật được phân chia dựa trên các tiêu chí:", options: ["A. Nhóm sinh vật và nguồn năng lượng.", "B. Nhóm sinh vật và nguồn cacbon chủ yếu.", "C. Hình thức hô hấp nguồn cacbon chủ yếu.", "D. Nguồn năng lượng và nguồn cacbon chủ yếu."], correct: 3 },
-            { id: 9, text: "Đặc điểm có ở hầu hết các loài vi sinh vật là:", options: ["A. Thuộc nhiều giới: nguyên sinh, nấm và động vật.", "B. Kích thước siêu hiển vi (được đo bằng nanomet).", "C. Hấp thụ và chuyển hóa chất dinh dưỡng nhanh.", "D. Chỉ phân bố ở những nơi có điều kiện khắc nghiệt."], correct: 2 },
-            { id: 10, text: "Để phân biệt vi khuẩn Gram dương (+) và Gram (–) người ta đã sử dụng phương pháp nào?", options: ["A. Nhuộm Gram.", "B. Nhuộm đơn.", "C. Nhuộm kép.", "D. Quan sát."], correct: 0 },
-            { id: 11, text: "Đặc điểm nào sau đây không đúng về cấu tạo của vi sinh vật?", options: ["A. Cơ thể nhỏ bé, chỉ nhìn thấy rõ dưới kính hiển vi.", "B. Tất cả các vi sinh vật đều có nhân sơ.", "C. Một số vi sinh vật có cơ thể đa bào.", "D. Đa số vi sinh vật có cơ thể là một tế bào."], correct: 1 },
-            { id: 12, text: "Phương pháp nào sau đây dùng để quan sát khả năng di động của vi khuẩn?", options: ["A. Nhuộm đơn.", "B. Soi tươi.", "C. Nhuộm Gram.", "D. Phân lập."], correct: 1 },
-            { id: 13, text: "Để tổng hợp được các chất hữu cơ, mọi vi sinh vật cần bắt buộc sử dụng:", options: ["A. Carbon.", "B. Năng lượng và enzyme.", "C. Năng lượng.", "D. Carbon và ánh sáng."], correct: 1 },
-            { id: 14, text: "Phương trình tổng hợp protein ở vi sinh vật nào sau đây là đúng?", options: ["A. [Amino acid]n -> Protein", "B. Protein -> [Amino acid]n", "C. [Nucleotide]n -> Protein", "D. Protein -> [Nucleotide]n"], correct: 0 },
-            { id: 15, text: "Vi sinh vật tổng hợp lipid bằng cách:", options: ["A. Liên kết glycerol và glutamic acid.", "B. Liên kết lysine và acid béo.", "C. Liên kết glycerol và acid béo.", "D. Liên kết lysine và glutamic acid."], correct: 2 },
-            { id: 16, text: "Việc làm nước tương, nước mắm trong dân gian thực chất là ứng dụng của quá trình gì?", options: ["A. Phân giải carbohydrate.", "B. Phân giải protein.", "C. Tổng hợp protein.", "D. Phân giải nucleic acid."], correct: 1 },
-            { id: 17, text: "Phát biểu nào sau đây là sai khi nói về sự tổng hợp protein của vi sinh vật?", options: ["A. Vi sinh vật có khả năng tự tổng hợp các loại amino acid.", "B. Vi sinh vật có khả năng tổng hợp protein.", "C. Protein tổng hợp được khi liên kết các amino acid với nhau bằng liên kết glycosid.", "D. Phương trình tổng hợp protein là: (Amino acid)n -> Protein."], correct: 2 },
-            { id: 18, text: "Có hai hình thức lên men, đó là:", options: ["A. Lên men rượu và lên men lactic.", "B. Lên men hiếu khí và lên men kị khí.", "C. Lên men lactic và lên men hiếu khí.", "D. Lên men rượu và lên men kị khí."], correct: 0 },
-            { id: 19, text: "Bằng cách nào vi sinh vật có thể hấp thụ được các chất có kích thước phân tử lớn như protein, tinh bột, lipid, cellulose?", options: ["A. Chúng được vận chuyển chủ động qua các kênh trên màng sinh.", "B. Chúng được khuếch tán trực tiếp qua màng sinh chất.", "C. Các phân tử nói trên vào tế bào theo cơ chế nhập bào.", "D. Chúng tiết ra các enzyme tương ứng để phân giải ngoại bào sau đó hấp thụ."], correct: 3 },
-            { id: 20, text: "Môi trường nuôi không cấy liên tục là môi trường nuôi cấy:", options: ["A. Được bổ sung chất dinh dưỡng, không được lấy đi các sản phẩm của quá trình nuôi cấy", "B. Không được bổ sung chất dinh dưỡng, nhưng được lấy đi các sản phẩm của quá trình nuôi cấy.", "C. Không được bổ sung chất dinh dưỡng, không được lấy đi các sản phẩm của quá trình nuôi cấy.", "D. Được bổ sung chất dinh dưỡng, và được lấy đi các sản phẩm của quá trình nuôi cấy."], correct: 2 },
-            { id: 21, text: "Quá trình phân giải các hợp chất carbohydrate ở vi sinh vật xảy ra ở:", options: ["A. bên trong nhân tế bào vi sinh vật.", "B. bên ngoài cơ thể vi sinh vật.", "C. bên trong tế bào chất tế bào vi sinh vật.", "D. tại ti thể của tế bào vi sinh vật."], correct: 1 },
-            { id: 22, text: "Mục đích thường thấy của việc nuôi cấy vi khuẩn không liên tục là để:", options: ["A. Hạn chế sự sinh trưởng của vi khuẩn.", "B. Thu được nhiều sản phẩm và sinh khối từ vi sinh vật.", "C. Tăng mật độ tế bào vi khuẩn ở mức cao nhất.", "D. Nghiên cứu quá trình sinh trưởng của vi khuẩn đó."], correct: 3 },
-            { id: 23, text: "Môi trường nuôi cấy liên tục là môi trường nuôi cấy:", options: ["A. Được bổ sung chất dinh dưỡng, không được lấy đi các sản phẩm của quá trình nuôi cấy", "B. Không được bổ sung chất dinh dưỡng, nhưng được lấy đi các sản phẩm của quá trình nuôi cấy.", "C. Không được bổ sung chất dinh dưỡng, không được lấy đi các sản phẩm của quá trình nuôi cấy.", "D. Được bổ sung chất dinh dưỡng, và được lấy đi các sản phẩm của quá trình nuôi cấy."], correct: 3 },
-            { id: 24, text: "Vai trò của vi sinh vật đối với tự nhiên là:", options: ["A. Phân giải các chất thải đặc biệt là các chất thải độc hại như: nhựa, hóa chất nhân tạo, chất phóng xạ làm giảm ô nhiễm môi trường.", "B. Cộng sinh trong cơ thể người giúp tăng cường miễn dịch, tiêu hóa; tổng hợp một số vitamin, amino axit không thay thế.", "C. VSV tự dưỡng tạo ra O2 và chất dinh dưỡng cung cấp cho các sinh vật dị dưỡng.", "D. Sử dụng trong chế biến thực phẩm, sản xuất thuốc kháng sinh, vitamin, … trên quy mô công nghiệp."], correct: 2 },
-            { id: 25, text: "Mục đích của việc sử dụng môi trường nuôi cấy vi khuẩn liên tục trong công nghiệp là:", options: ["A. Hạn chế sự sinh trưởng của vi sinh vật.", "B. Thu được nhiều sản phẩm và sinh khối từ vi sinh vật.", "C. Tăng mật độ tế bào vi sinh vật ở mức cao nhất.", "D. Kéo dài thời gian thế hệ của quần thể vi sinh vật."], correct: 1 },
-            { id: 26, text: "Đối với con người vi sinh vật có vai trò:", options: ["A. Cộng sinh nhiều loài sinh vật giúp các loài tồn tại trong tự nhiên.", "B. Phân giải các chất thải độc hại làm giảm ô nhiễm môi trường.", "C. Tạo ra oxi và các chất dinh dưỡng cung cấp cho các sinh vật.", "D. Phân giải xác sinh vật làm giàu dinh dưỡng cho đất trồng."], correct: 1 },
-            { id: 27, text: "Vì sao vi sinh vật đặc biệt có ích cho ngành nông nghiệp?", options: ["A. Vi sinh vật có khả năng biến đạm khó tiêu thành đạm dễ tiêu.", "B. Vi sinh vật có khả năng biến lân khó tiêu thành lân dễ tiêu.", "C. Vi sinh vật có khả năng biến kali khó tiêu thành kali dễ tiêu.", "D. Vi sinh vật có khả năng biến khoáng khó tiêu thành khoáng dễ tiêu."], correct: 0 },
-            { id: 28, text: "Con người chú trọng việc sử dụng thuốc trừ sâu vi sinh thay cho thuốc trừ sâu hóa học vì:", options: ["A. Thuốc trừ sâu hóa học tiêu diệt sâu, bệnh trên diện tích rộng.", "B. Thuốc trừ sâu hóa học thường có thời gian phân hủy kéo dài gây tồn dư độc hại.", "C. Thuốc trừ sâu hóa học có khả năng tiêu diệt nhanh sâu, bệnh.", "D. Thuốc trừ sâu hóa học rất phức tạp trong khâu bảo quản."], correct: 1 },
-            { id: 29, text: "Nhận định nào sao đây không nói về lợi ích của kích thước nhỏ ở vi sinh vật?", options: ["A. Làm tăng tốc độ trao đổi chất và sinh trưởng", "B. Có lợi trong việc lưu trữ, nuôi cấy và nghiên cứu vi sinh vật", "C. Tạo ra oxi và cung cấp chất dinh dưỡng", "D. Tạo ra một số lượng lớn tế bào trong một khoảng không gian nhỏ"], correct: 2 },
-            { id: 30, text: "Vì sao thuốc trừ sâu vi sinh ngày càng được ưa chuộng trong ngành nông nghiệp?", options: ["A. Bảo quản dễ dàng, thời gian sử dụng kéo dài.", "B. Thuốc phân hủy chậm nên độc lực kéo dài.", "C. Tiêu diệt sâu, bệnh hại nhanh chóng.", "D. An toàn với con người và các thiên địch có lợi."], correct: 3 },
-            { id: 31, text: "Dựa vào đặc điểm nào của vi sinh vật người ta sử dụng chúng để xử lí ô nhiễm môi trường?", options: ["A. Vi sinh vật có khả năng phân giải các chất phức tạp.", "B. Khả năng sinh trưởng và sinh sản nhanh.", "C. Khả năng phân bố và thích nghi cao.", "D. Khả năng sống trong những môi trường cực đoan."], correct: 0 },
-            { id: 32, text: "Đâu không phải ưu điểm của thuốc trừ sâu sinh học so với với thuốc trừ sâu hóa học?", options: ["A. An toàn với sức khỏe con người và môi trường.", "B. Cho hiệu quả diệt trừ sâu hại nhanh chóng.", "C. Bảo vệ được sự cân bằng sinh học trong tự nhiên.", "D. Sản xuất khá đơn giản và có chi phí thấp."], correct: 1 },
-            { id: 33, text: "Thành phần cấu tạo nào dưới đây chứa vật chất di truyền của virus?", options: ["A. Vỏ capsid.", "B. Lõi nucleic acid.", "C. Màng phospholipid kép.", "D. Gai glycoprotein."], correct: 1 },
-            { id: 34, text: "Một số virus còn có lớp vỏ ngoài (envelope) cấu tạo từ:", options: ["A. Lớp kép phospholipid và protein.", "B. Lớp kép phospholipid và cellulose.", "C. Lớp kép phospholipid và nucleic acid.", "D. Lớp đơn phospholipid và chitin."], correct: 0 },
-            { id: 35, text: "Không thể nuôi virus trong môi trường nhân tạo giống như vi khuẩn được vì:", options: ["A. Kích thước của nó vô cùng nhỏ bé.", "B. Hệ gene chỉ chứa một loại nucleic acid.", "C. Chúng không có hình dạng đặc thù.", "D. Chúng là kí sinh nội bào bắt buộc."], correct: 3 },
-            { id: 36, text: "Trên vỏ ngoài virus có chứa:", options: ["A. Các gai glycoprotein.", "B. Các gai peptidoglycan.", "C. Các gai pepsinogen.", "D. Các gai amino acid."], correct: 0 },
-            { id: 37, text: "Mỗi loại virus chỉ xâm nhập vào một số tế bào vật chủ nhất định vì:", options: ["A. Bề mặt của tế bào vật chủ được bảo vệ bởi một lớp protein chống lại sự xâm nhập.", "B. Bề mặt của virus có lớp vỏ ngoài hoặc vỏ capsid trơ với các thụ thể.", "C. Virus chỉ xâm nhập được khi phân tử bề mặt khớp đặc hiệu với thụ thể bề mặt tế bào vật chủ.", "D. Virus chỉ xâm nhập được khi hệ gene của nó khớp hoàn toàn với hệ gene của tế bào vật chủ."], correct: 2 },
-            { id: 38, text: "Chu trình tan là chu trình:", options: ["A. Virus nhân lên làm tan và giết chết tế bào vật chủ.", "B. Virus chỉ nhân bản hệ gene và không phá vỡ tế bào vật chủ.", "C. Virus làm tan hệ gene nhưng không gây chết tế bào vật chủ.", "D. Virus chỉ nhân bản vỏ capsid mà không nhân bản hệ gene."], correct: 0 },
-            { id: 39, text: "Điều nào sau đây là đúng với sự xâm nhập của phage vào tế bào chủ?", options: ["A. Phage đưa cả nucleic acid và vỏ capsid vào tế bào chủ.", "B. Phage chỉ bơm nucleic acid vào tế bào chủ.", "C. Phage chỉ đưa vỏ protein vào tế bào chủ.", "D. Phage vào tế bào chủ bằng cơ chế thực bào."], correct: 1 },
-            { id: 40, text: "Chu trình tiềm tan là chu trình:", options: ["A. Virus nhân lên làm tan và giết chết tế bào vật chủ.", "B. Virus chỉ nhân bản hệ gene và không phá vỡ tế bào vật chủ.", "C. Virus làm tan hệ gene nhưng không gây chết tế bào vật chủ.", "D. Virus chỉ nhân bản vỏ capsid mà không nhân bản hệ gene."], correct: 1 }
+            { id: 1, text: "Dựa vào thành phần cấu tạo, có thể chia vi sinh vật thành:", options: ["A. VSV nhân sơ và VSV nhân thực.", "B. VSV đa bào và VSV đơn bào.", "C. VSV nhân sơ và VSV đơn bào.", "D. VSV nhân thực và VSV đa bào."], correct: 0, explanation: "Dựa vào cấu trúc tế bào, vi sinh vật được chia thành 2 nhóm chính: nhân sơ (vi khuẩn, archaea) và nhân thực (vi nấm, vi tảo, động vật nguyên sinh)." },
+            { id: 2, text: "Đặc điểm có ở hầu hết các loài vi sinh vật là gì?", options: ["A. Chuyển hoá chất dinh dưỡng nhanh.", "B. Thuộc các giới: Nguyên sinh, Nấm, Động vật.", "C. Kích thước siêu hiển vi (được đo bằng nanomet).", "D. Chỉ phân bố ở nơi có điều kiện khắc nghiệt."], correct: 0, explanation: "Nhờ tỉ lệ diện tích bề mặt / thể tích (S/V) lớn, vi sinh vật hấp thụ và trao đổi chất rất nhanh để sinh trưởng." },
+            { id: 3, text: "Các VSV nào sau đây là VSV nhân thực?", options: ["A. Nấm đơn bào, động vật nguyên sinh.", "B. Archaea, vi khuẩn.", "C. Vi nấm, vi khuẩn.", "D. Động vật nguyên sinh, vi khuẩn."], correct: 0, explanation: "Nấm (như nấm men) và động vật nguyên sinh (như trùng roi, trùng giày) đều có màng nhân bao bọc vật chất di truyền, nên thuộc nhóm nhân thực." },
+            { id: 4, text: "Điều nào sau đây là sai khi nói về đặc điểm của vi sinh vật?", options: ["A. Thích ứng cao với môi trường.", "B. Trao đổi chất nhanh.", "C. Hấp thụ dinh dưỡng chậm.", "D. Phân bố rất rộng."], correct: 2, explanation: "Vi sinh vật hấp thụ và chuyển hóa chất dinh dưỡng rất nhanh, chứ không hề chậm." },
+            { id: 5, text: "Nhóm vi sinh vật có hình thức quang dị dưỡng là:", options: ["A. Nấm, động vật nguyên sinh.", "B. Vi khuẩn không chứa lưu huỳnh màu lục và màu tía.", "C. Vi tảo, vi khuẩn lam.", "D. Vi khuẩn nitrit hoá, vi khuẩn sắt."], correct: 1, explanation: "Vi khuẩn không chứa lưu huỳnh màu lục và màu tía sử dụng ánh sáng làm nguồn năng lượng (quang) và chất hữu cơ làm nguồn carbon (dị dưỡng)." },
+            { id: 6, text: "Hình thức dinh dưỡng đều dùng nguồn năng lượng và nguồn carbon từ chất hữu cơ được gọi là:", options: ["A. Quang tự dưỡng.", "B. Hóa dị dưỡng.", "C. Hóa tự dưỡng.", "D. Quang dị dưỡng."], correct: 1, explanation: "Hóa dị dưỡng là kiểu dinh dưỡng sử dụng năng lượng từ các phản ứng hóa học (hóa) và nguồn carbon từ các hợp chất hữu cơ (dị dưỡng)." },
+            { id: 7, text: "Các vi sinh vật nào sau đây có hình thức dinh dưỡng theo kiểu quang tự dưỡng?", options: ["A. Tảo đơn bào, các vi khuẩn chứa diệp lục.", "B. Nấm và tất cả vi khuẩn.", "C. Vi khuẩn lưu huỳnh, động vật nguyên sinh.", "D. Vi khuẩn lam, vi khuẩn nitrate hóa."], correct: 0, explanation: "Tảo và các vi khuẩn chứa diệp lục sử dụng ánh sáng mặt trời để tổng hợp chất hữu cơ từ CO2 (quang tự dưỡng)." },
+            { id: 8, text: "Các hình thức dinh dưỡng của vi sinh vật được phân chia dựa trên các tiêu chí:", options: ["A. Nhóm sinh vật và nguồn năng lượng.", "B. Nhóm sinh vật và nguồn cacbon chủ yếu.", "C. Hình thức hô hấp nguồn cacbon chủ yếu.", "D. Nguồn năng lượng và nguồn cacbon chủ yếu."], correct: 3, explanation: "Kiểu dinh dưỡng được xác định bởi 2 yếu tố: Nguồn năng lượng (Ánh sáng hay hóa học) và Nguồn Carbon (CO2 hay chất hữu cơ)." },
+            { id: 9, text: "Đặc điểm có ở hầu hết các loài vi sinh vật là:", options: ["A. Thuộc nhiều giới: nguyên sinh, nấm và động vật.", "B. Kích thước siêu hiển vi (được đo bằng nanomet).", "C. Hấp thụ và chuyển hóa chất dinh dưỡng nhanh.", "D. Chỉ phân bố ở những nơi có điều kiện khắc nghiệt."], correct: 2, explanation: "Hấp thụ và chuyển hóa nhanh là đặc điểm nổi bật nhất. Kích thước nanomet là sai vì đa phần vi khuẩn đo bằng micromet (µm)." },
+            { id: 10, text: "Để phân biệt vi khuẩn Gram dương (+) và Gram (–) người ta đã sử dụng phương pháp nào?", options: ["A. Nhuộm Gram.", "B. Nhuộm đơn.", "C. Nhuộm kép.", "D. Quan sát."], correct: 0, explanation: "Phương pháp nhuộm Gram dựa vào sự khác biệt trong cấu trúc thành tế bào peptidoglycan để phân biệt hai nhóm vi khuẩn này." },
+            { id: 11, text: "Đặc điểm nào sau đây không đúng về cấu tạo của vi sinh vật?", options: ["A. Cơ thể nhỏ bé, chỉ nhìn thấy rõ dưới kính hiển vi.", "B. Tất cả các vi sinh vật đều có nhân sơ.", "C. Một số vi sinh vật có cơ thể đa bào.", "D. Đa số vi sinh vật có cơ thể là một tế bào."], correct: 1, explanation: "Vi sinh vật bao gồm cả nhân sơ (vi khuẩn) và nhân thực (vi nấm, vi tảo). Nên nói 'tất cả đều có nhân sơ' là sai." },
+            { id: 12, text: "Phương pháp nào sau đây dùng để quan sát khả năng di động của vi khuẩn?", options: ["A. Nhuộm đơn.", "B. Soi tươi.", "C. Nhuộm Gram.", "D. Phân lập."], correct: 1, explanation: "Phương pháp soi tươi (tiêu bản giọt ép/giọt treo) giúp quan sát trực tiếp trạng thái sống và sự di chuyển của vi khuẩn dưới kính hiển vi." },
+            { id: 13, text: "Để tổng hợp được các chất hữu cơ, mọi vi sinh vật cần bắt buộc sử dụng:", options: ["A. Carbon.", "B. Năng lượng và enzyme.", "C. Năng lượng.", "D. Carbon và ánh sáng."], correct: 1, explanation: "Các phản ứng đồng hóa (tổng hợp chất) đều cần tiêu tốn năng lượng (ATP) và bắt buộc phải có enzyme nội bào xúc tác." },
+            { id: 14, text: "Phương trình tổng hợp protein ở vi sinh vật nào sau đây là đúng?", options: ["A. [Amino acid]n -> Protein", "B. Protein -> [Amino acid]n", "C. [Nucleotide]n -> Protein", "D. Protein -> [Nucleotide]n"], correct: 0, explanation: "Protein là một polymer được tổng hợp thông qua quá trình dịch mã, nối nhiều đơn phân (amino acid) lại với nhau." },
+            { id: 15, text: "Vi sinh vật tổng hợp lipid bằng cách:", options: ["A. Liên kết glycerol và glutamic acid.", "B. Liên kết lysine và acid béo.", "C. Liên kết glycerol và acid béo.", "D. Liên kết lysine và glutamic acid."], correct: 2, explanation: "Phân tử lipid (chất béo) đơn giản được cấu tạo từ sự liên kết este giữa 1 phân tử glycerol và 3 phân tử acid béo." },
+            { id: 16, text: "Việc làm nước tương, nước mắm trong dân gian thực chất là ứng dụng của quá trình gì?", options: ["A. Phân giải carbohydrate.", "B. Phân giải protein.", "C. Tổng hợp protein.", "D. Phân giải nucleic acid."], correct: 1, explanation: "Vi sinh vật tiết ra enzyme protease để phân giải protein phức tạp trong cá hoặc đậu nành thành các amino acid (thành phần chính của nước mắm/tương)." },
+            { id: 17, text: "Phát biểu nào sau đây là sai khi nói về sự tổng hợp protein của vi sinh vật?", options: ["A. Vi sinh vật có khả năng tự tổng hợp các loại amino acid.", "B. Vi sinh vật có khả năng tổng hợp protein.", "C. Protein tổng hợp được khi liên kết các amino acid với nhau bằng liên kết glycosid.", "D. Phương trình tổng hợp protein là: (Amino acid)n -> Protein."], correct: 2, explanation: "Các amino acid liên kết với nhau bằng liên kết PEPTIDE. Liên kết glycosid là của phân tử đường (carbohydrate)." },
+            { id: 18, text: "Có hai hình thức lên men, đó là:", options: ["A. Lên men rượu và lên men lactic.", "B. Lên men hiếu khí và lên men kị khí.", "C. Lên men lactic và lên men hiếu khí.", "D. Lên men rượu và lên men kị khí."], correct: 0, explanation: "Lên men rượu (tạo cồn ethanol) và lên men lactic (tạo acid lactic) là hai hình thức lên men phổ biến nhất được ứng dụng." },
+            { id: 19, text: "Bằng cách nào vi sinh vật có thể hấp thụ được các chất có kích thước phân tử lớn như protein, tinh bột, lipid, cellulose?", options: ["A. Chúng được vận chuyển chủ động qua các kênh trên màng sinh.", "B. Chúng được khuếch tán trực tiếp qua màng sinh chất.", "C. Các phân tử nói trên vào tế bào theo cơ chế nhập bào.", "D. Chúng tiết ra các enzyme tương ứng để phân giải ngoại bào sau đó hấp thụ."], correct: 3, explanation: "Do thành tế bào cứng nhắc, vi sinh vật tiết enzyme ngoại bào ra ngoài môi trường để cắt nhỏ đại phân tử thành monomer, sau đó mới hấp thụ qua màng." },
+            { id: 20, text: "Môi trường nuôi không cấy liên tục là môi trường nuôi cấy:", options: ["A. Được bổ sung chất dinh dưỡng, không được lấy đi các sản phẩm của quá trình nuôi cấy", "B. Không được bổ sung chất dinh dưỡng, nhưng được lấy đi các sản phẩm của quá trình nuôi cấy.", "C. Không được bổ sung chất dinh dưỡng, không được lấy đi các sản phẩm của quá trình nuôi cấy.", "D. Được bổ sung chất dinh dưỡng, và được lấy đi các sản phẩm của quá trình nuôi cấy."], correct: 2, explanation: "Đặc điểm của nuôi cấy không liên tục là cho dưỡng chất vào 1 lần từ đầu, không bổ sung thêm và cũng không rút sản phẩm ra giữa chừng." },
+            { id: 21, text: "Quá trình phân giải các hợp chất carbohydrate ở vi sinh vật xảy ra ở:", options: ["A. bên trong nhân tế bào vi sinh vật.", "B. bên ngoài cơ thể vi sinh vật.", "C. bên trong tế bào chất tế bào vi sinh vật.", "D. tại ti thể của tế bào vi sinh vật."], correct: 1, explanation: "Carbohydrate phức tạp (như tinh bột, cellulose) kích thước lớn, nên VSV phải tiết enzyme phân giải ngoại bào (bên ngoài cơ thể) trước khi hấp thu." },
+            { id: 22, text: "Mục đích thường thấy của việc nuôi cấy vi khuẩn không liên tục là để:", options: ["A. Hạn chế sự sinh trưởng của vi khuẩn.", "B. Thu được nhiều sản phẩm và sinh khối từ vi sinh vật.", "C. Tăng mật độ tế bào vi khuẩn ở mức cao nhất.", "D. Nghiên cứu quá trình sinh trưởng của vi khuẩn đó."], correct: 3, explanation: "Nuôi cấy không liên tục giúp quan sát rõ cả 4 pha sinh trưởng (tiềm phát, lũy thừa, cân bằng, suy vong), dùng để nghiên cứu đường cong sinh trưởng." },
+            { id: 23, text: "Môi trường nuôi cấy liên tục là môi trường nuôi cấy:", options: ["A. Được bổ sung chất dinh dưỡng, không được lấy đi các sản phẩm của quá trình nuôi cấy", "B. Không được bổ sung chất dinh dưỡng, nhưng được lấy đi các sản phẩm của quá trình nuôi cấy.", "C. Không được bổ sung chất dinh dưỡng, không được lấy đi các sản phẩm của quá trình nuôi cấy.", "D. Được bổ sung chất dinh dưỡng, và được lấy đi các sản phẩm của quá trình nuôi cấy."], correct: 3, explanation: "Nuôi cấy liên tục đòi hỏi việc thêm chất dinh dưỡng mới và rút sinh khối/sản phẩm ra cùng một lúc để duy trì quần thể luôn ở pha sinh trưởng." },
+            { id: 24, text: "Vai trò của vi sinh vật đối với tự nhiên là:", options: ["A. Phân giải các chất thải đặc biệt là các chất thải độc hại như: nhựa, hóa chất nhân tạo, chất phóng xạ làm giảm ô nhiễm môi trường.", "B. Cộng sinh trong cơ thể người giúp tăng cường miễn dịch, tiêu hóa; tổng hợp một số vitamin, amino axit không thay thế.", "C. VSV tự dưỡng tạo ra O2 và chất dinh dưỡng cung cấp cho các sinh vật dị dưỡng.", "D. Sử dụng trong chế biến thực phẩm, sản xuất thuốc kháng sinh, vitamin, … trên quy mô công nghiệp."], correct: 2, explanation: "Tạo ra O2 và là mắt xích thức ăn đầu tiên (sinh vật sản xuất) là vai trò quan trọng bậc nhất của vi sinh vật quang tự dưỡng đối với hệ sinh thái." },
+            { id: 25, text: "Mục đích của việc sử dụng môi trường nuôi cấy vi khuẩn liên tục trong công nghiệp là:", options: ["A. Hạn chế sự sinh trưởng của vi sinh vật.", "B. Thu được nhiều sản phẩm và sinh khối từ vi sinh vật.", "C. Tăng mật độ tế bào vi sinh vật ở mức cao nhất.", "D. Kéo dài thời gian thế hệ của quần thể vi sinh vật."], correct: 1, explanation: "Nuôi cấy liên tục giúp quần thể duy trì ở pha lũy thừa trong thời gian dài, tối ưu hóa việc sản xuất lượng lớn sinh khối và các chất có ích." },
+            { id: 26, text: "Đối với con người vi sinh vật có vai trò:", options: ["A. Cộng sinh nhiều loài sinh vật giúp các loài tồn tại trong tự nhiên.", "B. Phân giải các chất thải độc hại làm giảm ô nhiễm môi trường.", "C. Tạo ra oxi và các chất dinh dưỡng cung cấp cho các sinh vật.", "D. Phân giải xác sinh vật làm giàu dinh dưỡng cho đất trồng."], correct: 1, explanation: "Việc VSV phân giải chất thải sinh hoạt, nhựa, rác thải công nghiệp giúp làm sạch môi trường sống trực tiếp của con người." },
+            { id: 27, text: "Vì sao vi sinh vật đặc biệt có ích cho ngành nông nghiệp?", options: ["A. Vi sinh vật có khả năng biến đạm khó tiêu thành đạm dễ tiêu.", "B. Vi sinh vật có khả năng biến lân khó tiêu thành lân dễ tiêu.", "C. Vi sinh vật có khả năng biến kali khó tiêu thành kali dễ tiêu.", "D. Vi sinh vật có khả năng biến khoáng khó tiêu thành khoáng dễ tiêu."], correct: 0, explanation: "Vi khuẩn cố định đạm (như Rhizobium) có khả năng chuyển hóa N2 (khí nito tự do) thành dạng NH4+ để cây trồng dễ dàng hấp thu." },
+            { id: 28, text: "Con người chú trọng việc sử dụng thuốc trừ sâu vi sinh thay cho thuốc trừ sâu hóa học vì:", options: ["A. Thuốc trừ sâu hóa học tiêu diệt sâu, bệnh trên diện tích rộng.", "B. Thuốc trừ sâu hóa học thường có thời gian phân hủy kéo dài gây tồn dư độc hại.", "C. Thuốc trừ sâu hóa học có khả năng tiêu diệt nhanh sâu, bệnh.", "D. Thuốc trừ sâu hóa học rất phức tạp trong khâu bảo quản."], correct: 1, explanation: "Thuốc hóa học gây ô nhiễm đất, nước và làm tồn dư chất độc trên nông sản. Thuốc sinh học khắc phục được nhược điểm này." },
+            { id: 29, text: "Nhận định nào sao đây không nói về lợi ích của kích thước nhỏ ở vi sinh vật?", options: ["A. Làm tăng tốc độ trao đổi chất và sinh trưởng", "B. Có lợi trong việc lưu trữ, nuôi cấy và nghiên cứu vi sinh vật", "C. Tạo ra oxi và cung cấp chất dinh dưỡng", "D. Tạo ra một số lượng lớn tế bào trong một khoảng không gian nhỏ"], correct: 2, explanation: "Tạo ra Oxi là đặc trưng của hình thức 'quang tự dưỡng', không phải là hệ quả trực tiếp của việc có kích thước nhỏ." },
+            { id: 30, text: "Vì sao thuốc trừ sâu vi sinh ngày càng được ưa chuộng trong ngành nông nghiệp?", options: ["A. Bảo quản dễ dàng, thời gian sử dụng kéo dài.", "B. Thuốc phân hủy chậm nên độc lực kéo dài.", "C. Tiêu diệt sâu, bệnh hại nhanh chóng.", "D. An toàn với con người và các thiên địch có lợi."], correct: 3, explanation: "Thuốc vi sinh chỉ đặc hiệu với một số loài sâu hại, nên rất an toàn cho con người, môi trường và bảo vệ được các loài thiên địch." },
+            { id: 31, text: "Dựa vào đặc điểm nào của vi sinh vật người ta sử dụng chúng để xử lí ô nhiễm môi trường?", options: ["A. Vi sinh vật có khả năng phân giải các chất phức tạp.", "B. Khả năng sinh trưởng và sinh sản nhanh.", "C. Khả năng phân bố và thích nghi cao.", "D. Khả năng sống trong những môi trường cực đoan."], correct: 0, explanation: "Các hệ enzyme ngoại bào phong phú của VSV cho phép chúng phân giải các rác thải hữu cơ, hóa chất độc hại thành chất vô cơ đơn giản." },
+            { id: 32, text: "Đâu không phải ưu điểm của thuốc trừ sâu sinh học so với với thuốc trừ sâu hóa học?", options: ["A. An toàn với sức khỏe con người và môi trường.", "B. Cho hiệu quả diệt trừ sâu hại nhanh chóng.", "C. Bảo vệ được sự cân bằng sinh học trong tự nhiên.", "D. Sản xuất khá đơn giản và có chi phí thấp."], correct: 1, explanation: "Nhược điểm lớn nhất của thuốc trừ sâu sinh học là thời gian phát huy tác dụng chậm, không tiêu diệt sâu hại tức thì như hóa học." },
+            { id: 33, text: "Thành phần cấu tạo nào dưới đây chứa vật chất di truyền của virus?", options: ["A. Vỏ capsid.", "B. Lõi nucleic acid.", "C. Màng phospholipid kép.", "D. Gai glycoprotein."], correct: 1, explanation: "Lõi nucleic acid (chứa DNA hoặc RNA) đóng vai trò là bộ gene mang thông tin di truyền của virus." },
+            { id: 34, text: "Một số virus còn có lớp vỏ ngoài (envelope) cấu tạo từ:", options: ["A. Lớp kép phospholipid và protein.", "B. Lớp kép phospholipid và cellulose.", "C. Lớp kép phospholipid và nucleic acid.", "D. Lớp đơn phospholipid và chitin."], correct: 0, explanation: "Lớp vỏ ngoài của virus thực chất được lấy từ màng sinh chất của tế bào vật chủ, do đó nó có cấu tạo là lớp kép phospholipid và protein." },
+            { id: 35, text: "Không thể nuôi virus trong môi trường nhân tạo giống như vi khuẩn được vì:", options: ["A. Kích thước của nó vô cùng nhỏ bé.", "B. Hệ gene chỉ chứa một loại nucleic acid.", "C. Chúng không có hình dạng đặc thù.", "D. Chúng là kí sinh nội bào bắt buộc."], correct: 3, explanation: "Virus chưa có cấu tạo tế bào và thiếu hệ thống enzyme trao đổi chất, nên bắt buộc phải sống dựa vào tế bào vật chủ đang sống." },
+            { id: 36, text: "Trên vỏ ngoài virus có chứa:", options: ["A. Các gai glycoprotein.", "B. Các gai peptidoglycan.", "C. Các gai pepsinogen.", "D. Các gai amino acid."], correct: 0, explanation: "Các gai glycoprotein trên vỏ ngoài đóng vai trò kháng nguyên và giúp virus nhận diện, bám vào tế bào vật chủ." },
+            { id: 37, text: "Mỗi loại virus chỉ xâm nhập vào một số tế bào vật chủ nhất định vì:", options: ["A. Bề mặt của tế bào vật chủ được bảo vệ bởi một lớp protein chống lại sự xâm nhập.", "B. Bề mặt của virus có lớp vỏ ngoài hoặc vỏ capsid trơ với các thụ thể.", "C. Virus chỉ xâm nhập được khi phân tử bề mặt khớp đặc hiệu với thụ thể bề mặt tế bào vật chủ.", "D. Virus chỉ xâm nhập được khi hệ gene của nó khớp hoàn toàn với hệ gene của tế bào vật chủ."], correct: 2, explanation: "Sự nhận diện này mang tính đặc hiệu như 'chìa khóa và ổ khóa' giữa gai glycoprotein của virus và thụ thể bề mặt màng tế bào vật chủ." },
+            { id: 38, text: "Chu trình tan là chu trình:", options: ["A. Virus nhân lên làm tan và giết chết tế bào vật chủ.", "B. Virus chỉ nhân bản hệ gene và không phá vỡ tế bào vật chủ.", "C. Virus làm tan hệ gene nhưng không gây chết tế bào vật chủ.", "D. Virus chỉ nhân bản vỏ capsid mà không nhân bản hệ gene."], correct: 0, explanation: "Trong chu trình tan (cấp tính), hạt virus nhân lên ồ ạt, sau đó phá vỡ (làm tan) màng tế bào vật chủ để giải phóng hàng loạt virus con." },
+            { id: 39, text: "Điều nào sau đây là đúng với sự xâm nhập của phage vào tế bào chủ?", options: ["A. Phage đưa cả nucleic acid và vỏ capsid vào tế bào chủ.", "B. Phage chỉ bơm nucleic acid vào tế bào chủ.", "C. Phage chỉ đưa vỏ protein vào tế bào chủ.", "D. Phage vào tế bào chủ bằng cơ chế thực bào."], correct: 1, explanation: "Phage (virus kí sinh vi khuẩn) có cơ chế đặc biệt: để lại vỏ capsid bên ngoài màng và dùng đuôi tiêm (bơm) lõi nucleic acid vào trong." },
+            { id: 40, text: "Chu trình tiềm tan là chu trình:", options: ["A. Virus nhân lên làm tan và giết chết tế bào vật chủ.", "B. Virus chỉ nhân bản hệ gene và không phá vỡ tế bào vật chủ.", "C. Virus làm tan hệ gene nhưng không gây chết tế bào vật chủ.", "D. Virus chỉ nhân bản vỏ capsid mà không nhân bản hệ gene."], correct: 1, explanation: "Ở chu trình tiềm tan, hệ gene của virus tích hợp vào NST của tế bào chủ và nhân lên thầm lặng cùng với tế bào chủ mà không tiêu diệt nó." }
         ];
 
-        // Data: Câu hỏi đúng/sai (Phần II)
+        // Data: Câu hỏi đúng/sai (Phần II) (Cập nhật có giải thích)
         const trueFalseData = [
             {
                 id: 1,
                 context: "Mỗi nhận định sau là đúng hay sai khi nói về quá trình lên men của vi sinh vật?",
                 statements: [
-                    { id: "1a", text: "a. Sản phẩm chính yếu của quá trình lên men rượu là ethanol.", isTrue: true },
-                    { id: "1b", text: "b. Trong quá trình lên men lactic có sự tham gia của nấm men rượu.", isTrue: false },
-                    { id: "1c", text: "c. Quá trình lên men thực chất là quá trình phân giải protein của vi sinh vật.", isTrue: false },
-                    { id: "1d", text: "d. Quá trình lên men của vi khuẩn lactic đồng hình sinh ra nhiều chất hơn so với quá trình lên men của vi khuẩn lactic dị hình.", isTrue: false }
+                    { id: "1a", text: "a. Sản phẩm chính yếu của quá trình lên men rượu là ethanol.", isTrue: true, explanation: "Lên men rượu chuyển hóa đường thành ethanol (cồn) và khí CO2." },
+                    { id: "1b", text: "b. Trong quá trình lên men lactic có sự tham gia của nấm men rượu.", isTrue: false, explanation: "Lên men lactic là do vi khuẩn lactic thực hiện, nấm men rượu dùng để lên men rượu." },
+                    { id: "1c", text: "c. Quá trình lên men thực chất là quá trình phân giải protein của vi sinh vật.", isTrue: false, explanation: "Lên men là quá trình phân giải hợp chất carbohydrate (đường) trong điều kiện kị khí." },
+                    { id: "1d", text: "d. Quá trình lên men của vi khuẩn lactic đồng hình sinh ra nhiều chất hơn so với quá trình lên men của vi khuẩn lactic dị hình.", isTrue: false, explanation: "Lên men dị hình mới sinh ra nhiều loại sản phẩm (acid lactic, ethanol, CO2...), đồng hình chỉ tạo ra chủ yếu acid lactic." }
                 ]
             },
             {
                 id: 2,
                 context: "Phát biểu nào đúng, phát biểu nào sai khi nói về sự tổng hợp protein của vi sinh vật?",
                 statements: [
-                    { id: "2a", text: "a. Vi sinh vật có khả năng tổng hợp protein.", isTrue: true },
-                    { id: "2b", text: "b. Vi sinh vật có khả năng tự tổng hợp các loại amino acid.", isTrue: true },
-                    { id: "2c", text: "c. Phương trình tổng hợp protein là: (Amino acid)n -> Protein.", isTrue: true },
-                    { id: "2d", text: "d. Protein tổng hợp được khi liên kết các amino acid với nhau bằng liên kết glycosid.", isTrue: false }
+                    { id: "2a", text: "a. Vi sinh vật có khả năng tổng hợp protein.", isTrue: true, explanation: "Vi sinh vật sử dụng ribosome để dịch mã tổng hợp protein cho cơ thể chúng." },
+                    { id: "2b", text: "b. Vi sinh vật có khả năng tự tổng hợp các loại amino acid.", isTrue: true, explanation: "Nhiều loài VSV tự dưỡng có bộ enzyme hoàn chỉnh để tự tổng hợp được cả 20 loại amino acid." },
+                    { id: "2c", text: "c. Phương trình tổng hợp protein là: (Amino acid)n -> Protein.", isTrue: true, explanation: "Protein bản chất là chuỗi polymer gồm n phân tử amino acid liên kết lại." },
+                    { id: "2d", text: "d. Protein tổng hợp được khi liên kết các amino acid với nhau bằng liên kết glycosid.", isTrue: false, explanation: "Amino acid liên kết bằng liên kết PEPTIDE. Liên kết glycosid là của phân tử đường." }
                 ]
             },
             {
                 id: 3,
                 context: "Sữa chua là một chế phẩm sữa được sản xuất bằng cách lên men sữa bò tươi, sữa bột hay sữa động vật nói chung. Dựa trên thông tin và kiến thức đã học, hãy cho biết mỗi mệnh đề sau là đúng hay sai khi nói về quá trình làm sữa chua?",
                 statements: [
-                    { id: "3a", text: "a. Lên men sữa chua là lên men ethanol.", isTrue: false },
-                    { id: "3b", text: "b. Quá trình lên men sữa chua có tạo ra ethanol và acetic acid.", isTrue: false },
-                    { id: "3c", text: "c. Quá trình lên men sữa chua có sự tham gia của vi khuẩn lactic dị hình.", isTrue: false },
-                    { id: "3d", text: "d. Quá trình làm sữa chua thực chất là quá trình phân giải carbohydrate của vi sinh vật.", isTrue: true }
+                    { id: "3a", text: "a. Lên men sữa chua là lên men ethanol.", isTrue: false, explanation: "Làm sữa chua là ứng dụng của quá trình lên men lactic." },
+                    { id: "3b", text: "b. Quá trình lên men sữa chua có tạo ra ethanol và acetic acid.", isTrue: false, explanation: "Quá trình này chủ yếu tạo ra acid lactic (làm chua sữa và đông tụ protein sữa)." },
+                    { id: "3c", text: "c. Quá trình lên men sữa chua có sự tham gia của vi khuẩn lactic dị hình.", isTrue: false, explanation: "Vi khuẩn làm sữa chua phổ biến là vi khuẩn lactic ĐỒNG HÌNH." },
+                    { id: "3d", text: "d. Quá trình làm sữa chua thực chất là quá trình phân giải carbohydrate của vi sinh vật.", isTrue: true, explanation: "Vi khuẩn lactic biến đường lactose (carbohydrate) trong sữa thành acid lactic." }
                 ]
             },
             {
                 id: 4,
                 context: "Khi nói về sự sinh trưởng của quần thể vi khuẩn, mỗi mệnh đề sau là đúng hay sai?",
                 statements: [
-                    { id: "4a", text: "a. Trong nuôi cấy liên tục, quần thể vi sinh vật sinh trưởng liên tục, mật độ vi sinh vật tương đối ổn định.", isTrue: true },
-                    { id: "4b", text: "b. Trong nuôi cấy không liên tục, số lượng tế bào trong quần thể tăng rất nhanh ở pha cân bằng.", isTrue: false },
-                    { id: "4c", text: "c. Mục đích của 2 phương pháp nuôi cấy liên tục và không liên tục là để sản xuất sinh khối.", isTrue: false },
-                    { id: "4d", text: "d. Trong nuôi cấy liên tục có 4 pha: Tiềm phát -> luỹ thừa -> cân bằng -> suy vong.", isTrue: false }
+                    { id: "4a", text: "a. Trong nuôi cấy liên tục, quần thể vi sinh vật sinh trưởng liên tục, mật độ vi sinh vật tương đối ổn định.", isTrue: true, explanation: "Nhờ liên tục nạp dinh dưỡng và rút sản phẩm, quần thể duy trì ổn định ở pha lũy thừa." },
+                    { id: "4b", text: "b. Trong nuôi cấy không liên tục, số lượng tế bào trong quần thể tăng rất nhanh ở pha cân bằng.", isTrue: false, explanation: "Số lượng tế bào tăng nhanh nhất (bùng nổ) ở pha Lũy thừa (Log), không phải pha Cân bằng." },
+                    { id: "4c", text: "c. Mục đích của 2 phương pháp nuôi cấy liên tục và không liên tục là để sản xuất sinh khối.", isTrue: false, explanation: "Để sản xuất sinh khối công nghiệp người ta chủ yếu dùng nuôi cấy liên tục. Nuôi không liên tục thường dùng nghiên cứu." },
+                    { id: "4d", text: "d. Trong nuôi cấy liên tục có 4 pha: Tiềm phát -> luỹ thừa -> cân bằng -> suy vong.", isTrue: false, explanation: "Nuôi cấy liên tục bỏ qua pha suy vong do môi trường không bị cạn kiệt dinh dưỡng." }
                 ]
             },
             {
                 id: 5,
                 context: "Hãy cho biết mỗi nhận định sau đây là Đúng hay Sai?",
                 statements: [
-                    { id: "5a", text: "a. Đơn vị cấu tạo của vỏ capsid của virus là capsomer.", isTrue: true },
-                    { id: "5b", text: "b. Lớp vỏ ngoài của virus có tên là enternal.", isTrue: false },
-                    { id: "5c", text: "c. Lớp vỏ ngoài có cấu tạo là lớp đơn phospholipid và protein.", isTrue: false },
-                    { id: "5d", text: "d. Các gai mang tính kháng nguyên giúp virus bám vào vật chủ, nhận diện tế bào vật chủ là các gai glycoprotein.", isTrue: true }
+                    { id: "5a", text: "a. Đơn vị cấu tạo của vỏ capsid của virus là capsomer.", isTrue: true, explanation: "Capsid được ghép lại từ nhiều đơn vị protein nhỏ gọi là capsomer." },
+                    { id: "5b", text: "b. Lớp vỏ ngoài của virus có tên là enternal.", isTrue: false, explanation: "Lớp vỏ ngoài được gọi bằng thuật ngữ tiếng Anh là Envelope." },
+                    { id: "5c", text: "c. Lớp vỏ ngoài có cấu tạo là lớp đơn phospholipid và protein.", isTrue: false, explanation: "Vì lấy từ màng sinh chất của vật chủ nên nó phải là màng KÉP phospholipid." },
+                    { id: "5d", text: "d. Các gai mang tính kháng nguyên giúp virus bám vào vật chủ, nhận diện tế bào vật chủ là các gai glycoprotein.", isTrue: true, explanation: "Gai glycoprotein đóng vai trò như 'chìa khóa' để mở cửa vào tế bào (nhận diện thụ thể)." }
                 ]
             },
             {
                 id: 6,
                 context: "Hãy cho biết mỗi nhận định sau đây là Đúng hay Sai?",
                 statements: [
-                    { id: "6a", text: "a. Phage còn có tên gọi khác là thực thể khuẩn.", isTrue: true },
-                    { id: "6b", text: "b. Hình thức sống của virus là sống kí sinh nội bào bắt buộc.", isTrue: true },
-                    { id: "6c", text: "c. Virus không được xem là một thực thể sống hoàn chỉnh do virus có kích thước quá nhỏ bé.", isTrue: false },
-                    { id: "6d", text: "d. Trong điều kiện ngoài tế bào, virus có khả năng tồn tại lâu dài ở trạng thái đại phân tử hóa học.", isTrue: true }
+                    { id: "6a", text: "a. Phage còn có tên gọi khác là thực thể khuẩn.", isTrue: true, explanation: "Bacteriophage (viết tắt là Phage) có nghĩa là thể thực khuẩn (virus ăn vi khuẩn)." },
+                    { id: "6b", text: "b. Hình thức sống của virus là sống kí sinh nội bào bắt buộc.", isTrue: true, explanation: "Do không có hệ enzyme tự trao đổi chất, virus bắt buộc phải kí sinh bên trong tế bào chủ." },
+                    { id: "6c", text: "c. Virus không được xem là một thực thể sống hoàn chỉnh do virus có kích thước quá nhỏ bé.", isTrue: false, explanation: "Lý do là vì virus chưa có cấu tạo tế bào, chứ không phải do kích thước nhỏ." },
+                    { id: "6d", text: "d. Trong điều kiện ngoài tế bào, virus có khả năng tồn tại lâu dài ở trạng thái đại phân tử hóa học.", isTrue: true, explanation: "Khi ở ngoài tế bào chủ, virus chỉ là hạt virion không có biểu hiện sống." }
                 ]
             },
             {
                 id: 7,
                 context: "Một nhà khoa học tiến hành thí nghiệm lai hai chủng virus A và B như sau: Lấy vỏ capsid của virus A trộn với nucleic acid của virus B tạo thành virus lai. Biết mỗi loại virus chỉ kí sinh trong một loại vật chủ, mỗi nhận định sau đây là Đúng hay Sai?",
                 statements: [
-                    { id: "7a", text: "a. Virus lai có vỏ của chủng A và lõi của chủng B", isTrue: true },
-                    { id: "7b", text: "b. Virus lai có thể xâm nhập vào tế bào vật chủ của virus B.", isTrue: false },
-                    { id: "7c", text: "c. Virus lai sau khi nhân lên có thể xâm nhập vào vật chủ của cả virus A và virus B.", isTrue: false },
-                    { id: "7d", text: "d. Virus lai sau khi nhân lên sẽ có vỏ của chủng B và lõi của chủng B.", isTrue: true }
+                    { id: "7a", text: "a. Virus lai có vỏ của chủng A và lõi của chủng B", isTrue: true, explanation: "Theo đúng nguyên tắc thí nghiệm ghép vỏ - lõi." },
+                    { id: "7b", text: "b. Virus lai có thể xâm nhập vào tế bào vật chủ của virus B.", isTrue: false, explanation: "Xâm nhập phụ thuộc vào vỏ (có gai nhú bám vật chủ). Vì vỏ của chủng A nên nó sẽ bám vào vật chủ của A." },
+                    { id: "7c", text: "c. Virus lai sau khi nhân lên có thể xâm nhập vào vật chủ của cả virus A và virus B.", isTrue: false, explanation: "Virus con sinh ra mang hoàn toàn đặc điểm của B, nên chỉ xâm nhập được vật chủ của B." },
+                    { id: "7d", text: "d. Virus lai sau khi nhân lên sẽ có vỏ của chủng B và lõi của chủng B.", isTrue: true, explanation: "Lõi là DNA/RNA của chủng B mang thông tin di truyền, khi vào tế bào nó sẽ chỉ huy tạo ra vỏ B và lõi B cho thế hệ con." }
                 ]
             }
+        ];
+
+        // Data: Câu hỏi trả lời ngắn (Phần III)
+        const shortAnswersData = [
+            { id: 1, question: "Câu 1. Có một tế bào vi sinh vật có thời gian của một thế hệ là 30 phút. Số tế bào tạo ra từ tế bào nói trên sau 3 giờ là bao nhiêu?", answer: "Đ/A: 64 tế bào\n(Giải thích: 3 giờ = 180 phút. Số thế hệ n = 180 / 30 = 6. Số tế bào tạo ra = 1 × 2⁶ = 64)" },
+            { id: 2, question: "Câu 2: Vi khuẩn E. coli trong điều kiện nuôi cấy thích hợp cứ 20 phút lại phân đôi một lần. Số tế bào của quần thể vi khuẩn E. coli có được sau 3 giờ 20 phút từ một tế bào vi khuẩn ban đầu là.", answer: "Đ/A: 1024 tế bào" },
+            { id: 3, question: "Câu 3. Trong thời gian 100 phút, từ một tế bào vi khuẩn đã phân bào tạo ra tất cả 32 tế bào mới. Hãy cho biết thời gian cần thiết cho một thế hệ của tế bào trên là bao nhiêu?", answer: "Đ/A: 20 phút" },
+            { id: 4, question: "Câu 4. Trong thời gian 180 phút, từ hai tế bào vi khuẩn đã phân bào tạo ra tất cả 64 tế bào mới. Hãy cho biết thời gian cần thiết cho một thế hệ của tế bào trên là bao nhiêu phút?", answer: "Đ/A: 36 phút" },
+            { id: 5, question: "Câu 5. Trong thời gian 100 phút, từ hai tế bào vi khuẩn đã phân bào tạo ra tất cả 32 tế bào mới. Hãy cho biết thời gian cần thiết cho một thế hệ của tế bào trên là bao nhiêu phút?", answer: "Đ/A: 25 phút" },
+            { id: 6, question: "Câu 6. Dựa vào khả năng phân giải ngoại bào các chất của vi sinh vật có thể ứng dụng vào bao nhiêu việc sau đây?\n(1) Sản xuất kháng sinh, protein đơn bào.\n(2) Sản xuất nước mắm, nước tương, acid hữu cơ.\n(3) Xử lí chất thải ô nhiễm (rác hữu cơ, dầu loang, nước thải,...).\n(4) Sản xuất bánh kẹo, syrup, rượu, sữa chua, rau, củ, quả muối chua.", answer: "Đ/A: 3 việc (2, 3, 4)" },
+            { id: 7, question: "Câu 7. Dựa vào khả năng tổng hợp các chất cần thiết nhờ sử dụng năng lượng và enzyme nội bào của vi sinh vật có thể ứng dụng vào bao nhiêu việc sau đây?\n(1) Tạo protein đơn bào.\n(2) Tạo các amino acid quý.\n(3) Tổng hợp kháng sinh, hormone.\n(4) Sản xuất nước mắm, nước tương.", answer: "Đ/A: 3 việc (1, 2, 3)" },
+            { id: 8, question: "Câu 8: Có mấy sản phẩm được tạo ra nhờ ứng dụng công nghệ vi sinh vật?\nI. Bánh mì\nII. Bánh bò\nIII. Cá mòi hộp\nIV. Vaccin\n V. Phân vi sinh\n VI. Bia, rượu", answer: "Đ/A: 5 sản phẩm (Trừ III. Cá mòi hộp)" },
+            { id: 9, question: "Câu 9. Cho các nhóm vi sinh vật: vi khuẩn amon hóa, vi khuẩn nitrat hóa, vi khuẩn hóa tự dưỡng, vi khuẩn quang tự dưỡng và vi khuẩn dị dưỡng hoại sinh. Xử lý nước thải bằng phương pháp sinh học chủ yếu dựa bao nhiêu nhóm vi sinh vật kể trên?", answer: "Đ/A: 2 nhóm (vi khuẩn nitrat hóa và vi khuẩn dị dưỡng hoại sinh)" }
+        ];
+
+        // Data: Câu hỏi Tự luận (Phần IV)
+        const essayData = [
+            { id: 1, question: "Câu 1: Hãy cho biết vai trò của vi sinh vật.", answer: "Vai trò của vi sinh vật\nĐối với tự nhiên:\n+ Phân giải chất thải và xác vi sinh vật thành chất khoáng, đảm bảo vòng tuần hoàn vật chất trong tự nhiên, làm giàu chất dinh dưỡng cho đất.\n+ VSV tự dưỡng tạo ra O2 và chất dinh dưỡng cung cấp cho các sinh vật dị dưỡng.\n+ Cộng sinh với nhiều loại sinh vật, đảm bảo sự tồn tại và phát triển của các loài đó trong tự nhiên.\n\nĐối với con người:\n+ Phân giải các chất thải đặc biệt là các chất thải độc hại như: nhựa, hóa chất nhân tạo, chất phóng xạ làm giảm ô nhiễm môi trường.\n+ Cộng sinh trong cơ thể người giúp tăng cường miễn dịch, tiêu hóa; tổng hợp một số vitamin, amino axit không thay thế.\n+ Sử dụng trong chế biến thực phẩm, sản xuất thuốc kháng sinh, vitamin, … trên quy mô công nghiệp." },
+            { id: 2, question: "Câu 2: Việc ứng dụng vi sinh vật trong thực tiễn dựa trên những cơ sở khoa học nào?", answer: "Cơ sở khoa học của việc ứng dụng vi sinh vật là dựa trên các đặc điểm sinh học của chúng như:\n- Kích thước hiển vi, sinh trưởng nhanh, phát triển mạnh.\n- Hình thức dinh dưỡng đa dạng.\n- Quá trình tổng hợp và phân giải các chất tạo ra các sản phẩm có giá trị dinh dưỡng hoặc có ý nghĩa lớn trong đời sống con người." },
+            { id: 3, question: "Câu 3: Hãy kể tên những sản phẩm từ vi sinh vật phục vụ cho đời sống con người mà em biết.", answer: "Những sản phẩm từ vi sinh vật phục vụ cho đời sống con người:\n+ Phân vi sinh phục vụ trong nông nghiệp.\n+ Thuốc chữa bệnh và thức ăn trong chăn nuôi.\n+ Vaccine và các loại thuốc kháng sinh, men tiêu hoá, các loại protein để chữa bệnh.\n+ Các thực phẩm lên men như bánh mỳ, rượu, bia, sữa chua, nước mắm, …" },
+            { id: 4, question: "Câu 4. Trình bày quy trình làm sữa chua và quy trình làm dưa chua?", answer: "(Gợi ý mở rộng do tài liệu thiếu)\n- Quy trình làm sữa chua: Sử dụng vi khuẩn lactic lên men đồng hình. Cho men giống vào sữa bột/sữa tươi tiệt trùng, ủ ấm ở nhiệt độ 35-40°C. Vi khuẩn lên men đường lactose tạo thành acid lactic làm giảm pH, khiến protein trong sữa đông tụ tạo thành sữa chua.\n- Quy trình làm dưa chua: Sử dụng vi khuẩn lactic lên men dị hình/đồng hình có sẵn trong tự nhiên. Rửa sạch rau củ, phơi héo, ngập chìm trong dung dịch nước muối (kèm ít đường) và đậy kín. Vi khuẩn lactic sẽ lên men kị khí, chuyển hóa đường thành acid lactic làm chua dưa." },
+            { id: 5, question: "Câu 5: Kể rõ các ứng dụng của vi sinh vật trong nông nghiệp?", answer: "Ứng dụng của vi sinh vật trong nông nghiệp:\n- Làm giàu đạm cho đất (vi khuẩn cố định đạm).\n- Biến lân khó tiêu thành lân dễ tiêu.\n- Phân giải mùn và các chất hữu cơ thành chất khoáng vô cơ mà cây có thể hấp thu được.\n- Tiết ra các chất tăng trưởng, polisaccharide hay chất kháng sinh giúp cây sinh trưởng và phát triển tốt hơn, giữ ẩm cho đất và ức chế mầm bệnh cho cây trồng.\n- Sản xuất phân bón vi sinh vật.\n- Sản xuất thuốc trừ sâu vi sinh vật." }
         ];
 
         // Icons
@@ -156,9 +200,10 @@
         const App = () => {
             const [answers, setAnswers] = React.useState({});
             const [tfAnswers, setTfAnswers] = React.useState({});
-            const [activeTab, setActiveTab] = React.useState('mcq'); // 'mcq' or 'tf'
+            const [revealedAnswers, setRevealedAnswers] = React.useState({});
+            const [activeTab, setActiveTab] = React.useState('mcq'); // 'mcq', 'tf', 'sa', or 'essay'
             const [showConfirmModal, setShowConfirmModal] = React.useState(false);
-            
+
             // Tính số điểm MCQ
             const correctCount = Object.keys(answers).filter(
                 id => answers[id] === questionsData.find(q => q.id === parseInt(id)).correct
@@ -168,7 +213,7 @@
             // Tính số điểm T/F
             let tfTotalStmts = 0;
             trueFalseData.forEach(q => tfTotalStmts += q.statements.length);
-            
+
             let tfCorrectCount = 0;
             Object.keys(tfAnswers).forEach(stmtId => {
                 const stmt = trueFalseData.flatMap(q => q.statements).find(s => s.id === stmtId);
@@ -193,6 +238,7 @@
             const confirmReset = () => {
                 setAnswers({});
                 setTfAnswers({});
+                setRevealedAnswers({});
                 setShowConfirmModal(false);
                 window.scrollTo(0, 0);
             };
@@ -204,8 +250,15 @@
             return (
                 <div className="min-h-screen pb-20">
                     {/* Header cố định */}
-                    <header className="sticky top-0 z-50 bg-blue-600 text-white shadow-lg py-4 px-6 flex flex-col sm:flex-row justify-between items-center">
-                        <h1 className="text-xl md:text-2xl font-bold mb-2 sm:mb-0">Ôn Tập Sinh 10 - Cuối HK2</h1>
+                    <header className="sticky top-0 z-50 bg-blue-600 text-white shadow-lg py-4 px-6 flex flex-col xl:flex-row justify-between items-center">
+                        <div className="flex items-center space-x-3 mb-3 xl:mb-0">
+                            <a href="index.html" className="flex items-center justify-center bg-blue-700 hover:bg-blue-800 p-2 rounded-full transition-colors shadow border border-blue-500" title="Về trang chủ">
+                                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                </svg>
+                            </a>
+                            <h1 className="text-xl md:text-2xl font-bold">Ôn Tập Sinh 10 - Cuối HK2</h1>
+                        </div>
                         <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">
                             <div className="text-sm font-semibold bg-blue-700 px-3 py-1 rounded-full border border-blue-400">
                                 Trắc nghiệm: <span className="text-green-300">{correctCount}</span> / {answeredCount}
@@ -221,18 +274,30 @@
 
                     {/* Tabs navigation */}
                     <div className="max-w-4xl mx-auto px-4 md:px-6 mt-6">
-                        <div className="flex space-x-2 bg-gray-200 p-1 rounded-lg">
-                            <button 
+                        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:gap-2 bg-gray-200 p-1 rounded-lg">
+                            <button
                                 onClick={() => setActiveTab('mcq')}
-                                className={`flex-1 py-2 px-4 rounded-md font-medium text-sm sm:text-base smooth-transition ${activeTab === 'mcq' ? 'bg-white text-blue-600 shadow' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-300'}`}
+                                className={`flex-1 py-2 px-2 md:px-4 rounded-md font-medium text-sm md:text-base smooth-transition ${activeTab === 'mcq' ? 'bg-white text-blue-600 shadow' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-300'}`}
                             >
-                                Phần I: Chọn đáp án
+                                Phần I: Trắc nghiệm
                             </button>
-                            <button 
+                            <button
                                 onClick={() => setActiveTab('tf')}
-                                className={`flex-1 py-2 px-4 rounded-md font-medium text-sm sm:text-base smooth-transition ${activeTab === 'tf' ? 'bg-white text-blue-600 shadow' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-300'}`}
+                                className={`flex-1 py-2 px-2 md:px-4 rounded-md font-medium text-sm md:text-base smooth-transition ${activeTab === 'tf' ? 'bg-white text-blue-600 shadow' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-300'}`}
                             >
                                 Phần II: Đúng/Sai
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('sa')}
+                                className={`flex-1 py-2 px-2 md:px-4 rounded-md font-medium text-sm md:text-base smooth-transition ${activeTab === 'sa' ? 'bg-white text-blue-600 shadow' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-300'}`}
+                            >
+                                Phần III: Trả lời ngắn
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('essay')}
+                                className={`flex-1 py-2 px-2 md:px-4 rounded-md font-medium text-sm md:text-base smooth-transition ${activeTab === 'essay' ? 'bg-white text-blue-600 shadow' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-300'}`}
+                            >
+                                Phần IV: Tự luận
                             </button>
                         </div>
                     </div>
@@ -272,14 +337,14 @@
                                                     <span className="text-blue-600 font-bold mr-2">Câu {index + 1}:</span>
                                                     {q.text}
                                                 </h3>
-                                                
+
                                                 <div className="flex flex-col space-y-3">
                                                     {q.options.map((option, optIdx) => {
                                                         const isCorrectOpt = optIdx === q.correct;
                                                         const isSelected = selectedOpt === optIdx;
-                                                        
+
                                                         let btnClass = "text-left px-5 py-3 rounded-lg border-2 font-medium smooth-transition w-full text-base lg:text-lg ";
-                                                        
+
                                                         if (!isAnswered) {
                                                             btnClass += "border-gray-200 bg-gray-50 text-gray-700 hover:bg-blue-50 hover:border-blue-300 cursor-pointer";
                                                         } else {
@@ -295,7 +360,7 @@
                                                         }
 
                                                         return (
-                                                            <button 
+                                                            <button
                                                                 key={optIdx}
                                                                 onClick={() => handleSelect(q.id, optIdx)}
                                                                 disabled={isAnswered}
@@ -311,23 +376,31 @@
                                                     })}
                                                 </div>
 
+                                                {/* Hiển thị giải thích khi trả lời xong */}
                                                 {isAnswered && (
-                                                    <div className={`mt-4 p-3 rounded-md font-medium text-sm sm:text-base flex items-center ${selectedOpt === q.correct ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-                                                        {selectedOpt === q.correct ? 
-                                                            "✅ Rất tốt! Bạn đã trả lời đúng." : 
-                                                            `❌ Sai rồi! Đáp án đúng là: ${q.options[q.correct].substring(0, 2)}`}
+                                                    <div className={`mt-4 p-4 rounded-lg font-medium text-sm sm:text-base flex flex-col space-y-2 border ${selectedOpt === q.correct ? 'bg-green-50 text-green-800 border-green-200' : 'bg-red-50 text-red-800 border-red-200'}`}>
+                                                        <div className="flex items-center">
+                                                            {selectedOpt === q.correct ?
+                                                                "✅ Rất tốt! Bạn đã trả lời đúng." :
+                                                                `❌ Sai rồi! Đáp án đúng là: ${q.options[q.correct].substring(0, 2)}`}
+                                                        </div>
+                                                        {selectedOpt !== q.correct && q.explanation && (
+                                                            <div className="mt-2 text-gray-700 bg-white p-3 rounded border border-red-100 text-sm leading-relaxed shadow-sm">
+                                                                <span className="font-bold text-red-600">💡 Giải thích:</span> {q.explanation}
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 )}
                                             </div>
                                         );
                                     })}
                                 </div>
-                                
+
                                 {answeredCount === questionsData.length && (
                                     <div className="mt-12 bg-blue-600 text-white rounded-xl shadow-xl p-8 text-center">
                                         <h2 className="text-3xl font-bold mb-4">Hoàn thành Phần I! 🎉</h2>
                                         <p className="text-xl mb-6">Điểm số Phần I của bạn: <strong>{correctCount} / 40</strong></p>
-                                        <button onClick={() => {setActiveTab('tf'); window.scrollTo(0,0);}} className="bg-white text-blue-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg smooth-transition text-lg">
+                                        <button onClick={() => { setActiveTab('tf'); window.scrollTo(0, 0); }} className="bg-white text-blue-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg smooth-transition text-lg">
                                             Chuyển sang Phần II
                                         </button>
                                     </div>
@@ -351,40 +424,48 @@
                                                     <span className="text-purple-600 font-bold mr-2">Câu {index + 1}:</span>
                                                     {q.context}
                                                 </h3>
-                                                
+
                                                 <div className="space-y-4">
                                                     {q.statements.map(stmt => {
                                                         const isAnswered = tfAnswers[stmt.id] !== undefined;
                                                         const userChoice = tfAnswers[stmt.id];
+                                                        const isWrong = isAnswered && userChoice !== stmt.isTrue;
 
                                                         return (
-                                                            <div key={stmt.id} className="flex flex-col md:flex-row md:items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
-                                                                <span className="text-gray-800 font-medium mb-3 md:mb-0 md:mr-4 md:flex-1">{stmt.text}</span>
-                                                                
-                                                                <div className="flex space-x-2 shrink-0">
-                                                                    <button 
-                                                                        onClick={() => !isAnswered && setTfAnswers(prev => ({...prev, [stmt.id]: true}))}
-                                                                        disabled={isAnswered}
-                                                                        className={`px-4 py-2 rounded-md font-semibold transition-colors ${
-                                                                            !isAnswered ? 'bg-white border-2 border-gray-300 text-gray-600 hover:border-green-500 hover:text-green-600' : 
-                                                                            userChoice === true ? (stmt.isTrue ? 'bg-green-500 text-white border-2 border-green-500' : 'bg-red-500 text-white border-2 border-red-500') :
-                                                                            (stmt.isTrue ? 'bg-green-100 text-green-700 border-2 border-green-300' : 'bg-gray-200 text-gray-300 border-2 border-gray-200 cursor-not-allowed')
-                                                                        }`}
-                                                                    >
-                                                                        Đúng
-                                                                    </button>
-                                                                    <button 
-                                                                        onClick={() => !isAnswered && setTfAnswers(prev => ({...prev, [stmt.id]: false}))}
-                                                                        disabled={isAnswered}
-                                                                        className={`px-4 py-2 rounded-md font-semibold transition-colors ${
-                                                                            !isAnswered ? 'bg-white border-2 border-gray-300 text-gray-600 hover:border-red-500 hover:text-red-600' : 
-                                                                            userChoice === false ? (!stmt.isTrue ? 'bg-green-500 text-white border-2 border-green-500' : 'bg-red-500 text-white border-2 border-red-500') :
-                                                                            (!stmt.isTrue ? 'bg-green-100 text-green-700 border-2 border-green-300' : 'bg-gray-200 text-gray-300 border-2 border-gray-200 cursor-not-allowed')
-                                                                        }`}
-                                                                    >
-                                                                        Sai
-                                                                    </button>
+                                                            <div key={stmt.id} className="flex flex-col">
+                                                                <div className={`flex flex-col md:flex-row md:items-center justify-between p-4 rounded-lg border ${isWrong ? 'bg-red-50 border-red-200' : 'bg-gray-50 border-gray-200'}`}>
+                                                                    <span className="text-gray-800 font-medium mb-3 md:mb-0 md:mr-4 md:flex-1">{stmt.text}</span>
+
+                                                                    <div className="flex space-x-2 shrink-0">
+                                                                        <button
+                                                                            onClick={() => !isAnswered && setTfAnswers(prev => ({ ...prev, [stmt.id]: true }))}
+                                                                            disabled={isAnswered}
+                                                                            className={`px-4 py-2 rounded-md font-semibold transition-colors ${!isAnswered ? 'bg-white border-2 border-gray-300 text-gray-600 hover:border-green-500 hover:text-green-600' :
+                                                                                    userChoice === true ? (stmt.isTrue ? 'bg-green-500 text-white border-2 border-green-500' : 'bg-red-500 text-white border-2 border-red-500') :
+                                                                                        (stmt.isTrue ? 'bg-green-100 text-green-700 border-2 border-green-300' : 'bg-gray-200 text-gray-300 border-2 border-gray-200 cursor-not-allowed')
+                                                                                }`}
+                                                                        >
+                                                                            Đúng
+                                                                        </button>
+                                                                        <button
+                                                                            onClick={() => !isAnswered && setTfAnswers(prev => ({ ...prev, [stmt.id]: false }))}
+                                                                            disabled={isAnswered}
+                                                                            className={`px-4 py-2 rounded-md font-semibold transition-colors ${!isAnswered ? 'bg-white border-2 border-gray-300 text-gray-600 hover:border-red-500 hover:text-red-600' :
+                                                                                    userChoice === false ? (!stmt.isTrue ? 'bg-green-500 text-white border-2 border-green-500' : 'bg-red-500 text-white border-2 border-red-500') :
+                                                                                        (!stmt.isTrue ? 'bg-green-100 text-green-700 border-2 border-green-300' : 'bg-gray-200 text-gray-300 border-2 border-gray-200 cursor-not-allowed')
+                                                                                }`}
+                                                                        >
+                                                                            Sai
+                                                                        </button>
+                                                                    </div>
                                                                 </div>
+
+                                                                {/* Hiển thị giải thích khi trả lời sai (Phần Đúng/Sai) */}
+                                                                {isWrong && stmt.explanation && (
+                                                                    <div className="mt-2 text-sm text-gray-700 bg-white border border-red-200 p-3 rounded-lg shadow-sm mx-1">
+                                                                        <span className="font-bold text-red-600">💡 Giải thích:</span> {stmt.explanation}
+                                                                    </div>
+                                                                )}
                                                             </div>
                                                         );
                                                     })}
@@ -399,11 +480,88 @@
                                         <h2 className="text-3xl font-bold mb-4">Hoàn thành Phần II! 🎉</h2>
                                         <p className="text-xl mb-6">Điểm số Đúng/Sai: <strong>{tfCorrectCount} / {tfTotalStmts}</strong></p>
                                         <p className="text-lg mb-6">Tổng điểm cả 2 phần: <strong className="text-yellow-300">{correctCount + tfCorrectCount} / {questionsData.length + tfTotalStmts}</strong></p>
-                                        <button onClick={requestReset} className="bg-white text-purple-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg smooth-transition text-lg">
-                                            Làm lại toàn bộ
+                                        <button onClick={() => { setActiveTab('sa'); window.scrollTo(0, 0); }} className="bg-white text-purple-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg smooth-transition text-lg">
+                                            Chuyển sang Phần III
                                         </button>
                                     </div>
                                 )}
+                            </div>
+                        )}
+
+                        {/* Tab Phần III: Trả lời ngắn */}
+                        {activeTab === 'sa' && (
+                            <div className="fade-in">
+                                <div className="bg-white rounded-xl shadow-md p-6 mb-8 border border-gray-200">
+                                    <h2 className="text-xl font-bold text-gray-800 mb-2">Phần III: Trả lời ngắn</h2>
+                                    <p className="text-gray-600">Với các dạng câu hỏi này, bạn hãy tự suy nghĩ đáp án trong đầu (hoặc viết ra nháp), sau đó bấm <strong>"Xem đáp án"</strong> để đối chiếu kết quả nhé.</p>
+                                </div>
+
+                                <div className="space-y-8">
+                                    {shortAnswersData.map((q) => (
+                                        <div key={`sa-${q.id}`} className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 hover:shadow-md smooth-transition">
+                                            <h4 className="text-lg font-semibold text-gray-800 mb-4 whitespace-pre-line">{q.question}</h4>
+
+                                            {!revealedAnswers[`sa-${q.id}`] ? (
+                                                <button
+                                                    onClick={() => setRevealedAnswers(prev => ({ ...prev, [`sa-${q.id}`]: true }))}
+                                                    className="bg-blue-100 text-blue-700 hover:bg-blue-200 font-medium py-2 px-4 rounded-lg transition-colors text-sm"
+                                                >
+                                                    👁️ Xem đáp án
+                                                </button>
+                                            ) : (
+                                                <div className="mt-3 bg-green-50 border border-green-200 p-4 rounded-lg text-green-900 whitespace-pre-line fade-in">
+                                                    <span className="font-bold">Đáp án:</span><br />{q.answer}
+                                                </div>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="mt-12 bg-blue-600 text-white rounded-xl shadow-xl p-8 text-center">
+                                    <h2 className="text-3xl font-bold mb-4">Hoàn thành Phần III! 🎉</h2>
+                                    <button onClick={() => { setActiveTab('essay'); window.scrollTo(0, 0); }} className="bg-white text-blue-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg smooth-transition text-lg">
+                                        Chuyển sang Phần IV
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Tab Phần IV: Tự luận */}
+                        {activeTab === 'essay' && (
+                            <div className="fade-in">
+                                <div className="bg-white rounded-xl shadow-md p-6 mb-8 border border-gray-200">
+                                    <h2 className="text-xl font-bold text-gray-800 mb-2">Phần IV: Tự luận</h2>
+                                    <p className="text-gray-600">Hãy đọc kĩ câu hỏi, tự trình bày câu trả lời, sau đó bấm <strong>"Xem đáp án"</strong> để tham khảo gợi ý nhé.</p>
+                                </div>
+
+                                <div className="space-y-8">
+                                    {essayData.map((q) => (
+                                        <div key={`es-${q.id}`} className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 hover:shadow-md smooth-transition">
+                                            <h4 className="text-lg font-semibold text-gray-800 mb-4 whitespace-pre-line">{q.question}</h4>
+
+                                            {!revealedAnswers[`es-${q.id}`] ? (
+                                                <button
+                                                    onClick={() => setRevealedAnswers(prev => ({ ...prev, [`es-${q.id}`]: true }))}
+                                                    className="bg-blue-100 text-blue-700 hover:bg-blue-200 font-medium py-2 px-4 rounded-lg transition-colors text-sm"
+                                                >
+                                                    👁️ Xem đáp án
+                                                </button>
+                                            ) : (
+                                                <div className="mt-3 bg-green-50 border border-green-200 p-4 rounded-lg text-green-900 whitespace-pre-line leading-relaxed fade-in">
+                                                    <span className="font-bold">Hướng dẫn trả lời:</span><br /><br />{q.answer}
+                                                </div>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="mt-12 bg-blue-600 text-white rounded-xl shadow-xl p-8 text-center">
+                                    <h2 className="text-3xl font-bold mb-4">Bạn đã hoàn thành toàn bộ đề cương! 🎉</h2>
+                                    <p className="text-xl mb-6">Chúc bạn ôn tập thật tốt và đạt điểm cao trong kì thi nhé.</p>
+                                    <button onClick={requestReset} className="bg-white text-blue-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg smooth-transition text-lg">
+                                        Ôn tập lại từ đầu
+                                    </button>
+                                </div>
                             </div>
                         )}
                     </main>
@@ -415,4 +573,5 @@
         root.render(<App />);
     </script>
 </body>
+
 </html>
