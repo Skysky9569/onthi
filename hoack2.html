@@ -860,16 +860,16 @@
           <div class="card-small analysis">
             <div class="card-small-title">3. Công thức tính</div>
             <div class="formula-box analysis">
-              <p><strong>Số mol:</strong> n = m/M = V/V_m = N/N_A</p>
+              <p><strong>Số mol:</strong> n = m/M = V/22,4 = N/N_A</p>
             </div>
             <div class="formula-box analysis">
-              <p><strong>Nồng độ mol:</strong> C = n/V</p>
+              <p><strong>Nồng độ mol:</strong> C<sub>M</sub> = n/V<sub>dd</sub></p>
             </div>
             <div class="formula-box analysis">
               <p><strong>Nồng độ khối lượng:</strong> ρ = m/V</p>
             </div>
             <div class="formula-box analysis">
-              <p><strong>Phần trăm khối lượng:</strong> C% = (m_chất tan/m_dung dịch) × 100%</p>
+              <p><strong>Phần trăm khối lượng:</strong> C% = m<sub>chất tan</sub>/m<sub>dung dịch</sub> × 100%</p>
             </div>
           </div>
         </div>
@@ -1817,8 +1817,8 @@
           <div class="subsection-title">1. Công thức tính nồng độ</div>
           <div class="card-small">
             <div class="formula-box">
-              <p><strong>Nồng độ mol:</strong> $$C = \frac{n}{V_{dd}}$$</p>
-              <p><em>Trong đó:</em> C (mol/L), n (số mol), $V_{dd}$ (thể tích dung dịch - L)</p>
+              <p><strong>Nồng độ mol:</strong> $$C_M = \frac{n}{V_{dd}}$$</p>
+              <p><em>Trong đó:</em> C<sub>M</sub> (mol/L), n (số mol), V<sub>dd</sub> (thể tích dung dịch - L)</p>
             </div>
             <div class="formula-box">
               <p><strong>Nồng độ khối lượng:</strong> $$\rho = \frac{m}{V}$$</p>
@@ -1826,7 +1826,7 @@
             </div>
             <div class="formula-box">
               <p><strong>Phần trăm khối lượng:</strong> $$C\% = \frac{m_{\text{chất tan}}}{m_{\text{dung dịch}}} \times 100\%$$</p>
-              <p><em>Trong đó:</em> $m_{\text{chất tan}}$ (khối lượng chất tan - g), $m_{\text{dung dịch}}$ (khối lượng dung dịch - g)</p>
+              <p><em>Trong đó:</em> m<sub>chất tan</sub> (g), m<sub>dung dịch</sub> (g)</p>
             </div>
           </div>
         </div>
@@ -1839,16 +1839,16 @@
               <p><em>Trong đó:</em> n (số mol), m (khối lượng - g), M (khối lượng mol - g/mol)</p>
             </div>
             <div class="formula-box">
-              <p><strong>Từ thể tích khí (đktc):</strong> $$n = \frac{V_{khí}}{V_m} = \frac{V_{khí}}{22.4}$$</p>
-              <p><em>Trong đó:</em> n (số mol), $V_{khí}$ (thể tích khí - L), $V_m = 22.4$ L/mol (đktc)</p>
+              <p><strong>Từ thể tích khí (đktc):</strong> $$n = \frac{V}{22{,}4}$$</p>
+              <p><em>Trong đó:</em> n (số mol), V (thể tích khí - L), ở đktc</p>
             </div>
             <div class="formula-box">
               <p><strong>Từ số phân tử:</strong> $$n = \frac{N}{N_A}$$</p>
               <p><em>Trong đó:</em> n (số mol), N (số phân tử), $N_A = 6.022 \times 10^{23}$ mol⁻¹</p>
             </div>
             <div class="formula-box">
-              <p><strong>Từ nồng độ mol:</strong> $$n = C \times V_{dd}$$</p>
-              <p><em>Trong đó:</em> n (số mol), C (nồng độ mol - mol/L), $V_{dd}$ (thể tích dung dịch - L)</p>
+              <p><strong>Từ nồng độ mol:</strong> $$n = C_M \times V_{dd}$$</p>
+              <p><em>Trong đó:</em> n (số mol), C<sub>M</sub> (mol/L), V<sub>dd</sub> (L)</p>
             </div>
           </div>
         </div>
@@ -1871,12 +1871,12 @@
           <div class="subsection-title">4. Công thức tính thể tích</div>
           <div class="card-small">
             <div class="formula-box">
-              <p><strong>Thể tích khí (đktc):</strong> $$V_{khí} = n \times V_m = n \times 22.4$$</p>
-              <p><em>Trong đó:</em> $V_{khí}$ (L), n (số mol), $V_m = 22.4$ L/mol</p>
+              <p><strong>Thể tích khí (đktc):</strong> $$V = n \times 22{,}4$$</p>
+              <p><em>Trong đó:</em> V (L), n (số mol)</p>
             </div>
             <div class="formula-box">
-              <p><strong>Thể tích dung dịch:</strong> $$V_{dd} = \frac{n}{C}$$</p>
-              <p><em>Trong đó:</em> $V_{dd}$ (L), n (số mol), C (nồng độ mol - mol/L)</p>
+              <p><strong>Thể tích dung dịch:</strong> $$V_{dd} = \frac{n}{C_M}$$</p>
+              <p><em>Trong đó:</em> V<sub>dd</sub> (L), n (số mol), C<sub>M</sub> (mol/L)</p>
             </div>
           </div>
         </div>
@@ -1889,12 +1889,12 @@
               <p><em>Trong đó:</em> m (g), n (số mol), M (g/mol)</p>
             </div>
             <div class="formula-box">
-              <p><strong>Từ nồng độ:</strong> $$m = C \times V_{dd} \times M$$</p>
-              <p><em>Trong đó:</em> m (g), C (mol/L), $V_{dd}$ (L), M (g/mol)</p>
+              <p><strong>Từ nồng độ:</strong> $$m = C_M \times V_{dd} \times M$$</p>
+              <p><em>Trong đó:</em> m (g), C<sub>M</sub> (mol/L), V<sub>dd</sub> (L), M (g/mol)</p>
             </div>
             <div class="formula-box">
-              <p><strong>Từ phần trăm:</strong> $$m_{\text{chất}} = \frac{\% \times m_{\text{hòa tan}}}{100}$$</p>
-              <p><em>Trong đó:</em> $m_{\text{chất}}$ (g), % (phần trăm), $m_{\text{hòa tan}}$ (g)</p>
+              <p><strong>Từ phần trăm:</strong> $$m_{\text{chất tan}} = \frac{C\% \times m_{\text{dung dịch}}}{100}$$</p>
+              <p><em>Trong đó:</em> m<sub>chất tan</sub> (g), C% (phần trăm), m<sub>dung dịch</sub> (g)</p>
             </div>
           </div>
         </div>
@@ -1903,12 +1903,12 @@
           <div class="subsection-title">6. Công thức hiệu suất</div>
           <div class="card-small">
             <div class="formula-box">
-              <p><strong>Hiệu suất:</strong> $$\eta = \frac{m_{\text{thực}}}{m_{\text{lý thuyết}}} \times 100\%$$</p>
-              <p><em>Trong đó:</em> $\eta$ (%), $m_{\text{thực}}$ (khối lượng thực tế - g), $m_{\text{lý thuyết}}$ (khối lượng lý thuyết - g)</p>
+              <p><strong>Hiệu suất:</strong> $$H = \frac{m_{\text{thực tế}}}{m_{\text{lý thuyết}}} \times 100\%$$</p>
+              <p><em>Trong đó:</em> H (%), m<sub>thực tế</sub> (g), m<sub>lý thuyết</sub> (g)</p>
             </div>
             <div class="formula-box">
-              <p><strong>Khối lượng thực tế:</strong> $$m_{\text{thực}} = \frac{\eta \times m_{\text{lý thuyết}}}{100}$$</p>
-              <p><em>Trong đó:</em> $m_{\text{thực}}$ (g), $\eta$ (%), $m_{\text{lý thuyết}}$ (g)</p>
+              <p><strong>Khối lượng thực tế:</strong> $$m_{\text{thực tế}} = \frac{H \times m_{\text{lý thuyết}}}{100}$$</p>
+              <p><em>Trong đó:</em> m<sub>thực tế</sub> (g), H (%), m<sub>lý thuyết</sub> (g)</p>
             </div>
           </div>
         </div>
