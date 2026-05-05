@@ -252,6 +252,57 @@ strong {
     color: var(--accent-literature);
 }
 
+/* Accordion Styles */
+.accordion {
+    margin: 10px 0;
+}
+
+.accordion-header {
+    cursor: pointer;
+    padding: 12px 15px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: 1px solid var(--border-color);
+}
+
+.accordion-header:hover {
+    background: var(--accent-literature);
+    color: white;
+    border-color: var(--accent-literature);
+}
+
+.accordion-content {
+    display: none;
+    padding: 15px;
+    margin-top: 10px;
+    background: var(--bg-main);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent-literature);
+}
+
+.accordion-content.active {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.toggle-icon {
+    transition: transform 0.3s;
+}
+
+.toggle-icon.rotated {
+    transform: rotate(180deg);
+}
+
 @media (max-width: 768px) {
     .tabs-nav {
         position: static;
@@ -291,222 +342,375 @@ strong {
 
   <!-- TAB NAV -->
   <nav class="tabs-nav" role="tablist">
-    <button class="tab-btn active" onclick="switchTab('docHieu', this)">📖 Kỹ Năng Đọc Hiểu</button>
-    <button class="tab-btn" onclick="switchTab('nlDoiSong', this)">✍️ Nghị luận: Hiện tượng đời sống</button>
-    <button class="tab-btn" onclick="switchTab('nlDaoLy', this)">✍️ Nghị luận: Tư tưởng đạo lý</button>
-    <button class="tab-btn" onclick="switchTab('nlTacPham', this)">🎭 Nghị luận: Vấn đề từ tác phẩm</button>
+    <button class="tab-btn active" onclick="switchTab('docHieu', this)">📖 Đọc Hiểu</button>
+    <button class="tab-btn" onclick="switchTab('nlDoiSong', this)">✍️ Hiện Tượng Đời Sống</button>
+    <button class="tab-btn" onclick="switchTab('nlDaoLy', this)">✍️ Tư Tưởng Đạo Lý</button>
+    <button class="tab-btn" onclick="switchTab('vanBan', this)">📚 Văn Bản Đọc Hiểu</button>
     <a href="index.html" class="tab-btn" target="_self">🏠HOME</a>
   </nav>
 
   <!-- TAB 1: ĐỌC HIỂU -->
   <div id="docHieu" class="tab-panel active">
-    <div class="section-title">Kỹ Năng Đọc Hiểu</div>
+    <div class="section-title">Kỹ Năng Đọc Hiểu - 5 Dạng Câu Hỏi</div>
 
     <div class="card">
-      <div class="card-label">1. Dạng câu hỏi Nhận biết</div>
-      <div class="note-box">
-        <strong>Cách làm:</strong> Đọc lướt văn bản.<br>
-        <ul>
-          <li><strong>Ngôi kể:</strong> Thấy chữ "tôi" ➔ Ngôi thứ nhất; gọi tên nhân vật ➔ Ngôi thứ ba.</li>
-          <li><strong>Phương thức biểu đạt chính:</strong> Kể chuyện (Tự sự), bộc lộ cảm xúc (Biểu cảm), miêu tả cảnh/người (Miêu tả).</li>
-        </ul>
-        <strong>Trình bày:</strong> Trả lời trực tiếp, ngắn gọn (Ví dụ: "Ngôi kể thứ nhất").
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">2. Dạng câu hỏi Phân tích tác dụng của Ngôi kể</div>
-      <div class="grid2">
-        <div class="note-box">
-          <strong>Ngôi thứ nhất (xưng "tôi"):</strong><br>
-          Giúp câu chuyện trở nên chân thực, đáng tin cậy. Nhân vật dễ dàng bộc lộ thế giới nội tâm, cảm xúc và suy nghĩ cá nhân một cách trực tiếp, sâu sắc.
+      <div class="card-label">📌 Dạng 1: Xác định ngôi kể</div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>🔍 Cách làm</span>
+          <span class="toggle-icon">▼</span>
         </div>
-        <div class="note-box">
-          <strong>Ngôi thứ ba (giấu mặt):</strong><br>
-          Giúp câu chuyện mang tính khách quan. Điểm nhìn trần thuật rộng, tự do, linh hoạt, có thể kể và miêu tả nhiều không gian, thời gian và nhiều nhân vật cùng lúc.
+        <div class="accordion-content">
+          <p><strong>Bước 1:</strong> Đọc lướt văn bản để tìm từ chỉ nhân xưng.</p>
+          <p><strong>Bước 2:</strong></p>
+          <ul>
+            <li>Nếu thấy từ "tôi" → <strong>Ngôi thứ nhất</strong></li>
+            <li>Nếu gọi tên nhân vật → <strong>Ngôi thứ ba</strong></li>
+          </ul>
+          <p><strong>Bước 3:</strong> Trả lời trực tiếp, ngắn gọn.</p>
         </div>
       </div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">3. Dạng câu hỏi Tìm chi tiết</div>
-      <div class="note-box">
-        <strong>Cách làm:</strong> Dựa vào từ khóa trong câu hỏi, rà soát lại đoạn văn bản chứa từ khóa đó.<br>
-        <strong>Trình bày:</strong> Trích dẫn nguyên văn trong ngoặc kép <code>""</code>. Không tự diễn xuôi.
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">4. Dạng câu hỏi Phân tích Biện pháp Tu từ</div>
-      <div class="warning-box">
-        <strong>Công thức 3 bước:</strong>
-        <ol>
-          <li><strong>Chỉ ra:</strong> Gọi tên biện pháp tu từ + Trích dẫn hình ảnh chứa biện pháp tu từ.</li>
-          <li><strong>Giải nghĩa:</strong> Hình ảnh đó miêu tả điều gì/có đặc điểm gì.</li>
-          <li><strong>Tác dụng:</strong>
-            <ul>
-              <li><strong>Về Nghệ thuật:</strong> Tăng sức gợi hình, gợi cảm cho câu văn/câu thơ; tạo nhịp điệu, làm lời văn thêm sinh động, hấp dẫn.</li>
-              <li><strong>Về Nội dung:</strong> Làm nổi bật đặc điểm của đối tượng (tính cách nhân vật, khung cảnh...); qua đó thể hiện thái độ, tình cảm, sự trân trọng/ngợi ca/cảm thông của tác giả.</li>
-            </ul>
-          </li>
-        </ol>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">5. Dạng câu hỏi Thông hiểu / Rút ra thông điệp (Vận dụng)</div>
       <div class="example-box">
-        <strong>Ý nghĩa của một chi tiết/câu nói:</strong>
-        <ul>
-          <li>Giải thích ngắn gọn nghĩa đen của chi tiết/câu nói.</li>
-          <li>Suy ra nghĩa bóng (thông điệp tác giả muốn gửi gắm).</li>
-        </ul>
+        <strong>Ví dụ từ đề thi:</strong><br>
+        • "Trên xuất sắc" - Phạm Sông Hồng → Ngôi thứ nhất (xưng "tôi")<br>
+        • "Người gánh nước thuê" - Võ Thị Hảo → Ngôi thứ ba (giấu mặt)
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">📌 Dạng 2: Tìm chi tiết miêu tả</div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>🔍 Cách làm</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p><strong>Bước 1:</strong> Xác định từ khóa trong câu hỏi.</p>
+          <p><strong>Bước 2:</strong> Rà soát lại đoạn văn bản chứa từ khóa đó.</p>
+          <p><strong>Bước 3:</strong> Trích dẫn nguyên văn trong ngoặc kép <code>""</code>.</p>
+          <p><strong>Lưu ý:</strong> Không tự diễn xuôi, giữ nguyên văn bản.</p>
+        </div>
       </div>
       <div class="example-box">
-        <strong>Rút ra thông điệp / Bài học nhận thức & hành động:</strong>
-        <ul>
-          <li><strong>Nêu rõ thông điệp:</strong> Rút ra 1 hoặc 2 thông điệp ý nghĩa nhất đối với bản thân.</li>
-          <li><strong>Lý giải:</strong> Vì sao thông điệp đó có ý nghĩa? (Nó giúp ta nhận ra điều gì, thay đổi tư duy như thế nào).</li>
-          <li><strong>Bài học hành động:</strong> Bản thân sẽ hành động như thế nào trong thực tế.</li>
-        </ul>
+        <strong>Ví dụ từ đề thi:</strong><br>
+        • Câu hỏi: "Tìm chi tiết miêu tả ngoại hình bà Diễm"<br>
+        • Trả lời: "Dáng người bà Diễm bé loắt choắt, bộ mặt nhăn nheo, gầy sạm chỉ còn hai con mắt."
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">📌 Dạng 3: Phân tích biện pháp tu từ</div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>🔍 Công thức 3 bước</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p><strong>Bước 1 - Chỉ ra:</strong> Gọi tên biện pháp tu từ + Trích dẫn hình ảnh.</p>
+          <p><strong>Bước 2 - Giải nghĩa:</strong> Hình ảnh đó miêu tả điều gì/có đặc điểm gì.</p>
+          <p><strong>Bước 3 - Tác dụng:</strong></p>
+          <ul>
+            <li><strong>Về Nghệ thuật:</strong> Tăng sức gợi hình, gợi cảm; tạo nhịp điệu.</li>
+            <li><strong>Về Nội dung:</strong> Làm nổi bật đặc điểm đối tượng; thể hiện thái độ tác giả.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="example-box">
+        <strong>Ví dụ từ đề thi:</strong><br>
+        • Biện pháp so sánh: "như suối nước mắt"<br>
+        • Tác dụng: Gợi hình, gợi cảm; thể hiện nỗi đau, sự bất hạnh của nhân vật.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">📌 Dạng 4: Ý nghĩa chi tiết/cụm từ</div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>🔍 Cách làm</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p><strong>Bước 1:</strong> Giải thích ngắn gọn nghĩa đen.</p>
+          <p><strong>Bước 2:</strong> Suy ra nghĩa bóng (thông điệp tác giả muốn gửi gắm).</p>
+          <p><strong>Bước 3:</strong> Liên hệ với bối cảnh/tác phẩm.</p>
+        </div>
+      </div>
+      <div class="example-box">
+        <strong>Ví dụ từ đề thi:</strong><br>
+        • "Nhà của con": Nghĩa đen - ngôi nhà do con xây → Nghĩa bóng - sự sáng tạo, tính độc lập của trẻ.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">📌 Dạng 5: Rút ra thông điệp/bài học (5-7 dòng)</div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>🔍 Cấu trúc trả lời</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p><strong>Bước 1:</strong> Nêu rõ 1-2 thông điệp ý nghĩa nhất.</p>
+          <p><strong>Bước 2:</strong> Lý giải vì sao thông điệp đó quan trọng.</p>
+          <p><strong>Bước 3:</strong> Bài học hành động cho bản thân.</p>
+          <p><strong>Yêu cầu:</strong> Ngắn gọn, đúng trọng tâm, 5-7 dòng.</p>
+        </div>
+      </div>
+      <div class="example-box">
+        <strong>Ví dụ từ đề thi:</strong><br>
+        Thông điệp: Cần trân trọng sự sáng tạo của trẻ con → Bài học: Không áp đặt suy nghĩ người lớn lên trẻ.
       </div>
     </div>
   </div>
 
-  <!-- TAB 2: NGHỊ LUẬN - HIỆN TƯỢNG ĐỜI SỐNG -->
+  <!-- TAB 2: HIỆN TƯỢNG ĐỜI SỐNG -->
   <div id="nlDoiSong" class="tab-panel">
     <div class="section-title">Nghị Luận: Hiện Tượng Đời Sống</div>
     <div class="quote-box">
-      <em>Thường bàn về các hiện tượng tích cực / tiêu cực như: biến đổi khí hậu, bạo lực mạng, ý thức giao thông, trào lưu tình nguyện...</em>
+      <em>Các đề từ file ôn tập: Sự lựa chọn thần tượng, Sứ mệnh dấn thân, Biến đổi khí hậu...</em>
     </div>
 
     <div class="card">
-      <div class="card-label">1. Mở bài</div>
-      <p>Giới thiệu hiện tượng ➔ Nhấn mạnh tính cấp thiết của vấn đề trong xã hội hiện nay.</p>
+      <div class="card-label">📋 Dàn ý chuẩn</div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>1. Mở bài</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p>Giới thiệu hiện tượng ➔ Nhấn mạnh tính cấp thiết trong xã hội hiện nay.</p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>2. Thân bài</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="note-box">
+            <strong>Bước 1: Giải thích hiện tượng</strong><br>
+            Bám từ khóa để định nghĩa, làm rõ bản chất.
+          </div>
+          <div class="note-box">
+            <strong>Bước 2: Thực trạng</strong><br>
+            Nêu biểu hiện thực tế + Dẫn chứng cụ thể.
+          </div>
+          <div class="note-box">
+            <strong>Bước 3: Nguyên nhân</strong><br>
+            • Khách quan: Thời đại, môi trường, quản lý nhà nước<br>
+            • Chủ quan: Nhận thức yếu, ý thức chưa cao, tâm lý đám đông
+          </div>
+          <div class="note-box">
+            <strong>Bước 4: Hậu quả/Hệ quả</strong><br>
+            • Đối với cá nhân: Sức khỏe, tinh thần, tương lai<br>
+            • Đối với cộng đồng: Xã hội, đạo đức, an ninh
+          </div>
+          <div class="note-box">
+            <strong>Bước 5: Giải pháp</strong><br>
+            • 🏛️ Nhà nước: Luật pháp, quản lý<br>
+            • 🏫 Gia đình, Nhà trường: Giáo dục, quan tâm<br>
+            • 👤 Bản thân: Rèn luyện, nâng cao nhận thức
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>3. Kết bài</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p>Khẳng định lại vấn đề ➔ Liên hệ bản thân (nhận thức + hành động).</p>
+        </div>
+      </div>
     </div>
 
     <div class="card">
-      <div class="card-label">2. Thân bài</div>
-      <div class="note-box">
-        <strong>Bước 1: Giải thích hiện tượng</strong><br>
-        Bám vào các từ khóa để định nghĩa, làm rõ bản chất của hiện tượng đó là gì.
+      <div class="card-label">📝 Dàn ý đề: Sự lựa chọn thần tượng của giới trẻ</div>
+      <div class="example-box">
+        <strong>Mở bài:</strong> Giới thiệu thần tượng là gì → Tính cấp thiết trong thời đại số.<br>
+        <strong>Thân bài:</strong> Giải thích thần tượng → Thực trạng chọn thần tượng sai → Nguyên nhân → Hậu quả → Giải pháp.<br>
+        <strong>Kết bài:</strong> Khẳng định tầm quan trọng → Bài học chọn thần tượng tích cực.
       </div>
-      <div class="note-box">
-        <strong>Bước 2: Thực trạng</strong><br>
-        Nêu biểu hiện thực tế đang diễn ra như thế nào + Đưa ra dẫn chứng cụ thể, tiêu biểu.
-      </div>
-      <div class="note-box">
-        <strong>Bước 3: Nguyên nhân</strong><br>
-        <ul>
-          <li><strong>Khách quan:</strong> Do thời đại, môi trường xã hội, gia đình, công tác quản lý của nhà nước...</li>
-          <li><strong>Chủ quan:</strong> Do bản thân người trong cuộc (nhận thức yếu kém, ý thức chưa cao, đua đòi, tâm lý đám đông...).</li>
-        </ul>
-      </div>
-      <div class="note-box">
-        <strong>Bước 4: Hậu quả / Hệ quả</strong> (Tác dụng nếu là hiện tượng tích cực)<br>
-        <ul>
-          <li><strong>Đối với cá nhân:</strong> Sức khỏe, tinh thần, tương lai...</li>
-          <li><strong>Đối với cộng đồng:</strong> Xã hội, đạo đức, an ninh, sự phát triển chung...</li>
-        </ul>
-      </div>
-      <div class="note-box">
-        <strong>Bước 5: Giải pháp</strong><br>
-        <ul>
-          <li>🏛️ <strong>Từ phía Cơ quan chức năng/Nhà nước:</strong> Luật pháp, quản lý.</li>
-          <li>🏫 <strong>Từ phía Gia đình, Nhà trường:</strong> Giáo dục, quan tâm.</li>
-          <li>👤 <strong>Từ phía Bản thân mỗi người:</strong> Rèn luyện, nâng cao nhận thức.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">3. Kết bài</div>
-      <p>Khẳng định lại Vấn đề nghị luận ➔ Liên hệ với bản thân (Rút ra bài học nhận thức và hành động).</p>
     </div>
   </div>
 
-  <!-- TAB 3: NGHỊ LUẬN - TƯ TƯỞNG ĐẠO LÝ -->
+  <!-- TAB 3: TƯ TƯỞNG ĐẠO LÝ -->
   <div id="nlDaoLy" class="tab-panel">
     <div class="section-title">Nghị Luận: Tư Tưởng Đạo Lý</div>
     <div class="quote-box">
-      <em>Thường bàn về: nhận thức, phẩm chất đạo đức, lẽ sống, quan hệ gia đình, xã hội... ví dụ: lòng biết ơn, sự dấn thân, ý chí nghị lực...</em>
+      <em>Các quan niệm từ đề thi: Lòng biết ơn, Sự dấn thân, Nghị lực phi thường, Tình yêu thương...</em>
     </div>
 
     <div class="card">
-      <div class="card-label">1. Mở bài</div>
-      <p>Dẫn dắt và giới thiệu tư tưởng đạo lý cần bàn luận (trích dẫn câu nói/ngạn ngữ nếu có).</p>
+      <div class="card-label">📋 Dàn ý chuẩn</div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>1. Mở bài</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p>Dẫn dắt và giới thiệu tư tưởng đạo lý (trích dẫn câu nói/ngạn ngữ nếu có).</p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>2. Thân bài</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="note-box">
+            <strong>Bước 1: Giải thích</strong><br>
+            Cắt nghĩa từ khóa, hình ảnh ẩn dụ → Tóm lược ý nghĩa toàn bộ.
+          </div>
+          <div class="note-box">
+            <strong>Bước 2: Bàn luận</strong><br>
+            • Vai trò, ý nghĩa đối với con người và xã hội<br>
+            • Dẫn chứng minh họa (thực tế, lịch sử)
+          </div>
+          <div class="note-box">
+            <strong>Bước 3: Mở rộng/Phản đề</strong><br>
+            • Phê phán biểu hiện đi ngược lại đạo lý<br>
+            • Bổ sung góc nhìn khác (tránh cực đoan)
+          </div>
+          <div class="note-box">
+            <strong>Bước 4: Bài học</strong><br>
+            Nhận thức + Hành động cho bản thân.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>3. Kết bài</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p>Khẳng định giá trị bền vững → Liên hệ bản thân.</p>
+        </div>
+      </div>
     </div>
 
     <div class="card">
-      <div class="card-label">2. Thân bài</div>
-      <div class="note-box">
-        <strong>Bước 1: Giải thích</strong><br>
-        Cắt nghĩa các từ khóa, hình ảnh ẩn dụ (nếu có) ➔ Tóm lược ý nghĩa toàn bộ tư tưởng đạo lý.
+      <div class="card-label">📝 Dàn ý đề: Sứ mệnh "dấn thân" của thế hệ trẻ</div>
+      <div class="example-box">
+        <strong>Mở bài:</strong> Trích dẫn TS. Đỗ Thị Thu Hằng → Giới thiệu khái niệm "dấn thân".<br>
+        <strong>Thân bài:</strong> Giải thích dấn thân → Ý nghĩa với người trẻ → Dẫn chứng → Phê phán sống thụ động → Bài học.<br>
+        <strong>Kết bài:</strong> Khẳng định giá trị dấn thân → Cam kết hành động.
       </div>
-      <div class="note-box">
-        <strong>Bước 2: Bàn luận (Phân tích, chứng minh)</strong><br>
-        <ul>
-          <li>Vì sao lại có tư tưởng đó? Vai trò, ý nghĩa của nó đối với con người và xã hội là gì?</li>
-          <li>Lấy dẫn chứng minh họa (thực tế đời sống, lịch sử).</li>
-        </ul>
-      </div>
-      <div class="note-box">
-        <strong>Bước 3: Mở rộng, lật lại vấn đề (Phản đề)</strong><br>
-        <ul>
-          <li>Phê phán những biểu hiện đi ngược lại với đạo lý (ví dụ: vô ơn, hèn nhát, sống buông thả...).</li>
-          <li>Bổ sung góc nhìn khác (đạo lý đó có luôn đúng trong mọi trường hợp không? Cần phân biệt khái niệm tránh cực đoan).</li>
-        </ul>
-      </div>
-      <div class="note-box">
-        <strong>Bước 4: Bài học nhận thức và hành động</strong><br>
-        Bản thân nhận ra điều gì và sẽ rèn luyện như thế nào?
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">3. Kết bài</div>
-      <p>Khẳng định lại giá trị bền vững của tư tưởng đạo lý ➔ Liên hệ bản thân.</p>
     </div>
   </div>
 
-  <!-- TAB 4: NGHỊ LUẬN - VẤN ĐỀ TỪ TÁC PHẨM -->
-  <div id="nlTacPham" class="tab-panel">
-    <div class="section-title">Nghị Luận: Vấn Đề Từ Tác Phẩm</div>
-    <div class="quote-box">
-      <em>Bàn về một thông điệp xã hội rút ra từ một câu chuyện, bài thơ...</em>
-    </div>
+  <!-- TAB 4: VĂN BẢN ĐỌC HIỂU -->
+  <div id="vanBan" class="tab-panel">
+    <div class="section-title">Văn Bản Đọc Hiểu Từ Đề Thi</div>
 
     <div class="card">
-      <div class="card-label">1. Mở bài</div>
-      <p>Giới thiệu tác giả, tác phẩm, đoạn trích ➔ Nêu vấn đề xã hội được gợi ra từ tác phẩm đó.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-label">2. Thân bài</div>
-      <div class="note-box">
-        <strong>Phần 1: Rút ra vấn đề từ tác phẩm (Ngắn gọn)</strong><br>
-        <ul>
-          <li>Tóm tắt sơ lược chi tiết/hình ảnh/nhân vật mang vấn đề.</li>
-          <li>Chỉ rõ tác giả muốn gửi gắm thông điệp/vấn đề xã hội gì qua đó.</li>
-        </ul>
+      <div class="card-label">📖 "Trên xuất sắc" - Phạm Sông Hồng</div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>📌 Tóm tắt</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p>Câu chuyện về người mẹ và cậu bé con trai. Cậu bé được thưởng hộp xếp hình vì học sinh xuất sắc, đặt nhiều câu hỏi về "tiên tiến", "xuất sắc", "trên xuất sắc". Mẹ giải thích "trên xuất sắc" là xếp được nhiều thứ nhất. Cậu bé xếp một ngôi nhà kỳ quặc và khẳng định "nhà của con".</p>
+        </div>
       </div>
-      <div class="note-box">
-        <strong>Phần 2: Bàn luận về vấn đề xã hội đó (Trọng tâm)</strong><br>
-        <ul>
-          <li><strong>Nếu là vấn đề tư tưởng đạo lý:</strong> Thực hiện các bước (Giải thích ➔ Phân tích ý nghĩa ➔ Phản đề ➔ Bài học).</li>
-          <li><strong>Nếu là vấn đề hiện tượng đời sống:</strong> Thực hiện các bước (Giải thích ➔ Thực trạng ➔ Nguyên nhân ➔ Hậu quả ➔ Giải pháp).</li>
-        </ul>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>💡 Thông điệp chính</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p>Cần trân trọng sự sáng tạo và tính độc lập của trẻ con. Không nên áp đặt suy nghĩ và tiêu chuẩn của người lớn lên trẻ.</p>
+        </div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>🎭 Nhân vật nổi bật</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p><strong>Cậu bé:</strong> Tò mò, sáng tạo, độc lập, dám khẳng định "nhà của con".<br>
+          <strong>Người mẹ:</strong> Cẩn trọng, biết lắng nghe, sẵn sàng xin lỗi con.</p>
+        </div>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-label">3. Kết bài</div>
-      <p>Khẳng định lại ý nghĩa sâu sắc của tác phẩm khi gắn liền với đời sống ➔ Liên hệ thực tiễn và bản thân.</p>
+      <div class="card-label">📖 "Hoa trên đảo" - Lê Quang Trạng</div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>📌 Tóm tắt</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p>"Tôi" tìm đến đảo Vọng gặp cô giáo Hiên - người duy nhất là người lớn trên đảo. Hiên vừa làm cô, vừa làm mẹ cho hơn chục đứa trẻ, dạy chúng trồng rau, đọc sách. "Tôi" nhận ra vẻ đẹp của văn chương và cuộc sống có thể nở hoa ở mảnh đất cằn cỗi.</p>
+        </div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>💡 Thông điệp chính</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p>Sự dấn thân và tình yêu thương có thể tạo ra vẻ đẹp và hạnh phúc ngay cả nơi khó khăn nhất. "Gieo mồ hôi xuống Vọng là đảo sẽ trổ hoa".</p>
+        </div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>🎭 Nhân vật nổi bật</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p><strong>Hiên:</strong> Nghị lực phi thường, tình yêu thương, sự dấn thân, hy sinh tuổi trẻ cho đảo nghèo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">📖 "Người gánh nước thuê" - Võ Thị Hảo</div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>📌 Tóm tắt</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p>Chuyện về bà Diễm - người gánh nước thuê nghèo khổ, bị coi thường. Bà gắn bó với những nhà giàu vì họ thuê bà, trong khi đa số người nghèo không đủ tiền thuê. Bà đi trong đời như kẻ mộng du, lặng lẽ sẽ tan biến như hạt bụi.</p>
+        </div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>💡 Thông điệp chính</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p>Phê phán sự bất công xã hội và sự coi thường người lao động nghèo. Cần có lòng trắc ẩn và sự tôn trọng đối với mọi người.</p>
+        </div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span>🎭 Nhân vật nổi bật</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p><strong>Bà Diễm:</strong> Nghèo khổ, cam chịu, lặng lẽ, bị xã hội coi thường nhưng vẫn giữ phẩm giá.</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
+// Accordion Toggle Function
+function toggleAccordion(header) {
+  const content = header.nextElementSibling;
+  const icon = header.querySelector('.toggle-icon');
+  content.classList.toggle('active');
+  icon.classList.toggle('rotated');
+}
+
 // Theme Toggle Function
 function toggleTheme() {
   const html = document.documentElement;
